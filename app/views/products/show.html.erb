@@ -1,0 +1,10 @@
+<header>
+  <h1><%= @product.name %></h1>
+
+  <ul class="ations">
+    <%= link_to "Edit", [:edit, @product], class: "btn btn-primary" %>
+    <%= link_to "Delete", @product, method: :delete, class: "btn btn-danger",
+      data: { confirm: "Are you sure?" } %>
+  </ul>
+</header>
+<h2><%= simple_format(@product.description) %></h2>

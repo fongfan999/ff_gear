@@ -1,0 +1,63 @@
+.btn-default {
+  @extend .blue-grey;
+  @extend .darken-2;
+}
+
+.btn-success {
+  @extend .green;
+  @extend .darken-2;
+}
+
+.btn-info {
+  @extend .light-blue;
+  @extend .darken-2;
+}
+
+.btn-warning {
+  @extend .deep-orange;
+  @extend .darken-2;
+}
+
+.btn-danger {
+  @extend .red;
+  @extend .darken-2;
+}
+
+.alert {
+  @extend .card-panel;
+  color: #fff;
+}
+
+.alert-success {
+  @extend .green;
+  @extend .darken-2;
+}
+
+.alert-info {
+  @extend .light-blue;
+  @extend .darken-2;
+}
+
+.alert-warning {
+  @extend .deep-orange;
+  @extend .darken-2;
+}
+
+.alert-danger {
+  @extend .red;
+  @extend .darken-2;
+}
+
+.form-group {
+  @extend .row;
+  @extend .input-field;
+}
+
+label.active {
+  color: #26a69a;
+}
+
+.dismiss {
+  @extend .right;
+  color: #fff;
+}

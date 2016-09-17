@@ -1,0 +1,13 @@
+<header>
+  <h1>Listing Products</h1>
+
+  <ul class="actions">
+    <%= link_to "New Product", new_product_path, class: "btn btn-primary" %>
+  </ul>
+</header>
+
+<% @products.each do |product| %>
+  <hr>
+  <h1><%= link_to product.name, product %></h1>
+  <p><%= simple_format(product.description) %></p>
+<% end %>

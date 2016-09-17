@@ -1,0 +1,9 @@
+<%= simple_form_for product do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+
+  <%= f.button :button do %>
+    <%= product.new_record? ? "Create" : "Update" %>
+    <i class="material-icons right">send</i>
+  <% end %>
+<% end %>

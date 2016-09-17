@@ -12,4 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require_tree .
+
+$(function() {
+  // Set waves-effect on all <a> and <button> tags and 
+  $('a, button').addClass("waves-effect waves-light");
+
+  // Fix Textarea
+  $('textarea').addClass("materialize-textarea");
+
+  // Make collapsible navbar
+  $(".button-collapse").sideNav();
+
+  // Hide dismiss button
+  $(".dismiss").on("click", function() {
+    $(this).parent().fadeOut("slow");
+  });
+});
