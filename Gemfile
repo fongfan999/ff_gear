@@ -34,6 +34,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
 # Material Design
 gem 'materialize-sass'
+# File upload solution
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+# Content Slider
+gem 'flexslider',
+  git: 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

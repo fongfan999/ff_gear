@@ -1,10 +1,39 @@
+<div id="product" class="card">
+<div class="right">
+    <%= link_to "", [:edit, @product], class: "edit" %>
+    <%= link_to "", @product, method: :delete, class: "delete",
+      data: { confirm: "Are you sure?" } %>
+  </div>
 <header>
   <h1><%= @product.name %></h1>
 
-  <ul class="ations">
-    <%= link_to "Edit", [:edit, @product], class: "btn btn-primary" %>
-    <%= link_to "Delete", @product, method: :delete, class: "btn btn-danger",
-      data: { confirm: "Are you sure?" } %>
-  </ul>
+  
 </header>
-<h2><%= simple_format(@product.description) %></h2>
+
+<div class="divider"></div>
+<p><%= simple_format(@product.description) %></p>
+
+<div class="row">
+  <div class="col s12 l8">
+    <div id="slider" class="flexslider">
+      <ul class="slides">
+        <% @product.attachments.each do |attachment| %>
+          <li><%= image_tag(attachment.url, class: "zoom-in") %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="carousel" class="flexslider">
+      <ul class="slides">
+        <% @product.attachments.each do |attachment| %>
+          <li><%= image_tag(attachment.url) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col s12 l4">
+    <p><%= simple_format(@product.description) %></p>
+  </div>
+</div>
+
+
+</div>

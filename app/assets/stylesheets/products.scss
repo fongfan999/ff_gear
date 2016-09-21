@@ -1,3 +1,65 @@
-// Place all the styles related to the products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#products {
+  .card {
+    height: 450px;
+
+    .card-image {
+      height: 300px;
+
+      img {
+        height: 300px;
+      }
+
+      .card-title {
+        color: teal;
+        text-shadow:
+          -1px -1px 0 white,
+          1px -1px 0 white,
+          -1px 1px 0 white,
+          1px 1px 0 white;
+      }
+    }
+
+    .card-content {
+      border-top: 3px solid teal;
+      height: 150px;
+    }
+  }
+}
+
+#product {
+  &.card {
+    padding: 20px;
+  }
+
+  #slider {
+    height: 400px;
+
+    img {
+      margin: 0 auto;
+      height: 400px;
+    }
+  }
+}
+
+#carousel {
+  height: 200px;
+  ul.slides {
+    li {
+      border: 1px solid #03a9f4;
+      padding: 5px;
+
+      img {
+        height: 200px;
+      }
+    }
+  }
+}
+
+#attachments {
+  margin-bottom: 30px;
+
+  i.trash {
+    color: red;
+  }
+}
+

@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize-sprockets
+//= require jquery.flexslider-min
+//= require jquery.loupe.min
 //= require_tree .
 
 $(function() {
@@ -29,4 +31,26 @@ $(function() {
   $(".dismiss").on("click", function() {
     $(this).parent().fadeOut("slow");
   });
+
+  $('#carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 210,
+    itemMargin: 5,
+    asNavFor: '#slider'
+  });
+ 
+  $('#slider').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#carousel"
+  });
+
+  $('.zoom-in').loupe();
+
+  $("a.new, a.edit, a.delete").prepend('<i class="material-icons"></>');
 });

@@ -1,6 +1,27 @@
-<%= simple_form_for product do |f| %>
+<%= simple_form_for product, html: { multipart: true } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  
+  <div id="attachments">
+    <h5>Attachments</h5>
+      <%#= f.file_field :attachments, multiple: true %>
+      <%= f.input :attachments, as: :file, label: false,
+        input_html: { multiple: true } %>
+      <%#= f.input :attachments_cache, as: :file, label: false,
+        input_html: { multiple: true } %>
+      <%#= f.file_field :attachments %>
+
+      <% unless product.new_record? %>
+      <div id="carousel" class="flexslider">
+        <ul class="slides">
+          <% @product.attachments.each do |attachment| %>
+            <li class="center-align"><%= image_tag(attachment.url) %>
+            <%= link_to '<i class="material-icons small trash">delete</i>'.html_safe, "#" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+  </div>
 
   <%= f.button :button do %>
     <%= product.new_record? ? "Create" : "Update" %>

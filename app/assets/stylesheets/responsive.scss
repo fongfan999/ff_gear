@@ -1,0 +1,27 @@
+@media #{$medium-and-up} {
+  form {
+    max-width: 500px;
+  }
+
+  #product {
+    #slider {
+      img {
+        width: 400px;
+      }
+    }
+  }
+
+  nav {
+    a.button-collapse {
+      display: block;
+    }
+  }
+}
+
+ @media #{$large-and-up} {
+  nav {
+    a.brand-logo {
+      left: 70px;
+    }
+  }
+}

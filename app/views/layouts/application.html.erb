@@ -9,36 +9,71 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    
-  <nav>
-    <div class="nav-wrapper container">
-      <%= link_to "SeHaMa", root_path, class: "brand-logo" %>
-      <a href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul>
-    </div>
-  </nav>
-    
-  <div class="container">
-    <% flash.each do |key, message| %>
-      <div class="alert alert-<%= key %>">
-        <%= message %><a data class="dismiss">X</a>
+  <body>  
+    <nav class="light-blue">
+      <div class="nav-wrapper container">
+        <a href="/" class="brand-logo">
+          <!-- <i class="material-icons">smartphone</i> -->
+          <!-- <i class="material-icons">tablet_mac</i> -->
+          <i class="material-icons">laptop_mac</i>
+          <!-- <i class="material-icons">watch</i> -->
+          UTM
+        </a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        
+
       </div>
-  <% end %>
-   <%= yield %>
-  </div>
+    </nav>
+
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+      <%= image_tag Product.first.attachments.first, class: "background" %>
+        <a href="#!user"><%= image_tag Product.last.attachments.first, class: "circle" %></a>
+        <a href="#!name"><span class="white-text name">John Doe</span></a>
+        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div></li>
+      <li><a href="/"><i class="material-icons">home</i>Home</a></li>
+      <li><a href=""><i class="material-icons">favorite</i>Favorite</a></li>
+      <li><div class="divider"></div></li>
+      <li><a href=""><i class="material-icons">feedback</i>Send Feedback</a></li>
+      <li><a href=""><i class="material-icons">help</i>Help</a></li>
+    </ul>
+      
+    <div id="main" class="container">
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key %>">
+          <%= message %><a data class="dismiss">X</a>
+        </div>
+    <% end %>
+     <%= yield %>
+    </div>
+
+    <footer class="page-footer light-blue">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, lorem non tristique dapibus, nulla metus convallis risus, nec tincidunt sem augue a mi. Sed rutrum, nibh a tristique ultrices, felis sem condimentum nisl, at semper sem est eu lectus. Sed rutrum tincidunt porttitor.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2016 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+        
   </body>
 </html>

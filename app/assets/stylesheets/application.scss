@@ -2,9 +2,18 @@
 @import 'materialize';
 @import 'translate-bootstrap';
 @import 'simple-form';
+@import 'flexslider.css';
+@import 'products';
+@import 'responsive';
 
-form {
-  max-width: 500px;
+body {
+  display: flex;
+  min-height: 150vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1 0 auto;
 }
 
 .alert-notice {
@@ -13,4 +22,38 @@ form {
 
 .alert-alert {
   @extend .alert-danger;
+}
+
+.loupe {
+  cursor: zoom-in;
+  border: 1px solid #ee6e73;
+}
+
+a.new, a.edit, a.delete {
+  @extend .btn-floating;
+}
+
+a.new {
+  @extend .btn-large;
+  @extend .pink;
+
+  i.material-icons:after {
+    content: "add";
+  }
+}
+
+a.edit {
+  @extend .teal;
+
+  i.material-icons:after {
+    content: "edit";
+  }
+}
+
+a.delete {
+  @extend .red;
+
+  i.material-icons:after {
+    content: "delete";
+  }
 }
