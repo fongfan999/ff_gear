@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 1dbc8be0bb8cf3b48600c5451084ee13445747b0
-  specs:
-    carrierwave (1.0.0.beta)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
-
-GIT
   remote: https://github.com/constantm/Flexslider-2-Rails-Gem.git
   revision: 8d87de030e7b670f11d0cddf0731abb3e2a9aa5c
   specs:
@@ -57,6 +48,10 @@ GEM
     arel (7.1.2)
     builder (3.2.2)
     byebug (9.0.5)
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -66,6 +61,8 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    dropzonejs-rails (0.7.3)
+      rails (> 3.1)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -174,18 +171,19 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  carrierwave!
+  carrierwave (>= 1.0.0.beta, < 2.0)
   coffee-rails (~> 4.2)
+  dropzonejs-rails (~> 0.7.3)
   flexslider!
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  materialize-sass
+  materialize-sass (~> 0.97.7)
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0)
   sass-rails (~> 5.0)
-  simple_form
+  simple_form (~> 3.3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

@@ -5,6 +5,7 @@
 @import 'flexslider.css';
 @import 'products';
 @import 'responsive';
+@import 'dropzone/dropzone';
 
 body {
   display: flex;
@@ -14,6 +15,20 @@ body {
 
 #main {
   flex: 1 0 auto;
+}
+
+textarea {
+  @extend .materialize-textarea;
+}
+
+a.new {
+  @extend .btn-floating;
+  @extend .btn-large;
+  @extend .pink;
+
+  i.material-icons:after {
+    content: "add";
+  }
 }
 
 .alert-notice {
@@ -29,31 +44,15 @@ body {
   border: 1px solid #ee6e73;
 }
 
-a.new, a.edit, a.delete {
-  @extend .btn-floating;
+.dropzone {
+  border-radius: 10px;
+  border: 1px dotted #00b8d4;
 }
 
-a.new {
-  @extend .btn-large;
-  @extend .pink;
-
-  i.material-icons:after {
-    content: "add";
-  }
+.dz-image {
+  border: 1px solid cyan;
 }
 
-a.edit {
-  @extend .teal;
-
-  i.material-icons:after {
-    content: "edit";
-  }
-}
-
-a.delete {
-  @extend .red;
-
-  i.material-icons:after {
-    content: "delete";
-  }
+.dropdown-content > li a {
+  color: #03a9f4;
 }

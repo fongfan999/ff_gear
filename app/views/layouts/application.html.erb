@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>MiniShop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -28,8 +29,8 @@
 
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
-      <%= image_tag Product.first.attachments.first, class: "background" %>
-        <a href="#!user"><%= image_tag Product.last.attachments.first, class: "circle" %></a>
+      <%#= image_tag Product.first.attachments.first, class: "background" %>
+        <a href="#!user"><%#= image_tag Product.last.attachments.first, class: "circle" %></a>
         <a href="#!name"><span class="white-text name">John Doe</span></a>
         <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
       </div></li>
@@ -45,9 +46,12 @@
         <div class="alert alert-<%= key %>">
           <%= message %><a data class="dismiss">X</a>
         </div>
-    <% end %>
-     <%= yield %>
+      <% end %>
+      <%= yield %>
+
     </div>
+
+
 
     <footer class="page-footer light-blue">
       <div class="container">

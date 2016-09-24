@@ -1,39 +1,42 @@
 <div id="product" class="card">
-<div class="right">
-    <%= link_to "", [:edit, @product], class: "edit" %>
-    <%= link_to "", @product, method: :delete, class: "delete",
-      data: { confirm: "Are you sure?" } %>
+  <div class="right">
+    <a class='dropdown-button' href='#' data-activates='action'>
+      <i class="material-icons">more_vert</i></a>
+
+  <!-- Dropdown Structure -->
+  <ul id='action' class='dropdown-content'>
+    <li class="edit"><%= link_to "Edit", [:edit, @product] %></li>
+    <li class="delete"><%= link_to "Delete", @product, method: :delete,
+      data: { confirm: "Are you sure?" } %></li>
+  </ul>
   </div>
-<header>
-  <h1><%= @product.name %></h1>
+  <header>
+    <h1><%= @product.name %></h1>
+  </header>
 
-  
-</header>
+  <div class="divider"></div>
+  <p><%= simple_format(@product.description) %></p>
 
-<div class="divider"></div>
-<p><%= simple_format(@product.description) %></p>
-
-<div class="row">
-  <div class="col s12 l8">
-    <div id="slider" class="flexslider">
-      <ul class="slides">
-        <% @product.attachments.each do |attachment| %>
-          <li><%= image_tag(attachment.url, class: "zoom-in") %></li>
-        <% end %>
-      </ul>
+  <div class="row">
+    <div class="col s12 l8">
+      <div id="slider" class="flexslider">
+        <ul class="slides">
+          <% @product.attachments.each do |attachment| %>
+            <li><%= image_tag attachment.file.url, class: "zoom-in responsive-img" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="carousel" class="flexslider">
+        <ul class="slides">
+          <% @product.attachments.each do |attachment| %>
+            <li><%= image_tag attachment.file.url,
+              class: "responsive-img" %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div id="carousel" class="flexslider">
-      <ul class="slides">
-        <% @product.attachments.each do |attachment| %>
-          <li><%= image_tag(attachment.url) %></li>
-        <% end %>
-      </ul>
+    <div class="col s12 l4">
+      <p><%= simple_format(@product.description) %></p>
     </div>
   </div>
-  <div class="col s12 l4">
-    <p><%= simple_format(@product.description) %></p>
-  </div>
-</div>
-
-
 </div>

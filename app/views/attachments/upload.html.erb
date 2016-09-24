@@ -1,0 +1,8 @@
+<header>
+  <h1><%= @product.name %> Upload Images <small>(Step 2/2)</small></h1>
+</header>
+
+<%= form_for [@product, Attachment.new],
+  html: {id: 'attachments-dropzone', class: 'dropzone',
+    multipart: true} do |f| %>
+<% end %>

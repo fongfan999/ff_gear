@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918084330) do
+ActiveRecord::Schema.define(version: 20160921125749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "product_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "client_ip"
+    t.boolean  "linked",     default: false
+    t.index ["product_id"], name: "index_attachments_on_product_id", using: :btree
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.json     "attachments"
   end
 
+  add_foreign_key "attachments", "products"
 end
