@@ -13,6 +13,11 @@ body {
   flex-direction: column;
 }
 
+a.brand-logo {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 #main {
   flex: 1 0 auto;
 }
@@ -47,10 +52,6 @@ a.new {
 .dropzone {
   border-radius: 10px;
   border: 1px dotted #00b8d4;
-}
-
-.dz-image {
-  border: 1px solid cyan;
 }
 
 .dropdown-content > li a {

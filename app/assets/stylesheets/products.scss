@@ -105,3 +105,26 @@
   }
 }
 
+.dz-image {
+  overflow: visible !important;
+  margin-bottom: 5px;
+
+  img {
+    border-radius: 60px;
+    border: 1px solid gray;
+  }
+
+  .remove_thumb {
+    position: absolute;
+    bottom: -35px;
+    left: 47px;
+
+    i.material-icons {
+      cursor: pointer;
+      border: 1px solid grey;
+      color: grey;
+      border-radius: 12px;
+    }
+  }
+}
+

@@ -10,13 +10,15 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    Attachment.pending(session[:attachment_ids]).delete_all
+    Attachment.clean_junks
     session.delete(:attachment_ids)
   end
 
   def create
     @product = Product.new(product_params)
-    @product.attachments << Attachment.pending(session[:attachment_ids])
+    @product.attachments << Attachment.pending(
+      params["product"]["rejected_ids"]
+    )
     if @product.attachments.empty? || !@product.save
       flash[:alert] = "Not Successfully"
       render "new"

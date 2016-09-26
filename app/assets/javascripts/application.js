@@ -97,17 +97,56 @@ $(function() {
     paramName: "file",
     parallelUploads: 2,
     maxFilesize: 20,
-    acceptedFiles: "image/jpg,image/jpeg,image/png,image/gif",
-    addRemoveLinks: true,
-    autoDiscover: false
+    acceptedFiles: "image/*",
+    autoDiscover: false,
+    // addRemoveLinks: true,
+    init: function() {
+      this.on("success", function(file, object) {
+
+        // Create the remove button
+        var removeButton = Dropzone.
+          createElement('<a class="remove_thumb"><i class="material-icons">clear</i></a>');
+
+
+        // Capture the Dropzone instance as closure.
+        var _this = this;
+
+        // Listen to the click event
+        removeButton.addEventListener("click", function(e) {
+          // Make sure the button click doesn't submit the form:
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Remove the file preview.
+          _this.removeFile(file);
+          // If you want to the delete the file on the server as well,
+          // you can do the AJAX request here.
+          // Get value as string from input
+          rejected_ids = $("#rejected_ids").val() || "[]";
+          // Parse string to array
+          rejected_ids = $.parseJSON(rejected_ids);
+          // Push id to array
+          rejected_ids.push(object.id);
+          // Set value as string back to input
+          $("#rejected_ids").val(JSON.stringify(rejected_ids));
+        });
+
+        // Add the button to the file preview element.
+        file.previewElement.appendChild(removeButton);
+      });
+    }
   });
+
+
 
   // // headlineDropzone.removeFile(headlineDropzone.files);
 
-  // headlineDropzone.on("success", function(file, responseText) {
-  //   // var imageUrl;
-  //   // imageUrl = responseText.file_name.url;
-  //   console.log(file);
-  //   console.log(responseText);
-  // });
+  headlineDropzone.on("success", function(file, responseText) {
+    // var imageUrl;
+    // imageUrl = responseText.file_name.url;
+    // console.log(file);
+    // console.log(responseText);
+    // console.log(headlineDropzone);
+    // console.log("remove successfully");
+  });
 });

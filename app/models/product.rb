@@ -1,8 +1,6 @@
 class Product < ApplicationRecord
-  attr_accessor :file
+  attr_accessor :rejected_ids
   has_many :attachments, dependent: :destroy
-  # accepts_nested_attributes_for :attachments,
-    # reject_if: lambda { |a| a[:linked].blank? }
   
   validates :name, :description, presence: true
 end
