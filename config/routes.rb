@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   resources :attachments, only: [:create]
+  patch :attachments, to: "attachments#update"
 end

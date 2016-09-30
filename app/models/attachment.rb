@@ -3,15 +3,13 @@ class Attachment < ApplicationRecord
 
   mount_uploader :file, AttachmentUploader
 
-  scope :pending, -> (rejected_ids) do
-    created_attachments = where(product_id: nil)
-    if rejected_ids.present?
-      created_attachments.where.not(id: JSON.parse(rejected_ids)) 
-    else
-      created_attachments
-    end
-  end
+  scope :pending, -> (created_ids) { where(id: created_ids) }
   
-  scope :clean_junks, -> { where(product_id: nil).delete_all }
+  scope :clean_junks, -> (junk_ids) do
+    return if junk_ids.blank?
+
+    junk_ids = JSON.parse(junk_ids) if junk_ids.is_a? String
+    where(id: junk_ids).delete_all
+  end
 end
 

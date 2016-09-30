@@ -4,32 +4,38 @@
   <%= f.input :description %>
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>
-
-  <% @product.attachments.each do |attachment| %>
-      <div class="dz-preview dz-processing dz-image-preview dz-success
-        dz-complete">
-        <div class="dz-image">
-          <%= image_tag(attachment.file.url, size: "120x120") %>
-          <a class="remove_thumb"><i class="material-icons">clear</i></a>
-        </div>
-        <div class="dz-details">
-          <div class="dz-size">
-            <span data-dz-size>
-              <strong>
-                <%= number_to_human_size attachment.file.size %>
-              </strong>
-            </span>
+  <div id="preview-wrapper">
+  <% if @product.attachments.any? %>
+    
+      <% @product.attachments.each do |attachment| %>
+        <div class="dz-preview dz-processing dz-image-preview dz-success
+          dz-complete" id="<%= attachment.id %>">
+          <div class="dz-image">
+            <%= image_tag attachment.file.url %>
+            <i id="<%= attachment.id %>"
+              class="material-icons remove_thumb">clear</i>
           </div>
-          <div class="dz-filename">
-            <span data-dz-name><%= File.basename attachment.file.url %></span>
+          <div class="dz-details">
+            <div class="dz-size">
+              <span data-dz-size>
+                <strong>
+                  <%= number_to_human_size attachment.file.size %>
+                </strong>
+              </span>
+            </div>
+            <div class="dz-filename">
+              <span data-dz-name>
+                <%= File.basename attachment.file.url %>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
   <% end %>
+    </div>
   
-  <%= f.button :button do %>
+  <%= f.button :button, id: "submit-btn" do %>
     <%= product.new_record? ? "Create" : "Update" %>
     <i class="material-icons right">send</i>
   <% end %>
 <% end %>
-

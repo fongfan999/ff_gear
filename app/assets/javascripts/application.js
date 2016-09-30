@@ -15,6 +15,7 @@
 //= require materialize-sprockets
 //= require jquery.flexslider-min
 //= require jquery.loupe.min
+//= require jquery.session
 //= require dropzone
 //= require_tree .
 
@@ -52,61 +53,43 @@ $(function() {
 
   $("a.new").prepend('<i class="material-icons"></>');
 
-  // Dropzone.options.attachmentsDropzone = {
-  //   autoProcessQueue: false,
-  //   uploadMultiple: true,
-  //   parallelUploads: 20,
-  //   maxFiles: 20,
-  //   acceptedFiles: "image/jpg,image/jpeg,image/png,image/gif",
-  //   addRemoveLinks: true,
-  //   autoDiscover: false
 
-  //   // The setting up of the dropzone
-  //   init: function() {
-  //     var myDropzone = this;
-
-  //     // First change the button to actually tell Dropzone to process the queue.
-  //     this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
-  //       // Make sure that the form isn't actually being sent.
-  //       e.preventDefault();
-  //       e.stopPropagation();
-  //       myDropzone.processQueue();
-  //     });
-
-  //     // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
-  //     // of the sending event because uploadMultiple is set to true.
-  //     this.on("sendingmultiple", function() {
-  //       // Gets triggered when the form is actually being sent.
-  //       // Hide the success button or the complete form.
-  //     });
-  //     this.on("successmultiple", function(files, response) {
-  //       // Gets triggered when the files have successfully been sent.
-  //       // Redirect user or notify of success.
-  //     });
-  //     this.on("errormultiple", function(files, response) {
-  //       // Gets triggered when there was an error sending the files.
-  //       // Maybe show form again, and notify user of error
-  //     });
-  //   }
-  // };
 
   Dropzone.autoDiscover = false;
+
+  function update_attachment_ids(attachment_id) {
+    console.log(attachment_id);
+    var rejected_ids;
+    rejected_ids = $('#rejected_ids').val() || '[]';
+    console.log(rejected_ids);
+    rejected_ids = $.parseJSON(rejected_ids);
+    console.log(rejected_ids);
+    rejected_ids.push(parseInt(attachment_id));
+    console.log(rejected_ids);
+    $('#rejected_ids').val(JSON.stringify(rejected_ids));
+    console.log($('#rejected_ids').val());
+  };
 
   var headlineDropzone = new Dropzone("#attachments-dropzone", {
     url: "/attachments",
     paramName: "file",
-    parallelUploads: 2,
+    parallelUploads: 1,
     maxFilesize: 20,
     acceptedFiles: "image/*",
-    autoDiscover: false,
-    // addRemoveLinks: true,
+    // addRemoveLinks: true
     init: function() {
       this.on("success", function(file, object) {
+        $('#preview-wrapper').contents().unwrap();
+        $(".dz-preview").wrapAll("<div id='preview-wrapper'></div>");
+        // if (!$('#preview-wrapper').children().length) {
+        //   $('#preview-wrapper').remove();
+        // }
 
         // Create the remove button
+        console.log($(file.previewElement).find('.dz-image')[0]);
         var removeButton = Dropzone.
-          createElement('<a class="remove_thumb"><i class="material-icons">clear</i></a>');
-
+          createElement('<i class="material-icons remove_thumb">clear</i>');
+        console.log(object.id);
 
         // Capture the Dropzone instance as closure.
         var _this = this;
@@ -127,26 +110,23 @@ $(function() {
           rejected_ids = $.parseJSON(rejected_ids);
           // Push id to array
           rejected_ids.push(object.id);
+          console.log(object.id);
           // Set value as string back to input
           $("#rejected_ids").val(JSON.stringify(rejected_ids));
         });
 
         // Add the button to the file preview element.
-        file.previewElement.appendChild(removeButton);
+        // file.previewElement.appendChild(removeButton);
+        $(file.previewElement).find('.dz-image')[0].appendChild(removeButton);
+  
       });
     }
   });
 
-
-
-  // // headlineDropzone.removeFile(headlineDropzone.files);
-
-  headlineDropzone.on("success", function(file, responseText) {
-    // var imageUrl;
-    // imageUrl = responseText.file_name.url;
-    // console.log(file);
-    // console.log(responseText);
-    // console.log(headlineDropzone);
-    // console.log("remove successfully");
-  });
+  // $(".remove_thumb").on("click", function() {
+  //   var block;
+  //   block = $(this).parent().parent();
+  //   block.fadeOut();
+  //   return update_attachment_ids(block.attr('id'));
+  // });
 });

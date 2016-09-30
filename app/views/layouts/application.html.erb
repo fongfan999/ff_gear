@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>  
+  <body>
     <nav class="light-blue">
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo">
@@ -29,8 +29,9 @@
 
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
-      <%#= image_tag Product.first.attachments.first, class: "background" %>
-        <a href="#!user"><%#= image_tag Product.last.attachments.first, class: "circle" %></a>
+      <%= image_tag Attachment.first.file.url, class: "background" %>
+        <a href="#!user"><%= image_tag Attachment.first.file.url,
+          class: "circle" %></a>
         <a href="#!name"><span class="white-text name">John Doe</span></a>
         <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
       </div></li>

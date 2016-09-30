@@ -10,15 +10,16 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    Attachment.clean_junks
-    session.delete(:attachment_ids)
+    if session[:attachment_ids].present?
+      Attachment.clean_junks(session[:attachment_ids])
+      session.delete(:attachment_ids)
+    end
   end
 
   def create
     @product = Product.new(product_params)
-    @product.attachments << Attachment.pending(
-      params["product"]["rejected_ids"]
-    )
+    Attachment.clean_junks(params["product"]["rejected_ids"])
+    @product.attachments << Attachment.pending(session[:attachment_ids])
     if @product.attachments.empty? || !@product.save
       flash[:alert] = "Not Successfully"
       render "new"
@@ -30,10 +31,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if session[:attachment_ids].present?
+      Attachment.clean_junks(session[:attachment_ids])
+      session.delete(:attachment_ids)
+    end
   end
 
   def update
     if @product.update(product_params)
+      @product.attachments << Attachment.pending(session[:attachment_ids])
+      Attachment.clean_junks(params["product"]["rejected_ids"])
       flash[:notice] = "Successfully"
       redirect_to @product
     else
@@ -55,7 +62,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, {attachments: [], 
-      attachments_cache: []})
+    params.require(:product).permit(:name, :description)
   end
 end

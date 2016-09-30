@@ -29,7 +29,8 @@
     }
 
     .card-content {
-      @extend .teal; 
+      // @extend .teal;
+      background-color: #5b6abf;
       height: 100px;
       color: #fff;
     }
@@ -67,7 +68,6 @@
   }
 
   #slider {
-    // height: 400px;
     border: 1px solid pink;
     padding: 10px;
     margin-bottom: -2px;
@@ -105,26 +105,60 @@
   }
 }
 
-.dz-image {
-  overflow: visible !important;
-  margin-bottom: 5px;
+#preview-wrapper {
+  height: 212px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+  border: 1px dotted teal;
+}
 
-  img {
-    border-radius: 60px;
-    border: 1px solid gray;
+.dropzone {
+  border: none !important;
+  position: relative !important;
+
+  * {
+    box-sizing: content-box !important;
+    z-index: 1;
   }
 
-  .remove_thumb {
-    position: absolute;
-    bottom: -35px;
-    left: 47px;
+  .dz-image {
+    overflow: visible !important;
+    margin-bottom: 5px;
+    background-color: #f3f3f3;
+    padding: 5px;
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 0 !important;
+    text-align: right;
 
-    i.material-icons {
-      cursor: pointer;
-      border: 1px solid grey;
-      color: grey;
-      border-radius: 12px;
+    img {
+      height: 150px !important;
+      width: 150px !important;
+      border-radius: 0;
+      position: relative;
     }
+
+    .remove_thumb {
+      position: relative;
+      top: -150px;
+      z-index: 11;
+      cursor: pointer;
+      border-radius: 12px;
+      background-color: black;
+      color: #fff;
+    }
+  }
+
+  .dz-details {
+    top: 30px !important;
+    text-align: left !important;
+  }
+
+  #submit-btn {
+    position: absolute;
+    bottom: 0px;
   }
 }
 
