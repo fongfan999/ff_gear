@@ -7,10 +7,24 @@
 @import 'responsive';
 @import 'dropzone/dropzone';
 
+.divider {
+  margin-bottom: 10px;
+}
+
 body {
   display: flex;
   min-height: 150vh;
   flex-direction: column;
+}
+
+#main {
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+#menu-icon {
+  font-size: 24px;
+  padding-left: 25px;
 }
 
 a.brand-logo {
@@ -22,14 +36,10 @@ a.brand-logo {
   flex: 1 0 auto;
 }
 
-textarea {
-  @extend .materialize-textarea;
-}
-
 a.new {
   @extend .btn-floating;
   @extend .btn-large;
-  @extend .pink;
+  @extend .red;
 
   i.material-icons:after {
     content: "add";
@@ -51,4 +61,8 @@ a.new {
 
 .dropdown-content > li > a {
   color: #03a9f4;
+}
+
+li.delete a {
+  color: red;
 }

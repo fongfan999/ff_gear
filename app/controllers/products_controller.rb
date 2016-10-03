@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :clean_session, only: [:new, :edit]
 
   def index
     @products = Product.all
@@ -10,41 +11,42 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    if session[:attachment_ids].present?
-      Attachment.clean_junks(session[:attachment_ids])
-      session.delete(:attachment_ids)
-    end
   end
 
   def create
     @product = Product.new(product_params)
-    Attachment.clean_junks(params["product"]["rejected_ids"])
-    @product.attachments << Attachment.pending(session[:attachment_ids])
+
+    handle_attachments
+
     if @product.attachments.empty? || !@product.save
-      flash[:alert] = "Not Successfully"
+      flash.now[:alert] = "Đã xảy ra lỗi"
       render "new"
     else
-      flash[:notice] = "Successfully"
       session.delete(:attachment_ids)
+
+      flash[:notice] = "Thành công"
       redirect_to @product
     end
   end
 
   def edit
-    if session[:attachment_ids].present?
-      Attachment.clean_junks(session[:attachment_ids])
-      session.delete(:attachment_ids)
-    end
   end
 
   def update
+    handle_attachments
+
     if @product.update(product_params)
-      @product.attachments << Attachment.pending(session[:attachment_ids])
-      Attachment.clean_junks(params["product"]["rejected_ids"])
-      flash[:notice] = "Successfully"
-      redirect_to @product
+      if @product.attachments.empty?
+        flash.now[:alert] = "Đã xảy ra lỗi"
+        render "edit"
+      else
+        session.delete(:attachment_ids)
+
+        flash[:notice] = "Thành công"
+        redirect_to @product
+      end
     else
-      flash[:alert] = "Not Successfully"
+      flash.now[:alert] = "Đã xảy ra lỗi"
       render "edit"
     end
   end
@@ -63,5 +65,17 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description)
+  end
+
+  def clean_session
+    if session[:attachment_ids].present?
+      Attachment.clean_junks(session[:attachment_ids])
+      session.delete(:attachment_ids)
+    end
+  end
+
+  def handle_attachments
+    Attachment.clean_junks(params["product"]["rejected_ids"])
+    @product.attachments << Attachment.pending(session[:attachment_ids])
   end
 end

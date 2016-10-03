@@ -14,6 +14,5 @@ $ ->
     update_attachment_ids block.attr('id')
     block.fadeOut()
     block.remove()
-    console.log $('#preview-wrapper').length
-    if !$('#preview-wrapper').children().length
-      $('#preview-wrapper').remove()
+    if $('#preview-wrapper .dz-preview').length == 0
+        $('#submit-btn').attr 'disabled', true

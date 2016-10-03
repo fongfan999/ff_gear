@@ -5,17 +5,15 @@
 
   <!-- Dropdown Structure -->
   <ul id='action' class='dropdown-content'>
-    <li class="edit"><%= link_to "Edit", [:edit, @product] %></li>
-    <li class="delete"><%= link_to "Delete", @product, method: :delete,
+    <li class="edit"><%= link_to "Sửa", [:edit, @product] %></li>
+    <li class="delete"><%= link_to "Gỡ", @product, method: :delete,
       data: { confirm: "Are you sure?" } %></li>
   </ul>
   </div>
   <header>
-    <h1><%= @product.name %></h1>
+    <h4><%= @product.name %></h4>
   </header>
-
   <div class="divider"></div>
-  <p><%= simple_format(@product.description) %></p>
 
   <div class="row">
     <div class="col s12 l8">

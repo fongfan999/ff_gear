@@ -128,6 +128,15 @@ vi:
       too_short: quá ngắn (tối thiểu %{count} ký tự)
       wrong_length: độ dài không đúng (phải là %{count} ký tự)
       other_than: cần phải khác %{count}
+      
+      # Carrierwave
+      carrierwave_processing_error: "Không thể thay đổi kích thước ảnh."
+      carrierwave_integrity_error: "Không phải là ảnh."
+      carrierwave_download_error: "Không tải ảnh được."
+      extension_whitelist_error: "Bạn không được phép đăng file %{extension}, 
+        chỉ được phép trong danh sách file sau: %{allowed_types}"
+      extension_blacklist_error: "Bạn không được phép đăng file %{extension}, 
+        những loại file không được: %{prohibited_types}"
     template:
       body: 'Có lỗi với các mục sau:'
       header:
@@ -200,12 +209,3 @@ vi:
       long: "%d %B, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: chiều
-  errors:
-    messages:
-      carrierwave_processing_error: "Không thể thay đổi kích thước ảnh."
-      carrierwave_integrity_error: "Không phải là ảnh."
-      carrierwave_download_error: "Không tải ảnh được."
-      extension_whitelist_error: "Bạn không được phép đăng file %{extension}, 
-      chỉ được phép trong danh sách file sau: %{allowed_types}"
-      extension_blacklist_error: "Bạn không được phép đăng file %{extension}, 
-      những loại file không được: %{prohibited_types}"

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiniShop</title>
+    <%= favicon_link_tag '<i class="material-icons">toys</i>' %>
+    <title>FoxFizz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
@@ -11,26 +12,23 @@
   </head>
 
   <body>
-    <nav class="light-blue">
-      <div class="nav-wrapper container">
-        <a href="/" class="brand-logo">
-          <!-- <i class="material-icons">smartphone</i> -->
-          <!-- <i class="material-icons">tablet_mac</i> -->
-          <i class="material-icons">laptop_mac</i>
-          <!-- <i class="material-icons">watch</i> -->
-          UTM
-        </a>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-
-        
-
-      </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav class="light-blue">
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">
+            <i class="material-icons">toys</i>FoxFizz
+          </a>
+          <a href="#" data-activates="slide-out" class="button-collapse">
+            <i id="menu-icon" class="material-icons">menu</i>
+          </a>
+        </div>
+      </nav>
+    </div>
 
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
-      <%= image_tag Attachment.first.file.url, class: "background" %>
-        <a href="#!user"><%= image_tag Attachment.first.file.url,
+      <%#= image_tag Attachment.first.file.url, class: "background" %>
+        <a href="#!user"><%#= image_tag Attachment.last.file.url,
           class: "circle" %></a>
         <a href="#!name"><span class="white-text name">John Doe</span></a>
         <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
@@ -42,17 +40,16 @@
       <li><a href=""><i class="material-icons">help</i>Help</a></li>
     </ul>
       
-    <div id="main" class="container">
+    <div id="main">
+      <div id="alert-wrapper">
       <% flash.each do |key, message| %>
         <div class="alert alert-<%= key %>">
           <%= message %><a data class="dismiss">X</a>
         </div>
       <% end %>
+      </div>
       <%= yield %>
-
     </div>
-
-
 
     <footer class="page-footer light-blue">
       <div class="container">

@@ -1,12 +1,11 @@
 <%= simple_form_for product, html: { multipart: true,
   id: 'attachments-dropzone', class: 'dropzone' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
+  <%= f.input :name, label: "Tên sản phẩm", input_html: { length: 60 } %>
+  <%= f.input :description, label: "Mô tả sản phẩm", id: "abc" %>
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>
   <div id="preview-wrapper">
   <% if @product.attachments.any? %>
-    
       <% @product.attachments.each do |attachment| %>
         <div class="dz-preview dz-processing dz-image-preview dz-success
           dz-complete" id="<%= attachment.id %>">
@@ -35,7 +34,7 @@
     </div>
   
   <%= f.button :button, id: "submit-btn" do %>
-    <%= product.new_record? ? "Create" : "Update" %>
+    <%= product.new_record? ? "Đăng" : "Cập nhật" %>
     <i class="material-icons right">send</i>
   <% end %>
 <% end %>
