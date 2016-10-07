@@ -10,10 +10,29 @@
   }
 }
 
- @media #{$large-and-up} {
+@media #{$medium-and-down} {
+  #login-btn .col {
+    margin-bottom: 15px;
+  }
+}
+
+@media #{$large-and-up} {
   nav {
     a.brand-logo {
       left: 70px;
+    }
+  }
+}
+
+// Custom media
+@media screen and (max-width: 450px) {
+  #login-btn a {
+    img {
+      float: none !important;
+    }
+
+    span {
+      display: none;
     }
   }
 }

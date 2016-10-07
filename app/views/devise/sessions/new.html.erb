@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row" id="login-btn">
+    <div class="col s12 m12 l6">
+      <%= link_to image_tag('facebook.png') + '<span>Sign in with Facebook</span>'.html_safe, user_facebook_omniauth_authorize_path,
+        id: "fb-login-btn", class: "btn" %>
+    </div>
+    <div class="col s12 m12 l6">
+      <%= link_to image_tag('google.png') + '<span>Sign in with Google</span>'.html_safe, user_facebook_omniauth_authorize_path,
+        id: "gg-login-btn", class: "btn" %>
+    </div>
+  </div>
+</div>

@@ -13,32 +13,56 @@
 
   <body>
     <div class="navbar-fixed">
-      <nav class="light-blue">
+      <nav class="main-color">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo">
-            <i class="material-icons">toys</i>FoxFizz
-          </a>
           <a href="#" data-activates="slide-out" class="button-collapse">
             <i id="menu-icon" class="material-icons">menu</i>
           </a>
+          <a href="/" class="brand-logo">
+            <i class="material-icons">toys</i>FoxFizz
+          </a>
+          <% if user_signed_in? %>
+          <ul class="right">
+            <li>
+              <%= link_to image_tag(current_user.avatar, size: "32x32",
+                class: "circle") %>
+            </li>
+          </ul>
+          <% end %>
+
         </div>
       </nav>
     </div>
 
     <ul id="slide-out" class="side-nav">
-      <li><div class="userView">
-      <%#= image_tag Attachment.first.file.url, class: "background" %>
-        <a href="#!user"><%#= image_tag Attachment.last.file.url,
-          class: "circle" %></a>
-        <a href="#!name"><span class="white-text name">John Doe</span></a>
-        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      </div></li>
+      <% if user_signed_in? %>
+      <li>
+        <div class="userView">
+        <%#= image_tag 'drawer-bg.jpg', class: "background" %>
+          <a href="#!user">
+            <img src="<%= current_user.avatar %>" class="circle">
+          </a>
+          <a href="#!name"><span class="white-text name"><%= current_user.name %></span></a>
+          <a href="#!email"><span class="white-text email"><%= current_user.email %></span></a>
+
+          <%= link_to '<i class="material-icons white-text">
+            power_settings_new</i>'.html_safe,
+            destroy_user_session_path, method: "delete", id: "drawer-logout",
+            title: "Sign out", data: { position: "bottom", delay: "50",
+              tooltip: "Sign out", class: "tooltipped" } %>
+        </div>
+      </li>
+      <% end %>
       <li><a href="/"><i class="material-icons">home</i>Home</a></li>
       <li><a href=""><i class="material-icons">favorite</i>Favorite</a></li>
+      <li><a href=""><i class="material-icons">notifications</i>Notifications</a></li>
       <li><div class="divider"></div></li>
       <li><a href=""><i class="material-icons">feedback</i>Send Feedback</a></li>
+      <li><a href=""><i class="material-icons">settings</i>Settings</a></li>
       <li><a href=""><i class="material-icons">help</i>Help</a></li>
     </ul>
+    
+      <%#= link_to "Sign out", destroy_user_session_path, method: :delete  %>
       
     <div id="main">
       <div id="alert-wrapper">
@@ -51,7 +75,9 @@
       <%= yield %>
     </div>
 
-    <footer class="page-footer light-blue">
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+    <footer class="page-footer main-color">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">

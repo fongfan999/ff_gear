@@ -17,9 +17,14 @@ body {
   flex-direction: column;
 }
 
+.main-color {
+  background-color: #3ec9cb !important;
+}
+
 #main {
   padding-left: 55px;
   padding-right: 55px;
+  flex: 1 0 auto;
 }
 
 #menu-icon {
@@ -32,14 +37,30 @@ a.brand-logo {
   padding-right: 10px;
 }
 
-#main {
-  flex: 1 0 auto;
+.nav-wrapper {
+  ul.right {
+    padding-right: 50px;
+
+    li a img {
+      top: 10px;
+    } 
+  }
+}
+
+.side-nav .userView {
+  @extend .main-color;
+}
+
+#drawer-logout {
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 a.new {
   @extend .btn-floating;
   @extend .btn-large;
-  @extend .red;
+  @extend .main-color;
 
   i.material-icons:after {
     content: "add";
@@ -65,4 +86,33 @@ a.new {
 
 li.delete a {
   color: red;
+}
+
+#login-btn {
+  margin-top: 200px;
+
+  #fb-login-btn, #gg-login-btn {
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    color: #fff;
+
+    img {
+      width: 30px;
+      margin-top: 10px;
+      float: left;
+    }
+
+    span {
+      padding-left: 10px;
+    }
+  }
+
+  #fb-login-btn {
+    background-color: #0086fb;
+  }
+
+  #gg-login-btn {
+    background-color: #e44536;
+  }
 }

@@ -41,6 +41,10 @@ gem 'flexslider',
   git: 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'
 # UI Uploader
 gem 'dropzonejs-rails', '~> 0.7.3'
+# Flexible authentication
+gem 'devise', '~> 4.2'
+# Facebook OAth
+gem 'omniauth-facebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
