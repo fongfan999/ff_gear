@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    debugger
+    @product.buyer = current_user
 
     handle_attachments
 

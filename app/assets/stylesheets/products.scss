@@ -13,6 +13,15 @@
       }
     }
 
+    .buyer-avatar {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      z-index: 2;
+      bottom: 85px;
+      left: 20px;
+    }
+
     .card-image {
       img {
         height: 300px;
@@ -29,10 +38,20 @@
     }
 
     .card-content {
-      // @extend .teal;
-      background-color: #5b6abf;
       height: 100px;
       color: #fff;
+
+      h6 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-style: italic;
+
+        span {
+          font-size: 0.8em;
+        }
+      }
     }
 
     .card-reveal {

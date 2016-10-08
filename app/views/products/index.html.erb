@@ -11,13 +11,17 @@
   <% rand_color = product.color %>
   <div class="col s12 m6 l4">
     <div class="card hoverable"> 
+      <%= image_tag product.buyer.avatar, class: "circle buyer-avatar" %>
       <div class="card-image waves-effect waves-block waves-light">
         <%= image_tag product.attachments.first.file.url,
           class: "activator responsive-img" if product.attachments.any? %>
       </div>
       <%= link_to product do %>
         <div class="card-content" style="background: <%= rand_color %>">
-          <%= product.name %>
+          <h6><%= product.name %></h6>
+          <p>
+            <span>Đăng bởi:</span> <%= product.buyer.name %>
+          </p>
         </div>
       <% end %>
       <div class="card-reveal">
