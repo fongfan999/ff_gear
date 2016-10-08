@@ -45,6 +45,8 @@ gem 'dropzonejs-rails', '~> 0.7.3'
 gem 'devise', '~> 4.2'
 # Facebook OAth
 gem 'omniauth-facebook'
+# Google OAth2
+gem "omniauth-google-oauth2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

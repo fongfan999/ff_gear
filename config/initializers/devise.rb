@@ -251,10 +251,17 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'],
       scope: 'public_profile, email'
+
+    config.omniauth :google_oauth2, ENV["GG_CLIENT_ID"],
+    ENV["GG_CLIENT_SECRET"], {}
   else
     config.omniauth :facebook,
     '1444686258898113', '2af355ca211b14b997f0b9b219b15526',
     scope: 'public_profile, email'
+
+    config.omniauth :google_oauth2,
+    '156045701901-6hhfdv3vim2f98bmm3jro51fl3t8fkhc.apps.googleusercontent.com',
+    '1L6CUHNd39z517sESq8W4P3p', {}
   end
   
 
