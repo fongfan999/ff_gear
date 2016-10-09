@@ -10,6 +10,6 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
 
   def color
-    Product::COLORS[rand(Product::COLORS.length + 1)]
+    Product::COLORS[rand(Product::COLORS.length)]
   end
 end

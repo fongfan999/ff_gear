@@ -1,6 +1,7 @@
 #products {
   .card {
     height: 400px;
+    box-sizing: border-box;
 
     & > a {
       width: 100%;
