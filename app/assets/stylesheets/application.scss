@@ -4,6 +4,7 @@
 @import 'simple-form';
 @import 'flexslider.css';
 @import 'products';
+@import 'users';
 @import 'responsive';
 @import 'dropzone/dropzone';
 
@@ -29,7 +30,7 @@ body {
 
 #menu-icon {
   font-size: 24px;
-  padding-left: 25px;
+  margin-left: 25px;
 }
 
 a.brand-logo {

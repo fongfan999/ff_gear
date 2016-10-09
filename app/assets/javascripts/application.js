@@ -32,6 +32,8 @@ $(function() {
   // Auto resize textarea rows
   $('textarea').trigger('autoresize');
 
+  $('.parallax').parallax();
+
   // Hide dismiss button
   $(".dismiss").on("click", function() {
     $(this).parent().fadeOut("slow");

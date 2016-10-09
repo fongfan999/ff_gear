@@ -1,0 +1,33 @@
+<div id="about-me">
+  <div id="about-title" class="center-align">
+    <h4>Control what people see about you</h4>
+    <p>Changes you make here may show up with content you create & share.</p>
+  </div>
+  
+  <div id="about-details" class="container">
+    <div id="about-summary" class="card row">
+      <div>
+        <div id="about-bg"></div>
+        <div id="about-name">
+          <%= image_tag @user.avatar, class: "circle" %>
+          <h3><%= @user.name %></h3>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col s12 m6 l6 card about-block">
+        <h5>Personal contact info <i class="material-icons right">edit</i></h5>
+        <div class="divider"></div>
+        <div id="about-contact">
+          <div>
+            <i class="material-icons">phone</i> 0942544759
+          </div>
+          <div>
+            <i class="material-icons">email</i> <%= @user.email %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

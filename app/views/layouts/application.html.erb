@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FoxFizz</title>
+    <title>FoxFizz - Place to buy used stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
@@ -11,28 +11,29 @@
   </head>
 
   <body>
-    <nav class="main-color">
-      <div class="nav-wrapper">
-        <a href="#" data-activates="slide-out" class="button-collapse">
-          <i id="menu-icon" class="material-icons">menu</i>
-        </a>
-        <a href="/" class="brand-logo">
-          <i class="material-icons">toys</i>FoxFizz
-        </a>
-        
-        <ul class="right">
-          <% if user_signed_in? %>
-            <li><%= link_to image_tag(current_user.avatar, size: "32x32",
-              class: "circle") %></li>
-
-          <% else %>
-            <li><%= link_to '<i class="material-icons">account_circle</i>'.
-              html_safe, new_user_session_path, class: "tooltipped",
-              data: { position: "bottom", tooltip: "Sign in" } %></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav class="main-color ">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="slide-out" class="button-collapse">
+            <i id="menu-icon" class="material-icons">menu</i>
+          </a>
+          <a href="/" class="brand-logo">
+            <i class="material-icons">toys</i>FoxFizz
+          </a>
+          
+          <ul class="right">
+            <% if user_signed_in? %>
+              <li><%= link_to image_tag(current_user.avatar, size: "32x32",
+                class: "circle"), current_user %></li>
+            <% else %>
+              <li><%= link_to '<i class="material-icons">account_circle</i>'.
+                html_safe, new_user_session_path, class: "tooltipped",
+                data: { position: "bottom", tooltip: "Sign in" } %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
     <ul id="slide-out" class="side-nav">
       <% if user_signed_in? %>

@@ -1,6 +1,6 @@
 class AttachmentsController < ApplicationController
-  def upload
-  end
+  # def upload
+  # end
 
   def create
     @attachment = Attachment.create(file: params[:file])
@@ -10,7 +10,7 @@ class AttachmentsController < ApplicationController
     render json: @attachment
   end
 
-  def update
-    create
-  end
+  # def update
+  #   create
+  # end
 end

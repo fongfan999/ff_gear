@@ -1,0 +1,64 @@
+#about-me {
+  #about-title {
+    margin-top: -20px;
+    margin-left: -55px;
+    margin-right: -55px;
+    height: 300px;
+    @extend .main-color;
+    color: #fff;
+    padding-top: 30px;
+  }
+
+  #about-details {
+    margin-top: -147px;
+
+    #about-summary {
+      position: relative;
+      height: 280px;
+
+      #about-bg, #about-name {
+        height: 140px;
+      }
+
+      #about-bg {
+        background: image-url("about-bg.png") no-repeat center;
+        background-size: cover;
+        height: 140px;
+      }
+
+      #about-name {
+        text-align: center;
+
+        img {
+          width: 120px;
+          height: 120px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -60px;
+          margin-left: -60px;
+        }
+
+        h3 {
+          padding-top: 60px;
+        }
+      }
+    }
+
+    .about-block {
+      padding: 20px 20px 0 20px;
+    }
+
+    #about-contact {
+      & > div {
+        height: 50px;
+
+        i {
+          color: #9c9c9c;
+          float: left;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
