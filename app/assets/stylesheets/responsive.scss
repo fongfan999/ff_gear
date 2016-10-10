@@ -14,6 +14,12 @@
   #login-btn .col {
     margin-bottom: 15px;
   }
+
+  .container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 @media #{$large-and-up} {
@@ -21,6 +27,10 @@
     a.brand-logo {
       left: 70px;
     }
+  }
+
+  #left-col, #right-col {
+    width: 49% !important;
   }
 }
 
@@ -34,5 +44,11 @@
     span {
       display: none;
     }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #about-description {
+    margin-top: -148px !important;
   }
 }

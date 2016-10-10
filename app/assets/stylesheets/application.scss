@@ -8,8 +8,9 @@
 @import 'responsive';
 @import 'dropzone/dropzone';
 
-.divider {
-  margin-bottom: 10px;
+
+html, body {
+  overflow-x: hidden;
 }
 
 body {
@@ -20,6 +21,10 @@ body {
 
 .main-color {
   background-color: #3ec9cb !important;
+}
+
+.divider {
+  margin-bottom: 10px;
 }
 
 #main {
