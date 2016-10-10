@@ -12,7 +12,8 @@ vi:
       locked: Tài khoản của bạn đã bị khóa.
       not_found_in_database: Email hoặc mật khẩu không chính xác.
       timeout: Phiên làm việc của bạn đã kết thúc, bạn cần đăng nhập lại để tiếp tục.
-      unauthenticated: Bạn cần phải đăng nhập hoặc đăng ký trước khi tiếp tục.
+      # disabled registration
+      unauthenticated: Bạn cần phải đăng nhập trước khi tiếp tục.
       unconfirmed: Bạn cần phải xác nhận tài khoản trước khi tiếp tục.
     mailer:
       confirmation_instructions:
