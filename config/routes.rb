@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "products#index"
 
   resources :products, except: [:index]
-  resources :attachments, only: [:create]
+  post :attachments, to: "attachments#create"
+  patch :attachments, to: "attachments#create"
   resources :users
 end
