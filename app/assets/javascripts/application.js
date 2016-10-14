@@ -17,9 +17,12 @@
 //= require jquery.loupe.min
 //= require jquery.session
 //= require dropzone
+//= require materialize-form
 //= require_tree .
 
 $(function() {
+  // $('.form-group').addClass('input-field');
+
   // Set waves-effect on all <a> and <button> tags and 
   $('a, button').addClass("waves-effect waves-light");
 

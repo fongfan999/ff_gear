@@ -94,6 +94,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    materialize-form (1.0.6)
     materialize-sass (0.97.7)
       sass (~> 3.3)
     method_source (0.8.2)
@@ -216,6 +217,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  materialize-form (~> 1.0, >= 1.0.1)
   materialize-sass (~> 0.97.7)
   omniauth-facebook
   omniauth-google-oauth2

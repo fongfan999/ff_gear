@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+unless Category.exists?(name: "Tai nghe")
+  Category.create(name: "Tai nghe", color: "#0089fa")
+end
+
+unless Category.exists?(name: "Bàn phím")
+  Category.create(name: "Bàn phím", color: "#ff002b")
+end
+
+unless Category.exists?(name: "Chuột")
+  Category.create(name: "Chuột", color: "#ffa900")
+end
+
+unless Category.exists?(name: "Khác")
+  Category.create(name: "Khác", color: "#00a753")
+end

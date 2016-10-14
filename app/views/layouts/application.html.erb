@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FoxFizz - Place to buy used stuff</title>
+    <title>FoxFizz - The place to buy used stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
@@ -24,7 +24,7 @@
           <ul class="right">
             <li><%= link_to '<i class="material-icons">notifications_none</i>'.
                 html_safe, new_user_session_path, class: "tooltipped",
-                data: { position: "bottom", tooltip: "Sign in" } %></li>
+                data: { position: "bottom", tooltip: "Notifications" } %></li>
             <% if user_signed_in? %>
               <li><%= link_to image_tag(current_user.avatar, size: "32x32",
                 class: "circle"), current_user %></li>

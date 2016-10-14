@@ -1,3 +1,17 @@
-.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
-    color: #dd2c00;
+div.radio_buttons {
+  label.radio_buttons {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  span.radio { 
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+
+    input.radio_buttons {
+      @extend .with-gap;
+    }
+  }
 }
