@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  lastScrollTop = 0
+  $(window).scroll ->
+    currentScrollTop = $(this).scrollTop()
+
+    if currentScrollTop > lastScrollTop
+      # Down
+      $('.navbar-fixed').first().hide()
+    else
+      # Up
+      $('.navbar-fixed').first().show()
+
+    lastScrollTop = currentScrollTop
