@@ -1,32 +1,32 @@
 $ ->
   defaultScollTopProperties = ->
-    $('#nav-wrapper').css
+    $('#lander #nav-wrapper').css
       'background-color': 'transparent'
       'height': '150px'
-    $('.nav-wrapper .brand-logo').css 'font-size': '3.5em'
-    $('.nav-wrapper ').css 'margin-top': '0px'
+    $('#lander .nav-wrapper .brand-logo').css 'font-size': '3.5em'
+    $('#lander .nav-wrapper ').css 'margin-top': '0px'
     return
 
   defaultScollBottomProperties = ->
-    $('#nav-wrapper').css 'background-color': '#ea4a4f'
-    $('.nav-wrapper .brand-logo').css 'font-size': '31px'
-    $('.nav-wrapper ').css 'margin-top': '-40px'
+    $('#lander #nav-wrapper').css 'background-color': '#ea4a4f'
+    $('#lander .nav-wrapper .brand-logo').css 'font-size': '31px'
+    $('#lander .nav-wrapper ').css 'margin-top': '-40px'
     return
 
   onLargeScrollTopProperties = ->
     defaultScollTopProperties()
     # Right login button
-    $('.login-btn').css
+    $('#lander .login-btn').css
       'padding-left': '30px'
       'padding-right': '30px'
       'font-size': '1.3em'
     return
 
   onLargeScrollBottomProperties = ->
-    $('#nav-wrapper').css 'height': '64px'
+    $('#lander #nav-wrapper').css 'height': '64px'
     defaultScollBottomProperties()
     # Right login button
-    $('.login-btn').css
+    $('#lander .login-btn').css
       'padding-left': '15px'
       'padding-right': '15px'
       'font-size': '1em'
@@ -36,14 +36,14 @@ $ ->
   offLargeScrollTopProperties = ->
     defaultScollTopProperties()
     # Block login button
-    $('#login-wrapper').css 'margin-top': '60px'
+    $('#lander #login-wrapper').css 'margin-top': '60px'
     return
 
   offLargeScrollBottomProperties = ->
-    $('#nav-wrapper').css 'height': '125px'
+    $('#lander #nav-wrapper').css 'height': '125px'
     defaultScollBottomProperties()
     # Block login button
-    $('#login-wrapper').css 'margin-top': '50px'
+    $('#lander #login-wrapper').css 'margin-top': '50px'
     return
 
   applyProperties = ->
@@ -68,20 +68,20 @@ $ ->
       return
     return
 
-  $('.slider').slider
+  $('#lander .slider').slider
     full_width: true
     height: 450
-  $('.caption').hover (->
-    $('.slider').slider 'pause'
+  $('#lander .caption').hover (->
+    $('#lander .slider').slider 'pause'
     return
   ), ->
-    $('.slider').slider 'start'
+    $('#lander .slider').slider 'start'
     return
   # End Slider
 
   # Scroll Spy
-  $('.scrollspy').scrollSpy scrollOffset: 0
-  tabsFixed = $('#tabs-fixed')
+  $('#lander .scrollspy').scrollSpy scrollOffset: 0
+  tabsFixed = $('#lander #tabs-fixed')
   tabsFixed.css 'top', ($(window).height() - tabsFixed.height()) / 2
   # End Scroll Spy
 
@@ -108,4 +108,3 @@ $ ->
   Materialize.scrollFire options
   initializeScrollNav()
   $(window).resize initializeScrollNav
-  console.log "Bybye"
