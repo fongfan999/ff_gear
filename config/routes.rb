@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   root "welcome#index"
+  get 'market', to: "market#index"
 
   resources :products, except: [:index]
   post :attachments, to: "attachments#create"
