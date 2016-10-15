@@ -21,8 +21,6 @@
 //= require_tree .
 
 $(function() {
-  // $('.form-group').addClass('input-field');
-
   // Set waves-effect on all <a> and <button> tags and 
   $('a, button').addClass("waves-effect waves-light");
 

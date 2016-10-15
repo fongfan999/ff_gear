@@ -42,7 +42,6 @@
       <% if user_signed_in? %>
       <li>
         <div class="userView">
-          <%#= image_tag 'drawer-bg.jpg', class: "background" %>
           <%= link_to image_tag(current_user.avatar,
             class: "circle"), current_user %>
 
@@ -66,8 +65,9 @@
       <li><a><i class="material-icons">feedback</i>Send Feedback</a></li>
       <li><a><i class="material-icons">settings</i>Settings</a></li>
       <li><a><i class="material-icons">help</i>Help</a></li>
+      <% end %>
     </ul>
-    <% end %>
+    
     
     <div id="main">
       <div id="alert-wrapper">
@@ -106,6 +106,5 @@
         </div>
       </div>
     </footer>
-        
   </body>
 </html>
