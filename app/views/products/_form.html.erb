@@ -1,10 +1,19 @@
 <%= simple_form_for product, html: { multipart: true,
   id: 'attachments-dropzone', class: 'dropzone' } do |f| %>
-  <%= f.input :name, label: "Tên sản phẩm", input_html: { length: 60 } %>
-  <%= f.input :description, label: "Mô tả sản phẩm" %>
+
+  <%= f.input :name, label: "Tiêu đề", input_html: { length: 60 } do %>
+    <%= f.input_field :name %>
+    <i class="material-icons prefix">label</i>
+  <% end %>
+
+  <%= f.input :description, label: "Mô tả sản phẩm" do %>
+    <%= f.input_field :description %>
+    <i class="material-icons prefix">message</i>
+  <% end %>
+
   <%= f.association :category, label: "Danh mục", as: :radio_buttons,
-    checked: product.category_id || Category.first.id  %>
-  <br/>
+    checked: product.category_id || Category.first.id %>
+
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>
   <div id="preview-wrapper">

@@ -16,3 +16,16 @@ $ ->
     block.remove()
     if $('#preview-wrapper .dz-preview').length == 0
         $('#submit-btn').attr 'disabled', true
+
+
+  # Insert icon before input
+  iconsList = $('i.prefix')
+  i = 0
+  while i < iconsList.length
+    $(iconsList[i]).parent().prepend iconsList[i]
+    i++
+
+  
+  
+  
+
