@@ -1,0 +1,37 @@
+<div id="market">
+  <div class="navbar-fixed">
+    <nav class="main-color z-depth-0">
+      <div class="nav-wrapper center-align row">
+        <ul>
+          <li>
+            <%= link_to root_path, class: ('active' if params[:id].nil?) do %>
+              <i class="material-icons left">home</i>
+              <span class="hide-on-med-and-down"> Trang chủ</span>
+            <% end %>
+          </li>
+
+          <% categories.each do |category| %>
+            <li>
+              <%= link_to category_nav(category.name), category,
+                class: ('active' if category.id == params[:id].to_i) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="fixed-action-btn horizontal">
+    <%= link_to "New Product", new_product_path, class: "new tooltipped",
+      data: { position: "left", tooltip: "Đăng bán" } %>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <div id="products" class="row ctn">
+    <%= render @products %>
+  </div>
+</div>
