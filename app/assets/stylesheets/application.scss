@@ -2,10 +2,11 @@
 @import 'materialize';
 @import 'welcome';
 @import 'bootstrap';
-@import 'simple-form';
+@import 'custom-materialize';
 @import 'flexslider.css';
 @import 'products';
 @import 'users';
+@import 'market';
 @import 'responsive';
 @import 'dropzone/dropzone';
 
@@ -29,9 +30,12 @@ body {
 }
 
 #main {
+  flex: 1 0 auto;
+}
+
+.ctn {
   padding-left: 55px;
   padding-right: 55px;
-  flex: 1 0 auto;
 }
 
 #menu-icon {

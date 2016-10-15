@@ -11,7 +11,6 @@
   </head>
 
   <body>
-    <% unless current_page?('/') %>
     <div class="navbar-fixed">
       <nav class="main-color ">
         <div class="nav-wrapper">
@@ -22,7 +21,7 @@
             <i class="material-icons">toys</i>FoxFizz
           </a>
           
-          <ul class="right">
+          <ul class="right hide-on-med-and-down">
             <li><%= link_to '<i class="material-icons">notifications_none</i>'.
                 html_safe, new_user_session_path, class: "tooltipped",
                 data: { position: "bottom", tooltip: "Notifications" } %></li>
@@ -57,7 +56,6 @@
             data: { position: "bottom", tooltip: "Sign out" } %>
         </div>
       </li>
-      <% end %>
 
       <li><a><i class="material-icons">home</i>Home</a></li>
       <li><a><i class="material-icons">favorite</i>Favorite</a></li>
@@ -83,7 +81,6 @@
       <%= yield %>
     </div>
     
-    <%# unless current_page?('/') %>
     <footer class="page-footer main-color">
       <div class="container">
         <div class="row">
@@ -109,7 +106,6 @@
         </div>
       </div>
     </footer>
-    <%# end %>
         
   </body>
 </html>

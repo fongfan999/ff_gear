@@ -43,6 +43,14 @@
     width: 256px;
     height: 256px;
   }
+
+  #market {
+    i.left {
+      margin-right: 0;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 }
 
 @media #{$small-and-down} {
@@ -75,6 +83,13 @@
 
   #lander .caption h5 {
     font-size: 0.95em;
+  }
+
+  #market {
+    i.left {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 

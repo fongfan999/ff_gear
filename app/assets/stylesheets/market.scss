@@ -1,3 +1,109 @@
-// Place all the styles related to the market controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#market {
+  .nav-wrapper {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+
+    ul {
+      display: inline-block;
+      text-transform: uppercase;
+
+      li {
+        display: inline-block;
+        a {
+          &.active, &:hover {
+            color: #3ec9cb;
+            background-color: #FFF;
+            border: 1px solid #3ec9cb;
+            padding-bottom: 10px;
+            height: 76px;
+            padding-top: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  #products {
+    .card {
+      height: 400px;
+      box-sizing: border-box;
+
+      & > a {
+        width: 100%;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.5);
+          transition: transform 0.4s, opacity 0.1s 0.3s;
+        }
+      }
+
+      .buyer-avatar {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        z-index: 2;
+        bottom: 85px;
+        left: 20px;
+      }
+
+      .card-image {
+        img {
+          height: 300px;
+        }
+
+        .card-title {
+          color: teal;
+          text-shadow:
+            -1px -1px 0 white,
+            1px -1px 0 white,
+            -1px 1px 0 white,
+            1px 1px 0 white;
+        }
+      }
+
+      .card-content {
+        height: 100px;
+        color: #fff;
+
+        h6 {
+          font-size: 1.4rem;
+        }
+
+        p {
+          font-style: italic;
+
+          span {
+            font-size: 0.8em;
+          }
+        }
+      }
+
+      .card-reveal {
+        .card-title {
+          background-color: teal;
+          color: #fff;
+          margin: -20px;
+          padding: 20px;
+
+          i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
+        }
+
+        p {
+          margin-top: 40px;
+        }
+
+        .fixed-icon-bottom-right {
+          position: absolute;
+          bottom: 30px;
+          right: 40px;
+        }
+      }
+    }
+  }
+}
