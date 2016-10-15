@@ -19,7 +19,7 @@
       </div>
       <%= link_to product do %>
         <div class="card-content" style="background: <%= product.color %>">
-          <h6><%= product.name %></h6>
+          <h6 class="truncate"><%= product.name %></h6>
           <p>
             <span>Đăng bởi:</span> <%= product.buyer.name %>
           </p>

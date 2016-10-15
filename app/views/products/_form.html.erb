@@ -3,7 +3,7 @@
   <%= f.input :name, label: "Tên sản phẩm", input_html: { length: 60 } %>
   <%= f.input :description, label: "Mô tả sản phẩm" %>
   <%= f.association :category, label: "Danh mục", as: :radio_buttons,
-    checked: product.category.nil? ? Category.first.id : product.category.id  %>
+    checked: product.category_id || Category.first.id  %>
   <br/>
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>

@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <% unless current_page?('/') %>
     <div class="navbar-fixed">
       <nav class="main-color ">
         <div class="nav-wrapper">
@@ -68,6 +69,7 @@
       <li><a><i class="material-icons">settings</i>Settings</a></li>
       <li><a><i class="material-icons">help</i>Help</a></li>
     </ul>
+    <% end %>
     
     <div id="main">
       <div id="alert-wrapper">
@@ -80,7 +82,8 @@
 
       <%= yield %>
     </div>
-
+    
+    <%# unless current_page?('/') %>
     <footer class="page-footer main-color">
       <div class="container">
         <div class="row">
@@ -106,6 +109,7 @@
         </div>
       </div>
     </footer>
+    <%# end %>
         
   </body>
 </html>
