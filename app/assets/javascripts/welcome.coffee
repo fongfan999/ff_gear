@@ -80,7 +80,7 @@ $ ->
   # End Slider
 
   # Scroll Spy
-  $('#lander .scrollspy').scrollSpy scrollOffset: 0
+  $('.scrollspy').scrollSpy scrollOffset: 50
   tabsFixed = $('#lander #tabs-fixed')
   tabsFixed.css 'top', ($(window).height() - tabsFixed.height()) / 2
   # End Scroll Spy

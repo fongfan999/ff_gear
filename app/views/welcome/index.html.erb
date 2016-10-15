@@ -17,14 +17,15 @@
       <div id="nav-wrapper">
         <nav>
           <div class="nav-wrapper ctn">
-            <a href="#" class="brand-logo">
+            <%= link_to root_path, class: "brand-logo" do %>
               <i class="material-icons">layers</i>
               <span class="hide-on-small-only">FoxFizz</span>
-            </a>
+            <% end %>
 
             <ul class="hide-on-med-and-down right">
               <li>
-                <a href="collapsible.html" class="login-btn">Đăng nhập</a>
+                <%= link_to "Đăng nhập", new_user_session_path,
+                  class: "login-btn" %>
               </li>
             </ul>          
           </div>
@@ -229,10 +230,10 @@
             </div>
             <h6>Kết nối với chúng tôi</h6>
             <p>
-              <%= image_tag 'fb.png' %>
-              <%= image_tag 'gg.png' %>
-              <%= image_tag 'isg.png' %>
-              <%= image_tag 'yt.png' %>
+              <a href="http://fb.com/foxfizz"><%= image_tag 'fb.png' %></a>
+              <a href="http://fb.com/foxfizz"><%= image_tag 'gg.png' %></a>
+              <a href="http://fb.com/foxfizz"><%= image_tag 'isg.png' %></a>
+              <a href="http://fb.com/foxfizz"><%= image_tag 'yt.png' %></a>
             </p>
           </div>
           <div class="col l4 offset-l2 s12">
@@ -262,13 +263,5 @@
       </ul>
     </div>
   </div>
-
-
-  <script>
-    $(document).ready(function(){
-      console.log('asdasd');
-      
-    });
-  </script>
 </body>
 </html>
