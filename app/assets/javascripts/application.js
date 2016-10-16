@@ -40,6 +40,12 @@ $(function() {
     $(this).parent().fadeOut("slow");
   });
 
+  // Clear input
+  $('i.clear-input').on('click', function() {
+    $(this).parent().find('input').val('');
+  });
+
+  // Caroulsel config
   $('#carousel').flexslider({
     animation: "slide",
     controlNav: false,
@@ -58,10 +64,13 @@ $(function() {
     sync: "#carousel"
   });
 
+  // Zoom image on hover
   $('.zoom-in').loupe();
 
+  // Add plus icon to new button
   $("a.new").prepend('<i class="material-icons"></>');
 
+  // Dismiss alert after 5s
   setTimeout(function() {
     $('.alert').slideUp();
   }, 5000);

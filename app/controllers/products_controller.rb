@@ -1,12 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :location, only: [:new, :edit]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,
     :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :clean_session, only: [:new, :edit]
-
-  def index
-    @products = Product.all
-  end
 
   def show
   end
@@ -67,7 +64,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :category_id)
+    params.require(:product).permit(:name, :address,:description, :category_id)
   end
 
   def clean_session

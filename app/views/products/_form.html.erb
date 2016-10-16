@@ -1,13 +1,21 @@
 <%= simple_form_for product, html: { multipart: true,
   id: 'attachments-dropzone', class: 'dropzone' } do |f| %>
 
-  <%= f.input :name, label: "Tiêu đề", input_html: { length: 60 } do %>
-    <%= f.input_field :name %>
+  <%= f.input :name, label: "Tiêu đề" do %>
+    <%= f.input_field :name, length: 60, autofocus: true %>
     <i class="material-icons prefix">label</i>
   <% end %>
-
+  
+  <%= f.input :address, label: "Nơi bán" do %>
+    <%= f.input_field :address, length: 60,
+      value: location_address(product) %>
+    <i class="material-icons prefix">location_on</i>
+    <i class="material-icons clear-input tooltipped" data-position="bottom"
+      data-tooltip="Vị trí sai?">clear</i>
+  <% end %>
+  
   <%= f.input :description, label: "Mô tả sản phẩm" do %>
-    <%= f.input_field :description %>
+    <%= f.input_field :description, length: 500 %>
     <i class="material-icons prefix">message</i>
   <% end %>
 
@@ -50,8 +58,3 @@
     <i class="material-icons right">send</i>
   <% end %>
 <% end %>
-
- <%#= simple_form_for product do |f| %>
-  <%#= f.association :category, as: :radio_buttons %>
- <%# end %>
-        

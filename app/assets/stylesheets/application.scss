@@ -11,6 +11,25 @@
 @import 'dropzone/dropzone';
 
 
+i.clear-input {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  cursor: pointer !important;
+}
+.main-color {
+  background-color: #3ec9cb !important;
+}
+
+.divider {
+  margin-bottom: 10px;
+}
+
+.ctn {
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
 html, body {
   overflow-x: hidden;
 }
@@ -21,21 +40,8 @@ body {
   flex-direction: column;
 }
 
-.main-color {
-  background-color: #3ec9cb !important;
-}
-
-.divider {
-  margin-bottom: 10px;
-}
-
 #main {
   flex: 1 0 auto;
-}
-
-.ctn {
-  padding-left: 55px;
-  padding-right: 55px;
 }
 
 #menu-icon {
