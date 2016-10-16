@@ -33,6 +33,7 @@ $(function() {
   // Auto resize textarea rows
   $('textarea').trigger('autoresize');
 
+  // Make image parallax
   $('.parallax').parallax();
 
   // Hide dismiss button
@@ -44,6 +45,9 @@ $(function() {
   $('i.clear-input').on('click', function() {
     $(this).parent().find('input').val('');
   });
+
+  // Set delay tooltip time
+  $('.tooltipped').tooltip({delay: 20});
 
   // Caroulsel config
   $('#carousel').flexslider({
@@ -65,7 +69,11 @@ $(function() {
   });
 
   // Zoom image on hover
-  $('.zoom-in').loupe();
+  $('.zoom-in').loupe({
+    width: 240, // width of magnifier
+    height: 240, // height of magnifier
+    loupe: 'loupe' // css class for magnifier
+  });
 
   // Add plus icon to new button
   $("a.new").prepend('<i class="material-icons"></>');

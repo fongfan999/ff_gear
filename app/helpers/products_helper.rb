@@ -3,7 +3,10 @@ module ProductsHelper
     if product.address.present?
       product.address
     else
-      "#{@location.city}, #{@location.province}"
+      city = session[:location]['data']['city']
+      province = session[:location]['data']['region_name']
+      
+      "#{city}, #{province}"
     end
   end
 end

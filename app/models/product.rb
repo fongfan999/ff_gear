@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  attr_accessor :rejected_ids
+  attr_accessor :rejected_ids, :tmp_address
   
   has_many :attachments, dependent: :delete_all
   belongs_to :buyer, class_name: "User"
@@ -10,10 +10,23 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
 
   geocoded_by :address, lookup: :google
-  reverse_geocoded_by :latitude, :longitude
-  after_save :geocode, :reverse_geocode, if: :address_changed?
+
+  after_validation :geocode, if: :should_save?
+  after_save :test_test, if: :should_save?
 
   def color
     category.color
+  end
+
+  private
+
+  def should_save?
+    address.present? && address_changed?
+  end
+
+  def test_test
+    if geo = Geocoder.search(self.address).first
+      update_columns(address: "#{geo.sub_state}, #{geo.state}")
+    end
   end
 end

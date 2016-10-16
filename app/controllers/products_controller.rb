@@ -33,8 +33,8 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product.tmp_address = params[:product][:address]
     handle_attachments
-
     if @product.update(product_params)
       if @product.attachments.empty?
         flash.now[:alert] = "Đã xảy ra lỗi"

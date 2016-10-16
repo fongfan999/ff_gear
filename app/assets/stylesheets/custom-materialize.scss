@@ -15,3 +15,13 @@ div.radio_buttons {
     }
   }
 }
+
+.has-error {
+  label, i, input, textarea {
+    color: #dd2c00;
+  }
+}
+
+.simple_form div.input-field {
+  margin-bottom: 35px;
+}

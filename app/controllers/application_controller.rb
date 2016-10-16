@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   def location
     if Rails.env.production?
-      @location ||= request.location
+      session[:location] ||= request.location
     else
-      @location ||= Geocoder.search("115.79.53.75").first
+      session[:location] ||= Geocoder.search("115.79.53.75").first
     end
   end
 end

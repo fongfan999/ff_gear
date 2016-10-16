@@ -17,7 +17,7 @@
     <div class="divider"></div>
 
     <div class="row">
-      <div class="col s12 l8">
+      <div class="col s12 m6 l6">
         <div id="slider" class="flexslider">
           <ul class="slides">
             <% @product.attachments.each do |attachment| %>
@@ -34,11 +34,13 @@
           </ul>
         </div>
       </div>
-      <div class="col s12 l4">
+      <div class="col s12 m6 l6">
         <p>Adress: <%= @product.address %></p>
         <p><%= simple_format(@product.description) %></p>
+        <p>
+        <%= @product.latitude %>, <%= @product.longitude %>
+        </p>
       </div>
     </div>
   </div>
 </div>
-<p><%= Geocoder.search("#{@product.latitude}, #{@product.longitude}").to_yaml %></p>
