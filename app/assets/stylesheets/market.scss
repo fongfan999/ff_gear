@@ -1,7 +1,5 @@
 #market {
   .nav-wrapper {
-    border-bottom: 1px solid #fff;
-
     ul {
       display: inline-block;
       text-transform: uppercase;
@@ -10,9 +8,9 @@
         display: inline-block;
         a {
           &.active, &:hover {
-            color: #3ec9cb;
+            @extend .primary-color-text;
             background-color: #FFF;
-            border: 1px solid #3ec9cb;
+            border: 1px solid $primary-color;
             padding-bottom: 10px;
             height: 76px;
             padding-top: 5px;

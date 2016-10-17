@@ -1,4 +1,4 @@
-// $primary-color: #3ec9cb;
+$primary-color: #2c3e50;
 
 @import "materialize/components/color";
 @import 'materialize';
@@ -13,11 +13,11 @@
 @import 'dropzone/dropzone';
 
 .primary-color {
-  background-color: $primary-color !important;
+  background-color: $primary-color;
 }
 
 .primary-color-text {
-  color: $primary-color !important;
+  color: $primary-color;
 }
 
 i.clear-input {
@@ -36,8 +36,10 @@ i.clear-input {
   padding-right: 55px;
 }
 
+
 html, body {
   overflow-x: hidden;
+  background-color: #fafafa;
 }
 
 body {
@@ -100,42 +102,13 @@ a.new {
 
 .loupe {
   cursor: zoom-in;
-  border: 1px solid #ee6e73;
+  border: 1px solid $primary-color;
 }
 
-.dropdown-content > li > a {
-  color: #03a9f4;
+li.edit a {
+  @extend .primary-color-text;
 }
 
 li.delete a {
   color: red;
-}
-
-#login-btn {
-  margin-top: 200px;
-
-  #fb-login-btn, #gg-login-btn {
-    height: 50px;
-    line-height: 50px;
-    width: 100%;
-    color: #fff;
-
-    img {
-      width: 30px;
-      margin-top: 10px;
-      float: left;
-    }
-
-    span {
-      padding-left: 10px;
-    }
-  }
-
-  #fb-login-btn {
-    background-color: #0086fb;
-  }
-
-  #gg-login-btn {
-    background-color: #e44536;
-  }
 }
