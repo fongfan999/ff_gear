@@ -1,3 +1,5 @@
+// $primary-color: #3ec9cb;
+
 @import "materialize/components/color";
 @import 'materialize';
 @import 'welcome';
@@ -10,15 +12,19 @@
 @import 'responsive';
 @import 'dropzone/dropzone';
 
+.primary-color {
+  background-color: $primary-color !important;
+}
+
+.primary-color-text {
+  color: $primary-color !important;
+}
 
 i.clear-input {
   position: absolute;
   top: 15px;
   right: 0;
   cursor: pointer !important;
-}
-.main-color {
-  background-color: #3ec9cb !important;
 }
 
 .divider {
@@ -65,7 +71,7 @@ a.brand-logo {
 }
 
 .side-nav .userView {
-  @extend .main-color;
+  @extend .primary-color;
 }
 
 #drawer-logout {
@@ -77,7 +83,7 @@ a.brand-logo {
 a.new {
   @extend .btn-floating;
   @extend .btn-large;
-  @extend .main-color;
+  @extend .primary-color;
 
   i.material-icons:after {
     content: "add";

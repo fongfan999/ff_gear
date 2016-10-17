@@ -3,7 +3,7 @@
   padding: 20px;
 
   #slider {
-    border-bottom: 3px solid teal;
+    border-bottom: 3px solid $primary-color;
     border-radius: 0;
     padding: 10px;
     margin-bottom: -2px;
@@ -23,7 +23,7 @@
   ul.slides {
     li {
       width: 128px !important;
-      border: 1px solid teal;
+      border: 1px solid $primary-color;
 
       img {
         width: 128px;
@@ -47,7 +47,7 @@
   overflow-y: hidden;
   white-space: nowrap;
   width: 100%;
-  border: 1px dotted teal;
+  border: 1px dotted $primary-color;
 
   .dz-message {
     width: 100%;
