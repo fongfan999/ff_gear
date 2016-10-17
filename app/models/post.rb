@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  attr_accessor :rejected_ids, :tmp_address
+  attr_accessor :rejected_ids
   
   has_many :attachments, dependent: :delete_all
   belongs_to :buyer, class_name: "User"
@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   geocoded_by :address, lookup: :google
 
   after_validation :geocode, if: :should_save?
-  after_save :test_test, if: :should_save?
+  after_save :geoword, if: :should_save?
 
   def color
     category.color
@@ -24,9 +24,26 @@ class Post < ApplicationRecord
     address.present? && address_changed?
   end
 
-  def test_test
+  def geoword
     if geo = Geocoder.search(self.address).first
-      update_columns(address: "#{geo.sub_state}, #{geo.state}")
+      address = []
+
+      if geo.address_components.size > 3
+        address = []
+        address << geo.address_components[-3]["long_name"]
+        address << geo.address_components[-2]["long_name"]
+      else
+        address << geo.sub_state if geo.sub_state.present?
+        address << geo.state if geo.state.present?
+      end
+      
+      permitted_address =  if address.length > 1
+        address.join(', ')
+      else
+        address.first
+      end
+
+      update_columns(address: permitted_address)
     end
   end
 end

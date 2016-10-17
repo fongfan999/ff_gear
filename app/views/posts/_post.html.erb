@@ -1,24 +1,46 @@
 <div class="col s12 m6 l4">
-  <div class="card hoverable"
-    style="border-top: 3px solid <%= post.color %>"> 
+  <div class="card hoverable"> 
     <%= image_tag post.buyer.avatar, class: "circle buyer-avatar" %>
     <div class="card-image waves-effect waves-block waves-light">
       <%= image_tag post.attachments.first.file.url,
         class: "activator responsive-img" if post.attachments.any? %>
     </div>
-    <%= link_to post do %>
-      <div class="card-content" style="background: <%= post.color %>">
-        <h6 class="truncate"><%= post.title %></h6>
-        <p>
-          <span>Đăng bởi:</span> <%= post.buyer.name %>
-        </p>
+
+    <div class="card-content">
+      <%= link_to post do %>
+        <div class="truncate post-title"><%= post.title %></div>
+      <% end %>
+      
+      <div class="more-info">
+        <div class="truncate">
+          <i class="material-icons small left">attach_money</i>3.000.000 VND
+        </div>
+
+        <div class="truncate">
+          <i class="material-icons small left">location_on</i>
+          <span><div class="divider"></div><%= post.address %></span>
+        </div>
+
+        <div class="truncate">
+          <i class="material-icons small left">access_time</i>
+          <span>
+            <div class="divider"></div>
+            <%= time_ago_in_words post.created_at %>
+          </span>
+        </div>
+        
+        <div class="truncate">
+          <i class="material-icons small left">person</i>
+          <span><div class="divider"></div><%= post.buyer.name %></span>
+        </div>
       </div>
-    <% end %>
+    </div>
+
     <div class="card-reveal">
-      <span class="card-title" style="background: <%= post.color %>">
+      <span class="card-title truncate">
         <%= post.title %><i class="material-icons right">close</i>
       </span>
-      <p><%= truncate post.description, length: 250 %></p>
+      <p><%= truncate( simple_format(post.description), length: 250) %></p>
       <span class="fixed-icon-bottom-right">
         <%= link_to "See more", post %>
       </span>

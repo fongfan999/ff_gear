@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20161017060738) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string  "title"
-    t.text    "description"
-    t.integer "buyer_id"
-    t.string  "address"
-    t.float   "latitude"
-    t.float   "longitude"
-    t.integer "category_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "buyer_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "category_id"
     t.index ["buyer_id"], name: "index_posts_on_buyer_id", using: :btree
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
   end

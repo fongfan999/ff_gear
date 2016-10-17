@@ -27,15 +27,18 @@ i.clear-input {
   cursor: pointer !important;
 }
 
-.divider {
-  margin-bottom: 10px;
-}
+// .divider {
+//   margin-bottom: 10px;
+// }
 
 .ctn {
   padding-left: 55px;
   padding-right: 55px;
 }
 
+.small-text {
+  font-size: 0.7em;
+}
 
 html, body {
   overflow-x: hidden;

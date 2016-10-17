@@ -22,8 +22,9 @@
 
   #posts {
     .card {
-      height: 400px;
+      height: 560px;
       box-sizing: border-box;
+      border-top: 3px solid #00887a;
 
       & > a {
         width: 100%;
@@ -41,40 +42,45 @@
         height: 30px;
         position: absolute;
         z-index: 2;
-        bottom: 85px;
+        bottom: 295px;
         left: 20px;
       }
 
       .card-image {
         img {
-          height: 300px;
-        }
-
-        .card-title {
-          color: teal;
-          text-shadow:
-            -1px -1px 0 white,
-            1px -1px 0 white,
-            -1px 1px 0 white,
-            1px 1px 0 white;
+          height: 250px;
         }
       }
 
       .card-content {
-        height: 100px;
-        color: #fff;
-
-        h6 {
-          font-size: 1.4rem;
+        height: 310px;
+        color: #1c1c1c;
+        background-color: #eee;
+        
+        a {
+          color: #1c1c1c;
+          width: 100%;
         }
 
-        p {
-          font-style: italic;
+        .post-title {
+          height: 70px;
+          line-height: 70px;
+          font-size: 1.5rem;
+  
+        }
 
-          span {
-            font-size: 0.8em;
+        .more-info {
+          div.truncate {
+            height: 50px;
+            line-height: 50px;
+
+            i.small.left {
+              margin-top: 10.5px;
+              color: #00887a;
+            }
           }
         }
+ 
       }
 
       .card-reveal {
@@ -83,6 +89,7 @@
           color: #fff;
           margin: -20px;
           padding: 20px;
+          height: 75px;
 
           i {
             position: absolute;
@@ -93,6 +100,8 @@
 
         p {
           margin-top: 40px;
+          font-size: 1.2rem;
+          line-height: 25px;
         }
 
         .fixed-icon-bottom-right {

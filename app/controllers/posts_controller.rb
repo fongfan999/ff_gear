@@ -33,8 +33,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.tmp_address = params[:post][:address]
     handle_attachments
+    
     if @post.update(post_params)
       if @post.attachments.empty?
         flash.now[:alert] = "Đã xảy ra lỗi"
