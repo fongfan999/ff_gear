@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
   def show
-    @products = @category.products
+    @posts = @category.posts
     @categories = Category.all
   end
 

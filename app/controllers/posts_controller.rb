@@ -1,31 +1,31 @@
-class ProductsController < ApplicationController
+class PostsController < ApplicationController
   before_action :location, only: [:new, :edit]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,
     :destroy]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :clean_session, only: [:new, :edit]
 
   def show
   end
 
   def new
-    @product = Product.new
+    @post = Post.new
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.buyer = current_user
+    @post = Post.new(post_params)
+    @post.buyer = current_user
 
     handle_attachments
 
-    if @product.attachments.empty? || !@product.save
+    if @post.attachments.empty? || !@post.save
       flash.now[:alert] = "Đã xảy ra lỗi"
       render "new"
     else
       session.delete(:attachment_ids)
 
       flash[:notice] = "Thành công"
-      redirect_to @product
+      redirect_to @post
     end
   end
 
@@ -33,17 +33,17 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.tmp_address = params[:product][:address]
+    @post.tmp_address = params[:post][:address]
     handle_attachments
-    if @product.update(product_params)
-      if @product.attachments.empty?
+    if @post.update(post_params)
+      if @post.attachments.empty?
         flash.now[:alert] = "Đã xảy ra lỗi"
         render "edit"
       else
         session.delete(:attachment_ids)
 
         flash[:notice] = "Thành công"
-        redirect_to @product
+        redirect_to @post
       end
     else
       flash.now[:alert] = "Đã xảy ra lỗi"
@@ -52,19 +52,19 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    @post.destroy
     flash[:notice] = "Successfully"
     redirect_to root_path
   end
 
   private
 
-  def set_product
-    @product = Product.find(params[:id])
+  def set_post
+    @post = Post.find(params[:id])
   end
 
-  def product_params
-    params.require(:product).permit(:name, :address,:description, :category_id)
+  def post_params
+    params.require(:post).permit(:title, :address,:description, :category_id)
   end
 
   def clean_session
@@ -75,7 +75,7 @@ class ProductsController < ApplicationController
   end
 
   def handle_attachments
-    Attachment.clean_junks(params["product"]["rejected_ids"])
-    @product.attachments << Attachment.pending(session[:attachment_ids])
+    Attachment.clean_junks(params["post"]["rejected_ids"])
+    @post.attachments << Attachment.pending(session[:attachment_ids])
   end
 end

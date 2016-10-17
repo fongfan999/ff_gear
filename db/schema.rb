@@ -10,45 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015143923) do
+ActiveRecord::Schema.define(version: 20161017060738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "file"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_attachments_on_product_id", using: :btree
+    t.string  "file"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_attachments_on_post_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.string   "color"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "color"
   end
 
-  create_table "categories_products", id: false, force: :cascade do |t|
+  create_table "categories_posts", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
-    t.integer "product_id",  null: false
-    t.index ["category_id", "product_id"], name: "index_categories_products_on_category_id_and_product_id", using: :btree
-    t.index ["product_id", "category_id"], name: "index_categories_products_on_product_id_and_category_id", using: :btree
+    t.integer "post_id",     null: false
+    t.index ["category_id", "post_id"], name: "index_categories_posts_on_category_id_and_post_id", using: :btree
+    t.index ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id", using: :btree
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "buyer_id"
-    t.integer  "category_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "address"
-    t.index ["buyer_id"], name: "index_products_on_buyer_id", using: :btree
-    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+  create_table "posts", force: :cascade do |t|
+    t.string  "title"
+    t.text    "description"
+    t.integer "buyer_id"
+    t.string  "address"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.integer "category_id"
+    t.index ["buyer_id"], name: "index_posts_on_buyer_id", using: :btree
+    t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,14 +60,13 @@ ActiveRecord::Schema.define(version: 20161015143923) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "username"
     t.string   "name"
     t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "attachments", "products"
-  add_foreign_key "products", "categories"
-  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "attachments", "posts"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users", column: "buyer_id"
 end

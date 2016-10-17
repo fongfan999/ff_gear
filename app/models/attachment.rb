@@ -1,6 +1,4 @@
 class Attachment < ApplicationRecord
-  # belongs_to :product
-
   mount_uploader :file, AttachmentUploader
 
   scope :pending, -> (created_ids) { where(id: created_ids) }

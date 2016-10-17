@@ -1,0 +1,27 @@
+<div class="col s12 m6 l4">
+  <div class="card hoverable"
+    style="border-top: 3px solid <%= post.color %>"> 
+    <%= image_tag post.buyer.avatar, class: "circle buyer-avatar" %>
+    <div class="card-image waves-effect waves-block waves-light">
+      <%= image_tag post.attachments.first.file.url,
+        class: "activator responsive-img" if post.attachments.any? %>
+    </div>
+    <%= link_to post do %>
+      <div class="card-content" style="background: <%= post.color %>">
+        <h6 class="truncate"><%= post.title %></h6>
+        <p>
+          <span>Đăng bởi:</span> <%= post.buyer.name %>
+        </p>
+      </div>
+    <% end %>
+    <div class="card-reveal">
+      <span class="card-title" style="background: <%= post.color %>">
+        <%= post.title %><i class="material-icons right">close</i>
+      </span>
+      <p><%= truncate post.description, length: 250 %></p>
+      <span class="fixed-icon-bottom-right">
+        <%= link_to "See more", post %>
+      </span>
+    </div>
+  </div>
+</div>

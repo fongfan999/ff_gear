@@ -4,11 +4,10 @@ Rails.application.routes.draw do
 
   get 'market', to: "market#index"
 
-  resources :categories, only: [:show]
-
-
-  resources :products, except: [:index]
+  resources :posts, except: [:index]
   post :attachments, to: "attachments#create"
   patch :attachments, to: "attachments#create"
+
+  resources :categories, only: [:show]
   resources :users
 end

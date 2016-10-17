@@ -1,18 +1,18 @@
 <div class="ctn">
-  <div id="product" class="card">
+  <div id="post" class="card">
     <div class="right">
       <a class='dropdown-button' href='#' data-activates='action'>
         <i class="material-icons">more_vert</i></a>
 
     <!-- Dropdown Structure -->
     <ul id='action' class='dropdown-content'>
-      <li class="edit"><%= link_to "Sửa", [:edit, @product] %></li>
-      <li class="delete"><%= link_to "Gỡ", @product, method: :delete,
+      <li class="edit"><%= link_to "Sửa", [:edit, @post] %></li>
+      <li class="delete"><%= link_to "Gỡ", @post, method: :delete,
         data: { confirm: "Are you sure?" } %></li>
     </ul>
     </div>
     <header>
-      <h4><%= @product.name %></h4>
+      <h4><%= @post.title %></h4>
     </header>
     <div class="divider"></div>
 
@@ -20,14 +20,14 @@
       <div class="col s12 m6 l6">
         <div id="slider" class="flexslider">
           <ul class="slides">
-            <% @product.attachments.each do |attachment| %>
+            <% @post.attachments.each do |attachment| %>
               <li><%= image_tag attachment.file.url, class: "zoom-in responsive-img" %></li>
             <% end %>
           </ul>
         </div>
         <div id="carousel" class="flexslider">
           <ul class="slides">
-            <% @product.attachments.each do |attachment| %>
+            <% @post.attachments.each do |attachment| %>
               <li><%= image_tag attachment.file.url,
                 class: "responsive-img" %></li>
             <% end %>
@@ -35,10 +35,10 @@
         </div>
       </div>
       <div class="col s12 m6 l6">
-        <p>Adress: <%= @product.address %></p>
-        <p><%= simple_format(@product.description) %></p>
+        <p>Adress: <%= @post.address %></p>
+        <p><%= simple_format(@post.description) %></p>
         <p>
-        <%= @product.latitude %>, <%= @product.longitude %>
+        <%= @post.latitude %>, <%= @post.longitude %>
         </p>
       </div>
     </div>

@@ -1,14 +1,14 @@
-<%= simple_form_for product, html: { multipart: true,
+<%= simple_form_for post, html: { multipart: true,
   id: 'attachments-dropzone', class: 'dropzone' } do |f| %>
 
-  <%= f.input :name, label: "Tiêu đề" do %>
-    <%= f.input_field :name, length: 60 %>
+  <%= f.input :title, label: "Tiêu đề" do %>
+    <%= f.input_field :title, length: 60 %>
     <i class="material-icons prefix">label</i>
   <% end %>
   
   <%= f.input :address, label: "Nơi bán" do %>
     <%= f.input_field :address, length: 60, placeholder: "Quận 1, Hồ Chí Minh",
-      value: location_address(product) %>
+      value: location_address(post) %>
     <i class="material-icons prefix">location_on</i>
     <i class="material-icons clear-input tooltipped" data-position="bottom"
       data-tooltip="Vị trí sai?">clear</i>
@@ -20,13 +20,13 @@
   <% end %>
 
   <%= f.association :category, label: "Danh mục", as: :radio_buttons,
-    checked: product.category_id || Category.first.id %>
+    checked: post.category_id || Category.first.id %>
 
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>
   <div id="preview-wrapper">
-  <% if @product.attachments.any? %>
-      <% @product.attachments.each do |attachment| %>
+  <% if @post.attachments.any? %>
+      <% @post.attachments.each do |attachment| %>
         <div class="dz-preview dz-processing dz-image-preview dz-success
           dz-complete" id="<%= attachment.id %>">
           <div class="dz-image">
@@ -54,7 +54,7 @@
     </div>
   
   <%= f.button :button, id: "submit-btn" do %>
-    <%= product.new_record? ? "Đăng" : "Cập nhật" %>
+    <%= post.new_record? ? "Đăng" : "Cập nhật" %>
     <i class="material-icons right">send</i>
   <% end %>
 <% end %>

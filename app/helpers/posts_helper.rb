@@ -1,7 +1,7 @@
-module ProductsHelper
-  def location_address(product)
-    if product.address.present?
-      product.address
+module PostsHelper
+  def location_address(post)
+    if post.address.present?
+      post.address
     else
       city = session[:location]['data']['city']
       province = session[:location]['data']['region_name']
