@@ -14,13 +14,31 @@
     <div class="navbar-fixed nav-scroll">
       <nav class="primary-color z-depth-0">
         <div class="nav-wrapper">
+        <div class="row">
+          <div class="col l3">
           <a href="#" data-activates="slide-out" class="button-collapse">
             <i id="menu-icon" class="material-icons">menu</i>
           </a>
-          <a href="/" class="brand-logo">
-            <i class="material-icons">layers</i>FoxFizz
-          </a>
+
+          <%= link_to root_path, class: "brand-logo" do %>
+            <%= image_tag 'logo.png', class: "left" %>
+            <span>FoxFizz</span>
+          <% end %>
+          </div>
+
           
+            <div class="col l6 hide-on-med-and-down">
+              <form class="search-bar">
+                <div class="input-field">
+                  <input type="search" required placeholder="Seach anything ...">
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          
+            
+          <div class="col l3">
           <ul class="right hide-on-med-and-down">
             <li><%= link_to '<i class="material-icons">notifications_none</i>'.
                 html_safe, new_user_session_path, class: "tooltipped",
@@ -34,8 +52,26 @@
                 data: { position: "bottom", tooltip: "Sign in" } %></li>
             <% end %>
           </ul>
+          </div>
+          </div>
+          
         </div>
       </nav>
+    </div>
+
+    <div class="hide-on-large-only navbar-fixed nav-scroll">
+      <nav class="z-depth-0 fo-nav">
+        <div class="nav-wrapper container">
+          <form class="full-width search-bar">
+            <div class="input-field">
+              <input type="search" required placeholder="Seach anything ...">
+              <label for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </nav>
+
     </div>
 
     <ul id="slide-out" class="side-nav">

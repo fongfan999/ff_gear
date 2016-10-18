@@ -1,4 +1,4 @@
-$primary-color: #2c3e50;
+$primary-color: #34495e;
 
 @import "materialize/components/color";
 @import 'materialize';
@@ -30,6 +30,25 @@ i.clear-input {
 // .divider {
 //   margin-bottom: 10px;
 // }
+
+.search-bar {
+  .input-field {
+    height: 44px !important;
+
+    label, i.material-icons {
+      top: -10px !important;
+    }
+
+    input[type="search"] {
+      height: 44px !important; /* or height of nav */
+      margin-top: 10px;
+    }
+  }
+}
+
+.full-width {
+  max-width: 100%;
+}
 
 .ctn {
   padding-left: 55px;
@@ -63,6 +82,17 @@ body {
 a.brand-logo {
   padding-left: 10px;
   padding-right: 10px;
+
+  img {
+    height: 34px;
+    margin-top: 15px;
+    margin-right: 5px;
+  }
+
+  span {
+    font-size: 0.9em;
+    // color: #34495e;
+  }
 }
 
 .nav-wrapper {
