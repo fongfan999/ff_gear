@@ -64,7 +64,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :address,:description, :category_id)
+    params.require(:post).permit(:title, :address,:description, :category_id,
+      :price)
   end
 
   def clean_session

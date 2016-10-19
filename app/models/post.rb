@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5, maximum: 60 }
   validates :address, presence: true, length: { minimum: 5, maximum: 60 }
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
+  validates :category_id, presence: true
+  validates :price, presence: true, numericality: { minimum: 1000 }
 
   geocoded_by :address, lookup: :google
 

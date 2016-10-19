@@ -13,6 +13,11 @@
     <i class="material-icons clear-input tooltipped" data-position="bottom"
       data-tooltip="Vị trí sai?">clear</i>
   <% end %>
+
+  <%= f.input :price, label: "Giá (VND)" do %>
+    <%= f.input_field :price, min: 1000, step: 1000, class: "price" %>
+    <i class="material-icons prefix">monetization_on</i>
+  <% end %>
   
   <%= f.input :description, label: "Mô tả sản phẩm" do %>
     <%= f.input_field :description, length: 500 %>
