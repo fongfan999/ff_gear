@@ -21,6 +21,12 @@
 //= require_tree .
 
 $(function() {
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+
+  
   // Set waves-effect on all <a> and <button> tags and 
   $('a, button').addClass("waves-effect waves-light");
 
