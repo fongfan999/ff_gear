@@ -25,7 +25,6 @@
     .card {
       height: 560px;
       box-sizing: border-box;
-      border-top: 3px solid $primary-color;
 
       & > a {
         width: 100%;
@@ -56,7 +55,7 @@
       .card-content {
         height: 310px;
         color: #1c1c1c;
-        background-color: #eee;
+        border-top: 1px solid $primary-color;
         
         a {
           color: #1c1c1c;
