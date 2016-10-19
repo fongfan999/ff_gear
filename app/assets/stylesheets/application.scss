@@ -1,4 +1,5 @@
-$primary-color: #34495e;
+$primary-color: #183544;
+$foreign-color: #f36f36;
 
 @import "materialize/components/color";
 @import 'materialize';
@@ -36,7 +37,7 @@ i.clear-input {
     height: 44px !important;
 
     label, i.material-icons {
-      top: -10px !important;
+      top: -10px;
     }
 
     input[type="search"] {
@@ -51,8 +52,8 @@ i.clear-input {
 }
 
 .ctn {
-  padding-left: 55px;
-  padding-right: 55px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .small-text {

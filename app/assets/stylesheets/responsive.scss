@@ -8,6 +8,10 @@
   #left-col, #right-col {
     width: 49% !important;
   }
+
+  .ctn {
+    width: 80%;
+  }
 }
 
 @media #{$medium-and-up} {
@@ -51,6 +55,10 @@
       padding-right: 15px;
     }
   }
+
+  .ctn {
+    width: 90%;
+  }
 }
 
 @media #{$small-and-down} {
@@ -91,7 +99,14 @@
       padding-right: 0;
     }
   }
-
+  
+  .search-bar {
+    .input-field {
+      label, i.material-icons {
+        top: -5px !important;
+      }
+    }
+  }
 
 }
 
@@ -111,5 +126,9 @@
 @media screen and (min-width: 1200px) {
   #about-description {
     margin-top: -148px !important;
+  }
+
+  .ctn {
+    width: 70%;
   }
 }

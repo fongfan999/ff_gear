@@ -8,7 +8,7 @@
   
   <%= f.input :address, label: "Nơi bán" do %>
     <%= f.input_field :address, length: 60, placeholder: "Quận 1, Hồ Chí Minh",
-      value: location_address(post) %>
+      value: location_address(post.address) %>
     <i class="material-icons prefix">location_on</i>
     <i class="material-icons clear-input tooltipped" data-position="bottom"
       data-tooltip="Vị trí sai?">clear</i>

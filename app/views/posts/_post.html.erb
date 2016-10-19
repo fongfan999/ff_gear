@@ -1,5 +1,5 @@
 <div class="col s12 m6 l4">
-  <div class="card hoverable"> 
+  <div class="card hoverable z-depth-0"> 
     <%= image_tag post.buyer.avatar, class: "circle buyer-avatar" %>
     <div class="card-image waves-effect waves-block waves-light">
       <%= image_tag post.attachments.first.file.url,
@@ -18,7 +18,13 @@
 
         <div class="truncate">
           <i class="material-icons small left">location_on</i>
-          <span><div class="divider"></div><%= post.address %></span>
+          <span>
+            <div class="divider"></div>
+            <%= post.address %>
+            <span class="distance">
+              khoảng <%= post.distance_from(location_address).round(1) %> km
+            </span>
+          </span>
         </div>
 
         <div class="truncate">

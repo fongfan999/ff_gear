@@ -9,8 +9,9 @@
         a {
           &.active, &:hover {
             @extend .primary-color-text;
-            background-color: #FFF;
-            border: 1px solid $primary-color;
+            background-color: $foreign-color;
+            border: 1px solid $foreign-color;
+            color: #fff !important;
             padding-bottom: 10px;
             height: 76px;
             padding-top: 5px;
@@ -24,7 +25,7 @@
     .card {
       height: 560px;
       box-sizing: border-box;
-      border-top: 3px solid #00887a;
+      border-top: 3px solid $primary-color;
 
       & > a {
         width: 100%;
@@ -73,10 +74,19 @@
           div.truncate {
             height: 50px;
             line-height: 50px;
+            position: relative;
 
             i.small.left {
               margin-top: 10.5px;
-              color: #00887a;
+              @extend .primary-color-text;
+            }
+
+            span.distance {
+              position: absolute;
+              right: 1px;
+              bottom: -20px;
+              font-size: 0.8em;
+              font-style: italic;
             }
           }
         }
@@ -85,7 +95,8 @@
 
       .card-reveal {
         .card-title {
-          background-color: teal;
+          // background-color: teal;
+          @extend .primary-color;
           color: #fff;
           margin: -20px;
           padding: 20px;
