@@ -16,6 +16,8 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :should_save?
   after_save :geoword, if: :should_save?
 
+  self.per_page = 3
+
   def color
     category.color
   end

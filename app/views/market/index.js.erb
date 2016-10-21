@@ -1,0 +1,8 @@
+$('#posts').append('<%= j render @posts %>');
+
+<% if @posts.next_page %>
+  $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
+  // $("#infinite-scrolling").append('<div id="view-more">Xem thêm</div>')
+<% else %>
+  $('#infinite-scrolling').remove();
+<% end %>

@@ -122,4 +122,12 @@
       }
     }
   }
+
+  #infinite-scrolling {
+    text-align: center;
+
+    .pagination {
+      display: none;
+    }
+  }
 }
