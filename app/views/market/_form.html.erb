@@ -2,24 +2,26 @@
   <div class="navbar-fixed">
     <nav class="primary-color z-depth-0 fo-nav">
       <div class="nav-wrapper center-align row">
-        <ul>
-          <li>
-            <%= link_to root_path, class: ('active' if params[:id].nil?) do %>
-              <i class="material-icons left">home</i>
-              <span class="hide-on-med-and-down"> Trang chủ</span>
-            <% end %>
-          </li>
-
-          <% categories.each do |category| %>
-            <li>
-              <%= link_to category_nav(category.name), category,
-                class: ('active' if category.id == params[:id].to_i) %>
+        <div class="nav-tabs">
+          <ul class="tabs">
+            <li class="tab">
+              <%= link_to root_path, class: ('active' if params[:id].nil?) do %>
+              <i class="material-icons">home</i>
+              <span class="hide-on-med-and-down">Trang chủ</span>
+              <% end %>
             </li>
-          <% end %>
-        </ul>
+            
+            <% categories.each do |category| %>
+            <li class="tab">
+              <%= link_to category_nav(category.name), category,
+              class: ('active' if category.id == params[:id].to_i) %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </nav>
-  </div>
+  </div>      
 
   <div class="fixed-action-btn horizontal">
     <%= link_to "", new_post_path, class: "new tooltipped",

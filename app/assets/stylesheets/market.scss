@@ -1,20 +1,39 @@
 #market {
   .nav-wrapper {
-    ul {
-      display: inline-block;
-      text-transform: uppercase;
+    div.nav-tabs {
+      @extend .primary-color;
 
-      li {
-        display: inline-block;
-        a {
-          &.active, &:hover {
-            @extend .primary-color-text;
-            background-color: $foreign-color;
-            border: 1px solid $foreign-color;
-            color: #fff !important;
-            padding-bottom: 10px;
-            height: 76px;
-            padding-top: 5px;
+      ul.tabs {
+        max-width: 750px; //
+        height: 64px; //
+
+        .indicator {
+          background-color: $foreign-color;
+        }
+
+        li.tab {
+          height: 64px; //
+          min-width: 60px; //
+          @extend .primary-color;
+
+          a {
+            color: #fff;
+
+            i {
+              display: block;
+              margin-top: -15px;
+              margin-bottom: -30px;
+              color: #fff;
+              font-size: 24px;
+            }
+
+            &.active {
+              color: $foreign-color;
+
+              i {
+                color: $foreign-color;
+              }
+            }
           }
         }
       }
@@ -25,6 +44,7 @@
     .card {
       height: 560px;
       box-sizing: border-box;
+      box-shadow: none;
 
       & > a {
         width: 100%;
