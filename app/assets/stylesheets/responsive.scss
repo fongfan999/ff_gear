@@ -49,10 +49,8 @@
   }
 
   #market {
-    i.left {
-      margin-right: 0;
-      padding-left: 15px;
-      padding-right: 15px;
+    ul.tabs li.tab a i {
+      margin-top: 0 !important;
     }
   }
 
