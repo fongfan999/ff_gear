@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :location, only: [:new, :edit]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,
     :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]

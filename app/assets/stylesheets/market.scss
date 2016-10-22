@@ -4,16 +4,16 @@
       @extend .primary-color;
 
       ul.tabs {
-        max-width: 750px; //
-        height: 64px; //
+        max-width: 750px;
+        height: 64px;
 
         .indicator {
           background-color: $foreign-color;
         }
 
         li.tab {
-          height: 64px; //
-          min-width: 60px; //
+          height: 64px;
+          min-width: 60px;
           @extend .primary-color;
 
           a {

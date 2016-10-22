@@ -5,16 +5,18 @@
         <div class="nav-tabs">
           <ul class="tabs">
             <li class="tab">
-              <%= link_to root_path, class: ('active' if params[:id].nil?) do %>
-              <i class="material-icons">home</i>
-              <span class="hide-on-med-and-down">Trang chủ</span>
+              <%= link_to market_path, target: '_self',
+                class: ('active' if params[:id].nil?) do %>
+                <i class="material-icons">home</i>
+                <span class="hide-on-med-and-down">Trang chủ</span>
               <% end %>
             </li>
             
             <% categories.each do |category| %>
             <li class="tab">
               <%= link_to category_nav(category.name), category,
-              class: ('active' if category.id == params[:id].to_i) %>
+              class: ('active' if category.id == params[:id].to_i),
+              target: '_self' %>
             </li>
             <% end %>
           </ul>
