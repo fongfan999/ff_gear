@@ -35,7 +35,7 @@ gem 'simple_form', '~> 3.3.1'
 # Material Design
 gem 'materialize-sass', '~> 0.97.7'
 # File upload solution
-gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'carrierwave', '~> 0.11.2'
 # Content Slider
 gem 'flexslider',
   git: 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'
