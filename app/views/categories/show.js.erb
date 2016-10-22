@@ -1,0 +1,24 @@
+// Preloader
+$( document ).ajaxStart(function() {
+  $("#preloader-nav" ).html('<img src="/assets/ring.gif"/>').fadeIn();
+});
+
+$( document ).ajaxComplete(function() {
+  $("#preloader-nav" ).fadeOut();
+});
+
+
+
+// Insert will_page
+if (!$('#infinite-scrolling').length) {
+  $("#posts").after('<div id="infinite-scrolling"></div>');
+}
+
+$('#infinite-scrolling').hide().html('<%= j will_paginate @posts %>').fadeIn();
+
+
+// Render posts
+$("#posts").html('<%= j render @posts %>');
+
+// Scroll to top
+$("html, body").animate({ scrollTop: 0 }, "slow");
