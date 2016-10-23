@@ -7,3 +7,6 @@ $ ->
       if more_posts_url && scrollBottom - 200 < 0
         $('#infinite-scrolling').html('<img src="/assets/ring.gif"/>')
         $.getScript more_posts_url
+
+      $('.view-more-btn').on "click", ->
+        $('#infinite-scrolling').html('<img src="/assets/ring.gif"/>')
