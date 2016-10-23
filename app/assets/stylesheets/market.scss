@@ -4,8 +4,9 @@
       @extend .primary-color;
 
       ul.tabs {
-        max-width: 750px;
+        max-width: 80%;
         height: 64px;
+        @extend .primary-color;
 
         .indicator {
           background-color: $foreign-color;
