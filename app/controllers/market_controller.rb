@@ -5,7 +5,11 @@ class MarketController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      if params[:page]
+        format.js 
+      else
+        format.js { render file: 'categories/show' }
+      end
     end
   end
 end

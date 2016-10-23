@@ -3,8 +3,10 @@ $('#posts').append('<%= j render @posts %>');
 <% if @posts.next_page %>
   $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
 
+  // Add view more button
   var viewMore = $('.pagination .next_page');
-  viewMore.attr('data-remote', true).text('xem thêm').addClass('view-more-btn btn');
+  viewMore.attr('data-remote', true).text('xem thêm').
+    addClass('view-more-btn btn');
   $("#infinite-scrolling").append(viewMore.clone());
 <% else %>
   $('#infinite-scrolling').remove();

@@ -5,11 +5,8 @@
         <div class="nav-tabs">
           <ul class="tabs">
             <li class="tab">
-              <%= link_to market_path, target: '_self',
-                class: ('active' if params[:id].nil?) do %>
-                <i class="material-icons">home</i>
-                <span class="hide-on-med-and-down">Trang chủ</span>
-              <% end %>
+              <%= link_to category_nav("Trang chủ"), market_path,
+              remote: true %>
             </li>
             
             <% categories.each do |category| %>

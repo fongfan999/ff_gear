@@ -7,8 +7,10 @@ module MarketHelper
       '<i class="material-icons">keyboard</i>'
     when 'Chuột'
       '<i class="material-icons">mouse</i>'
-    else
+    when 'Khác'
       '<i class="material-icons">devices_other</i>'
+    else
+      '<i class="material-icons">home</i>'
     end
 
     (icon + "<span class='hide-on-med-and-down'> #{name}<span>").html_safe
