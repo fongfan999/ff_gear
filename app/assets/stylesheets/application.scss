@@ -4,7 +4,6 @@ $foreign-color: #ff5954;
 @import "materialize/components/color";
 @import 'materialize';
 @import 'welcome';
-@import 'bootstrap';
 @import 'custom-materialize';
 @import 'flexslider.css';
 @import 'posts';
@@ -136,12 +135,12 @@ a.new {
   }
 }
 
-.alert-notice {
-  @extend .alert-success;
+.toast-notice {
+  background-color: #4caf50;
 }
 
-.alert-alert {
-  @extend .alert-danger;
+.toast-alert {
+  background-color: #f44336;
 }
 
 .loupe {

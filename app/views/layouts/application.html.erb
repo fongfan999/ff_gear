@@ -108,13 +108,11 @@
     
     
     <div id="main">
-      <div id="alert-wrapper">
-        <% flash.each do |key, message| %>
-          <div class="alert alert-<%= key %>">
-            <%= message %><a data class="dismiss">X</a>
-          </div>
+      <% flash.each do |key, message| %>
+        <%= javascript_tag do %>
+          Materialize.toast('<%= message %>', 40000, '<%= "toast-#{key}" %>');
         <% end %>
-      </div>
+      <% end %>
 
       <%= yield %>
     </div>

@@ -84,11 +84,6 @@ $(function() {
   // Add plus icon to new button
   $("a.new").prepend('<i class="material-icons"></>');
 
-  // Dismiss alert after 5s
-  setTimeout(function() {
-    $('.alert').slideUp();
-  }, 5000);
-
   // Dropzone configuration
   if ($('#attachments-dropzone').length !== 0) {
 
