@@ -9,6 +9,11 @@ class User < ApplicationRecord
 
   has_many :posts, foreign_key: 'buyer_id'
 
+  validates :avatar, presence: true
+
+  mount_uploader :avatar, AvatarUploader
+
+  # Don't store password
   def password_required?
     false
   end
@@ -19,7 +24,11 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.email = auth.info.email
       user.name = auth.info.name
-      user.avatar = auth.info.image
+      user.remote_avatar_url = auth.info.image
     end
+  end
+
+  def profile_avatar
+    avatar_url ? avatar_url : remote_avatar_url
   end
 end

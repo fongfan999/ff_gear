@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('#user_avatar').on "change", ->
+    buttonAvatar = $(this).parent().parent().parent().parent().find('button')
+
+    if $(this).val() == ''
+      $(buttonAvatar).attr('disabled', true)
+    else
+      $(buttonAvatar).attr('disabled', false)

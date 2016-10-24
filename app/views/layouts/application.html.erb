@@ -46,8 +46,8 @@
                 html_safe, new_user_session_path, class: "tooltipped",
                 data: { position: "bottom", tooltip: "Notifications" } %></li>
             <% if user_signed_in? %>
-              <li><%= link_to image_tag(current_user.avatar, size: "32x32",
-                class: "circle"), current_user %></li>
+              <li><%= link_to image_tag(current_user.profile_avatar,
+                size: "32x32", class: "circle"), current_user %></li>
             <% else %>
               <li><%= link_to '<i class="material-icons">account_circle</i>'.
                 html_safe, new_user_session_path, class: "tooltipped",
@@ -80,8 +80,8 @@
       <% if user_signed_in? %>
       <li>
         <div class="userView">
-          <%= link_to image_tag(current_user.avatar,
-            class: "circle"), current_user %>
+          <%= link_to image_tag(current_user.profile_avatar,
+            class: "circle"), current_user, class: 'non-waves-effect' %>
 
           <span class="white-text name"><%= current_user.name %></span>
           <span class="white-text email"><%= current_user.email %></span>
@@ -89,7 +89,7 @@
           <%= link_to '<i class="material-icons white-text">
             power_settings_new</i>'.html_safe,
             destroy_user_session_path, method: "delete", id: "drawer-logout",
-            class: "tooltipped",
+            class: "tooltipped non-waves-effect",
             data: { position: "bottom", tooltip: "Sign out" } %>
         </div>
       </li>
@@ -110,7 +110,7 @@
     <div id="main">
       <% flash.each do |key, message| %>
         <%= javascript_tag do %>
-          Materialize.toast('<%= message %>', 40000, '<%= "toast-#{key}" %>');
+          Materialize.toast('<%= message %>', 4000, '<%= "toast-#{key}" %>');
         <% end %>
       <% end %>
 

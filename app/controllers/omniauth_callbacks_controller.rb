@@ -4,7 +4,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from_omniauth(request.env['omniauth.auth'])
     if user.persisted?
       sign_in user
-      redirect_to request.referrer
+      
+      if request.referrer
+        redirect_to request.referrer
+      else
+        redirect_to root_path
+      end
+      
       flash[:notice] = "Signed in!"
     else
       redirect_to root_path

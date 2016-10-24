@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   patch :attachments, to: "attachments#create"
 
   resources :categories, only: [:show]
-  resources :users
+  resources :users, only: [:show] do
+    patch :change_avatar, on: :member
+  end
 end

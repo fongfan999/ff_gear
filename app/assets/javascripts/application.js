@@ -25,10 +25,9 @@ $(function() {
     // Animate loader off screen
     $(".se-pre-con").fadeOut("slow");;
   });
-
   
   // Set waves-effect on all <a> and <button> tags and 
-  $('a, button').addClass("waves-effect waves-light");
+  $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");
 
   // Set material design for textarea
   $('textarea').addClass('materialize-textarea');
@@ -54,6 +53,9 @@ $(function() {
 
   // Set delay tooltip time
   $('.tooltipped').tooltip({delay: 20});
+
+  // Make dialog boxes working
+  $('.modal-trigger').leanModal();
 
   // Caroulsel config
   $('#carousel').flexslider({
@@ -99,8 +101,8 @@ $(function() {
       parallelUploads: 1,
       maxFilesize: 20,
       maxFiles: 10,
-      acceptedFiles: "image/*",
-      dictInvalidFileType: "Loại ảnh không tồn tại",
+      acceptedFiles: "image/jpeg,image/png,image/jpg",
+      dictInvalidFileType: "Loại ảnh không phù hợp",
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
       dictMaxFilesExceeded: "Số lượng ảnh tối đa là 10",
       init: function() {
@@ -134,8 +136,7 @@ $(function() {
               $('.dz-message').appendTo($('#preview-wrapper'));
               submitBtn.attr('disabled', true);
             }
-            // If you want to the delete the file on the server as well,
-            // you can do the AJAX request here.
+
             // Get value as string from input
             rejected_ids = $("#rejected_ids").val() || "[]";
             // Parse string to array
@@ -147,8 +148,8 @@ $(function() {
           });
 
           // Add the button to the file preview element.
-          // file.previewElement.appendChild(removeButton);
-          $(file.previewElement).find('.dz-image')[0].appendChild(removeButton);
+          $(file.previewElement).find('.dz-image')[0].
+            appendChild(removeButton);
     
         });
 

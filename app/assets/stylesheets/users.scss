@@ -27,19 +27,31 @@
 
       #about-name {
         text-align: center;
+        
+        a#change-avatar {
+          margin-top: -70px;
+
+          i {
+            position: absolute;
+            z-index: 5;
+            left: 40px;
+            top: 40px;
+            font-size: 40px;
+            color: #fff;
+            display: none;
+          }
+
+          &:hover {
+            i {
+              display: block
+            }
+          }
+        }
 
         img {
           width: 120px;
           height: 120px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin-top: -60px;
-          margin-left: -60px;
-        }
-
-        h4 {
-          padding-top: 60px;
+          border: 1px solid #fff;
         }
       }
     }
