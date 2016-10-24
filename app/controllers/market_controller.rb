@@ -8,7 +8,7 @@ class MarketController < ApplicationController
       if params[:page]
         format.js 
       else
-        format.js { render file: 'categories/show' }
+        format.js { render file: 'market/show' }
       end
     end
   end

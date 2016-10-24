@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
       if params[:page]
         format.js { render file: 'market/index' }
       else
-        format.js
+        format.js { render file: 'market/show' }
       end
     end
   end
