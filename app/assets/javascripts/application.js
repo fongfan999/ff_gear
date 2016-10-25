@@ -26,7 +26,7 @@ $(function() {
     $(".se-pre-con").fadeOut("slow");;
   });
   
-  // Set waves-effect on all <a> and <button> tags and 
+  // Set waves-effect on all <a> and <button> tags
   $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");
 
   // Set material design for textarea

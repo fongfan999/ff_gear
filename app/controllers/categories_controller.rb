@@ -6,9 +6,9 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if params[:page]
-        format.js { render file: 'market/index' }
+        format.js { render file: 'market/load_first' }
       else
-        format.js { render file: 'market/show' }
+        format.js { render file: 'market/load_more' }
       end
     end
   end

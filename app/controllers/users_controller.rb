@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def change_avatar
-    # debugger
     if @user.update(avatar_params)
       flash[:notice] = "Thành công"
       redirect_to @user
