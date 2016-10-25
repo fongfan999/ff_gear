@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'buyer_id'
 
   validates :avatar, presence: true
+  validates :name, presence: true
 
   mount_uploader :avatar, AvatarUploader
 

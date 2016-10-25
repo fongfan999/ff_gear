@@ -1,4 +1,8 @@
 #about-me {
+  i {
+    color: #747474;
+  }
+  
   #about-title {
     margin-left: -55px;
     margin-right: -55px;
@@ -11,29 +15,30 @@
   #about-description {
     margin-top: -147px;
 
-    #about-summary {
+    .about-summary {
       position: relative;
       height: 280px;
 
-      #about-bg, #about-name {
+      .about-bg, .about-name {
         height: 140px;
       }
 
-      #about-bg {
+      .about-bg {
         background: image-url("about-bg.png") no-repeat center;
         background-size: cover;
         height: 140px;
       }
 
-      #about-name {
+      .about-name {
         text-align: center;
-        
-        a#change-avatar {
+        padding: 10px;
+
+        a.change-avatar {
           margin-top: -70px;
+          position: relative;
 
           i {
             position: absolute;
-            z-index: 5;
             left: 40px;
             top: 40px;
             font-size: 40px;
@@ -122,5 +127,38 @@
 
   #gg-login-btn {
     background-color: #e44536;
+  }
+}
+
+#change-name-form.modal {
+  max-height: 100%;
+  // width: 60%;
+
+  .about-summary {
+    margin: 0 auto;
+    height: 380px !important;
+
+    .about-name {
+      height: 240px !important;
+
+      .change-avatar {
+        display: block;
+        position: relative;
+
+        i {
+          margin-left: -72px;
+        }
+      }
+      
+      div.input-field.user_name {
+        width: 100%;
+        margin-top: 50px;
+
+        input#user_name {
+          font-size: 2em;
+          text-align: center;
+        }
+      }
+    }
   }
 }

@@ -5,44 +5,25 @@
   </div>
   
   <div id="about-description" class="container">
-    <div id="about-summary" class="card row">
-      <div id="about-bg"></div>
-      <div id="about-name">
-        <%= link_to '#change-avatar-form', id: "change-avatar",
-          class: "modal-trigger" do %>
+    <div class="about-summary card row">
+      <div class="about-bg"></div>
+      <div class="about-name">
+        <%= link_to edit_name_user_path(@user), remote: true,
+          class: "right" do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+        
+        <%= link_to edit_avatar_user_path(@user), remote: true,
+          class: "change-avatar" do %>
           <%= image_tag(@user.profile_avatar, class: "circle") %>
           <i class="material-icons">photo_camera</i>
         <% end %>
           
         <h4><%= @user.name %></h4>
-        <div id="change-avatar-form" class="modal">
-          <%= simple_form_for @user, method: :patch,
-            url: change_avatar_user_path do |f| %>
-          <div class="modal-content">
-            <h4>Thay đổi ảnh đại diện</h4>
-            <br>
-            <br>
-            <p>
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>Ảnh</span>
-                  <%= f.input_field :avatar %>
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text"
-                  placeholder="Nhấn vào đây hoặc Kéo và thả để thay đổi ảnh">
-                </div>
-              </div>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
-            <%= f.button :button, class: "modal-action", disabled: true do %>
-              Thay đổi
-            <% end %>
-          </div>
-          <% end %>
-        </div>
+
+        <%#= render "edit_name" %>
+        <%#= render "edit_avatar" %>
+
       </div>
     </div>
 
@@ -124,23 +105,23 @@
             <div class="about-info">
               <div>
                 <i class="material-icons">looks_one</i>
-                <span><%= @user.posts.first.title %></span>
+                <span><%= Post.last.title %></span>
               </div>
               <div>
                 <i class="material-icons">looks_two</i>
-                <span><%= @user.posts.first.title %></span>
+                <span><%= Post.last.title %></span>
               </div>
               <div>
                 <i class="material-icons">looks_3</i>
-                <span><%= @user.posts.first.title %></span>
+                <span><%= Post.last.title %></span>
               </div>
               <div>
                 <i class="material-icons">looks_4</i>
-                <span><%= @user.posts.first.title %></span>
+                <span><%= Post.last.title %></span>
               </div>
               <div>
                 <i class="material-icons">looks_5</i>
-                <span><%= @user.posts.first.title %></span>
+                <span><%= Post.last.title %></span>
               </div>
               
               <a class="right" href="#">See more</a><br/>

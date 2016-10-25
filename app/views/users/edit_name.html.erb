@@ -1,0 +1,24 @@
+<div id="change-name-form" class="modal">
+  <%= simple_form_for @user do |f| %>
+  <div class="modal-content">
+    <div class="about-summary card row">
+      <div class="about-bg"></div>
+      <div class="about-name">
+        <%= link_to edit_avatar_user_path(@user), remote: true,
+          class: "change-avatar" do %>
+          <%= image_tag(@user.profile_avatar, class: "circle") %>
+        <% end %>
+
+        <%= f.input :name, label: "Tên", autofocus: true %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
+    <%= f.button :button, class: "modal-action" do %>
+      Thay đổi
+    <% end %>
+  </div>
+  <% end %>
+</div>

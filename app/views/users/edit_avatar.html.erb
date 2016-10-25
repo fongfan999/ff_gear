@@ -1,0 +1,29 @@
+<div id="change-avatar-form" class="modal">
+  <%= simple_form_for @user do |f| %>
+  <div class="modal-content">
+    <h4>Thay đổi ảnh đại diện</h4>
+    <br>
+    <br>
+    <p>
+    <p>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Ảnh</span>
+          <%= f.input_field :avatar %>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text"
+          placeholder="Nhấn vào đây hoặc Kéo và thả để thay đổi ảnh">
+        </div>
+      </div>
+    </p>
+  </div>
+  
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
+    <%= f.button :button, class: "modal-action", disabled: true do %>
+      Thay đổi
+    <% end %>
+  </div>
+  <% end %>
+</div>

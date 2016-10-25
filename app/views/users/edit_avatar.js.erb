@@ -1,0 +1,8 @@
+// Insert modal at the first time only
+if (!$('#change-avatar-form').length) {
+  $('.about-name').
+    append('<%= j render(file: "users/edit_avatar.html.erb") %>');
+}
+
+// Call modal
+$('#change-avatar-form').openModal();
