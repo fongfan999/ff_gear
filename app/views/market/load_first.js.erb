@@ -1,13 +1,23 @@
-$('#posts').append('<%= j render @posts %>');
+// Preloader
+$( document ).ajaxStart(function() {
+  console.log('ajax has started');
+  $("#preloader-nav" ).html('<img src="/assets/ring.gif"/>').fadeIn();
+});
 
-<% if @posts.next_page %>
-  $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
+$( document ).ajaxComplete(function() {
+  $("#preloader-nav" ).fadeOut();
+});
 
-  // Add view more button
-  var viewMore = $('.pagination .next_page');
-  viewMore.attr('data-remote', true).text('xem thêm').
-    addClass('view-more-btn btn');
-  $("#infinite-scrolling").append(viewMore.clone());
-<% else %>
-  $('#infinite-scrolling').remove();
-<% end %>
+// Insert will_page
+if (!$('#infinite-scrolling').length) {
+  $("#posts").after('<div id="infinite-scrolling"></div>');
+}
+
+$('#infinite-scrolling').html('<%= j will_paginate @posts %>');
+
+
+// Render posts
+$("#posts").html('<%= j render @posts %>');
+
+// Scroll to top
+$("html, body").animate({ scrollTop: 0 }, "slow");

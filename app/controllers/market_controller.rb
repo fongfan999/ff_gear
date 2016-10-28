@@ -6,9 +6,9 @@ class MarketController < ApplicationController
     respond_to do |format|
       format.html
       if params[:page]
-        format.js { render file: 'market/load_first' }
-      else
         format.js { render file: 'market/load_more' }
+      else
+        format.js { render file: 'market/load_first' }
       end
     end
   end
