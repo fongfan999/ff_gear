@@ -46,7 +46,7 @@
                 html_safe, new_user_session_path, class: "tooltipped",
                 data: { position: "bottom", tooltip: "Notifications" } %></li>
             <% if user_signed_in? %>
-              <li><%= link_to image_tag(current_user.profile_avatar,
+              <li><%= link_to image_tag(current_user.avatar,
                 size: "32x32", class: "circle"), current_user %></li>
             <% else %>
               <li><%= link_to '<i class="material-icons">account_circle</i>'.
@@ -80,7 +80,7 @@
       <% if user_signed_in? %>
       <li>
         <div class="userView">
-          <%= link_to image_tag(current_user.profile_avatar,
+          <%= link_to image_tag(current_user.avatar,
             class: "circle"), current_user, class: 'non-waves-effect' %>
 
           <span class="white-text name"><%= current_user.name %></span>

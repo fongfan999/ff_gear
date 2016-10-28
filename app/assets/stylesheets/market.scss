@@ -10,6 +10,7 @@
 
         .indicator {
           background-color: $foreign-color;
+          height: 3px;
         }
 
         li.tab {
@@ -18,21 +19,21 @@
           @extend .primary-color;
 
           a {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.6);
 
             i {
               display: block;
               margin-top: -15px;
               margin-bottom: -30px;
-              color: #fff;
+              color: rgba(255, 255, 255, 0.6);
               font-size: 24px;
             }
 
-            &.active {
-              color: $foreign-color;
+            &.active, &:hover {
+              @extend .white-text;
 
               i {
-                color: $foreign-color;
+                @extend .white-text;
               }
             }
           }

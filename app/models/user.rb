@@ -28,8 +28,4 @@ class User < ApplicationRecord
       user.remote_avatar_url = auth.info.image
     end
   end
-
-  def profile_avatar
-    avatar_url ? avatar_url : remote_avatar_url
-  end
 end

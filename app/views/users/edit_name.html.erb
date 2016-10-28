@@ -6,7 +6,7 @@
       <div class="about-name">
         <%= link_to edit_avatar_user_path(@user), remote: true,
           class: "change-avatar" do %>
-          <%= image_tag(@user.profile_avatar, class: "circle") %>
+          <%= image_tag(@user.avatar, class: "circle") %>
         <% end %>
 
         <%= f.input :name, label: "Tên", autofocus: true %>
