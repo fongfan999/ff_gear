@@ -80,6 +80,32 @@ body {
   flex-direction: column;
 }
 
+
+nav ul li {
+  position: relative;
+}
+
+  // Notification counter
+span.notis-counter {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  background-color: #fa3e3e;
+  border-radius: 10px;
+  color: white;
+  padding: 0 6px;
+  z-index: 1;
+}
+
+.side-nav {
+  span.notis-counter {
+    right: 15px;
+  }
+}
+
 #main {
   flex: 1 0 auto;
 }

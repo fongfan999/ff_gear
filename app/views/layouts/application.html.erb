@@ -16,19 +16,18 @@
     <div class="navbar-fixed nav-scroll">
       <nav class="primary-color z-depth-0">
         <div class="nav-wrapper">
-        <div class="row">
-          <div class="col l3">
-          <a href="#" data-activates="slide-out" class="button-collapse">
-            <%= material_icon_of "menu", id: "menu-icon" %>
-          </a>
+          <div class="row">
+            <div class="col l3">
+            <a href="#" data-activates="slide-out" class="button-collapse">
+              <%= material_icon_of "menu", id: "menu-icon" %>
+            </a>
 
-          <%= link_to root_path, class: "brand-logo" do %>
-            <%= image_tag 'logo.png', class: "left" %>
-            <span>FoxFizz</span>
-          <% end %>
-          </div>
+            <%= link_to root_path, class: "brand-logo" do %>
+              <%= image_tag 'logo.png', class: "left" %>
+              <span>FoxFizz</span>
+            <% end %>
+            </div>
 
-          
             <div class="col l6 hide-on-med-and-down">
               <form class="search-bar">
                 <div class="input-field">
@@ -38,26 +37,27 @@
                 </div>
               </form>
             </div>
-          
             
-          <div class="col l3">
-          <ul class="right hide-on-med-and-down">
-            <li><%= link_to material_icon_of('notifications_none'),
-              new_user_session_path, class: "tooltipped",
-              data: { position: "bottom", tooltip: "Notifications" } %></li>
+            <div class="col l3">
+              <ul class="right hide-on-med-and-down">
+                <li>
+                  <%= link_to material_icon_of('notifications_none'),
+                  "#", class: "tooltipped",
+                  data: { position: "bottom", tooltip: "Notifications" } %>
+                  <span class="notis-counter">4</span>
+                </li>
 
-            <% if user_signed_in? %>
-              <li><%= link_to image_tag(current_user.avatar,
-                size: "32x32", class: "circle"), current_user %></li>
-            <% else %>
-              <li><%= link_to material_icon_of "account_circle",
-                new_user_session_path, class: "tooltipped",
-                data: { position: "bottom", tooltip: "Sign in" } %></li>
-            <% end %>
-          </ul>
+                <% if user_signed_in? %>
+                  <li><%= link_to image_tag(current_user.avatar,
+                    size: "32x32", class: "circle"), current_user %></li>
+                <% else %>
+                  <li><%= link_to material_icon_of("account_circle"),
+                    new_user_session_path, class: "tooltipped",
+                    data: { position: "bottom", tooltip: "Sign in" } %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
-          </div>
-          
         </div>
       </nav>
     </div>
@@ -74,7 +74,6 @@
           </form>
         </div>
       </nav>
-
     </div>
 
     <ul id="slide-out" class="side-nav">
@@ -99,14 +98,13 @@
       <li><a><%= material_icon_of "favorite", name: "Favorite" %></a></li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>
-      <li><a><%= material_icon_of "notifications", name: "Notifications" %></a></li>
+      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="notis-counter">4</span></a></li>
       <li><div class="divider"></div></li>
       <li><a><%= material_icon_of "feedback", name: "Send Feedback" %></a></li>
       <li><a><%= material_icon_of "settings", name: "Settings" %></a></li>
       <li><a><%= material_icon_of "help", name: "Help" %></a></li>
       <% end %>
     </ul>
-    
     
     <div id="main">
       <% flash.each do |key, message| %>
