@@ -1,27 +1,27 @@
 <%= simple_form_for post, html: { multipart: true,
   id: 'attachments-dropzone', class: 'dropzone' } do |f| %>
 
-  <%= f.input :title, label: "Tiêu đề" do %>
+  <%= f.input :title, label: "Bạn bán gì?" do %>
     <%= f.input_field :title, length: 60 %>
-    <i class="material-icons prefix">label</i>
+    <%= material_icon_of "label", class: "prefix" %>
   <% end %>
   
   <%= f.input :address, label: "Nơi bán" do %>
     <%= f.input_field :address, length: 60, placeholder: "Quận 1, Hồ Chí Minh",
       value: location_address(post.address) %>
-    <i class="material-icons prefix">location_on</i>
+    <%= material_icon_of "location_on", class: "prefix" %>
     <i class="material-icons clear-input tooltipped" data-position="bottom"
       data-tooltip="Vị trí sai?">clear</i>
   <% end %>
 
   <%= f.input :price, label: "Giá (VND)" do %>
     <%= f.input_field :price, min: 1000, step: 1000, class: "price" %>
-    <i class="material-icons prefix">monetization_on</i>
+    <%= material_icon_of "monetization_on", class: "prefix" %>
   <% end %>
   
   <%= f.input :description, label: "Mô tả sản phẩm" do %>
     <%= f.input_field :description, length: 500 %>
-    <i class="material-icons prefix">message</i>
+    <%= material_icon_of "message", class: "prefix" %>
   <% end %>
 
   <%= f.association :category, label: "Danh mục", as: :radio_buttons,
@@ -36,8 +36,9 @@
           dz-complete" id="<%= attachment.id %>">
           <div class="dz-image">
             <%= image_tag attachment.file.url %>
-            <i id="<%= attachment.id %>"
-              class="material-icons remove_thumb">clear</i>
+            
+            <%= material_icon_of "clear", class: "remove_thumbm",
+              id: attachment.id %>
           </div>
           <div class="dz-details">
             <div class="dz-size">
@@ -60,6 +61,6 @@
   
   <%= f.button :button, id: "submit-btn" do %>
     <%= post.new_record? ? "Đăng" : "Cập nhật" %>
-    <i class="material-icons right">send</i>
+    <%= material_icon_of "send", class: "right" %>
   <% end %>
 <% end %>

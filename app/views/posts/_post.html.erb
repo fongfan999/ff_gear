@@ -13,12 +13,12 @@
       
       <div class="more-info">
         <div class="truncate">
-          <i class="material-icons small left">monetization_on</i>
+          <%= material_icon_of "monetization_on", class: "small left" %>
           <%= number_to_currency post.price %>
         </div>
 
         <div class="truncate">
-          <i class="material-icons small left">location_on</i>
+          <%= material_icon_of "location_on", class: "small left" %>
           <span>
             <div class="divider"></div>
             <%= post.address %>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="truncate">
-          <i class="material-icons small left">access_time</i>
+          <%= material_icon_of "access_time", class: "small left" %>
           <span>
             <div class="divider"></div>
             <%= time_ago_in_words post.created_at %>
@@ -37,7 +37,7 @@
         </div>
         
         <div class="truncate">
-          <i class="material-icons small left">person</i>
+          <%= material_icon_of "person", class: "small left" %>
           <span><div class="divider"></div><%= post.buyer.name %></span>
         </div>
       </div>
@@ -45,7 +45,8 @@
 
     <div class="card-reveal">
       <span class="card-title truncate">
-        <%= post.title %><i class="material-icons right">close</i>
+        <%= post.title %>
+        <%= material_icon_of "close", class: "right" %>
       </span>
       <p><%= truncate( simple_format(post.description), length: 250) %></p>
       <span class="fixed-icon-bottom-right">

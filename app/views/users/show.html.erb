@@ -10,13 +10,13 @@
       <div class="about-name">
         <%= link_to edit_name_user_path(@user), remote: true,
           class: "right" do %>
-          <i class="material-icons">edit</i>
+          <%= material_icon_of "edit" %>
         <% end %>
         
         <%= link_to edit_avatar_user_path(@user), remote: true,
           class: "change-avatar" do %>
           <%= image_tag(@user.avatar, class: "circle") %>
-          <i class="material-icons">photo_camera</i>
+          <%= material_icon_of "photo_camera" %>
         <% end %>
           
         <h4><%= @user.name %></h4>
@@ -28,18 +28,19 @@
         <div class="row">
           <div class="card hoverable about-block col s12 m12 l12">
             <h5>
-              Personal contact info <i class="material-icons right">edit</i>
+              Personal contact info <%= material_icon_of "edit", class: "right" %>
             </h5>
             <div class="about-info">
               <div>
-                <i class="material-icons">phone</i><span>0942544759</span>
+                <%= material_icon_of "phone" %>
+                <span>0942544759</span>
               </div>
               <div>
-                <i class="material-icons">email</i>
+                <%= material_icon_of "email" %>
                 <span><%= @user.email %></span>
               </div>
               <div>
-                <i class="material-icons">place</i>
+                <%= material_icon_of "place" %>
                 <span>38 Binh Tan, Bac Binh, Binh Thuan</span>
               </div>
             </div>
@@ -48,15 +49,16 @@
 
           <div class="card hoverable about-block col s12 m12 l12">
             <h5>
-              Gender and Birthday <i class="material-icons right">edit</i>
+              Gender and Birthday 
+              <%= material_icon_of "edit", class: "right" %>
             </h5>
             <div class="about-info">
               <div>
-                <i class="material-icons">wc</i>
+                <%= material_icon_of "wc" %>
                 <span>Nam</span>
               </div>
               <div>
-                <i class="material-icons">cake</i>
+                <%= material_icon_of "cake" %>
                 <span>20 - 7 - 1996</span>
               </div>
             </div>
@@ -65,7 +67,8 @@
 
           <div class="card hoverable about-block col s12 m12 l12">
             <h5>
-              Social Networking <i class="material-icons right">edit</i>
+              Social Networking
+              <%= material_icon_of "edit", class: "right" %>
             </h5>
             <div class="about-info">
               <div>
@@ -100,23 +103,23 @@
             </h5>
             <div class="about-info">
               <div>
-                <i class="material-icons">looks_one</i>
+                <%= material_icon_of "looks_one" %>
                 <span><%= Post.last.title %></span>
               </div>
               <div>
-                <i class="material-icons">looks_two</i>
+                <%= material_icon_of "looks_two" %>
                 <span><%= Post.last.title %></span>
               </div>
               <div>
-                <i class="material-icons">looks_3</i>
+                <%= material_icon_of "looks_3" %>
                 <span><%= Post.last.title %></span>
               </div>
               <div>
-                <i class="material-icons">looks_4</i>
+                <%= material_icon_of "looks_4" %>
                 <span><%= Post.last.title %></span>
               </div>
               <div>
-                <i class="material-icons">looks_5</i>
+                <%= material_icon_of "looks_5" %>
                 <span><%= Post.last.title %></span>
               </div>
               

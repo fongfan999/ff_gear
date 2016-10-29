@@ -2,17 +2,17 @@ module MarketHelper
   def category_nav(name)
     icon =  case name
     when 'Tai nghe'
-      '<i class="material-icons">headset</i>'
+      material_icon_of "headset"
     when 'Bàn phím'
-      '<i class="material-icons">keyboard</i>'
+      material_icon_of "keyboard"
     when 'Chuột'
-      '<i class="material-icons">mouse</i>'
+      material_icon_of "mouse"
     when 'Khác'
-      '<i class="material-icons">devices_other</i>'
+      material_icon_of "devices_other"
     else
-      '<i class="material-icons">home</i>'
+      material_icon_of "home"
     end
 
-    (icon + "<span class='hide-on-med-and-down'> #{name}<span>").html_safe
+    icon + ("<span class='hide-on-med-and-down'>#{name}<span>").html_safe
   end
 end

@@ -4,7 +4,7 @@ $ ->
       morePostsUrl = $('.pagination .next_page').attr('href')
       scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop()
       
-      if morePostsUrl && scrollBottom - 200 < 0
+      if morePostsUrl && scrollBottom - 300 < 0
         $('#infinite-scrolling').html('<img src="/assets/ring.gif"/>')
         $.getScript morePostsUrl
 
