@@ -14,6 +14,57 @@
       margin: 0 auto;
     }
   }
+
+  .action-bar {
+    margin-top: 15px;
+
+    a {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      text-align: center;
+      padding-top: 8px;
+      border-radius: 32px;
+      background-color: #ECF0F1;
+
+      &:hover {
+        @extend .z-depth-1;
+      }
+    }
+  }
+
+  #social-share {
+    max-width: 330px;
+
+    h5 {
+      color: #9e9e9e;
+    }
+
+    .modal-content > div {
+      height: 56px;
+      line-height: 56px;
+      font-weight: bold;
+
+      img {
+        width: 36px;
+        height: 36px;
+        margin-top: 10px;
+        margin-right: 20px;
+
+        &.circle {
+          background-color: #ECF0F1;
+        }
+      } 
+    }
+  }
+
+  #copy-link {
+    max-width: 330px;
+
+    h6 {
+      color: #9e9e9e;
+    }
+  }
 }
 
 #carousel {

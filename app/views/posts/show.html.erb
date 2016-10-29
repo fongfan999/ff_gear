@@ -47,9 +47,21 @@
         </p>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="ctn">
-  <%= render 'facebook_comments', current_url: post_url(@post) %>
+    <div class="divider"></div>
+
+    <div class="action-bar">
+      <%= link_to (material_icon_of "favorite_border"), "#",
+        class: "favorite" %>
+      <%= link_to (material_icon_of "comment"), "#", class: "comments-btn" %>
+      <%= link_to (material_icon_of "share"), "#social-share",
+        class: "share modal-trigger" %>
+    </div>
+
+    <%= render "social_share", full_path: post_url(@post) %>
+  </div>
+  
+  <div id="facebook_comments">
+    <%= render 'facebook_comments', full_path: post_url(@post) %>
+  </div>
 </div>

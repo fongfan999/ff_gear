@@ -24,6 +24,11 @@ $ ->
   while i < iconsList.length
     $(iconsList[i]).parent().prepend iconsList[i]
     i++
+
+  # Toggle display facebook comments
+  $('.comments-btn').click (event)->
+    event.preventDefault()
+    $('#facebook_comments').slideToggle()
     
 
   

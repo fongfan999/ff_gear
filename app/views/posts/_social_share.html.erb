@@ -1,0 +1,43 @@
+<div id="social-share" class="modal">
+  <div class="modal-content">
+    <h5>Chia sẻ qua</h5>
+    <div>
+      <%= link_to "https://fb.com/sharer.php?u=#{full_path}",
+        class: "persistent",
+        onclick: "window.open(this.href, true, 'height=500,width=500');" do %>
+        <%= image_tag 'facebook.png', class: "left" %>Facebook
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to "https://plus.google.com/share?url=#{full_path}",
+        class: "persistent",
+        onclick: "window.open(this.href, true, 'height=500,width=500');" do %>
+        <%= image_tag 'google.png', class: "left" %>Google+
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to "#copy-link", class: "modal-trigger",
+        onclick: "$('#social-share').closeModal();" do %>
+        <%= image_tag 'copy-link.png', class: "circle left" %>
+        Sao chép đường dẫn
+      <% end %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
+  </div>
+</div>
+
+<div id="copy-link" class="modal">
+  <div class="modal-content">
+    <h6>Sao chép đường dẫn</h6>
+    <input value=<%= full_path %> autofocus onFocus="this.select();">
+  </div>
+  
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
+  </div>
+</div>

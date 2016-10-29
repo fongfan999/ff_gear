@@ -20,9 +20,13 @@
 //= require materialize-form
 //= require_tree .
 
-$(function() {
+$(window).load(function() {
+  // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");
-  
+});
+
+$(function() {
+
   // Set waves-effect on all <a> and <button> tags
   $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");
 
@@ -82,6 +86,11 @@ $(function() {
 
   // Add plus icon to new button
   $("a.new").prepend('<i class="material-icons"></>');
+
+  // Persist page for redirecting
+  $(".persistent").click(function(event) {
+    event.preventDefault();
+  });
 
   // Dropzone configuration
   if ($('#attachments-dropzone').length !== 0) {
