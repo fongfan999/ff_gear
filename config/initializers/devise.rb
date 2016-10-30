@@ -1,3 +1,5 @@
+require_relative '../load_settings'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -248,22 +250,13 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  if Rails.env.production?
-    config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'],
-      scope: 'public_profile, email'
 
-    config.omniauth :google_oauth2, ENV["GG_CLIENT_ID"],
-    ENV["GG_CLIENT_SECRET"], {}
-  else
-    config.omniauth :facebook,
-    '1444686258898113', '2af355ca211b14b997f0b9b219b15526',
+  config.omniauth :facebook,
+    APP_CONFIG['facebook_app_id'], APP_CONFIG['facebook_app_secret'],
     scope: 'public_profile, email'
 
-    config.omniauth :google_oauth2,
-    '156045701901-6hhfdv3vim2f98bmm3jro51fl3t8fkhc.apps.googleusercontent.com',
-    '1L6CUHNd39z517sESq8W4P3p', {}
-  end
-  
+  config.omniauth :google_oauth2,
+    APP_CONFIG['google_client_id'], APP_CONFIG['google_client_secret'], {}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
