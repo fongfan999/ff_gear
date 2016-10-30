@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update,
-    :destroy]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite]
   before_action :clean_session, only: [:new, :edit]
 
   def show
@@ -54,6 +53,21 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "Successfully"
     redirect_to root_path
+  end
+
+  def favorite
+    if current_user.favorite?(@post)
+      current_user.favorites.destroy(@post)
+      @status = false
+    else
+      current_user.favorites << @post 
+      @status = true
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to @post }
+      format.js { @status }
+    end
   end
 
   private

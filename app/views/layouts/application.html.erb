@@ -95,7 +95,8 @@
       </li>
 
       <li><a><%= material_icon_of "home", name: "Home" %></a></li>
-      <li><a><%= material_icon_of "favorite", name: "Favorite" %></a></li>
+      <li><%= link_to material_icon_of("favorite", name: "Favorite"),
+        favorite_posts_user_path(current_user) %></li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>
       <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="notis-counter">4</span></a></li>

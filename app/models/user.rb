@@ -8,6 +8,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :omniauthable, :trackable, :validatable
 
   has_many :posts, foreign_key: 'buyer_id'
+  has_and_belongs_to_many :favorites, join_table: :posts_users,
+    class_name: "Post"
 
   validates :avatar, presence: true
   validates :name, presence: true
@@ -27,5 +29,9 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.remote_avatar_url = auth.info.image
     end
+  end
+
+  def favorite?(post)
+    favorites.exists?(post.id)
   end
 end

@@ -41,126 +41,126 @@
       }
     }
   }
+}
 
-  #posts {
-    .card {
-      height: 560px;
-      box-sizing: border-box;
-      box-shadow: none;
+#posts {
+  .card {
+    height: 560px;
+    box-sizing: border-box;
+    box-shadow: none;
 
-      & > a {
+    & > a {
+      width: 100%;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.5);
+        transition: transform 0.4s, opacity 0.1s 0.3s;
+      }
+    }
+
+    .buyer-avatar {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      z-index: 2;
+      bottom: 295px;
+      left: 20px;
+    }
+
+    .card-image {
+      img {
+        height: 250px;
+      }
+    }
+
+    .card-content {
+      height: 310px;
+      color: #1c1c1c;
+      border-top: 1px solid $primary-color;
+      
+      a {
+        color: #1c1c1c;
         width: 100%;
       }
 
-      &:hover {
-        img {
-          transform: scale(1.5);
-          transition: transform 0.4s, opacity 0.1s 0.3s;
-        }
+      .post-title {
+        height: 70px;
+        line-height: 70px;
+        font-size: 1.5rem;
+
       }
 
-      .buyer-avatar {
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        z-index: 2;
-        bottom: 295px;
-        left: 20px;
-      }
+      .more-info {
+        div.truncate {
+          height: 50px;
+          line-height: 50px;
+          position: relative;
 
-      .card-image {
-        img {
-          height: 250px;
-        }
-      }
-
-      .card-content {
-        height: 310px;
-        color: #1c1c1c;
-        border-top: 1px solid $primary-color;
-        
-        a {
-          color: #1c1c1c;
-          width: 100%;
-        }
-
-        .post-title {
-          height: 70px;
-          line-height: 70px;
-          font-size: 1.5rem;
-  
-        }
-
-        .more-info {
-          div.truncate {
-            height: 50px;
-            line-height: 50px;
-            position: relative;
-
-            i.small.left {
-              margin-top: 10.5px;
-              @extend .primary-color-text;
-            }
-
-            span.distance {
-              position: absolute;
-              right: 1px;
-              bottom: -20px;
-              font-size: 0.8em;
-              font-style: italic;
-            }
+          i.small.left {
+            margin-top: 10.5px;
+            @extend .primary-color-text;
           }
-        }
- 
-      }
 
-      .card-reveal {
-        .card-title {
-          // background-color: teal;
-          @extend .primary-color;
-          color: #fff;
-          margin: -20px;
-          padding: 20px;
-          height: 75px;
-
-          i {
+          span.distance {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            right: 1px;
+            bottom: -20px;
+            font-size: 0.8em;
+            font-style: italic;
           }
         }
+      }
 
-        p {
-          margin-top: 40px;
-          font-size: 1.2rem;
-          line-height: 25px;
-        }
+    }
 
-        .fixed-icon-bottom-right {
+    .card-reveal {
+      .card-title {
+        // background-color: teal;
+        @extend .primary-color;
+        color: #fff;
+        margin: -20px;
+        padding: 20px;
+        height: 75px;
+
+        i {
           position: absolute;
-          bottom: 30px;
-          right: 40px;
+          top: 10px;
+          right: 10px;
         }
+      }
+
+      p {
+        margin-top: 40px;
+        font-size: 1.2rem;
+        line-height: 25px;
+      }
+
+      .fixed-icon-bottom-right {
+        position: absolute;
+        bottom: 30px;
+        right: 40px;
       }
     }
   }
+}
 
-  #infinite-scrolling {
-    text-align: center;
+#infinite-scrolling {
+  text-align: center;
 
-    .pagination {
-      display: none;
-    }
+  .pagination {
+    display: none;
+  }
 
-    a.view-more-btn {
-      padding-left: 80px;
-      padding-right: 80px;
-      height: 50px;
-      line-height: 50px;
-      background-color: #fff;
-      @extend .primary-color-text;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
+  a.view-more-btn {
+    padding-left: 80px;
+    padding-right: 80px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    @extend .primary-color-text;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }

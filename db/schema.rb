@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019074257) do
+ActiveRecord::Schema.define(version: 20161030032608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20161019074257) do
     t.integer  "price"
     t.index ["buyer_id"], name: "index_posts_on_buyer_id", using: :btree
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
+  end
+
+  create_table "posts_users", id: false, force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id", "post_id"], name: "index_posts_users_on_user_id_and_post_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

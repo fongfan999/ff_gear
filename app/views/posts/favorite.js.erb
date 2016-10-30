@@ -1,0 +1,7 @@
+var iconTag = $('.favorite i');
+
+<% if @status %>
+  iconTag.html('favorite').css('color', '#E74C3C');
+<% else %>
+  iconTag.html('favorite_border').css('color', '#039be5');
+<% end %>

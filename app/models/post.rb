@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   attr_accessor :rejected_ids
   
   has_many :attachments, dependent: :delete_all
+  has_and_belongs_to_many :users, uniq: true
   belongs_to :buyer, class_name: "User"
   belongs_to :category
   

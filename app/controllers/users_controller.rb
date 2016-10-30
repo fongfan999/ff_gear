@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit_avatar, :edit_name,
-    :update]
+  before_action :set_user
 
   def show
   end
@@ -25,6 +24,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def favorite_posts
+    @favorite_posts = @user.favorites.paginate(page: params[:page])
   end
 
   private
