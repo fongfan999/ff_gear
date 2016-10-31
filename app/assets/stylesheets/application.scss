@@ -22,6 +22,10 @@ $foreign-color: #e74c3c;
   background: url('preloader.gif') center no-repeat #fff;
 }
 
+.hide {
+  display: none;
+}
+
 .primary-color {
   background-color: $primary-color;
 }
@@ -36,10 +40,6 @@ i.clear-input {
   right: 0;
   cursor: pointer !important;
 }
-
-// .divider {
-//   margin-bottom: 10px;
-// }
 
 .search-bar {
   .input-field {
@@ -86,7 +86,7 @@ nav ul li {
 }
 
   // Notification counter
-span.notis-counter {
+span.notic-counter {
   position: absolute;
   top: 15px;
   right: 5px;
@@ -101,9 +101,14 @@ span.notis-counter {
 }
 
 .side-nav {
-  span.notis-counter {
+  span.notic-counter {
     right: 15px;
   }
+}
+
+#notic-content.dropdown-content {
+  min-width: 350px;
+  max-height: 400px;
 }
 
 #main {

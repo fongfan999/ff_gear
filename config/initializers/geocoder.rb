@@ -1,5 +1,3 @@
-require_relative '../load_settings'
-
 Geocoder.configure(
   # Geocoding options
   timeout: 5,                 # geocoding service timeout (secs)

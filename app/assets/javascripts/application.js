@@ -26,6 +26,18 @@ $(window).load(function() {
 });
 
 $(function() {
+  // Scroll to top of page
+  $('.go-to-top').click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  });
+
+  // Pushpin category nav
+  if ($('.nav-pushpin-wrapper').length) {
+    $('.nav-pushpin-wrapper').pushpin({
+      top: $('.nav-pushpin-wrapper').offset().top
+    });
+  }
+ 
 
   // Set waves-effect on all <a> and <button> tags
   $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");
@@ -83,9 +95,6 @@ $(function() {
     height: 240, // height of magnifier
     loupe: 'loupe' // css class for magnifier
   });
-
-  // Add plus icon to new button
-  $("a.new").prepend('<i class="material-icons"></>');
 
   // Persist page for redirecting
   $(".persistent").click(function(event) {

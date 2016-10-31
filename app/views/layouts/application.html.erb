@@ -3,6 +3,8 @@
   <head>
     <title>FoxFizz - The place to buy used stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="fb:app_id" content=<%= APP_CONFIG['facebook_app_id'] %>>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -13,57 +15,93 @@
   <body>
     <div class="se-pre-con"></div>
 
-    <div class="navbar-fixed nav-scroll">
-      <nav class="primary-color z-depth-0">
-        <div class="nav-wrapper">
-          <div class="row">
-            <div class="col l3">
-            <a href="#" data-activates="slide-out" class="button-collapse">
-              <%= material_icon_of "menu", id: "menu-icon" %>
-            </a>
+    <nav class="primary-color z-depth-0">
+      <div class="nav-wrapper">
+        <div class="row">
+          <div class="col l3">
+          <a href="#" data-activates="slide-out" class="button-collapse">
+            <%= material_icon_of "menu", id: "menu-icon" %>
+          </a>
 
-            <%= link_to root_path, class: "brand-logo" do %>
-              <%= image_tag 'logo.png', class: "left" %>
-              <span>FoxFizz</span>
-            <% end %>
-            </div>
+          <%= link_to root_path, class: "brand-logo" do %>
+            <%= image_tag 'logo.png', class: "left" %>
+            <span>FoxFizz</span>
+          <% end %>
+          </div>
 
-            <div class="col l6 hide-on-med-and-down">
-              <form class="search-bar">
-                <div class="input-field">
-                  <input type="search" required placeholder="Search anything ...">
-                  <label for="search"><%= material_icon_of "search" %></label>
-                  <%= material_icon_of "close" %>
-                </div>
-              </form>
-            </div>
-            
-            <div class="col l3">
-              <ul class="right hide-on-med-and-down">
-                <li>
-                  <%= link_to material_icon_of('notifications_none'),
-                  "#", class: "tooltipped",
-                  data: { position: "bottom", tooltip: "Notifications" } %>
-                  <span class="notis-counter">4</span>
-                </li>
+          <div class="col l5 hide-on-med-and-down">
+            <form class="search-bar">
+              <div class="input-field">
+                <input type="search" required placeholder="Search anything ...">
+                <label for="search"><%= material_icon_of "search" %></label>
+                <%= material_icon_of "close", class: "clear-input" %>
+              </div>
+            </form>
+          </div>
+          
+          <div class="col l4">
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <%= link_to (material_icon_of 'home'), root_path,
+                class: "tooltipped",
+                data: { position: "bottom", tooltip: "Trang chủ" } %>
+              </li>
 
-                <% if user_signed_in? %>
-                  <li><%= link_to image_tag(current_user.avatar,
-                    size: "32x32", class: "circle"), current_user %></li>
-                <% else %>
-                  <li><%= link_to material_icon_of("account_circle"),
-                    new_user_session_path, class: "tooltipped",
-                    data: { position: "bottom", tooltip: "Sign in" } %></li>
-                <% end %>
-              </ul>
-            </div>
+              <li>
+                <%= link_to material_icon_of("add"), new_post_path,
+                  class: "tooltipped",
+                  data: { position: "bottom", tooltip: "Đăng bán" } %>
+              </li>
+
+              <li>
+                <%= link_to material_icon_of('notifications_none'),
+                "#", class: "tooltipped dropdown-button",
+                data: { position: "bottom", tooltip: "Thông báo",
+                activates: "notic-content", beloworigin: true,
+                outduration: 1000 } %>
+                <span class="notic-counter">3</span>
+
+                <ul id="notic-content" class="dropdown-content collection">
+                  <li class="collection-item avatar">
+                    <img src="http://materializecss.com/images/yuna.jpg" class="circle">
+                    <span class="title">Name #1</span>
+                    <p>First Line</p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                  </li>
+
+                  <li class="collection-item avatar">
+                      <img src="http://materializecss.com/images/yuna.jpg" class="circle">
+                      <span class="title">Name #2</span>
+                      <p>First Line</p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                  </li>
+                  
+                  <li class="collection-item avatar">
+                      <img src="http://materializecss.com/images/yuna.jpg" class="circle">
+                      <span class="title">Name #3</span>
+                      <p>First Line</p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                  </li>
+                </ul>
+              </li>
+
+              
+
+              <% if user_signed_in? %>
+                <li><%= link_to image_tag(current_user.avatar,
+                  size: "32x32", class: "circle"), current_user %></li>
+              <% else %>
+                <li><%= link_to material_icon_of("account_circle"),
+                  new_user_session_path, class: "tooltipped",
+                  data: { position: "bottom", tooltip: "Sign in" } %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
-    <div class="hide-on-large-only navbar-fixed nav-scroll">
-      <nav class="z-depth-0 fo-nav">
+      <nav class="z-depth-0 hide-on-large-only">
         <div class="nav-wrapper container">
           <form class="full-width search-bar">
             <div class="input-field">
@@ -74,7 +112,6 @@
           </form>
         </div>
       </nav>
-    </div>
 
     <ul id="slide-out" class="side-nav">
       <% if user_signed_in? %>
@@ -99,7 +136,7 @@
         favorite_posts_user_path(current_user) %></li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>
-      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="notis-counter">4</span></a></li>
+      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="notic-counter">3</span></a></li>
       <li><div class="divider"></div></li>
       <li><a><%= material_icon_of "feedback", name: "Send Feedback" %></a></li>
       <li><a><%= material_icon_of "settings", name: "Settings" %></a></li>
@@ -116,7 +153,13 @@
 
       <%= yield %>
     </div>
-    
+
+    <div class="fixed-action-btn horizontal">
+      <a class="go-to-top btn-floating btn-large" style="display: none;">
+        <%= material_icon_of "keyboard_arrow_up" %>
+      </a>
+    </div>
+
     <footer class="page-footer primary-color">
       <div class="container">
         <div class="row">
