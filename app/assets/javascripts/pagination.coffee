@@ -5,8 +5,8 @@ $ ->
       scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop()
       
       if morePostsUrl && scrollBottom - 300 < 0
-        $('#infinite-scrolling').html('<img src="/assets/ring.gif"/>')
+        $('#infinite-scrolling').html('<img src="/assets/preloader.gif"/>')
         $.getScript morePostsUrl
 
       $('.view-more-btn').on "click", ->
-        $('#infinite-scrolling').html('<img src="/assets/ring.gif"/>')
+        $('#infinite-scrolling').html('<img src="/assets/preloader.gif"/>')
