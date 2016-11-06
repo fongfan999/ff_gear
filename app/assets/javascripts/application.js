@@ -113,13 +113,14 @@ $(function() {
     var headlineDropzone = new Dropzone("#attachments-dropzone", {
       url: "/attachments",
       paramName: "file",
+      clickable: ['#preview-wrapper'],
       parallelUploads: 1,
       maxFilesize: 20,
       maxFiles: 10,
       acceptedFiles: "image/jpeg,image/png,image/jpg",
       dictInvalidFileType: "Loại ảnh không phù hợp",
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
-      dictMaxFilesExceeded: "Số lượng ảnh tối đa là 10",
+      dictMaxFilesExceeded: "Số lượng ảnh tối đa là {{maxFiles}}",
       init: function() {
         if ($('#preview-wrapper .dz-preview').length == 0) {
           submitBtn.attr('disabled', true);

@@ -4,5 +4,5 @@ $ ->
     if $(this).scrollTop() > 500
       $('.go-to-top').show()
     else
-      $('.go-to-top').hide()
+      $('.go-to-top').fadeOut("slow")
     

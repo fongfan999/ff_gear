@@ -1,0 +1,7 @@
+<script>
+  $(window).load(function() {
+    FB.Event.subscribe('comment.create', function() {
+      console.log("comment_callback");
+    });
+  });
+</script>

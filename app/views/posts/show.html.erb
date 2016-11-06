@@ -68,8 +68,19 @@
 
     <%= render "social_share", full_path: post_url(@post) %>
   </div>
+
+  <%= render 'facebook_comments_sdk' %>
   
   <div id="facebook_comments">
-    <%= render 'facebook_comments', full_path: post_url(@post) %>
+    <% if Rails.env.production? %>
+      <!-- Real path -->
+      <%= render 'facebook_comment', full_path: post_url(@post) %>
+    <% else %>
+      <!-- Test only -->
+      <%= render 'facebook_comment', full_path: 'https://www.google.com.vn' %>
+    <% end %>
+    
   </div>
+
+  <%= render 'facebook_comments_subcription' %>
 </div>
