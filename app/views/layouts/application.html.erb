@@ -53,41 +53,28 @@
                   data: { position: "bottom", tooltip: "Đăng bán" } %>
               </li>
 
-              <li>
-                <%= link_to material_icon_of('notifications_none'),
-                "#", class: "tooltipped dropdown-button",
-                data: { position: "bottom", tooltip: "Thông báo",
-                activates: "notic-content", beloworigin: true,
-                outduration: 1000 } %>
-                <span class="notic-counter">3</span>
-
-                <ul id="notic-content" class="dropdown-content collection">
-                  <li class="collection-item avatar">
-                    <img src="http://materializecss.com/images/yuna.jpg" class="circle">
-                    <span class="title">Name #1</span>
-                    <p>First Line</p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
-                  </li>
-
-                  <li class="collection-item avatar">
-                      <img src="http://materializecss.com/images/yuna.jpg" class="circle">
-                      <span class="title">Name #2</span>
-                      <p>First Line</p>
-                      <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
-                  </li>
-                  
-                  <li class="collection-item avatar">
-                      <img src="http://materializecss.com/images/yuna.jpg" class="circle">
-                      <span class="title">Name #3</span>
-                      <p>First Line</p>
-                      <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
-                  </li>
-                </ul>
-              </li>
-
-              
-
               <% if user_signed_in? %>
+                <li>
+                  <%= link_to material_icon_of('notifications_none'),
+                  "#", class: "tooltipped dropdown-button",
+                  data: { position: "bottom", tooltip: "Thông báo",
+                  activates: "notic-content", beloworigin: true,
+                  outduration: 1000 } %>
+                  <span class="counter">
+                    <%= current_user.notifications.count %>
+                  </span>
+
+                  <ul id="notic-content" class="dropdown-content collection
+                    with-header">
+                    <li class="collection-header">
+                      Thông báo
+                      <a href="#!" class="right">Đánh dấu tất cả là đã đọc</a>
+                    </li>
+    
+                    <%= render current_user.notifications.
+                      order(created_at: :desc) %>
+                  </ul>
+                </li>
                 <li><%= link_to image_tag(current_user.avatar,
                   size: "32x32", class: "circle"), current_user %></li>
               <% else %>
@@ -132,11 +119,13 @@
       </li>
 
       <li><a><%= material_icon_of "home", name: "Home" %></a></li>
-      <li><%= link_to material_icon_of("favorite", name: "Favorite"),
-        favorite_posts_user_path(current_user) %></li>
+      <li><%= link_to material_icon_of("add_circle", name: "Đăng bán"),
+        new_post_path %></li>
+      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="counter"><%= current_user.notifications.count %></span></a></li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>
-      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="notic-counter">3</span></a></li>
+      <li><%= link_to material_icon_of("favorite", name: "Favorite"),
+        favorite_posts_user_path(current_user) %><span class="counter"><%= current_user.favorites.count %></span></li>
       <li><div class="divider"></div></li>
       <li><a><%= material_icon_of "feedback", name: "Send Feedback" %></a></li>
       <li><a><%= material_icon_of "settings", name: "Settings" %></a></li>

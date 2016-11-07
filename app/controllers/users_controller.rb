@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def favorite_posts
-    @favorite_posts = @user.favorites.paginate(page: params[:page])
+    @favorite_posts = @user.favorites
   end
 
   private

@@ -1,0 +1,17 @@
+<li class="collection-item avatar">
+  <%= image_tag notification.commenter.avatar,
+    class: "circle" %>
+  
+  <%= link_to notification.post do %>
+    <div class="title">
+      <span class="bold">
+        <%= notification.commenter.name %>
+      </span> đã bình luận trên bài 
+      <span class="bold"><%= notification.post.title %></span>: 
+      "<%= truncate notification.content, length: 30 %>"
+    </div>
+  <% end %>
+  <span class="time-ago">
+    <%= time_ago_in_words notification.created_at %>
+  </span>
+</li>

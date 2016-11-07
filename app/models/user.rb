@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'buyer_id'
   has_and_belongs_to_many :favorites, join_table: :posts_users,
     class_name: "Post"
+  has_many :notifications
 
   validates :avatar, presence: true
   validates :name, presence: true

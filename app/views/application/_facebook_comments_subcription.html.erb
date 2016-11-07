@@ -1,7 +1,13 @@
 <script>
   $(window).load(function() {
-    FB.Event.subscribe('comment.create', function() {
-      console.log("comment_callback");
+    FB.Event.subscribe('comment.create', function(response) {
+      $.ajax({
+        url: "/posts/" + <%= params[:id] %> + "/push_notification",
+        type: "post",
+        data: {
+          content: response.message
+        }
+      });
     });
   });
 </script>

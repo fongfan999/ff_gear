@@ -49,8 +49,9 @@
     </div>
 
     <div class="divider"></div>
-
+    
     <div class="action-bar">
+      <% if user_signed_in? %>
       <%= link_to favorite_post_path(@post), class: "favorite", method: :patch,
         remote: true do %>
         <% if current_user.favorite?(@post) %>
@@ -59,8 +60,9 @@
           <%= material_icon_of 'favorite_border' %>
         <% end %>
       <% end %>
+      <% end %>
 
-      <%= link_to (material_icon_of "comment"), "#", class: "comments-btn" %>
+      <%= link_to (material_icon_of "forum"), "#", class: "comments-btn" %>
 
       <%= link_to (material_icon_of "share"), "#social-share",
         class: "share modal-trigger" %>
