@@ -28,7 +28,14 @@ $ ->
   # Toggle display facebook comments
   $('.comments-btn').click (event)->
     event.preventDefault()
-    $('#comments').slideToggle()
+    
+    if $('.load-comments').length
+      # $( this ).on  "click", ->
+      alert( "hhi" )
+
+      $('.load-comments').click()
+    else
+      $('.thread_span').slideToggle()
     
 
   

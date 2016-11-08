@@ -22,9 +22,10 @@
 <% end %>
 
 <div class="row">
-<%= form_for([commontator, thread, comment],
+<%= simple_form_for([commontator, thread, comment],
              :remote => !no_remote)  do |f| %>
-
+  
+    <div class="divider"></div>
   <%= hidden_field_tag :per_page, per_page %>
   
   <div class="comment_form_field input-field col s12">
@@ -38,8 +39,6 @@
     <%= f.submit t('commontator.comment.actions.cancel'), :name => 'cancel',
       class: "btn-flat btn-small" %>
     <%= f.submit t("commontator.comment.actions.#{comment.id.blank? ? 'create' : 'update'}"), class: "btn btn-small" %>
-
-    <%= f.button :submit, name: 'cancel', class: "btn-flat btn-small" %>
   </div>
 <% end %>
 </div>

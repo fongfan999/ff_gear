@@ -3,12 +3,10 @@
    # user
 %>
 
-<div class="comments-list card">
+<div class="comments_list">
   <% comments.includes(:creator, :editor).each do |comment| %>
     <%= render :partial => 'commontator/comments/show',
                :locals => { :comment => comment,
                             :user => user } %>
   <% end %>
-
-  <div class="divider"></div>
 </div>

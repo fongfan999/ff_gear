@@ -168,7 +168,14 @@
 }
 
 #comments {
-  .comments-list {
+  padding: 10px;
+  max-width: 700px;
+
+  .thread_span {
+    display: block !important;
+  }
+
+  .comments_list {
     max-width: 700px;
     max-height: 500px;
     padding: 15px;
@@ -205,6 +212,10 @@
           a {
             color: rgba(0,0,0,0.87);
             font-weight: 500;
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -216,9 +227,14 @@
     }
   }
 
+  .new_comment {
+    width: 100%;
+    max-width: 700px;
+  }
+
   form {
     .comment_form_actions {
-      margin-top: -20px;
+      margin-top: -50px;
       margin-right: 10px;
     }
   }
