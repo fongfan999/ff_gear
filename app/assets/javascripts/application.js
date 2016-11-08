@@ -15,17 +15,18 @@
 //= require materialize-sprockets
 //= require jquery.flexslider-min
 //= require jquery.loupe.min
-//= require jquery.session
 //= require dropzone
 //= require materialize-form
+//= require jquery.mCustomScrollbar.concat.min
 //= require_tree .
 
-$(window).load(function() {
-  // Animate loader off screen
-  $(".se-pre-con").fadeOut("slow");
-});
 
 $(function() {
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
+  });
+
   // Scroll to top of page
   $('.go-to-top').click(function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
