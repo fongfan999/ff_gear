@@ -4,7 +4,7 @@
 %>
 
 <% if thread.can_be_read_by?(user) %>
-  <div id="thread_<%= thread.id %>_div" class="thread" style="display: none;">
+  <div id="thread_<%= thread.id %>_div" class="thread card" style="display: none;">
     <% if @commontator_thread_show %>
       <%= render :partial => 'commontator/threads/show',
                  :locals => { :thread => thread,

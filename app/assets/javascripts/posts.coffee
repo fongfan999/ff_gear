@@ -30,12 +30,9 @@ $ ->
     event.preventDefault()
     
     if $('.load-comments').length
-      # $( this ).on  "click", ->
-      alert( "hhi" )
-
       $('.load-comments').click()
     else
-      $('.thread_span').slideToggle()
+      $('.thread_span').slideToggle().css('display', 'block')
     
 
   

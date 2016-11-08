@@ -10,7 +10,7 @@
 <% can_subscribe = thread.can_subscribe?(user)
    can_edit = thread.can_be_edited_by?(user) %>
 
-<!-- <span id="thread_<%= thread.id.to_s %>_show_span" class="thread_show commontator_hidden">
+<!-- <span id="thread_<%#= thread.id.to_s %>_show_span" class="thread_show commontator_hidden">
   <%#= link_to t('commontator.thread.actions.show'),
               '#',
               id: "thread_#{thread.id.to_s}_show_link",
@@ -19,12 +19,6 @@
 
 <span id="thread_<%= thread.id %>_span" class="thread_span">
   <span id="thread_<%= thread.id.to_s %>_actions_span" class="thread_actions">
-<!--     <span id="thread_<%= thread.id.to_s %>_hide_span" class="thread_hide commontator_hidden">
-      <%#= link_to t('commontator.thread.actions.hide'),
-                  '#',
-                  id: "thread_#{thread.id.to_s}_hide_link",
-                  class: "thread_hide_link" %>
-    </span> -->
 
     &nbsp;
 
