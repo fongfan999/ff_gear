@@ -11,6 +11,7 @@ $foreign-color: #e74c3c;
 @import 'market';
 @import 'responsive';
 @import 'dropzone/dropzone';
+@import 'commontator/application';
 
 .se-pre-con {
   position: fixed;
@@ -29,6 +30,17 @@ $foreign-color: #e74c3c;
 .bold {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-small {
+  height: 30px;
+  line-height: 30px;
+  padding: 1px 1.5rem;
+  font-size: 14px;
+}
+
+.thread {
+  display: block !important;
 }
 
 .primary-color {

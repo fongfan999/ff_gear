@@ -28,7 +28,7 @@ $ ->
   # Toggle display facebook comments
   $('.comments-btn').click (event)->
     event.preventDefault()
-    $('#facebook_comments').slideToggle()
+    $('#comments').slideToggle()
     
 
   

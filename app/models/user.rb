@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  acts_as_commontator
+
   # Don't store password
   def password_required?
     false

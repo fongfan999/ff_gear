@@ -53,6 +53,8 @@ gem 'materialize-form', '~> 1.0', '>= 1.0.1'
 gem 'geocoder', '~> 1.4'
 # Pagination
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+# Comments plugins
+gem 'commontator', '~> 4.11', '>= 4.11.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,79 @@
+vi: 
+  activerecord: 
+    attributes: 
+      commontator/comment: 
+        body: Bình luận
+        creator: Người tạo
+        editor: Người chỉnh sửa
+        thread: Thảo luận
+      commontator/subscription: 
+        subscriber: Người đăng ký
+        thread: Thảo luận
+      commontator/thread: 
+        commontable: Commontable
+    models: 
+      commontator/comment: 
+        one: bình luận
+        other: bình luận
+      commontator/subscription: 
+        one: đăng ký
+        other: đăng ký
+      commontator/thread: 
+        one: thread
+        other: threads
+  commontator: 
+    anonymous: Ẩn danh
+    comment: 
+      actions: 
+        cancel: Huỷ bỏ
+        confirm_delete: "Bạn có chắc xoá bình luận này?"
+        create: "Đăng"
+        delete: Xoá
+        edit: Sửa
+        new: "Thêm bình luận"
+        undelete: Khôi phục lại
+        update: "Chỉnh sửa bình luận"
+      errors: 
+        already_deleted: "Bình luận này đã bị xoá."
+        create: "Bình luận này không thể đăng vì:"
+        double_posted: "đã giống với những bình luận trước đó."
+        not_deleted: "Bình luận này không xoá được."
+        update: "Bình luận này không thể chỉnh sửa vì:"
+      status: 
+        created_at: "Đăng lúc %{created_at}."
+        deleted_by: "Bình luận này đã bị xoá bởi %{deleter_name}."
+        updated_at: "Bình luận đã được chỉnh sửa bởi %{editor_name} lúc %{updated_at}."
+    email: 
+      comment_created: 
+        body: "%{creator_name} đã bình luận trên %{commontable_name}:"
+        subject: "%{creator_name} đã bình luận trên %{commontable_name}"
+      thread_link_html: "<a href=\"%{comment_url}\">Nhấn vào đây</a> để xem tất cả bình luận trên %{commontable_name}."
+      undisclosed_recipients: "Liên lạc ẩn danh"
+    require_login: "Bạn phải đăng nhập để đăng bình luận."
+    subscription: 
+      actions: 
+        confirm_unsubscribe: "Bạn có chắc ngừng theo dõi cuộc thảo luận này?"
+        subscribe: Theo dõi
+        unsubscribe: Ngừng theo dõi
+      errors: 
+        already_subscribed: "Bạn đã theo dõi cuộc thảo luận này rồi."
+        not_subscribed: "Bạn đang không theo dõi cuộc theo dõi này."
+    thread: 
+      actions: 
+        show_all: "Hiển thị tất cả bình luận"
+        filter: "Lọc bình luận"
+        close: "Đóng cuộc thảo luận"
+        confirm_close: "Bạn có chắc đóng cuộc thảo luận này?"
+        reopen: "Mở lại cuộc thảo luận"
+        show: "Hiện bình luận"
+        hide: "Ẩn bình luận"
+      errors:
+        already_closed: "Cuộc thảo luận này đã đóng."
+        not_closed: "Cuộc thảo luận này đang mở."
+      status: 
+        cannot_post: "Không thể đăng bình luận vào lúc này. Vui lòng thử lại."
+        closed: "Bình luận (Được đóng bởi %{closer_name})"
+        open: Bình luận
+  time: 
+    formats: 
+      commontator: "%b %d %Y at %I:%M%p %Z"

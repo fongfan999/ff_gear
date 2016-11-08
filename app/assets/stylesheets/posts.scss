@@ -166,3 +166,60 @@
     bottom: 0;
   }
 }
+
+#comments {
+  .comments-list {
+    max-width: 700px;
+    max-height: 500px;
+    padding: 15px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .comment {
+      display: table;
+      width: 100%;
+      
+      .comment_div {
+        display: table-cell;
+        position: relative;
+      }
+      
+      .comment_avatar {
+        width: 36px;
+        
+        img {
+          width: 36px;
+          height: 36px;
+          @extend .circle;
+        }
+      }
+      
+      .comment_core {
+        padding-left: 15px;
+        padding-top: 15px;
+        font-size: 14px;
+        
+        .comment_owner {
+          margin-top: -15px;
+          
+          a {
+            color: rgba(0,0,0,0.87);
+            font-weight: 500;
+          }
+        }
+      }
+      
+      .comment_info {
+        width: 45px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  form {
+    .comment_form_actions {
+      margin-top: -20px;
+      margin-right: 10px;
+    }
+  }
+}

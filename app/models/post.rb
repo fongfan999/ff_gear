@@ -17,6 +17,8 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :should_save?
   after_save :geoword, if: :should_save?
 
+  acts_as_commontable
+
   self.per_page = 3
 
   def color
