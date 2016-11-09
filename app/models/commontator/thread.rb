@@ -11,6 +11,8 @@ module Commontator
                             :scope => :commontable_type,
                             :allow_nil => true
 
+    after_create :subscription_for_owner
+
     def config
       @config ||= commontable.try(:commontable_config) || Commontator
     end
@@ -154,6 +156,12 @@ module Commontator
       !is_closed? && !user.nil? && user.is_commontator &&\
       (thread_sub == :m || thread_sub == :b) &&\
       can_be_read_by?(user)
+    end
+
+    private
+
+    def subscription_for_owner
+      subscribe(commontable.owner)
     end
   end
 end

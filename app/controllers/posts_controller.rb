@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
-    :push_notification]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite]
   before_action :clean_session, only: [:new, :edit]
 
   def show
@@ -13,7 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.buyer = current_user
+    @post.owner = current_user
 
     handle_attachments
 
@@ -69,19 +68,6 @@ class PostsController < ApplicationController
       format.html { redirect_to @post }
       format.js { @status }
     end
-  end
-
-  def push_notification
-    post_owner = @post.buyer
-    return if post_owner == current_user
-
-    notification = Notification.new(content: params[:content])
-    notification.post = @post
-    notification.commenter = current_user
-    notification.user = post_owner
-
-    notification.save
-    head :ok
   end
 
   private

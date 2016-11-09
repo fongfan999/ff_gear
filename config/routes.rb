@@ -9,9 +9,6 @@ Rails.application.routes.draw do
 
   resources :posts, except: [:index] do
     patch :favorite, on: :member
-    member do
-      post :push_notification
-    end
   end
 
   post :attachments, to: "attachments#create"

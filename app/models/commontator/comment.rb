@@ -13,6 +13,8 @@ module Commontator
       :scope => [:creator_type, :creator_id, :thread_id, :deleted_at],
       :message => I18n.t('commontator.comment.errors.double_posted')
 
+    after_create :push_notification
+
     protected
 
     cattr_accessor :acts_as_votable_initialized
@@ -111,6 +113,21 @@ module Commontator
     def can_be_voted_on_by?(user)
       !user.nil? && user.is_commontator && user != creator &&\
       thread.can_be_read_by?(user) && can_be_voted_on?
+    end
+
+    private
+
+    def push_notification
+      # Watch/Unwatch
+      thread.subscribe(creator)
+
+
+
+      thread.subscribers.each do |subscriber|
+        unless creator == subscriber
+          subscriber.get_notification(thread.commontable, creator, body)
+        end
+      end
     end
   end
 end

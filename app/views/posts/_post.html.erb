@@ -1,6 +1,6 @@
 <div class="col s12 m6 l4">
   <div class="card hoverable"> 
-    <%= image_tag post.buyer.avatar, class: "circle buyer-avatar" %>
+    <%= image_tag post.owner.avatar, class: "circle owner-avatar" %>
     <div class="card-image waves-effect waves-block waves-light">
       <%= image_tag post.attachments.first.file.url,
         class: "activator responsive-img" if post.attachments.any? %>
@@ -38,7 +38,7 @@
         
         <div class="truncate">
           <%= material_icon_of "person", class: "small left" %>
-          <span><div class="divider"></div><%= post.buyer.name %></span>
+          <span><div class="divider"></div><%= post.owner.name %></span>
         </div>
       </div>
     </div>

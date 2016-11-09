@@ -18,8 +18,10 @@ module Commontator
     def close
       security_transgression_unless @thread.can_be_edited_by?(@user)
 
-      @thread.errors.add(:base, t('commontator.thread.errors.already_closed')) \
-        unless @thread.close(@user)
+      unless @thread.close(@user)
+        @thread.errors.add(:base,
+          t('commontator.thread.errors.already_closed'))
+      end
 
       @show_all = true
 
@@ -33,8 +35,9 @@ module Commontator
     def reopen
       security_transgression_unless @thread.can_be_edited_by?(@user)
 
-      @thread.errors.add(:base, t('commontator.thread.errors.not_closed')) \
-        unless @thread.reopen
+      unless @thread.reopen
+        @thread.errors.add(:base, t('commontator.thread.errors.not_closed'))
+      end
 
       @show_all = true
 

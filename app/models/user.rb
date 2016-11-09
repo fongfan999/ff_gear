@@ -1,11 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :omniauthable, :trackable, :validatable
+  devise :database_authenticatable, :omniauthable, :trackable, :validatable,
+        :rememberable
 
   has_many :posts, foreign_key: 'buyer_id'
   has_and_belongs_to_many :favorites, join_table: :posts_users,
@@ -36,5 +33,13 @@ class User < ApplicationRecord
 
   def favorite?(post)
     favorites.exists?(post.id)
+  end
+
+  def get_notification(post, commenter, message)    
+    notification = self.notifications.build(content: message)
+    notification.post = post
+    notification.commenter = commenter
+
+    notification.save
   end
 end

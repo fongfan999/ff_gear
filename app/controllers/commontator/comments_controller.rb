@@ -83,8 +83,11 @@ module Commontator
     def delete
       security_transgression_unless @comment.can_be_deleted_by?(@user)
 
-      @comment.errors.add(:base, t('commontator.comment.errors.already_deleted')) \
-        unless @comment.delete_by(@user)
+      unless @comment.delete_by(@user)
+        @comment.errors.add(:base,
+          t('commontator.comment.errors.already_deleted'))
+      end
+        
 
       respond_to do |format|
         format.html { redirect_to @thread }
@@ -96,8 +99,11 @@ module Commontator
     def undelete
       security_transgression_unless @comment.can_be_deleted_by?(@user)
 
-      @comment.errors.add(:base, t('commontator.comment.errors.not_deleted')) \
-        unless @comment.undelete_by(@user)
+      unless @comment.undelete_by(@user)
+        @comment.errors.add(:base,
+          t('commontator.comment.errors.not_deleted'))
+      end
+        
 
       respond_to do |format|
         format.html { redirect_to @thread }
