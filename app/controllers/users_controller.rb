@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Thành công"
       redirect_to @user
     else
-      flash.now[:alert] = "Loại ảnh không phù hợp"
+      flash.now[:alert] = "Thông tin không hợp lệ"
       render :show
     end
   end

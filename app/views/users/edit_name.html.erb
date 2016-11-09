@@ -1,5 +1,5 @@
 <div id="change-name-form" class="modal">
-  <%= simple_form_for @user do |f| %>
+  <%= simple_form_for @user, html: { class: "full-width"} do |f| %>
   <div class="modal-content">
     <div class="about-summary card row">
       <div class="about-bg"></div>
@@ -9,13 +9,14 @@
           <%= image_tag(@user.avatar, class: "circle") %>
         <% end %>
 
-        <%= f.input :name, label: "Tên", autofocus: true %>
+        <%= f.input :name, label: "Tên", autofocus: true,
+          input_html: { class: 'present-field', min: '2', max: '45' }  %>
       </div>
     </div>
   </div>
   
   <div class="modal-footer">
-    <%= f.button :button, 'cập nhật', class: "modal-action" %>
+    <%= f.button :button, 'cập nhật', class: "modal-action present-submit" %>
     <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
   </div>
   <% end %>

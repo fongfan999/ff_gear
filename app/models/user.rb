@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :notifications
 
   validates :avatar, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
 
   mount_uploader :avatar, AvatarUploader
 

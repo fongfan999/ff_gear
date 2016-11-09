@@ -1,5 +1,5 @@
 <div id="change-avatar-form" class="modal">
-  <%= simple_form_for @user do |f| %>
+  <%= simple_form_for @user, html: { class: "full-width"} do |f| %>
   <div class="modal-content">
     <h4>Thay đổi ảnh đại diện</h4>
     <br>
@@ -9,7 +9,7 @@
       <div class="file-field input-field">
         <div class="btn">
           <span>Ảnh</span>
-          <%= f.input_field :avatar %>
+          <%= f.input_field :avatar, class: 'present-field' %>
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text"
@@ -20,7 +20,7 @@
   </div>
   
   <div class="modal-footer">
-    <%= f.button :button, 'cập nhật', class: "modal-action", disabled: true %>
+    <%= f.button :button, 'cập nhật', class: "modal-action present-submit" %>
     <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
   </div>
   <% end %>

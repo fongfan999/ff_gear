@@ -11,12 +11,21 @@ $ ->
     presentSubmit = $('.present-submit')
     $(presentSubmit).attr('disabled', true)
 
-    $('.present-field').keyup ->
-      if $(this).val() == ''
+    $('.present-field').bind 'keyup change', ->
+      minLength = parseInt($(this).attr('min')) || 1
+      maxLength = parseInt($(this).attr('max')) || 99999
+
+      currentLength = $(this).val().length
+
+      if currentLength < minLength || currentLength > maxLength
         $(presentSubmit).attr('disabled', true)
       else
         $(presentSubmit).attr('disabled', false)
 
+  # Without Ajax
+  validatePresence()
+
+  # With Ajax
   $( document ).ajaxComplete ->
     validatePresence()
     
