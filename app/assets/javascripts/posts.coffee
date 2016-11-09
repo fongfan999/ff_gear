@@ -25,21 +25,21 @@ $ ->
     $(iconsList[i]).parent().prepend iconsList[i]
     i++
 
-  # Toggle display facebook comments
+  # Toggle display comments
   $('.comments-btn').click (event)->
     event.preventDefault()
-    # $(".comments_list").mCustomScrollbar()
+ 
     if $('.load-comments').length
       $('.load-comments').click()
-
-      # Change scrollbar style 
-      $( document ).ajaxComplete ->
-        $(".comments_list").mCustomScrollbar
-          autoHideScrollbar: true
-          setTop:"-999999px"
-
     else
       $('.thread_span').slideToggle().css('display', 'block')
+
+  # Trigger rendering comments is completed
+  $( document ).ajaxComplete ->
+    $(".comments_list").mCustomScrollbar
+      autoHideScrollbar: true
+      setTop:"-999999px"
+
     
 
   

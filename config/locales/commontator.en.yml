@@ -49,7 +49,7 @@ en:
         subject: "%{creator_name} posted a comment on %{commontable_name}"
       thread_link_html: "<a href=\"%{comment_url}\">Click here</a> to view all comments on %{commontable_name}."
       undisclosed_recipients: "Undisclosed Recipients"
-    require_login: "You must login before you can post a comment."
+    require_login_html: "You must <a href=\"%{login_url}\">login</a> before you can post a comment."
     subscription: 
       actions: 
         confirm_unsubscribe: "Are you sure you want to unsubscribe from this discussion?"

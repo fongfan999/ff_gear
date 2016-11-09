@@ -9,7 +9,10 @@
   <% if thread.is_closed? %>
     <p><%= t 'commontator.thread.status.cannot_post' %></p>
   <% elsif !user %>
-    <p><%= t 'commontator.require_login' %>.</p>
+    <div class="divider"></div>
+    <p class="center-align">
+      <%= t('commontator.require_login_html', login_url: "/users/sign_in") %>
+    </p>
   <% else %>
     <div id="thread_<%= thread.id %>_new_comment_form_div" class="thread_new_comment_form<%=
     hidden_class %>">

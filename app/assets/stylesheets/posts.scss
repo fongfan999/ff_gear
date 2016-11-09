@@ -222,14 +222,35 @@
     }
   }
 
+  .thread_reply {
+    height: 100%;
+
+    .comment_error_explanation {
+      color: red;
+      padding-left: 40px;
+
+      h6 {
+        font-weight: 600;
+        margin-left: -20px;
+      }
+
+      ul li {
+        list-style-type: circle;
+      }
+    }
+  }
+
   .new_comment {
     width: 100%;
     max-width: 700px;
   }
 
   form {
+    .field_with_errors {
+      padding-left: 45px;
+    }
     .comment_form_actions {
-      margin-top: -50px;
+      margin-top: -15px;
       margin-right: 10px;
     }
   }

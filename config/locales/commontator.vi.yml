@@ -49,7 +49,7 @@ vi:
         subject: "%{creator_name} đã bình luận trên %{commontable_name}"
       thread_link_html: "<a href=\"%{comment_url}\">Nhấn vào đây</a> để xem tất cả bình luận trên %{commontable_name}."
       undisclosed_recipients: "Liên lạc ẩn danh"
-    require_login: "Bạn phải đăng nhập để đăng bình luận."
+    require_login_html: "Bạn phải <a href=\"%{login_url}\">đăng nhập</a> để đăng bình luận."
     subscription: 
       actions: 
         confirm_unsubscribe: "Bạn có chắc ngừng theo dõi cuộc thảo luận này?"

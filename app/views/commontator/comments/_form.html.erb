@@ -22,7 +22,7 @@
 <% end %>
 
 <div class="row">
-<%= simple_form_for([commontator, thread, comment],
+<%= form_for([commontator, thread, comment],
              :remote => !no_remote)  do |f| %>
   
     <div class="divider"></div>
@@ -31,14 +31,14 @@
   <div class="comment_form_field input-field col s12">
     <i class="material-icons prefix"><%= image_tag current_user.avatar,
       class: "circle", size: "36x36" %></i>
-    <%= f.text_area :body, class: "materialize-textarea" %>
+    <%= f.text_area :body, class: "materialize-textarea present-field" %>
     <%= javascript_tag('Commontator.initMentions()') if Commontator.mentions_enabled %>
   </div>
 
   <div class="comment_form_actions right">
     <%= f.submit t('commontator.comment.actions.cancel'), :name => 'cancel',
       class: "btn-flat btn-small" %>
-    <%= f.submit t("commontator.comment.actions.#{comment.id.blank? ? 'create' : 'update'}"), class: "btn btn-small" %>
+    <%= f.submit t("commontator.comment.actions.#{comment.id.blank? ? 'create' : 'update'}"), class: "btn btn-small present-submit" %>
   </div>
 <% end %>
 </div>
