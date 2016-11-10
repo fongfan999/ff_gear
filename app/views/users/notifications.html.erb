@@ -1,0 +1,30 @@
+<div class="container">
+  <h4>Notifications</h4>
+
+  <div id="notifications">
+    <% @notification_days.each do |day, notifications| %>
+      <div class="group-by-date card">
+        <h5><%= day.strftime("%d - %m - %Y") %></h5>
+        
+        <% notifications.each do |notification| %>
+          <div class="card">
+            <div class="left-content left">
+              <%= image_tag notification.user.avatar, class: "circle" %>
+            </div>
+            
+            <div class="right-content">
+              <%= link_to notification.user.name, notification.user %> 
+              đã bình luận trên bài 
+              <%= link_to notification.post.title, notification.post %> 
+              với nội dung:
+
+              <div class="message-content">
+                <%= simple_format notification.content %>
+              </div> 
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

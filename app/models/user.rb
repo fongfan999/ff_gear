@@ -35,6 +35,10 @@ class User < ApplicationRecord
     favorites.exists?(post.id)
   end
 
+  def recent_notifications
+    notifications.order(created_at: :desc).limit(15)
+  end
+
   def get_notification(post, commenter, message)    
     notification = self.notifications.build(content: message)
     notification.post = post

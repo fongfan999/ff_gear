@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:notifications]
 
   def show
   end
@@ -28,6 +28,13 @@ class UsersController < ApplicationController
 
   def favorite_posts
     @favorite_posts = @user.favorites
+  end
+
+  def notifications
+    @notifications = current_user.notifications
+    @notification_days = @notifications.group_by { |n|
+      n.created_at.beginning_of_day
+    }
   end
 
   private

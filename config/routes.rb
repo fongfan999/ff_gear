@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
+  get :notifications, to: "users#notifications"
+
   get 'market', to: "market#index"
 
   resources :posts, except: [:index] do

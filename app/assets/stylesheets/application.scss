@@ -33,6 +33,10 @@ $teal-color: #26a69a;
   color: rgba(0, 0, 0, 0.8);
 }
 
+.unread {
+  background-color: #eee;
+}
+
 .bordered-logo {
   @extend .circle;
   border: 1px solid #fff;
@@ -164,10 +168,6 @@ span.counter {
     padding-top: 0;
     padding-bottom: 0;
     cursor: default !important;
-
-    &.unread {
-      background-color: #eee;
-    }
 
     &:hover {
       background-color: #fafafa;

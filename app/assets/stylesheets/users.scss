@@ -162,3 +162,40 @@
     }
   }
 }
+
+#notifications {
+  .group-by-date {
+    margin-bottom: 50px;
+
+    h5 {
+      @extend .center-align;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      color: rgba(0, 0, 0, 0.5);
+      min-height: 126px;
+      padding: 15px;
+
+      .left-content {
+        img {
+          width: 96px;
+          height: 96px;
+        }
+      }
+
+      .right-content {
+        padding-left: 120px;
+
+        a {
+          @extend .teal-lighten-text;
+        }
+
+        .message-content {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
