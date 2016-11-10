@@ -14,4 +14,8 @@ class Notification < ApplicationRecord
   def mark_as_unread
     update(updated_at: created_at)
   end
+
+  def mark_toggle_status
+    unread? ? mark_as_read : mark_as_unread
+  end
 end

@@ -59,7 +59,7 @@
                   data: { position: "bottom", tooltip: "Thông báo",
                   activates: "notic-content", beloworigin: true,
                   outduration: 1000 } %>
-                  <span class="counter">
+                  <span class="counter notic">
                     <%= current_user.unread_counter %>
                   </span>
 
@@ -67,7 +67,9 @@
                     with-header">
                     <li class="collection-header">
                       Thông báo
-                      <a href="#!" class="right">Đánh dấu tất cả là đã đọc</a>
+                      <%= link_to "Đánh dấu tất cả là đã đọc",
+                        mark_all_as_read_notifications_path, method: :patch,
+                        remote: true, class: "right" %>
                     </li>
     
                     <%= render current_user.notifications.
@@ -75,7 +77,7 @@
                   </ul>
                 </li>
                 <li><%= link_to image_tag(current_user.avatar,
-                  size: "32x32", class: "circle"), current_user %></li>
+                  size: "32x32", class: "bordered-logo"), current_user %></li>
               <% else %>
                 <li><%= link_to material_icon_of("account_circle"),
                   new_user_session_path, class: "tooltipped",
@@ -104,7 +106,7 @@
       <li>
         <div class="userView">
           <%= link_to image_tag(current_user.avatar,
-            class: "circle"), current_user, class: 'non-waves-effect' %>
+            class: "bordered-logo"), current_user, class: 'non-waves-effect' %>
 
           <span class="white-text name"><%= current_user.name %></span>
           <span class="white-text email"><%= current_user.email %></span>
@@ -120,7 +122,7 @@
       <li><a><%= material_icon_of "home", name: "Home" %></a></li>
       <li><%= link_to material_icon_of("add_circle", name: "Đăng bán"),
         new_post_path %></li>
-      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="counter"><%= current_user.unread_counter %></span></a></li>
+      <li><a><%= material_icon_of "notifications", name: "Notifications" %><span class="counter notic"><%= current_user.unread_counter %></span></a></li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>
       <li><%= link_to material_icon_of("favorite", name: "Favorite"),

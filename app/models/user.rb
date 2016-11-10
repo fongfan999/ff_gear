@@ -43,6 +43,10 @@ class User < ApplicationRecord
     notification.save
   end
 
+  def mark_all_notifications_as_read
+    notifications.each(&:mark_as_read)
+  end
+
   def unread_counter
     notifications.select(&:unread?).count
   end

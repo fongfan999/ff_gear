@@ -1,7 +1,5 @@
 // Preloader
-$( document ).ajaxStart(function() {
-  $("#preloader-nav" ).html('<img src="/assets/preloader.gif"/>').fadeIn();
-});
+$("#preloader-nav" ).html('<img src="/assets/preloader.gif"/>').fadeIn();
 
 $( document ).ajaxComplete(function() {
   $("#preloader-nav" ).fadeOut();

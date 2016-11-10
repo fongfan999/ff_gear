@@ -14,6 +14,16 @@ Rails.application.routes.draw do
   post :attachments, to: "attachments#create"
   patch :attachments, to: "attachments#create"
 
+  resources :notifications do
+    collection do
+      patch :mark_all_as_read
+    end
+    
+    member do
+      patch :mark_toggle_status
+    end
+  end
+
   resources :categories, only: [:show]
 
   resources :users, only: [:show, :update] do

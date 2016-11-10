@@ -1,5 +1,6 @@
 $primary-color: #2c3e50;
 $foreign-color: #e74c3c;
+$teal-color: #26a69a;
 
 @import "materialize/components/color";
 @import 'materialize';
@@ -32,6 +33,11 @@ $foreign-color: #e74c3c;
   color: rgba(0, 0, 0, 0.8);
 }
 
+.bordered-logo {
+  @extend .circle;
+  border: 1px solid #fff;
+}
+
 .btn-small {
   height: 30px;
   line-height: 30px;
@@ -49,6 +55,10 @@ $foreign-color: #e74c3c;
 
 .primary-color-text {
   color: $primary-color;
+}
+
+.teal-lighten-text {
+  color: $teal-color;
 }
 
 i.clear-input {
@@ -134,7 +144,7 @@ span.counter {
   font-weight: 500;
 
   .collection-header {
-    color: #26a69a;
+    @extend .teal-lighten-text;
     min-height: 0;
     height: 40px !important;
 
@@ -145,7 +155,7 @@ span.counter {
       &:hover {
         background-color: transparent;
         text-decoration: underline;
-        color: #26a69a;
+        @extend .teal-lighten-text;
       }
     }
   }
@@ -183,7 +193,7 @@ span.counter {
 
       &:hover {
         i {
-          color: #26a69a;
+          @extend .teal-lighten-text;
         }
       }
     }

@@ -15,7 +15,7 @@
         
         <%= link_to edit_avatar_user_path(@user), remote: true,
           class: "change-avatar" do %>
-          <%= image_tag(@user.avatar, class: "circle") %>
+          <%= image_tag(@user.avatar, class: "bordered-logo") %>
           <%= material_icon_of "photo_camera" %>
         <% end %>
           

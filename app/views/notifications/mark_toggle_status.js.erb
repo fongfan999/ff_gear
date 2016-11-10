@@ -1,0 +1,19 @@
+var notification = $("#<%= dom_id @notification %>")
+var highLight = notification.find('.bold');
+
+// Toggle background color
+notification.toggleClass('unread');
+
+// Update counter
+$('.notic.counter').html($('.collection-item.avatar.unread').length);
+
+// Highlight on clicking
+$(highLight).toggleClass('teal-lighten-text');
+
+// Revert color
+setTimeout(function(){
+  $(highLight).toggleClass('teal-lighten-text')
+}, 200); 
+
+
+                    
