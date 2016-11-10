@@ -153,6 +153,15 @@ span.counter {
   .collection-item.avatar {
     padding-top: 0;
     padding-bottom: 0;
+    cursor: default !important;
+
+    &.unread {
+      background-color: #eee;
+    }
+
+    &:hover {
+      background-color: #fafafa;
+    }
 
     img {
       top: 10px;
@@ -165,6 +174,17 @@ span.counter {
 
       &:hover {
         background-color: transparent;
+      }
+    }
+
+    span.secondary-content {
+      top: -16px;
+      right: -16px;
+
+      &:hover {
+        i {
+          color: #26a69a;
+        }
       }
     }
 

@@ -1,8 +1,9 @@
-<li class="collection-item avatar">
+<li class="collection-item avatar <%= "unread" if notification.unread? %>">
   <%= image_tag notification.commenter.avatar,
     class: "circle" %>
   
-  <%= link_to notification.post do %>
+    <%= link_to notification.unread? ? post_path(notification.post,
+      notification: "#{notification.id}") : notification.post do %>
     <div class="title">
       <span class="bold">
         <%= notification.commenter.name %>
@@ -11,6 +12,11 @@
       "<%= truncate notification.content, length: 30 %>"
     </div>
   <% end %>
+
+  <span class="secondary-content">
+    <%= link_to material_icon_of("radio_button_checked", class: "tiny"), '#' %>
+  </span>
+
   <span class="time-ago">
     <%= time_ago_in_words notification.created_at %>
   </span>

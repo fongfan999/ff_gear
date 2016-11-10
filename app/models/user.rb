@@ -42,4 +42,8 @@ class User < ApplicationRecord
 
     notification.save
   end
+
+  def unread_counter
+    notifications.select(&:unread?).count
+  end
 end
