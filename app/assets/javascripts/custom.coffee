@@ -9,24 +9,28 @@ $ ->
   # Validate input as presence
   validatePresence = ->
     presentSubmit = $('.present-submit')
-    $(presentSubmit).attr('disabled', true)
+    presentField = $('.present-field')
+    minLength = parseInt(presentField.attr('min')) || 1
+    maxLength = parseInt(presentField.attr('max')) || 99999
 
-    $('.present-field').bind 'keyup change', ->
-      minLength = parseInt($(this).attr('min')) || 1
-      maxLength = parseInt($(this).attr('max')) || 99999
+    presentSubmit.attr('disabled', true)
 
+    presentField.bind 'keyup change', ->
       currentLength = $(this).val().length
 
       if currentLength < minLength || currentLength > maxLength
-        $(presentSubmit).attr('disabled', true)
+        presentSubmit.attr('disabled', true)
       else
-        $(presentSubmit).attr('disabled', false)
+        presentSubmit.attr('disabled', false)
 
   # Without Ajax
   validatePresence()
 
   # With Ajax
   $( document ).ajaxComplete ->
+    # Display character counter
+    $('.present-field').characterCounter()
+
     validatePresence()
     
     

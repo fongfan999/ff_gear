@@ -36,13 +36,7 @@ $ ->
 
   # Trigger rendering comments is completed
   $( document ).ajaxComplete ->
+    # Change scrollbar style
     $(".comments_list").mCustomScrollbar
       autoHideScrollbar: true
       setTop:"-999999px"
-
-    
-
-  
-  
-  
-

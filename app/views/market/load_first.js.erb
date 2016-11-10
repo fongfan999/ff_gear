@@ -16,7 +16,20 @@ $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
 
 
 // Render posts
-$("#posts").html('<%= j render @posts %>');
+$("#posts").html('<%= j render @posts %>').hide().fadeIn("slow");
 
 // Scroll to top
-$("html, body").animate({ scrollTop: 0 }, "slow");
+var page = $("html, body");
+
+page.animate({ scrollTop: 0 }, "slow");
+
+// Allow user to scroll down while page is scrolling top automatically
+page.on(
+  "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove",
+  function(){
+    page.stop();
+  }
+);
+
+ 
+

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       "115.79.53.75"
     end
 
-    session[:location] ||= Geocoder.search(address_ip).first
+    session[:location] ||= Geocoder.search(address_ip).first.as_json
   end
 
   def location_address(address = nil)

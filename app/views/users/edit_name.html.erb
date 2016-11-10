@@ -10,7 +10,8 @@
         <% end %>
 
         <%= f.input :name, label: "Tên", autofocus: true,
-          input_html: { class: 'present-field', min: '2', max: '45' }  %>
+          input_html: { class: 'present-field', min: 2, max: 45,
+          length: 45 }  %>
       </div>
     </div>
   </div>
