@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   before_action :clean_session, only: [:new, :edit]
 
   def show
-    if params[:notification]
-      Notification.find(params[:notification]).mark_as_read
+    if params[:notification_id]
+      Notification.find(params[:notification_id]).mark_as_read
     end
   end
 

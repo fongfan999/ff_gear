@@ -1,6 +1,6 @@
-console.log('head: ok');
 var hideDiv = $("#<%= dom_id(@notification, :hide) %>")
 
+// Hide notification by ID
 if (hideDiv.parent().find('.card').length > 1 ) {
   hideDiv.fadeOut("slow").remove();
 } else {

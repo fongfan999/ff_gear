@@ -181,8 +181,9 @@
     padding-left: 15px;
     overflow: hidden;
 
-    .row:first-child {
+    .row {
       padding-top: 20px;
+      margin-bottom: 0;
     }
 
     .comment {

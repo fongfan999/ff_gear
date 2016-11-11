@@ -126,7 +126,7 @@ module Commontator
 
       thread.subscribers.each do |subscriber|
         unless creator == subscriber
-          subscriber.get_notification(thread.commontable, creator, body)
+          subscriber.get_notification(thread.commontable, creator, body, self.id)
         end
       end
     end

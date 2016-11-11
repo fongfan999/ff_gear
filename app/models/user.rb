@@ -39,8 +39,9 @@ class User < ApplicationRecord
     notifications.order(created_at: :desc).limit(15)
   end
 
-  def get_notification(post, commenter, message)    
-    notification = self.notifications.build(content: message)
+  def get_notification(post, commenter, message, comment_id)    
+    notification = self.notifications.build(content: message,
+      comment_id: comment_id)
     notification.post = post
     notification.commenter = commenter
 

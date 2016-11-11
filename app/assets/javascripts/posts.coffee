@@ -34,9 +34,31 @@ $ ->
     else
       $('.thread_span').slideToggle().css('display', 'block')
 
+  anchorComment = window.location.hash
+
+  # Open thread box to scroll to anchor
+  if anchorComment.length != 0
+    $(".comments-btn").click()
+
+    $('html, body').animate {
+      scrollTop: $('#comments').offset().top + 450
+    }, 2000
+
+
   # Trigger rendering comments is completed
-  $( document ).ajaxComplete ->
-    # Change scrollbar style
-    $(".comments_list").mCustomScrollbar
-      autoHideScrollbar: true
-      setTop:"-999999px"
+  $( document ).ajaxComplete (event, xhr, settings)->
+    threadBox = $(".comments_list")
+
+    # Change scrollbar style and scroll to anchor
+    threadBox.mCustomScrollbar( autoHideScrollbar: true )
+      
+    if settings.type == "GET"
+      threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
+    else
+      threadBox.mCustomScrollbar("scrollTo", "bottom", {scrollInertia: 0})
+
+      $('html, body').scrollTop $('#comments').offset().top
+
+
+  
+

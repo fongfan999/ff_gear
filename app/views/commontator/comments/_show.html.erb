@@ -9,8 +9,8 @@
    avatar = Commontator.commontator_avatar(creator, self) || ''
 %>
 
-<div class="row">
-  <div id="comment_<%= comment.id.to_s %>_div" class="comment">
+<div class="row" id="comment_<%= comment.id.to_s %>_div">
+  <div class="comment">
       <div class="comment_div comment_avatar">
         <%= avatar %>
       </div>

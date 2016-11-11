@@ -4,7 +4,9 @@
     class: "circle" %>
   
     <%= link_to notification.unread? ? post_path(notification.post,
-      notification: "#{notification.id}") : notification.post do %>
+      notification_id: "#{notification.id}",
+      anchor: "comment_#{notification.comment_id}_div") : post_path(notification.post,
+      anchor: "comment_#{notification.comment_id}_div") do %>
     <div class="title">
       <span class="bold">
         <%= notification.commenter.name %>
