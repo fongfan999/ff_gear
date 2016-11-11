@@ -57,13 +57,13 @@
                   <%= link_to material_icon_of('notifications_none'),
                   "#", class: "tooltipped dropdown-button",
                   data: { position: "bottom", tooltip: "Thông báo",
-                  activates: "notic-content", beloworigin: true,
+                  activates: "notice-content", beloworigin: true,
                   outduration: 1000 } %>
-                  <span class="counter notic">
+                  <span class="counter notice">
                     <%= current_user.unread_counter %>
                   </span>
 
-                  <ul id="notic-content" class="dropdown-content collection
+                  <ul id="notice-content" class="dropdown-content collection
                     with-header">
                     <li class="collection-header">
                       Thông báo
@@ -128,7 +128,7 @@
         new_post_path %></li>
       <li>
         <%= link_to material_icon_of("notifications", name: "Notifications"), notifications_path %>
-        <span class="counter notic"><%= current_user.unread_counter %></span>
+        <span class="counter notice"><%= current_user.unread_counter %></span>
       </li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
         current_user %></li>

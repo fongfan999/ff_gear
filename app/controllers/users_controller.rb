@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.order(created_at: :desc)
     @notification_days = @notifications.group_by { |n|
       n.created_at.beginning_of_day
     }

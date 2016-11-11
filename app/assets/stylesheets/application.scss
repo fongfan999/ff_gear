@@ -34,7 +34,7 @@ $teal-color: #26a69a;
 }
 
 .unread {
-  background-color: #eee;
+  background-color: #eee !important;
 }
 
 .bordered-logo {
@@ -47,6 +47,10 @@ $teal-color: #26a69a;
   line-height: 30px;
   padding: 1px 1.5rem;
   font-size: 14px;
+}
+
+a.more-vert {
+  color: #757575;
 }
 
 .thread {
@@ -138,7 +142,7 @@ span.counter {
   }
 }
 
-#notic-content.dropdown-content {
+#notice-content.dropdown-content {
   * {
     font-size: 13px !important;
   }

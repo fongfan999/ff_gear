@@ -15,4 +15,13 @@ class NotificationsController < ApplicationController
       format.js
     end
   end
+
+  def destroy
+    @notification = Notification.find(params[:id])
+    @notification.destroy
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end

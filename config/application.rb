@@ -13,6 +13,7 @@ module FoxFizz
     # -- all .rb files in that directory are automatically loaded.
 
     config.i18n.default_locale = :vi
+    config.time_zone = 'Hanoi'
 
     config.before_initialize do
       require_relative 'load_settings'

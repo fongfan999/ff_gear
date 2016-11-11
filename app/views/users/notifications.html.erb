@@ -1,26 +1,50 @@
 <div class="container">
-  <h4>Notifications</h4>
+  <div class="card-panel teal">
+    <h4 class="center-align white-text">
+      Thông báo (<%= @notifications.count %>)
+    </h4>
+  </div>
 
   <div id="notifications">
     <% @notification_days.each do |day, notifications| %>
       <div class="group-by-date card">
-        <h5><%= day.strftime("%d - %m - %Y") %></h5>
+        <h5 class="teal white-text"><%= day.strftime("%d - %m - %Y") %></h5>
         
         <% notifications.each do |notification| %>
-          <div class="card">
+          <div class="card" id="<%= dom_id(notification, :hide) %>">
+            <div class="right">
+              <%= link_to material_icon_of("more_vert", class: "tiny"), "#",
+                class: "dropdown-button more-vert",
+                data: { activates: dom_id(notification, :delete) } %>
+
+              <!-- Dropdown Structure -->
+              <ul id="<%= dom_id(notification, :delete) %>" 
+                class='dropdown-content'>
+                <li class="delete"><%= link_to "Xoá", notification,
+                  method: :delete, remote: true,
+                  data: { confirm: "Bạn có chắc xoá thông báo này không" } %>
+                </li>
+              </ul>
+            </div>
+
+
             <div class="left-content left">
-              <%= image_tag notification.user.avatar, class: "circle" %>
+              <%= image_tag notification.commenter.avatar, class: "circle" %>
             </div>
             
             <div class="right-content">
-              <%= link_to notification.user.name, notification.user %> 
+              <%= link_to notification.commenter.name, notification.user %> 
               đã bình luận trên bài 
               <%= link_to notification.post.title, notification.post %> 
               với nội dung:
 
               <div class="message-content">
                 <%= simple_format notification.content %>
-              </div> 
+              </div>
+
+              <div class="time-ago">
+                <%= notification.created_at.strftime("%H:%M:%S") %>
+              </div>
             </div>
           </div>
         <% end %>

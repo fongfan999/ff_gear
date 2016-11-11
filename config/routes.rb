@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post :attachments, to: "attachments#create"
   patch :attachments, to: "attachments#create"
 
-  resources :notifications do
+  resources :notifications, only: [:destroy] do
     collection do
       patch :mark_all_as_read
     end
