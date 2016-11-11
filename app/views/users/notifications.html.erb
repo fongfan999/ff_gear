@@ -21,9 +21,9 @@
 
               <!-- Dropdown Structure -->
               <ul id="<%= dom_id(notification, :delete) %>" 
-                class='dropdown-content'>
-                <li class="delete"><%= link_to "Xoá", notification,
-                  method: :delete, remote: true,
+                class='dropdown-content dropdown-action'>
+                <li><%= link_to "Xoá thông báo", notification, method: :delete,
+                  remote: true,
                   data: { confirm: "Bạn có chắc xoá thông báo này không" } %>
                 </li>
               </ul>

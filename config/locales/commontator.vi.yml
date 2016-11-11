@@ -59,6 +59,7 @@ vi:
         already_subscribed: "Bạn đã theo dõi cuộc thảo luận này rồi."
         not_subscribed: "Bạn đang không theo dõi cuộc theo dõi này."
     thread: 
+      header: "Bình luận"
       actions: 
         show_all: "Hiển thị tất cả bình luận"
         filter: "Lọc bình luận"

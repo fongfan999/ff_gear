@@ -14,6 +14,7 @@ module Commontator
       :message => I18n.t('commontator.comment.errors.double_posted')
 
     after_create :push_notification
+    delegate :commontable, to: :thread
 
     protected
 

@@ -17,7 +17,14 @@
     
       <div class="comment_div comment_core">
         <div class="comment_owner">
-          <%= link.blank? ? name : link_to(name, link) %>
+          <% if link.blank? %>
+            <%= name %>
+          <% else %>
+            <%= link_to name, link,
+            class: (creator == comment.commontable.owner) ? "teal-text" : "" %>
+          <% end %>
+
+          <%= " - ##{index + 1}" %>
         </div>
 
         <div class="comment_body">

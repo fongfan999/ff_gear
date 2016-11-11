@@ -58,7 +58,8 @@ en:
       errors: 
         already_subscribed: "You are already subscribed to this discussion."
         not_subscribed: "You are not subscribed to this discussion."
-    thread: 
+    thread:
+      header: "Comments" 
       actions: 
         show_all: "Show All Comments"
         filter: "Filter Comments"

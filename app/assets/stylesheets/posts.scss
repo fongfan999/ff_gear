@@ -171,11 +171,19 @@
   padding: 10px;
   max-width: 700px;
 
+  .thread_comment_list {
+    margin-top: -15px;
+  }
+
   .comments_list {
     max-width: 700px;
     max-height: 500px;
-    padding: 15px;
+    padding-left: 15px;
     overflow: hidden;
+
+    .row:first-child {
+      padding-top: 20px;
+    }
 
     .comment {
       display: table;

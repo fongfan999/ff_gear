@@ -4,9 +4,9 @@
 %>
 
 <div class="comments_list">
-  <% comments.includes(:creator, :editor).each do |comment| %>
+  <% comments.includes(:creator, :editor).each_with_index do |comment, i| %>
     <%= render :partial => 'commontator/comments/show',
                :locals => { :comment => comment,
-                            :user => user } %>
+                            :user => user, :index => i } %>
   <% end %>
 </div>
