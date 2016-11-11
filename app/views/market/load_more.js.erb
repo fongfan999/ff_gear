@@ -5,7 +5,7 @@ $('#posts').append('<%= j render @posts %>');
   $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
 
   // Add view more button
-  var viewMore = $('.pagination .next_page');
+  var viewMore = $('.pagination .next_page a');
   viewMore.attr('data-remote', true).text('xem thêm').
     addClass('view-more-btn btn');
   $("#infinite-scrolling").append(viewMore.clone());

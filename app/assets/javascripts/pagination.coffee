@@ -1,7 +1,8 @@
 $ ->
-  if $('#infinite-scrolling').size() > 0
+  if $('#infinite-scrolling').length > 0
     $(window).on 'scroll', ->
-      morePostsUrl = $('.pagination .next_page').attr('href')
+      console.log "Hihi"
+      morePostsUrl = $('.pagination .next_page a').attr('href')
       scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop()
       
       if morePostsUrl && scrollBottom - 300 < 0
