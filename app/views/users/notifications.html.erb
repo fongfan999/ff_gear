@@ -1,14 +1,16 @@
 <div class="container">
   <div class="card-panel teal">
     <h4 class="center-align white-text">
-      Thông báo (<%= @notifications.count %>)
+      Thông báo
     </h4>
   </div>
 
   <div id="notifications">
     <% @notification_days.each do |day, notifications| %>
       <div class="group-by-date card">
-        <h5 class="teal white-text"><%= day.strftime("%d - %m - %Y") %></h5>
+        <h5 class="teal white-text">
+          <%= day.strftime("%d - %m - %Y") %> (<%= notifications.count %>)
+        </h5>
         
         <% notifications.each do |notification| %>
           <div class="card" id="<%= dom_id(notification, :hide) %>">
@@ -50,5 +52,9 @@
         <% end %>
       </div>
     <% end %>
+  </div>
+
+  <div class="center-align">
+    <%= will_paginate @notification_days %>
   </div>
 </div>

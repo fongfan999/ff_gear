@@ -20,10 +20,12 @@
           <%= link.blank? ? name : link_to(name, link) %>
         </div>
 
-          <div class="comment_body">
-            <%= render :partial => 'commontator/comments/body',
-                 :locals => { :comment => comment } %>
-          </div>
+        <div class="comment_body">
+          <%= render :partial => 'commontator/comments/body',
+               :locals => { :comment => comment } %>
+        </div>
+        
+        <div class="divider"></div>
       </div>
     
       <div class="comment_div comment_info">
