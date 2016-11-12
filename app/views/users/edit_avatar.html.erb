@@ -1,22 +1,13 @@
 <div id="change-avatar-form" class="modal">
   <%= simple_form_for @user, validate: true,
-    html: { class: "full-width" } do |f| %>
+    html: { class: "full-width", multipart: true } do |f| %>
   <div class="modal-content">
     <h4>Thay đổi ảnh đại diện</h4>
     <br>
     <br>
     <p>
     <p>
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>Ảnh</span>
-          <%= f.input_field :avatar, class: 'present-field' %>
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text"
-          placeholder="Nhấn vào đây hoặc Kéo và thả để thay đổi ảnh">
-        </div>
-      </div>
+    <%= f.input :avatar, as: :file, label: "Ảnh" %>
     </p>
   </div>
   
