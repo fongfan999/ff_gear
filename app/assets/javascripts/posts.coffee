@@ -40,9 +40,10 @@ $ ->
   if anchorComment.length != 0
     $(".comments-btn").click()
 
-    $('html, body').animate {
-      scrollTop: $('#comments').offset().top + 450
-    }, 2000
+    if $('#comments').length
+      $('html, body').animate {
+        scrollTop: $('#comments').offset().top + 450
+      }, 2000
 
 
   # Trigger rendering comments is completed
@@ -57,7 +58,8 @@ $ ->
     else
       threadBox.mCustomScrollbar("scrollTo", "bottom", {scrollInertia: 0})
 
-      $('html, body').scrollTop $('#comments').offset().top
+      if $('#comments').length
+        $('html, body').scrollTop $('#comments').offset().top
 
 
   

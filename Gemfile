@@ -57,6 +57,14 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'commontator', '~> 4.11', '>= 4.11.1'
 # # Custom Scrollbar
 # gem 'scrollbar-rails', '~> 1.0'
+# Validate as client side
+gem 'client_side_validations',
+  github: 'DavyJonesLocker/client_side_validations',
+  branch: 'rails5'
+# # Simple From for Clident Side validation
+gem 'client_side_validations-simple_form',
+  github: 'DavyJonesLocker/client_side_validations-simple_form',
+  branch: 'rails5'
 
 
 group :development, :test do

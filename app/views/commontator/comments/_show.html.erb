@@ -21,7 +21,7 @@
             <%= name %>
           <% else %>
             <%= link_to name, link,
-            class: (creator == comment.commontable.owner) ? "teal-text" : "" %>
+            class: (creator == comment.commontable.owner) ? "unread" : "" %>
           <% end %>
 
           <%= " - ##{index + 1}" %>

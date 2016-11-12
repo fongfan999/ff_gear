@@ -18,12 +18,14 @@
 //= require dropzone
 //= require materialize-form
 //= require jquery.mCustomScrollbar.concat.min
+//= require rails.validations
+//= require rails.validations.simple_form
 //= require_tree .
 
 
 $(function() {
+  // Animate loader off screen
   $(window).load(function() {
-    // Animate loader off screen
     $(".se-pre-con").fadeOut("slow");
   });
 
@@ -38,8 +40,8 @@ $(function() {
       top: $('.nav-pushpin-wrapper').offset().top
     });
   }
- 
 
+ 
   // Set waves-effect on all <a> and <button> tags
   $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");
 
