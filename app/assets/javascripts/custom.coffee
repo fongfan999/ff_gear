@@ -28,6 +28,11 @@ $ ->
 
   # With Ajax
   $( document ).ajaxComplete ->
+    formValidation = $('.modal').find('form[data-validate="true"]')
+
+    if formValidation.length
+      formValidation.enableClientSideValidations()
+    
     # Display character counter
     $('.present-field').characterCounter()
 

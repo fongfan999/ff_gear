@@ -12,14 +12,14 @@
         <% end %>
 
         <%= f.input :name, label: "Tên", autofocus: true,
-          input_html: { min: 2, max: 45,
-          length: 45 }  %>
+          input_html: { min: 2, max: 45, length: 45,
+            class: "present-field" }  %>
       </div>
     </div>
   </div>
   
   <div class="modal-footer">
-    <%= f.button :button, 'cập nhật', class: "modal-action " %>
+    <%= f.button :button, 'cập nhật', class: "modal-action present-submit" %>
     <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
   </div>
   <% end %>
