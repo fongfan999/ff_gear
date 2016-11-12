@@ -9,7 +9,7 @@ class User < ApplicationRecord
     class_name: "Post"
   has_many :notifications
 
-  validates :avatar, presence: true
+  validates :avatar, format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }
   validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
 
   mount_uploader :avatar, AvatarUploader

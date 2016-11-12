@@ -6,36 +6,30 @@ $ ->
     else
       $('.go-to-top').fadeOut("slow")
 
-  # Validate input as presence
-  validatePresence = ->
-    presentSubmit = $('.present-submit')
-    presentField = $('.present-field')
-    minLength = parseInt(presentField.attr('min')) || 1
-    maxLength = parseInt(presentField.attr('max')) || 99999
 
-    presentSubmit.attr('disabled', true)
-
-    presentField.bind 'keyup change', ->
-      currentLength = $(this).val().length
-
-      if currentLength < minLength || currentLength > maxLength
-        presentSubmit.attr('disabled', true)
-      else
-        presentSubmit.attr('disabled', false)
-
-  # Without Ajax
-  validatePresence()
-
-  # With Ajax
+  # With Ajax only
   $( document ).ajaxComplete ->
-    formValidation = $('.modal').find('form[data-validate="true"]')
+    # Enable form Validation
+    formValidation = $('form[data-validate="true"]')
+
 
     if formValidation.length
       formValidation.enableClientSideValidations()
-    
-    # Display character counter
-    $('.present-field').characterCounter()
 
-    validatePresence()
+    # Disable submit button when Form is not validated
+    validationBtn = formValidation.find('.validation-btn')
+    validationBtn.attr('disabled', true)
+    if validationBtn.length
+      formValidation.bind 'keyup change', ->
+        console.log "changed"
+        setTimeout (->
+          failureForm = $('.input-field.has-error')
+          if failureForm.length
+            validationBtn.attr('disabled', true)
+          else
+            validationBtn.attr('disabled', false)
+        ), 100
+      
+
     
     

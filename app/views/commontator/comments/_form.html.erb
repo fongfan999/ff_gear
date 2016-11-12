@@ -22,8 +22,7 @@
 <% end %>
 
 <div class="row">
-<%= form_for([commontator, thread, comment],
-             :remote => !no_remote)  do |f| %>
+<%= form_for([commontator, thread, comment], remote: !no_remote)  do |f| %>
   
     <div class="divider"></div>
   <%= hidden_field_tag :per_page, per_page %>
