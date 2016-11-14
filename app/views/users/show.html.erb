@@ -8,7 +8,7 @@
     <div class="about-summary card row">
       <div class="about-bg"></div>
       <div class="about-name">
-        <%= link_to edit_name_user_path(@user), remote: true,
+        <%= link_to edit_user_path(@user), remote: true,
           class: "right" do %>
           <%= material_icon_of "edit" %>
         <% end %>
@@ -19,6 +19,7 @@
           <%= material_icon_of "photo_camera" %>
         <% end %>
           
+        <h6>@<%= @user.username %></h6>
         <h4><%= @user.name %></h4>
       </div>
     </div>

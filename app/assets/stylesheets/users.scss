@@ -17,9 +17,8 @@
 
     .about-summary {
       position: relative;
-      height: 280px;
 
-      .about-bg, .about-name {
+      .about-bg {
         height: 140px;
       }
 
@@ -58,6 +57,11 @@
           width: 120px;
           height: 120px;
           border: 2px solid #fff;
+        }
+
+        h6 {
+          font-weight: 500;
+          color: $teal-color;
         }
       }
     }

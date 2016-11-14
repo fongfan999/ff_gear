@@ -28,10 +28,9 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :users, only: [:show, :update] do
+  resources :users, only: [:show, :edit, :update] do
     member do
       get :edit_avatar
-      get :edit_name
       get :favorite_posts
     end
   end

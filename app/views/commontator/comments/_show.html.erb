@@ -23,8 +23,11 @@
             <%= link_to name, link,
             class: (creator == comment.commontable.owner) ? "unread" : "" %>
           <% end %>
-
-          <%= " - ##{index + 1}" %>
+          
+          <% if creator.username %>
+            <small><%= " (#{creator.username})" %></small>
+          <% end %>
+          
         </div>
 
         <div class="comment_body">
