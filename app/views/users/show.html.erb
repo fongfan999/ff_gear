@@ -186,3 +186,8 @@
     </div>
   </div>
 </div>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :name %>
+  <%= f.input :username %>
+<% end %>

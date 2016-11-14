@@ -12,12 +12,13 @@
         <% end %>
         
         <div class="col s12 m6 l6">
-          <%= f.input :name, label: "Tên", autofocus: true,
-          input_html: { length: 45 }  %>
+          <%= f.input :name, label: "Tên", label_html: { class: "active" },
+            input_html: { length: 45 }  %>
         </div>
 
         <div class="col s12 m6 l6">
-          <%= f.input :username, input_html: { length: 20 } %>
+          <%= f.input :username, label_html: { class: "active" },
+            input_html: { length: 20 } %>
         </div>
       </div>
     </div>
