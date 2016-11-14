@@ -8,6 +8,9 @@ $ ->
 
   # With Ajax only
   $( document ).ajaxComplete ->
+    # Fix lable on input
+    $("input textarea").focus()
+
     # Enable form Validation
     formValidation = $('form[data-validate="true"]')
 

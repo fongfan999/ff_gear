@@ -12,6 +12,9 @@ class User < ApplicationRecord
   validates :avatar, presence: true,
     format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }
   validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
+  validates :username, presence: true, length: { minimum: 2 ,maximum: 20 },
+    uniqueness: { case_sensitive: false }, format: { with: /\A[a-z\d]+\z/i,
+    message: "chỉ được phép chứa ký tự và số" }
 
   mount_uploader :avatar, AvatarUploader
 

@@ -50,6 +50,6 @@ class UsersController < ApplicationController
   def avatar_params
     user_hash = params.fetch(:user, nil)
 
-    user_hash.nil? ? {} : user_hash.permit(:avatar, :name)
+    user_hash.nil? ? {} : user_hash.permit(:avatar, :name, :username)
   end
 end

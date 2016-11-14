@@ -41,8 +41,12 @@ $(function() {
     });
   }
 
-  // Display character counter
-  $('input').characterCounter()
+  // Display character counter 
+  $('input').characterCounter();
+  // Display character counter with ajax
+  $(document).ajaxComplete(function() {
+    $('input').characterCounter();
+  });
  
   // Set waves-effect on all <a> and <button> tags
   $('a, button').not('.non-waves-effect').addClass("waves-effect waves-light");

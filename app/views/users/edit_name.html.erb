@@ -10,10 +10,15 @@
           class: "change-avatar" do %>
           <%= image_tag(@user.avatar, class: "circle") %>
         <% end %>
+        
+        <div class="col s12 m6 l6">
+          <%= f.input :name, label: "Tên", autofocus: true,
+          input_html: { length: 45 }  %>
+        </div>
 
-        <%= f.input :name, label: "Tên", autofocus: true,
-          input_html: { min: 2, max: 45, length: 45,
-            class: "" }  %>
+        <div class="col s12 m6 l6">
+          <%= f.input :username, input_html: { length: 20 } %>
+        </div>
       </div>
     </div>
   </div>
