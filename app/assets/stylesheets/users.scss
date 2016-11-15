@@ -67,7 +67,7 @@
     }
 
     .about-block {
-      padding: 20px 20px 0 20px;
+      padding: 20px;
 
       h5 {
         margin-bottom: 30px;
@@ -135,7 +135,7 @@
   }
 }
 
-#change-name-form.modal {
+#edit-user-form.modal {
   max-height: 100%;
   // width: 60%;
 
@@ -200,6 +200,46 @@
         .message-content {
           font-style: italic;
         }
+      }
+    }
+  }
+}
+
+#edit-profile-form {
+  .modal-content {
+    min-height: 350px;
+
+    ul.tabs {
+      background-color: #fafafa;
+      margin-bottom: 30px;
+
+      li.tab a.active {
+        color: $teal-color;
+      }
+
+      .indicator {
+        background-color: $teal-color;
+      }
+    }
+
+    .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .radio_buttons {
+      margin-bottom: 5px;
+      
+      label.radio_buttons {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .input-field {
+      width: 100%;
+
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }

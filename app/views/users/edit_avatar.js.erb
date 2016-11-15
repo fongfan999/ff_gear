@@ -1,11 +1,11 @@
 // Insert modal at the first time only
-if (!$('#change-avatar-form').length) {
+if (!$('#edit-avatar-form').length) {
   $('#about-description').
     append('<%= j render(file: "users/edit_avatar.html.erb") %>');
 }
 
 // Call modal
-$('#change-avatar-form').openModal();
+$('#edit-avatar-form').openModal();
 
 // Close #change-name-form if it exists
-$('#change-name-form').closeModal();
+$('#edit-user-form').closeModal();

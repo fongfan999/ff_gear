@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  get '/:username', to: "users#profile", as: :profile
+  get '/:username', to: "users#profile", as: :user_profile
 
   resources :users, only: [:show, :edit, :update] do
     member do
@@ -36,4 +36,6 @@ Rails.application.routes.draw do
       get :favorite_posts
     end
   end
+
+  resources :profiles, only: :update
 end

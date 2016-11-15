@@ -6,10 +6,18 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by_username(params[:username])
+
+    if @user.profile.nil?
+      @profile = Profile.create
+      @user.profile = @profile
+      @user.save
+    else
+      @profile = @user.profile
+    end
   end
 
   def show
-    redirect_to profile_path(@user.username)
+    redirect_to user_profile_path(@user.username)
   end
 
   def edit_avatar
@@ -21,7 +29,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = "Thành công"
-      redirect_to profile_path(@user.username)
+      redirect_to user_profile_path(@user.username)
     else
       flash.now[:alert] = "Thông tin không hợp lệ"
       render :show

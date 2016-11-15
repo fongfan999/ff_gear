@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :favorites, join_table: :posts_users,
     class_name: "Post"
   has_many :notifications
+  has_one :profile
 
   validates :avatar, presence: true,
     format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }

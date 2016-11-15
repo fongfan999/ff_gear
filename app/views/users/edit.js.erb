@@ -1,8 +1,8 @@
 // Insert modal at the first time only
-if (!$('#change-name-form').length) {
+if (!$('#edit-user-form').length) {
   $('#about-description').
     append('<%= j render(file: "users/edit.html.erb") %>');
 }
 
 // Call modal
-$('#change-name-form').openModal();
+$('#edit-user-form').openModal();
