@@ -1,0 +1,48 @@
+<div id="edit-profile-form" class="modal">
+  <%= simple_form_for @profile, html: { class: "full-width" } do |f| %>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s12">
+              <a href="#contact-info">
+                <%= material_icon_of "contacts" %>
+              </a>
+            </li>
+            <li class="tab col s12 ">
+              <a href="#socinal-networking" class="active">
+                <%= material_icon_of "share" %>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div id="contact-info">
+        <div class="row">
+          <%= f.input :phone, label: "Điện thoại" %>
+        </div>
+        <div class="row">
+          <%= f.input :address, label: "Địa chỉ" %>
+        </div>
+      </div>
+
+      <div id="socinal-networking">
+        <div class="row">
+          <%= f.input :fb_link, label: "Đường dẫn Facebook",
+            placeholder: "https://www.facebook.com/username" %>
+        </div>
+        <div class="row">
+          <%= f.input :gg_link, label: "Đường dẫn Google Plus",
+            placeholder: "https://plus.google.com/username" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <div class="divider"></div>
+      <%= f.button :button, 'cập nhật', class: "modal-action validation-btn" %>
+      <a class="modal-action modal-close btn-flat">Đóng</a>
+    </div>
+  <% end %>
+</div>

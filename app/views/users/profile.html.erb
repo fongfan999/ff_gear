@@ -26,165 +26,84 @@
 
     <div class="row">
       <div class="col s12 m12 l6">
-          <div class="card hoverable about-block col s12 m12 l12">
-            <h5>
-              Thông tin liên hệ
-              <%= link_to "#edit-profile-form", class: "right modal-trigger" do %>
-                <%= material_icon_of "edit" %>
-              <% end %>
-            </h5>
+        <div class="card hoverable about-block col s12 m12 l12">
+          <h5>
+            Thông tin liên hệ
+            <%= link_to "#edit-profile-form", class: "right modal-trigger" do %>
+              <%= material_icon_of "edit" %>
+            <% end %>
+          </h5>
 
-            <div class="about-info">
-              <div>
-                <%= material_icon_of "phone" %>
-                <span><%= @profile.phone %></span>
-              </div>
-              <div>
-                <%= material_icon_of "email" %>
-                <span><%= @user.email %></span>
-              </div>
-              <div>
-                <%= material_icon_of "place" %>
-                <span><%= @profile.address %></span>
-              </div>
+          <div class="about-info">
+            <div>
+              <%= material_icon_of "phone" %>
+              <span><%= @profile.phone %></span>
+            </div>
+            <div>
+              <%= material_icon_of "email" %>
+              <span><%= @user.email %></span>
+            </div>
+            <div>
+              <%= material_icon_of "place" %>
+              <span><%= @profile.address %></span>
             </div>
           </div>
+        </div>
 
-          <div class="card hoverable about-block col s12 m12 l12">
-            <h5>
-              Giới tính & Năm sinh
-              <%= material_icon_of "edit", class: "right" %>
-            </h5>
+        <div class="card hoverable about-block col s12 m12 l12">
+          <h5>
+            Mạng xã hội
+            <%= material_icon_of "edit", class: "right" %>
+          </h5>
 
-            <div class="about-info">
-              <div>
-                <%= material_icon_of "wc" %>
-                <span><%= @profile.gender %></span>
-              </div>
-              <div>
-                <%= material_icon_of "cake" %>
-                <span><%= @profile.birthday %></span>
-              </div>
+          <div class="about-info">
+            <div>
+              <%= image_tag 'facebook.png' %>
+              <span><%= link_to "Facebook", @profile.fb_link %></span>
+            </div>
+            <div>
+              <%= image_tag 'google.png' %>
+              <span><%= link_to "Google Plus", @profile.gg_link %></span>
             </div>
           </div>
+        </div>
+
+        <!-- Render modal file -->
+        <%= render file: "profiles/edit" %>
       </div>
 
       <div class="col s12 m12 l6">
-          <div class="card hoverable about-block col s12 m12 l12">
-            <h5>
-              Mạng xã hội
-              <%= material_icon_of "edit", class: "right" %>
-            </h5>
+        <div class="card hoverable about-block col s12 m12 l12">
+          <h5>
+            Posts (36)
+          </h5>
 
-            <div class="about-info">
-              <div>
-                <%= image_tag 'facebook.png' %>
-                <span><%= link_to "Facebook", @profile.fb_link %></span>
-              </div>
-              <div>
-                <%= image_tag 'google.png' %>
-                <span><%= link_to "Google Plus", @profile.gg_link %></span>
-              </div>
+          <div class="about-info">
+            <div>
+              <%= material_icon_of "looks_one" %>
+              <span><%= Post.last.title %></span>
             </div>
-          </div>
-
-          <div class="card hoverable about-block col s12 m12 l12">
-            <h5>
-              Posts (36)
-            </h5>
-
-            <div class="about-info">
-              <div>
-                <%= material_icon_of "looks_one" %>
-                <span><%= Post.last.title %></span>
-              </div>
-              <div>
-                <%= material_icon_of "looks_two" %>
-                <span><%= Post.last.title %></span>
-              </div>
-              <div>
-                <%= material_icon_of "looks_3" %>
-                <span><%= Post.last.title %></span>
-              </div>
-              <div>
-                <%= material_icon_of "looks_4" %>
-                <span><%= Post.last.title %></span>
-              </div>
-              <div>
-                <%= material_icon_of "looks_5" %>
-                <span><%= Post.last.title %></span>
-              </div>
-              
-              <a class="right" href="#">See more</a><br/>
+            <div>
+              <%= material_icon_of "looks_two" %>
+              <span><%= Post.last.title %></span>
             </div>
+            <div>
+              <%= material_icon_of "looks_3" %>
+              <span><%= Post.last.title %></span>
+            </div>
+            <div>
+              <%= material_icon_of "looks_4" %>
+              <span><%= Post.last.title %></span>
+            </div>
+            <div>
+              <%= material_icon_of "looks_5" %>
+              <span><%= Post.last.title %></span>
+            </div>
+            
+            <a class="right" href="#">See more</a><br/>
           </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<div id="edit-profile-form" class="modal">
-  <%= simple_form_for @profile, html: { class: "full-width" } do |f| %>
-
-  <div class="modal-content">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s4">
-            <a href="#contact-info" class="active">
-              <%= material_icon_of "contacts" %>
-            </a>
-          </li>
-          <li class="tab col s4">
-            <a href="#gender-birthday">
-              <%= material_icon_of "wc" %>
-            </a>
-          </li>
-          <li class="tab col s4 ">
-            <a href="#socinal-networking">
-              <%= material_icon_of "share" %>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div id="contact-info">
-      <div class="row">
-        <%= f.input :phone, label: "Điện thoại" %>
-      </div>
-      <div class="row">
-        <%= f.input :address, label: "Địa chỉ" %>
-      </div>
-    </div>
-
-    <div id="gender-birthday">
-      <div class="row">
-        <%= f.input :gender, label: "Giới tính", as: :radio_buttons,
-          collection: [['Nam', true] ,['Nữ', false]] %>
-      </div>
-      <div class="row">
-        <%= f.input :birthday, label: "Ngày sinh" %>
-      </div>
-    </div>
-
-    <div id="socinal-networking">
-      <div class="row">
-        <%= f.input :fb_link, label: "Đường dẫn Facebook",
-          placeholder: "https://www.facebook.com/username" %>
-      </div>
-      <div class="row">
-        <%= f.input :gg_link, label: "Đường dẫn Google Plus",
-          placeholder: "https://plus.google.com/username" %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="modal-footer">
-    <div class="divider"></div>
-    <%= f.button :button, 'cập nhật', class: "modal-action validation-btn" %>
-    <a class="modal-action modal-close btn-flat">Đóng</a>
-  </div>
-  <% end %>
-</div>
-
