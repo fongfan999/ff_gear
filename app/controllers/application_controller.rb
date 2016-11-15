@@ -2,10 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :location
 
-  protected
-  def handle_unverified_request
-    true
-  end
+  # protected
+  # def handle_unverified_request
+  #   true
+  # end
 
   private
 

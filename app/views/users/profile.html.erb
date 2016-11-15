@@ -9,7 +9,7 @@
       <div class="about-bg"></div>
       <div class="about-name">
         <%= link_to edit_user_path(@user), remote: true,
-          class: "right" do %>
+          class: "edit-name-icon" do %>
           <%= material_icon_of "edit" %>
         <% end %>
         
@@ -25,24 +25,36 @@
     </div>
 
     <div class="row">
-      <div class="col s12 m12 l6">
-        <div class="card hoverable about-block col s12 m12 l12">
-          <h5>
-            Thông tin liên hệ
-            <%= link_to "#edit-profile-form", class: "right modal-trigger" do %>
-              <%= material_icon_of "edit" %>
-            <% end %>
-          </h5>
+      <div class="col s12 m12 l6 about-block">
+        <h5>
+          Thông tin liên hệ
+          <%= link_to material_icon_of("edit"), "#edit-profile-form",
+            class: "right modal-trigger" %>
+        </h5>
 
+        <div class="row">
+          <ul class="tabs">
+            <li class="tab col s6">
+              <a href="#profile-contact"><%= material_icon_of "contact_phone" %></a>
+            </li>
+            <li class="tab col s6">
+              <a href="#profile-social"><%= material_icon_of "share" %></a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="profile-contact" class="col s12">
           <div class="about-info">
             <div>
               <%= material_icon_of "phone" %>
               <span><%= @profile.phone %></span>
             </div>
+
             <div>
               <%= material_icon_of "email" %>
               <span><%= @user.email %></span>
             </div>
+
             <div>
               <%= material_icon_of "place" %>
               <span><%= @profile.address %></span>
@@ -50,17 +62,13 @@
           </div>
         </div>
 
-        <div class="card hoverable about-block col s12 m12 l12">
-          <h5>
-            Mạng xã hội
-            <%= material_icon_of "edit", class: "right" %>
-          </h5>
-
+        <div id="profile-social" class="col s12">
           <div class="about-info">
             <div>
               <%= image_tag 'facebook.png' %>
               <span><%= link_to "Facebook", @profile.fb_link %></span>
             </div>
+
             <div>
               <%= image_tag 'google.png' %>
               <span><%= link_to "Google Plus", @profile.gg_link %></span>
@@ -72,8 +80,7 @@
         <%= render file: "profiles/edit" %>
       </div>
 
-      <div class="col s12 m12 l6">
-        <div class="card hoverable about-block col s12 m12 l12">
+      <div class="col s12 m12 l6 about-block right">
           <h5>
             Posts (36)
           </h5>
@@ -102,7 +109,6 @@
             
             <a class="right" href="#">See more</a><br/>
           </div>
-        </div>
       </div>
     </div>
   </div>

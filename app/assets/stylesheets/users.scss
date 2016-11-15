@@ -32,9 +32,14 @@
         text-align: center;
         padding: 10px;
 
+        .edit-name-icon {
+          position: absolute;
+          right: 10px;
+          top: 150px;
+        }
+
         a.change-avatar {
           margin-top: -70px;
-          margin-left: 12px;
           position: relative;
 
           i {
@@ -68,10 +73,24 @@
 
     .about-block {
       padding: 20px;
+      @extend .card;
+      @extend .hoverable; 
 
       h5 {
         margin-bottom: 30px;
         font-weight: bold;
+      }
+
+      ul.tabs {
+        li.tab a.active {
+          i {
+            color: $teal-color;
+          }
+        }
+
+        .indicator {
+          background-color: $teal-color;
+        }
       }
 
       .about-info {
@@ -96,11 +115,6 @@
             line-height: 24px;
           }
         }
-      }
-
-      .divider {
-        margin-top: 15px;
-        background-color: #3ec9cb;
       }
     }
   }
@@ -224,15 +238,6 @@
 
     .row:last-child {
       margin-bottom: 0;
-    }
-
-    .radio_buttons {
-      margin-bottom: 5px;
-      
-      label.radio_buttons {
-        font-size: 12px;
-        margin-bottom: 5px;
-      }
     }
 
     .input-field {

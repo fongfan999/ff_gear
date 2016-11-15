@@ -77,7 +77,9 @@ $(function() {
   $('.tooltipped').tooltip({delay: 20});
 
   // Make dialog boxes working
-  $('.modal-trigger').leanModal();
+  $('.modal-trigger').leanModal({
+    ready: function() { $('ul.tabs').tabs(); }
+  });
 
   // Caroulsel config
   $('#carousel').flexslider({
