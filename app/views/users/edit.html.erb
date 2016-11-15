@@ -12,13 +12,13 @@
         <% end %>
         
         <div class="col s12 m6 l6">
-          <%= f.input :name, label: "Tên", label_html: { class: "active" },
-            input_html: { length: 45 }  %>
+          <%= f.input :name, label: "Tên", input_html: { length: 45 },
+            label_html: { class: ("active" unless @user.new_record?) }  %>
         </div>
 
         <div class="col s12 m6 l6">
-          <%= f.input :username, label_html: { class: "active" },
-            input_html: { length: 20 } %>
+          <%= f.input :username, input_html: { length: 20 },
+            label_html: { class: ("active" unless @user.new_record?) } %>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
   
   <div class="modal-footer">
     <%= f.button :button, 'cập nhật', class: "modal-action validation-btn" %>
-    <a href="#!" class="modal-action modal-close btn-flat">Đóng</a>
+    <a class="modal-action modal-close btn-flat">Đóng</a>
   </div>
   <% end %>
 </div>

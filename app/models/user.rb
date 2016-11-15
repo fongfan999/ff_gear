@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   acts_as_commontator
 
+  after_create :create_username
+
   # Don't store password
   def password_required?
     false
@@ -58,5 +60,11 @@ class User < ApplicationRecord
 
   def unread_counter
     notifications.select(&:unread?).count
+  end
+
+  private
+
+  def create_username
+    self.update(username: "user#{id}")
   end
 end

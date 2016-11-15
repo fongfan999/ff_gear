@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
+  get '/:username', to: "users#profile", as: :profile
+
   resources :users, only: [:show, :edit, :update] do
     member do
       get :edit_avatar

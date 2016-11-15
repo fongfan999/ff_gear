@@ -81,7 +81,8 @@
                   </ul>
                 </li>
                 <li><%= link_to image_tag(current_user.avatar,
-                  size: "32x32", class: "bordered-logo"), current_user %></li>
+                  size: "32x32", class: "bordered-logo"),
+                  profile_path(current_user.username) %></li>
               <% else %>
                 <li><%= link_to material_icon_of("account_circle"),
                   new_user_session_path, class: "tooltipped",
@@ -110,7 +111,8 @@
       <li>
         <div class="userView">
           <%= link_to image_tag(current_user.avatar,
-            class: "bordered-logo"), current_user, class: 'non-waves-effect' %>
+            class: "bordered-logo"), current_user.username,
+            class: 'non-waves-effect' %>
 
           <span class="white-text name"><%= current_user.name %></span>
           <span class="white-text email"><%= current_user.email %></span>
@@ -131,7 +133,7 @@
         <span class="counter notice"><%= current_user.unread_counter %></span>
       </li>
       <li><%= link_to material_icon_of("account_circle", name: "Profile"),
-        current_user %></li>
+        current_user.username %></li>
       <li><%= link_to material_icon_of("favorite", name: "Favorite"),
         favorite_posts_user_path(current_user) %><span class="counter"><%= current_user.favorites.count %></span></li>
       <li><div class="divider"></div></li>

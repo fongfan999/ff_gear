@@ -1,8 +1,15 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-  before_action :set_user, except: [:notifications]
+  before_action :set_user, except: [:profile, :notifications]
+
+  rescue_from ActionController::UrlGenerationError , with: :not_persisted
+
+  def profile
+    @user = User.find_by_username(params[:username])
+  end
 
   def show
+    redirect_to profile_path(@user.username)
   end
 
   def edit_avatar
@@ -14,7 +21,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = "Thành công"
-      redirect_to @user
+      redirect_to profile_path(@user.username)
     else
       flash.now[:alert] = "Thông tin không hợp lệ"
       render :show
@@ -49,5 +56,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:avatar, :name, :username)
+  end
+
+  def not_persisted
+    flash[:alert] = "Người dùng không tồn tại"
+    redirect_to root_path
   end
 end
