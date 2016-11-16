@@ -19,13 +19,13 @@
 
 <span id="thread_<%= thread.id %>_span" class="thread_span">
   <span id="thread_<%= thread.id.to_s %>_actions_span" class="thread_actions">
-    <% if can_subscribe %>
-      <span id="thread_<%= thread.id.to_s %>_subscription_span" class="thread_subscription">
-        <%= render :partial => 'commontator/subscriptions/link',
+    <%# if can_subscribe %>
+      <!-- <span id="thread_<%#= thread.id.to_s %>_subscription_span" class="thread_subscription"> -->
+        <%#= render :partial => 'commontator/subscriptions/link',
                    :locals => { :thread => thread,
                                 :user => user } %>
-      </span>
-    <% end %>
+      <!-- </span> -->
+    <%# end %>
 
     <% if can_edit %>
       <% filter_string = show_all ? 'filter' : 'show_all'
@@ -54,6 +54,14 @@
   <div id="thread_<%= thread.id.to_s %>_header_div" class="thread_header">
     <h6 class="card-panel teal white-text">
       <%= t("commontator.thread.header") + " (#{thread.comments.count})" %>
+      
+      <% if can_subscribe %>
+        <span id="thread_<%= thread.id.to_s %>_subscription_span" class="thread_subscription">
+          <%= render :partial => 'commontator/subscriptions/link',
+                     :locals => { :thread => thread,
+                                  :user => user } %>
+        </span>
+      <% end %>
     </h6>
   </div>
 

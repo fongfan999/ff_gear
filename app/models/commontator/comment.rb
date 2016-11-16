@@ -119,14 +119,9 @@ module Commontator
     private
 
     def push_notification
-      # Watch/Unwatch
-      thread.subscribe(creator)
-
-
-
       thread.subscribers.each do |subscriber|
         unless creator == subscriber
-          subscriber.get_notification(thread.commontable, creator, body, self.id)
+          subscriber.get_notification(thread.commontable, creator, body, id)
         end
       end
     end

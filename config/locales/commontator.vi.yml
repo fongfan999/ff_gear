@@ -7,7 +7,7 @@ vi:
         editor: Người chỉnh sửa
         thread: Thảo luận
       commontator/subscription: 
-        subscriber: Người đăng ký
+        subscriber: Người theo dõi
         thread: Thảo luận
       commontator/thread: 
         commontable: Commontable
@@ -16,8 +16,8 @@ vi:
         one: bình luận
         other: bình luận
       commontator/subscription: 
-        one: đăng ký
-        other: đăng ký
+        one: theo dõi
+        other: theo dõi
       commontator/thread: 
         one: thread
         other: threads

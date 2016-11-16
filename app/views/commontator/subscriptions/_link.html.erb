@@ -5,7 +5,7 @@
 
 <% is_subscribed = !!thread.subscription_for(user) %>
 <% sub_string = is_subscribed ? "unsubscribe" : "subscribe" %>
-<%= link_to t("commontator.subscription.actions.#{sub_string}"),
+<%#= link_to t("commontator.subscription.actions.#{sub_string}"),
             commontator.polymorphic_path([sub_string, thread]),
             :confirm => (is_subscribed ? t('commontator.subscription.actions.confirm_unsubscribe') : \
                           nil),
@@ -13,3 +13,24 @@
             :id => "thread_#{thread.id.to_s}_#{sub_string}_link",
             :class => "thread_#{sub_string}_link",
             :remote => true %>
+
+<%= link_to commontator.polymorphic_path([sub_string, thread]),
+            :confirm => (is_subscribed ? t('commontator.subscription.actions.confirm_unsubscribe') : \
+                          nil),
+            :method => :put,
+            :id => "thread_#{thread.id.to_s}_#{sub_string}_link",
+            :class => "thread_#{sub_string}_link",
+            :remote => true  do %>
+
+  <div class="switch right"
+    title="<%= t("commontator.subscription.actions.#{sub_string}") %>">
+    <label>
+      <% if is_subscribed %>
+        <input type="checkbox" checked>
+      <% else %>
+        <input type="checkbox">
+      <% end %>
+      <span class="lever"></span>
+    </label>
+  </div>
+<% end %>

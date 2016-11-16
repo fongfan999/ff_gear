@@ -8,6 +8,9 @@ $ ->
 
   # With Ajax only
   $( document ).ajaxComplete ->
+    # Tooltip on ajax
+    $('.tooltipped').tooltip({delay: 20});
+
     # Fix lable on input
     $("input textarea").focus()
 
