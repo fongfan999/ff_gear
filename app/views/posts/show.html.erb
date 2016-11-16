@@ -2,76 +2,86 @@
 <br/>
 <br/>
 
-<div class="ctn">
-  <div id="post" class="card">
-    <div class="right">
-      <a class='dropdown-button' href='#' data-activates='action'>
-        <%= material_icon_of "more_vert" %>
-      </a>
+<div class="row ctn">
+  <div class="col s12 m8 l8">
+    <div id="post" class="card">
+      <div class="right">
+        <a class='dropdown-button' href='#' data-activates='action'>
+          <%= material_icon_of "more_vert" %>
+        </a>
 
-    <!-- Dropdown Structure -->
-    <ul id='action' class='dropdown-content'>
-      <li class="edit"><%= link_to "Sửa", [:edit, @post] %></li>
-      <li class="delete"><%= link_to "Gỡ", @post, method: :delete,
-        data: { confirm: "Are you sure?" } %></li>
-    </ul>
-    </div>
-    <header>
-      <h4><%= @post.title %></h4>
-    </header>
-    <div class="divider"></div>
+      <!-- Dropdown Structure -->
+      <ul id='action' class='dropdown-content'>
+        <li class="edit"><%= link_to "Sửa", [:edit, @post] %></li>
+        <li class="delete"><%= link_to "Gỡ", @post, method: :delete,
+          data: { confirm: "Are you sure?" } %></li>
+      </ul>
+      </div>
+      <header>
+        <h4><%= @post.title %></h4>
+      </header>
+      <div class="divider"></div>
 
-    <div class="row">
-      <div class="col s12 m6 l6">
-        <div id="slider" class="flexslider">
-          <ul class="slides">
-            <% @post.attachments.each do |attachment| %>
-              <li><%= image_tag attachment.file.url, class: "zoom-in responsive-img" %></li>
-            <% end %>
-          </ul>
+      <div class="row">
+        <div class="col s12 m6 l6">
+          <div id="slider" class="flexslider">
+            <ul class="slides">
+              <% @post.attachments.each do |attachment| %>
+                <li><%= image_tag attachment.file.url, class: "zoom-in responsive-img" %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div id="carousel" class="flexslider">
+            <ul class="slides">
+              <% @post.attachments.each do |attachment| %>
+                <li><%= image_tag attachment.file.url,
+                  class: "responsive-img" %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-        <div id="carousel" class="flexslider">
-          <ul class="slides">
-            <% @post.attachments.each do |attachment| %>
-              <li><%= image_tag attachment.file.url,
-                class: "responsive-img" %></li>
-            <% end %>
-          </ul>
+        <div class="col s12 m6 l6">
+          <p>Adress: <%= @post.address %></p>
+          <p><%= simple_format(@post.description) %></p>
+          <p>
+          <%= @post.latitude %>, <%= @post.longitude %>
+          </p>
         </div>
       </div>
-      <div class="col s12 m6 l6">
-        <p>Adress: <%= @post.address %></p>
-        <p><%= simple_format(@post.description) %></p>
-        <p>
-        <%= @post.latitude %>, <%= @post.longitude %>
-        </p>
-      </div>
-    </div>
 
-    <div class="divider"></div>
-    
-    <div class="action-bar">
-      <% if user_signed_in? %>
-      <%= link_to favorite_post_path(@post), class: "favorite", method: :patch,
-        remote: true do %>
-        <% if current_user.favorite?(@post) %>
-          <%= material_icon_of 'favorite', class: "liked" %>
-        <% else %>
-          <%= material_icon_of 'favorite_border' %>
+      <div class="divider"></div>
+      
+      <div class="action-bar">
+        <% if user_signed_in? %>
+        <%= link_to favorite_post_path(@post), class: "favorite", method: :patch,
+          remote: true do %>
+          <% if current_user.favorite?(@post) %>
+            <%= material_icon_of 'favorite', class: "liked" %>
+          <% else %>
+            <%= material_icon_of 'favorite_border' %>
+          <% end %>
         <% end %>
-      <% end %>
-      <% end %>
+        <% end %>
 
-      <%= link_to (material_icon_of "forum"), "#", class: "comments-btn" %>
+        <%= link_to (material_icon_of "forum"), "#", class: "comments-btn" %>
 
-      <%= link_to (material_icon_of "share"), "#social-share",
-        class: "share modal-trigger" %>
+        <%= link_to (material_icon_of "share"), "#social-share",
+          class: "share modal-trigger" %>
+      </div>
+
+      <%= render "social_share", full_path: post_url(@post) %>
     </div>
 
-    <%= render "social_share", full_path: post_url(@post) %>
+    <div id="comments">
+      <%= commontator_thread(@post) %>
+    </div>
   </div>
+  
+  <div class="col s12 m4 l4 card">
+    <div class="posts">
+      <h5>Có thể bạn quan tâm</h5>
 
-  <div id="comments">
-    <%= commontator_thread(@post) %>
+      <%= render @related_posts, post_class: "s12 m12 l12" %>
+    </div>
   </div>
 </div>

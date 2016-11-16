@@ -168,8 +168,6 @@
 }
 
 #comments {
-  padding: 10px;
-  max-width: 700px;
 
   .thread_comment_list {
     margin-top: -15px;
@@ -251,10 +249,10 @@
 
   .new_comment {
     width: 100%;
-    max-width: 700px;
   }
 
   form {
+    max-width: 100%;
     .field_with_errors {
       padding-left: 45px;
     }

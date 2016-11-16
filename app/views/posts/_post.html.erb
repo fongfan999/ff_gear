@@ -1,4 +1,4 @@
-<div class="col s12 m6 l4">
+<div class="col <%= post_class %>">
   <div class="card hoverable"> 
     <%= image_tag post.owner.avatar, class: "circle owner-avatar" %>
     <div class="card-image waves-effect waves-block waves-light">
@@ -36,11 +36,6 @@
             <div class="divider"></div>
             <%= time_ago_in_words post.created_at %>
           </span>
-        </div>
-        
-        <div class="truncate">
-          <%= material_icon_of "person", class: "small left" %>
-          <span><div class="divider"></div><%= post.owner.name %></span>
         </div>
       </div>
     </div>

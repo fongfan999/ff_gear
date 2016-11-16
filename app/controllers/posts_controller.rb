@@ -7,6 +7,9 @@ class PostsController < ApplicationController
     if params[:notification_id]
       Notification.find(params[:notification_id]).mark_as_read
     end
+
+    # Search by name this post
+    @related_posts = @post.related_posts
   end
 
   def new

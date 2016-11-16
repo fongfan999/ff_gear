@@ -12,9 +12,9 @@ if (!$('#infinite-scrolling').length) {
 
 $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
 
-
 // Render posts
-$("#posts").html('<%= j render @posts %>').hide().fadeIn("slow");
+$("#posts").html("<%= j render(@posts, post_class: 's12 m6 l4') %>")
+  .hide().fadeIn("slow");
 
 // Scroll to top
 var page = $("html, body");

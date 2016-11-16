@@ -50,9 +50,10 @@
 
 #posts {
   margin-top: 128px;
+}
 
+.posts {
   .card {
-    height: 560px;
     box-sizing: border-box;
     box-shadow: none;
 
@@ -60,11 +61,9 @@
       width: 100%;
     }
 
-    &:hover {
-      img {
-        transform: scale(1.5);
-        transition: transform 0.4s, opacity 0.1s 0.3s;
-      }
+    img:hover {
+      transform: scale(1.5);
+      transition: transform 0.4s, opacity 0.1s 0.3s;
     }
 
     .owner-avatar {
@@ -72,7 +71,7 @@
       height: 30px;
       position: absolute;
       z-index: 2;
-      bottom: 295px;
+      top: 235px;
       left: 20px;
     }
 
@@ -83,7 +82,6 @@
     }
 
     .card-content {
-      height: 310px;
       color: #1c1c1c;
       border-top: 1px solid $primary-color;
       

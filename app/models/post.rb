@@ -22,8 +22,8 @@ class Post < ApplicationRecord
 
   self.per_page = 3
 
-  def color
-    category.color
+  def related_posts
+    Category.find(self.category_id).posts.where.not(id: self.id).limit(5)
   end
 
   private
