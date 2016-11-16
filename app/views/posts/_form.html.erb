@@ -8,11 +8,10 @@
   <% end %>
   
   <%= f.input :address, label: "Nơi bán" do %>
-    <%= f.input_field :address, length: 60, placeholder: "Quận 1, Hồ Chí Minh",
-      value: location_address(post.address) %>
+    <%= f.input_field :address, length: 60,
+      placeholder: "Quận 1, Hồ Chí Minh",
+      value: post.address || location %>
     <%= material_icon_of "location_on", class: "prefix" %>
-    <i class="material-icons clear-input tooltipped" data-position="bottom"
-      data-tooltip="Vị trí sai?">clear</i>
   <% end %>
 
   <%= f.input :price, label: "Giá (VND)" do %>

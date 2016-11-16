@@ -16,6 +16,7 @@ class Post < ApplicationRecord
 
   after_validation :geocode, if: :should_save?
   after_save :geoword, if: :should_save?
+  after_save :assign_user_address, on: :create
 
   acts_as_commontable
 
@@ -52,5 +53,10 @@ class Post < ApplicationRecord
 
       update_columns(address: permitted_address)
     end
+  end
+
+  def assign_user_address
+    profile = owner.should_create_profile?
+    profile.update(address: self.address) if profile.address.blank?
   end
 end

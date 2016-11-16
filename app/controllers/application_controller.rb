@@ -1,28 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :location
 
-  # protected
-  # def handle_unverified_request
-  #   true
-  # end
 
-  private
+  protected
 
   def location
-    address_ip = if Rails.env.production?
-      request.location
+    # Using user's address
+    if user_signed_in? && current_user.profile && current_user.profile.address.present?
+      current_user.profile.address
     else
-      "115.79.53.75"
-    end
+      # Using address from user's IP
+      address_ip = if Rails.env.production?
+        request.location
+      else
+        "115.79.53.75"
+      end
 
-    session[:location] ||= Geocoder.search(address_ip).first.as_json
-  end
+      session[:location] ||= Geocoder.search(address_ip).first.as_json
 
-  def location_address(address = nil)
-    if address.present?
-      address
-    else
       city = session[:location]['data']['city']
       province = session[:location]['data']['region_name']
       
@@ -30,5 +25,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :location_address
+  helper_method :location
 end

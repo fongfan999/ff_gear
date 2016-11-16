@@ -22,9 +22,11 @@
           <span>
             <div class="divider"></div>
             <%= post.address %>
+            <% if user_signed_in? %>
             <span class="distance">
-              khoảng <%= post.distance_from(location_address).round(1) %> km
+              khoảng <%= post.distance_from(location).round(1) %> km
             </span>
+            <% end %>
           </span>
         </div>
 

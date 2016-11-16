@@ -7,13 +7,7 @@ class UsersController < ApplicationController
   def profile
     @user = User.find_by_username(params[:username])
 
-    if @user.profile.nil?
-      @profile = Profile.create
-      @user.profile = @profile
-      @user.save
-    else
-      @profile = @user.profile
-    end
+    @profile = @user.should_create_profile?
   end
 
   def show

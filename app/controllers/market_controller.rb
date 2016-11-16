@@ -1,8 +1,12 @@
 class MarketController < ApplicationController
   def index
-    @posts = Post.near(location_address, 50).paginate(page: params[:page])
+    @posts = Post.near(location, 50).paginate(page: params[:page])
     @categories = Category.all
 
+    if user_signed_in?
+      flash.now[:location] = "Vị trí của bạn: #{location}. #{view_context.link_to('Thay đổi', user_profile_path(current_user.username))}"
+    end
+    
     respond_to do |format|
       format.html
       if params[:page]

@@ -63,6 +63,10 @@ class User < ApplicationRecord
     notifications.select(&:unread?).count
   end
 
+  def should_create_profile?
+    self.profile.nil? ? self.create_profile : self.profile
+  end
+
   private
 
   def create_username
