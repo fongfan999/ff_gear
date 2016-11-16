@@ -186,7 +186,7 @@
   .group-by-date {
     margin-bottom: 50px;
 
-    h5 {
+    h6 {
       @extend .center-align;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -206,10 +206,6 @@
 
       .right-content {
         padding-left: 120px;
-
-        a {
-          @extend .teal-lighten-text;
-        }
 
         .message-content {
           font-style: italic;

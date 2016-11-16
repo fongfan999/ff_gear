@@ -23,6 +23,6 @@
   </span>
 
   <span class="time-ago">
-    <%= time_ago_in_words notification.created_at %>
+    <%= date_or_time_ago_in_words notification.created_at, true %>
   </span>
 </li>

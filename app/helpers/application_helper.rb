@@ -29,4 +29,17 @@ module ApplicationHelper
       #{options[:name]}
     ".html_safe
   end
+
+  def date_or_time_ago_in_words(date, include_second = false)
+    if Time.now - 1.week > date
+      if include_second
+        date.strftime("%d - %m - %Y lúc %H:%M:%S")
+      else
+        date.strftime("%d - %m - %Y")
+      end
+      
+    else
+      time_ago_in_words(date)
+    end
+  end
 end
