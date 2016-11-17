@@ -1,10 +1,12 @@
 class Post < ApplicationRecord
+  attr_accessor :tag_names
   attr_accessor :rejected_ids
   
   has_many :attachments, dependent: :delete_all
-  has_and_belongs_to_many :users, uniq: true
+  has_and_belongs_to_many :users
   belongs_to :owner, class_name: "User", foreign_key: "buyer_id"
   belongs_to :category
+  has_and_belongs_to_many :tags, uniq: true
   
   validates :title, presence: true, length: { minimum: 5, maximum: 60 }
   validates :address, presence: true, length: { minimum: 5, maximum: 60 }
@@ -21,6 +23,18 @@ class Post < ApplicationRecord
   acts_as_commontable
 
   self.per_page = 3
+
+  def tag_names=(names)
+    @tag_names = names
+    self.tags.delete_all
+    names.split(",").delete_if(&:blank?).each do |name|
+      self.tags << Tag.find_or_create_by(name: name)
+    end
+  end
+
+  def tag_names_as_string
+    tags.any? ? tags.map(&:name).join(", ") : ""
+  end
 
   def related_posts
     Category.find(self.category_id).posts.where.not(id: self.id).limit(5)

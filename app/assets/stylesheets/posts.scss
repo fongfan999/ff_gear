@@ -93,6 +93,12 @@
   }
 }
 
+.chips input.input {
+  width: 100% !important;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
 #attachments {
   margin-bottom: 30px;
 
@@ -175,7 +181,6 @@
   }
 
   .comments_list {
-    max-width: 700px;
     max-height: 500px;
     padding-left: 15px;
     overflow: hidden;

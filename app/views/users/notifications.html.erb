@@ -46,7 +46,8 @@
                 với nội dung:
                 
               <div class="message-content">
-                <%= simple_format notification.content %>
+                <%= simple_format(truncate(notification.content,
+                  length: 200)) %>
               </div>
 
               <div class="time-ago">

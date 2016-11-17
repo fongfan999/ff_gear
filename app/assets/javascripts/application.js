@@ -131,33 +131,31 @@ $(function() {
 
     Dropzone.autoDiscover = false;
 
-    $('<div class="dz-message">Nhấn vào đây hoặc Kéo và thả để đăng ảnh</div>')
-      .appendTo($('#preview-wrapper'));
-
     var headlineDropzone = new Dropzone("#attachments-dropzone", {
       url: "/attachments",
       paramName: "file",
       clickable: ['#preview-wrapper'],
       parallelUploads: 3,
-      maxFilesize: 2000000,
+      maxFilesize: 5,
       maxFiles: 10,
+      dictDefaultMessage: "Nhấn vào đây hoặc Kéo và thả để đăng ảnh",
       acceptedFiles: "image/jpeg,image/png,image/jpg",
       dictInvalidFileType: "Loại ảnh không phù hợp",
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
       dictMaxFilesExceeded: "Số lượng ảnh tối đa là {{maxFiles}}",
       init: function() {
+        $('.dz-message').appendTo('#preview-wrapper');
         shouldDisableSubmitBtn();
 
         this.on("addedfile", function(file) {
-          console.log("added");
           // Append new elenment to wrapper
-          $(file.previewElement).appendTo($('#preview-wrapper'))
-          // Should enable submit
-          shouldEnableSubmitBtn();
+          $(file.previewElement).appendTo('#preview-wrapper')
         });
 
         this.on("success", function(file, object) {
-          console.log("success");
+          // Should enable submit
+          shouldEnableSubmitBtn();
+          
           // Capture the Dropzone instance as closure.
           var _this = this;
 
@@ -190,7 +188,7 @@ $(function() {
         });
 
         this.on("error", function(file, object) {
-          $(file.previewElement).appendTo($('#preview-wrapper'))
+          $(file.previewElement).appendTo('#preview-wrapper')
         });
       }
     });

@@ -41,6 +41,7 @@
           </div>
         </div>
         <div class="col s12 m6 l6">
+          <p><%= render @post.tags %></p>
           <p>Adress: <%= @post.address %></p>
           <p><%= simple_format(@post.description) %></p>
           <p>

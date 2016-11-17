@@ -16,7 +16,7 @@
 
   <%= f.input :price, label: "Giá (VND)" do %>
     <%= f.input_field :price, min: 1000, step: 1000, class: "price" %>
-    <%= material_icon_of "monetization_on", class: "prefix" %>
+    <%= material_icon_of "attach_money", class: "prefix" %>
   <% end %>
   
   <%= f.input :description, label: "Mô tả sản phẩm" do %>
@@ -24,15 +24,25 @@
     <%= material_icon_of "message", class: "prefix" %>
   <% end %>
 
+  <%= f.label :tag_names, "Tag", class: "tooltipped",
+    data: { tooltip: "Thêm tag để mọi người tìm tin của bạn dễ hơn",
+      position: "top" }  %>
+  <%= f.input :tag_names, label: false do %>
+    <%= f.input_field :tag_names, as: :hidden, id: "tag_names",
+      value: post.tag_names_as_string %>
+    <div class="chips" id="chips-tag-names">
+    </div>
+  <% end %>
+  
   <%= f.association :category, label: "Danh mục", as: :radio_buttons,
     checked: post.category_id || Category.first.id %>
-  
+
   <!-- Attachments -->
   <%= f.input :rejected_ids, as: :hidden,
     input_html: { id: "rejected_ids" } %>
   <div id="preview-wrapper">
-    <% if @post.attachments.any? %>
-        <%= render @post.attachments %>
+    <% if post.attachments.any? %>
+        <%= render post.attachments %>
     <% end %>
   </div>
   
@@ -41,3 +51,29 @@
     <%= material_icon_of "send", class: "right" %>
   <% end %>
 <% end %>
+
+<script>
+  $(function() {
+    // Initialize chips
+    $('#chips-tag-names').material_chip({
+      placeholder: 'Nhập tag mới',
+      secondaryPlaceholder: 'Nhấn Enter để nhập. Delete để xoá',
+      data: [
+        <% post.tags.each do |tag| %>
+          { tag: '<%= tag.name %>'},
+        <% end %>
+      ]
+    });
+
+    // Update hidden field for params
+    $('#chips-tag-names').on('chip.add', function(e, chip){
+      var tag_names = $("#tag_names").val() || "";
+      $("#tag_names").val(tag_names + "," + chip.tag)
+    });
+
+    $('#chips-tag-names').on('chip.delete', function(e, chip){
+      var tag_names = $("#tag_names").val() || "";
+      $("#tag_names").val(tag_names.replace(chip.tag, ""))
+    });
+  })
+</script>
