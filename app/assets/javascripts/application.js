@@ -117,53 +117,67 @@ $(function() {
 
     var submitBtn = $('#submit-btn');
 
+    var shouldDisableSubmitBtn = function() {
+      if ($('#preview-wrapper .dz-success').length == 0) {
+        submitBtn.attr('disabled', true);
+      }
+    };
+
+    var shouldEnableSubmitBtn = function() {
+      if ($('#preview-wrapper .dz-success').length > 0) {
+        submitBtn.attr('disabled', false);
+      }
+    };
+
     Dropzone.autoDiscover = false;
 
-    $('<div class="dz-message">Nhấn vào đây hoặc Kéo và thả để đăng ảnh</div>').appendTo($('#preview-wrapper'));
+    $('<div class="dz-message">Nhấn vào đây hoặc Kéo và thả để đăng ảnh</div>')
+      .appendTo($('#preview-wrapper'));
 
     var headlineDropzone = new Dropzone("#attachments-dropzone", {
       url: "/attachments",
       paramName: "file",
       clickable: ['#preview-wrapper'],
-      parallelUploads: 1,
-      maxFilesize: 20,
+      parallelUploads: 3,
+      maxFilesize: 2000000,
       maxFiles: 10,
       acceptedFiles: "image/jpeg,image/png,image/jpg",
       dictInvalidFileType: "Loại ảnh không phù hợp",
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
       dictMaxFilesExceeded: "Số lượng ảnh tối đa là {{maxFiles}}",
       init: function() {
-        if ($('#preview-wrapper .dz-preview').length == 0) {
-          submitBtn.attr('disabled', true);
-        }
+        shouldDisableSubmitBtn();
+
+        this.on("addedfile", function(file) {
+          console.log("added");
+          // Append new elenment to wrapper
+          $(file.previewElement).appendTo($('#preview-wrapper'))
+          // Should enable submit
+          shouldEnableSubmitBtn();
+        });
 
         this.on("success", function(file, object) {
-          if ($('#preview-wrapper .dz-preview').length == 0) {
-            submitBtn.attr('disabled', false);
-          }
-          $('#preview-wrapper').contents().unwrap();
-          $(".dz-preview").wrapAll("<div id='preview-wrapper'></div>");
-
-          // Create the remove button
-          var removeButton = Dropzone.
-            createElement('<i class="material-icons remove_thumb">clear</i>');
-
+          console.log("success");
           // Capture the Dropzone instance as closure.
           var _this = this;
 
+          // Create the remove button and add to the file
+          var removeButton = Dropzone.
+            createElement('<i class="material-icons remove_thumb">clear</i>');
+          $(file.previewElement).find(".dz-image").append(removeButton);
+
           // Listen to the click event
           removeButton.addEventListener("click", function(e) {
-            // Make sure the button click doesn't submit the form:
+            // Make sure the button click doesn't submit the form
             e.preventDefault();
             e.stopPropagation();
 
             // Remove the file preview.
             _this.removeFile(file);
-            if ($('#preview-wrapper').contents().length == 0) {
-              $('.dz-message').appendTo($('#preview-wrapper'));
-              submitBtn.attr('disabled', true);
-            }
+            // Should disable submit
+            shouldDisableSubmitBtn();
 
+            // Update hidden field
             // Get value as string from input
             rejected_ids = $("#rejected_ids").val() || "[]";
             // Parse string to array
@@ -173,16 +187,10 @@ $(function() {
             // Set value as string back to input
             $("#rejected_ids").val(JSON.stringify(rejected_ids)); 
           });
-
-          // Add the button to the file preview element.
-          $(file.previewElement).find('.dz-image')[0].
-            appendChild(removeButton);
-    
         });
 
         this.on("error", function(file, object) {
-          $('#preview-wrapper').contents().unwrap();
-          $(".dz-preview").wrapAll("<div id='preview-wrapper'></div>");
+          $(file.previewElement).appendTo($('#preview-wrapper'))
         });
       }
     });

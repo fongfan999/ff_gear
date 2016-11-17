@@ -1,0 +1,23 @@
+<div class="dz-preview dz-processing dz-image-preview dz-success
+  dz-complete" id="<%= attachment.id %>">
+  <div class="dz-image">
+    <%= image_tag attachment.file.url %>
+    
+    <%= material_icon_of "clear", class: "remove_thumb",
+      id: attachment.id %>
+  </div>
+  <div class="dz-details">
+    <div class="dz-size">
+      <span data-dz-size>
+        <strong>
+          <%= number_to_human_size attachment.file.size %>
+        </strong>
+      </span>
+    </div>
+    <div class="dz-filename">
+      <span data-dz-name>
+        <%= File.basename attachment.file.url %>
+      </span>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,10 @@ $ ->
     # Set value as string back to input
     $('#rejected_ids').val JSON.stringify(rejected_ids)
 
-  $(".remove_thumb").on "click", ->
+  $(".remove_thumb").on "click", (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    
     block = $(this).parent().parent()
     update_attachment_ids block.attr('id')
     block.fadeOut()
