@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     else
       session.delete(:attachment_ids)
 
-      flash[:notice] = "Thành công"
+      flash[:notice] = "Đăng tin thành công"
       redirect_to @post
     end
   end
@@ -38,20 +38,15 @@ class PostsController < ApplicationController
 
   def update
     handle_attachments
-    
-    if @post.update(post_params)
-      if @post.attachments.empty?
-        flash.now[:alert] = "Đã xảy ra lỗi"
-        render "edit"
-      else
-        session.delete(:attachment_ids)
 
-        flash[:notice] = "Thành công"
-        redirect_to @post
-      end
-    else
+    if @post.attachments.empty? || !@post.update(post_params)
       flash.now[:alert] = "Đã xảy ra lỗi"
       render "edit"
+    else
+      session.delete(:attachment_ids)
+
+      flash[:notice] = "Cập nhật thành công"
+      redirect_to @post
     end
   end
 
