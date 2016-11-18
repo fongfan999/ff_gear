@@ -27,16 +27,19 @@
   <br/>
   <br/>
 
-  <div id="preloader-nav" class="center-align"></div>
+  
 
-  <div class="row ctn card">
-    <!-- <div id="preloader-nav" class="center-align"></div> -->
-    <div id="posts" class="posts">
-      <!-- Render posts as default -->
+  <div class="ctn">
+    <!-- Render posts as default -->
+    <div id="posts" class="posts row"> 
       <%= render @posts, post_class: "s12 m6 l4" %>
     </div>
-    
-    <div id="infinite-scrolling"><%= will_paginate @posts %></div>
+
+    <div id="preloader-nav" class="center-align" style="display: none">
+      <%= render "shared/circle_preloader" %>
+    </div>
+  
+    <div id="posts-infinite-scrolling"><%= will_paginate @posts %></div>
   </div>
 
   

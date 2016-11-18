@@ -1,24 +1,6 @@
 // Preloader
-$("#preloader-nav" ).html('<img src="/assets/preloader.gif"/>').fadeIn();
-
-$( document ).ajaxComplete(function() {
-  $("#preloader-nav" ).fadeOut();
-});
-
-// Insert will_page
-if (!$('#infinite-scrolling').length) {
-  $("#posts").after('<div id="infinite-scrolling"></div>');
-}
-
-$('#infinite-scrolling').html('<%= j will_paginate @posts %>');
-
-// Render posts
-$("#posts").html("<%= j render(@posts, post_class: 's12 m6 l4') %>")
-  .hide().fadeIn("slow");
-
 // Scroll to top
 var page = $("html, body");
-
 page.animate({ scrollTop: 0 }, "slow");
 
 // Allow user to scroll down while page is scrolling top automatically
@@ -29,5 +11,24 @@ page.on(
   }
 );
 
- 
+// Set no content while loading
+$("#posts").html("");
+
+// Display preloader
+$("#preloader-nav" ).show().fadeOut("slow", function() {
+  // Callback preloader
+
+  // Insert will_page
+  if (!$('#posts-infinite-scrolling').length) {
+    $("#posts").after('<div id="posts-infinite-scrolling"></div>');
+  }
+
+  // Set will_page
+  $('#posts-infinite-scrolling').html('<%= j will_paginate @posts %>');
+
+  // Render posts
+  $("#posts").html("<%= j render(@posts, post_class: 's12 m6 l4') %>").
+    hide().fadeIn("slow");
+ });
+
 

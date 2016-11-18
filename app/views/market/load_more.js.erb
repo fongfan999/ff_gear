@@ -1,14 +1,14 @@
 $('#posts').append("<%= j render(@posts, post_class: 's12 m6 l4') %>");
 
 <% if @posts.next_page %>
-  // Insert will_page
-  $('#infinite-scrolling').html('<%= j will_paginate @posts %>');
+  // Replace new will_page
+  $('#posts-infinite-scrolling').html('<%= j will_paginate @posts %>');
 
   // Add view more button
   var viewMore = $('.pagination .next_page a');
   viewMore.attr('data-remote', true).text('xem thêm').
     addClass('view-more-btn btn');
-  $("#infinite-scrolling").append(viewMore.clone());
+  $("#posts-infinite-scrolling").append(viewMore.clone());
 <% else %>
-  $('#infinite-scrolling').remove();
+  $('#posts-infinite-scrolling').remove();
 <% end %>
