@@ -27,8 +27,6 @@
   <br/>
   <br/>
 
-  
-
   <div class="ctn">
     <!-- Render posts as default -->
     <div id="posts" class="posts row"> 
@@ -36,7 +34,7 @@
     </div>
 
     <div id="preloader-nav" class="center-align" style="display: none">
-      <%= render "shared/circle_preloader" %>
+      <%= render "shared/circle_preloader", size: "small" %>
     </div>
   
     <div id="posts-infinite-scrolling"><%= will_paginate @posts %></div>
