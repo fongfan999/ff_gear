@@ -1,6 +1,7 @@
 class MarketController < ApplicationController
   def index
-    @posts = Post.near(location, 50).paginate(page: params[:page])
+    @posts = Post.filtered(current_user).near(location, 50)
+      .paginate(page: params[:page])
     @categories = Category.all
 
     if user_signed_in?

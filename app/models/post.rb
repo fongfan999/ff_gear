@@ -22,6 +22,8 @@ class Post < ApplicationRecord
 
   acts_as_commontable
 
+  scope :filtered, -> (user) { where.not(buyer_id: user.id) if user  }
+
   self.per_page = 3
 
   def tag_names=(names)

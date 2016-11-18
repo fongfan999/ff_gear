@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
   def show
-    @posts = @category.posts.near(location, 50).
-      paginate(page: params[:page])
+    @posts = @category.posts.filtered(current_user).near(location, 50)
+      .paginate(page: params[:page])
 
     respond_to do |format|
       if params[:page]
