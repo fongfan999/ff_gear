@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  helper_method :location
+  
+  rescue_from ActionController::UrlGenerationError , with: :not_persisted
 
   protected
 
@@ -25,5 +27,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :location
+  private
+
+  def not_persisted
+    flash[:alert] = "Người dùng không tồn tại"
+    redirect_to root_path
+  end
 end

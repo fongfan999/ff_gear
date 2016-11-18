@@ -71,6 +71,13 @@ class PostsController < ApplicationController
     end
   end
 
+  # user's posts
+  def index
+    @user = User.find_by_username(params[:username])
+
+    @posts = @user.posts.near(location, 50).paginate(page: params[:page])
+  end
+
   private
 
   def set_post

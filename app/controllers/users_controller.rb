@@ -2,12 +2,13 @@ require 'will_paginate/array'
 class UsersController < ApplicationController
   before_action :set_user, except: [:profile, :notifications]
 
-  rescue_from ActionController::UrlGenerationError , with: :not_persisted
-
   def profile
     @user = User.find_by_username(params[:username])
 
-    @profile = @user.should_create_profile?
+    if @user
+      @profile = @user.should_create_profile?
+      @recent_posts = @user.recent_posts
+    end
   end
 
   def show
@@ -58,10 +59,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:avatar, :name, :username)
-  end
-
-  def not_persisted
-    flash[:alert] = "Người dùng không tồn tại"
-    redirect_to root_path
   end
 end

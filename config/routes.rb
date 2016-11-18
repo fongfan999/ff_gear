@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
-  get :notifications, to: "users#notifications"
+  get '/notifications', to: "users#notifications"
 
   get 'market', to: "market#index"
 
@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   get '/:username', to: "users#profile", as: :user_profile
+
+  get '/:username/posts', to: "posts#index", as: :user_posts
 
   resources :users, only: [:show, :edit, :update] do
     member do

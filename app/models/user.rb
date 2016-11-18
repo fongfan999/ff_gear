@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :omniauthable, :trackable, :validatable,
         :rememberable
 
-  has_many :posts, foreign_key: 'buyer_id'
+  has_many :posts, foreign_key: 'buyer_id' 
   has_and_belongs_to_many :favorites, join_table: :posts_users,
     class_name: "Post"
   has_many :notifications
@@ -65,6 +65,10 @@ class User < ApplicationRecord
 
   def should_create_profile?
     self.profile.nil? ? self.create_profile : self.profile
+  end
+
+  def recent_posts
+    ( (posts.count < 5)  ? posts : posts.limit(5) ).order(created_at: :desc)
   end
 
   private

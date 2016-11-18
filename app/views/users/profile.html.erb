@@ -29,7 +29,7 @@
         <h5>
           Thông tin liên hệ
           <%= link_to material_icon_of("edit"), "#edit-profile-form",
-            class: "right modal-trigger anchor-trigger" %>
+            class: "right modal-trigger" %>
         </h5>
 
         <div class="row">
@@ -46,17 +46,17 @@
         <div id="profile-contact" class="col s12">
           <div class="about-info">
             <div>
-              <%= material_icon_of "phone" %>
+              <%= material_icon_of "phone", class: "left" %>
               <span><%= @profile.phone %></span>
             </div>
 
             <div>
-              <%= material_icon_of "email" %>
+              <%= material_icon_of "email", class: "left" %>
               <span><%= @user.email %></span>
             </div>
 
             <div>
-              <%= material_icon_of "place" %>
+              <%= material_icon_of "place", class: "left" %>
               <span><%= @profile.address %></span>
             </div>
           </div>
@@ -65,12 +65,12 @@
         <div id="profile-social" class="col s12">
           <div class="about-info">
             <div>
-              <%= image_tag 'facebook.png' %>
+              <%= image_tag 'facebook.png', class: "left" %>
               <span><%= link_to "Facebook", @profile.fb_link %></span>
             </div>
 
             <div>
-              <%= image_tag 'google.png' %>
+              <%= image_tag 'google.png', class: "left" %>
               <span><%= link_to "Google Plus", @profile.gg_link %></span>
             </div>
           </div>
@@ -82,32 +82,18 @@
 
       <div class="col s12 m12 l6 about-block right">
           <h5>
-            Posts (36)
+            Các tin đã đăng (<%= @user.posts.count %>)
+            <%= link_to material_icon_of("keyboard_arrow_right"),
+              user_posts_path(@user.username), class: "right" %>
           </h5>
 
           <div class="about-info">
-            <div>
-              <%= material_icon_of "looks_one" %>
-              <span><%= Post.last.title %></span>
-            </div>
-            <div>
-              <%= material_icon_of "looks_two" %>
-              <span><%= Post.last.title %></span>
-            </div>
-            <div>
-              <%= material_icon_of "looks_3" %>
-              <span><%= Post.last.title %></span>
-            </div>
-            <div>
-              <%= material_icon_of "looks_4" %>
-              <span><%= Post.last.title %></span>
-            </div>
-            <div>
-              <%= material_icon_of "looks_5" %>
-              <span><%= Post.last.title %></span>
-            </div>
-            
-            <a class="right" href="#">See more</a><br/>
+            <% @recent_posts.each do |post| %>
+              <div>
+                <%= image_tag post.attachments.first.file, class: "left" %>
+                <span><%= post.title %></span>
+              </div>
+            <% end %>
           </div>
       </div>
     </div>

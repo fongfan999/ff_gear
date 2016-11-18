@@ -136,7 +136,7 @@
       </li>
       <li><%= link_to material_icon_of("account_circle", name: "Trang cá nhân"),
         user_profile_path(current_user.username) %></li>
-      <li><%= link_to material_icon_of("favorite", name: "Bài đăng yêu thích"),
+      <li><%= link_to material_icon_of("favorite", name: "Sản phẩm yêu thích"),
         favorite_posts_user_path(current_user) %><span class="counter"><%= current_user.favorites.count %></span></li>
       <li><div class="divider"></div></li>
       <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>

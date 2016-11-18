@@ -1,0 +1,14 @@
+<div class="container">
+  <h5 class="card-panel primary-color white-text">
+    <%= link_to @user.name, user_profile_path(@user.username),
+      class: "breadcrumb" %>
+    <a class="breadcrumb">Các tin đã đăng</a>
+  </h5>
+
+  <div class="row posts">
+    <%= render @posts, post_class: "s12 m6 l4" %>
+  </div>
+
+  <div class="center-align"><%= will_paginate @posts %></div>
+</div>
+  

@@ -98,21 +98,16 @@
           padding-top: 15px;
           min-height: 50px;
 
-          i, img {
-            color: #9c9c9c;
-            float: left;
-            margin-right: 20px;
-          }
-
           img {
             width: 24px;
             height: 24px;
-            border-radius: 12px;
           }
 
           span {
             display: block;
             line-height: 24px;
+            padding-left: 40px;
+            font-size: 16px;
           }
         }
       }
