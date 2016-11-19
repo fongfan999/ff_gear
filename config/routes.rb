@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'market', to: "market#index"
 
   resources :posts, except: [:index] do
-    patch :favorite, on: :member
+    member do
+      patch :favorite
+      patch :mark_as_sold
+    end
   end
 
   post :attachments, to: "attachments#create"

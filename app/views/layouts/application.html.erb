@@ -51,7 +51,7 @@
               <li>
                 <%= link_to material_icon_of("add"), new_post_path,
                   class: "tooltipped",
-                  data: { position: "bottom", tooltip: "Đăng bán" } %>
+                  data: { position: "bottom", tooltip: "Đăng tin" } %>
               </li>
 
               <% if user_signed_in? %>
@@ -128,7 +128,7 @@
       </li>
 
       <li><a><%= material_icon_of "home", name: "Trang chủ" %></a></li>
-      <li><%= link_to material_icon_of("add_circle", name: "Đăng bán"),
+      <li><%= link_to material_icon_of("add_circle", name: "Đăng tin"),
         new_post_path %></li>
       <li>
         <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
@@ -136,7 +136,7 @@
       </li>
       <li><%= link_to material_icon_of("account_circle", name: "Trang cá nhân"),
         user_profile_path(current_user.username) %></li>
-      <li><%= link_to material_icon_of("favorite", name: "Sản phẩm yêu thích"),
+      <li><%= link_to material_icon_of("favorite", name: "Các tin yêu thích"),
         favorite_posts_user_path(current_user) %><span class="counter"><%= current_user.favorites.count %></span></li>
       <li><div class="divider"></div></li>
       <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>

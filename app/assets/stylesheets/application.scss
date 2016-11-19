@@ -62,6 +62,7 @@ a.more-vert {
 }
 
 .dropdown-action {
+  width: auto !important;
   min-width: 150px;
 
   & > li > a {
@@ -297,10 +298,34 @@ a.new {
   border: 1px solid $primary-color;
 }
 
-li.edit a {
-  @extend .primary-color-text;
+a.edit, a.delete, a.mark, a.report {
+  &:before {
+    font-family: 'Material Icons';
+    padding-right: 1em;
+    vertical-align: middle;
+  }
 }
 
-li.delete a {
-  color: red;
+a.edit:before {
+  content: "edit";
 }
+
+a.delete:before {
+  content: "delete";
+}
+
+a.mark {
+  &.active {
+    background-color: #26a69a;
+    color: #fff;
+  }
+  
+  &:before {
+    content: "check";
+  }
+}
+
+a.report:before {
+  content: "report";
+}
+

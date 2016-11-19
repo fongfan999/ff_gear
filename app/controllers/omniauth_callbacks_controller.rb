@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if request.referrer
         redirect_to request.referrer
       else
-        redirect_to profile_path(current_user.username)
+        redirect_to user_profile_path(current_user.username)
       end
       
       flash[:notice] = "Signed in!"

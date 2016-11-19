@@ -23,7 +23,7 @@
               <ul id="<%= dom_id(notification, :delete) %>" 
                 class='dropdown-content dropdown-action'>
                 <li><%= link_to "Xoá thông báo", notification, method: :delete,
-                  remote: true,
+                  remote: true, class: "delete",
                   data: { confirm: "Bạn có chắc xoá thông báo này không" } %>
                 </li>
               </ul>

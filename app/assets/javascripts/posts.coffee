@@ -38,9 +38,10 @@ $ ->
       $('.thread_span').slideToggle().css('display', 'block')
 
   anchorComment = window.location.hash
+  santitizedAnchorComment = anchorComment.replace(/[^a-z0-9]*/i, '')
 
   # Open thread box to scroll to anchor
-  if anchorComment.length != 0
+  if santitizedAnchorComment.length > 0
     $(".comments-btn").click()
 
     if $('#comments').length
