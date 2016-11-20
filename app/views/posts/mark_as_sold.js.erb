@@ -1,2 +1,3 @@
 var content = "Đánh dấu là " + "<%= @post.sold? ? 'chưa' : 'đã' %>" + " bán";
 $('#post-action li a.mark').html(content).toggleClass('active');
+$('span.sold').html("(Đã bán)").toggle()

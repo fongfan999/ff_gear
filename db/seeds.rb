@@ -21,3 +21,11 @@ end
 unless Category.exists?(name: "Khác")
   Category.create(name: "Khác", color: "#00a753")
 end
+
+if Report.count == 0
+  Report.create(name: "Sản phẩm đã bán")
+  Report.create(name: "Không liên lạc được")
+  Report.create(name: "Trùng lặp", public: true)
+  Report.create(name: "Lừa đảo", public: true)
+  Report.create(name: "Hàng hoá bị cấm lưu thông", public: true)
+end

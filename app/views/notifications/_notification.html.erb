@@ -1,19 +1,36 @@
 <li class="collection-item avatar <%= "unread" if notification.unread? %>" 
   id=<%= dom_id notification %>>
-  <%= image_tag notification.commenter.avatar,
-    class: "circle" %>
+
+  <%= image_tag notification.commenter.avatar, class: "circle" %>
   
+  <% if notification.comment_id.nil? %>
+
     <%= link_to notification.unread? ? post_path(notification.post,
-      notification_id: "#{notification.id}",
-      anchor: "comment_#{notification.comment_id}_div") : post_path(notification.post,
-      anchor: "comment_#{notification.comment_id}_div") do %>
-    <div class="title">
-      <span class="bold">
-        <%= notification.commenter.name %>
-      </span> đã bình luận trên bài 
-      <span class="bold"><%= notification.post.title %></span>: 
-      "<%= truncate notification.content, length: 30 %>"
-    </div>
+        notification_id: "#{notification.id}") : notification.post do %>
+      <div class="title">
+        <span class="bold"><%= notification.commenter.name %></span> 
+        đã cho rằng tin 
+        <span class="bold"><%= notification.post.title %></span> là: 
+        <span class="red-text">"<%= truncate notification.content %>"</span>
+      </div>
+    <% end %>
+
+  <% else %>
+
+    <%= link_to notification.unread? ? 
+        post_path(notification.post,
+          notification_id: "#{notification.id}",
+          anchor: "comment_#{notification.comment_id}_div") : 
+        post_path(notification.post,
+          anchor: "comment_#{notification.comment_id}_div") do %>
+      <div class="title">
+        <span class="bold"><%= notification.commenter.name %></span> 
+        đã bình luận trên tin 
+        <span class="bold"><%= notification.post.title %></span>: 
+        "<%= truncate notification.content, length: 30 %>"
+      </div>
+    <% end %>
+
   <% end %>
 
   <span class="secondary-content">

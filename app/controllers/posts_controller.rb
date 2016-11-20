@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
-    :mark_as_sold]
+    :mark_as_sold, :report]
   before_action :clean_session, only: [:new, :edit]
 
   def show
@@ -77,6 +77,22 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.js
+    end
+  end
+
+  def report
+    # debugger
+    report_id = params[:post][:report_id]
+    report = Report.find(report_id)
+
+    @post.owner.get_notification(@post, current_user, report.name, nil)
+
+    # Send to admin
+    # admin.get_notification(@post, current_user, message, nil) if report.public?
+
+    respond_to do |format|
+      format.html { redirect_to @post, notice: "Thank you so much" }
       format.js
     end
   end

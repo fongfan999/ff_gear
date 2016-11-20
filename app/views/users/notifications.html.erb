@@ -35,20 +35,32 @@
             
             <div class="right-content">
               <%= link_to notification.commenter.name, notification.user %> 
-              đã bình luận trên bài 
-              <%= link_to notification.post.title,
-                notification.unread? ? post_path(notification.post, 
-                notification_id: "#{notification.id}", 
-                anchor: "comment_#{notification.comment_id}_div") : 
-                post_path(notification.post,
-                anchor: "comment_#{notification.comment_id}_div") %> 
-                với nội dung:
                 
-              <div class="message-content">
-                <%= simple_format(truncate(notification.content,
-                  length: 200)) %>
-              </div>
-
+              <% if notification.comment_id.nil? %>
+                đã cho rằng tin 
+                <%= link_to notification.post.title, notification.unread? ? 
+                    post_path(notification.post,
+                      notification_id: "#{notification.id}") : 
+                    notification.post %> là: 
+                <div class="message-content red-text">
+                  <%= simple_format notification.content %>
+                </div>
+              <% else %>              
+                đã  bình luận trên tin 
+                <%= link_to notification.post.title,
+                  notification.unread? ? post_path(notification.post, 
+                  notification_id: "#{notification.id}", 
+                  anchor: "comment_#{notification.comment_id}_div") : 
+                  post_path(notification.post,
+                  anchor: "comment_#{notification.comment_id}_div") %> 
+                  với nội dung:
+                  
+                <div class="message-content">
+                  <%= simple_format(truncate(notification.content,
+                    length: 200)) %>
+                </div>
+              <% end %>
+              
               <div class="time-ago">
                 <%= notification.created_at.strftime("%H:%M:%S") %>
               </div>

@@ -1,0 +1,25 @@
+<div id="report-post-form" class="modal">
+  <%= simple_form_for @post, html: { class: "full-width" },
+    url: report_post_path(@post) do |f| %>
+  <div class="modal-content">
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h6 class="bold">Tin này có vấn đề gì?</h6>
+      </li>
+
+      <%= f.input :report_id, as: :radio_buttons, label: false, wrapper: false,
+        collection: Report.report_collection(@post),
+        item_wrapper_tag: :li, item_wrapper_class: 'collection-item' %>
+    </ul>
+  </div>
+  
+  <div class="modal-footer">
+    <%= f.button :button, class: "modal-action" do %>
+      Gửi <%= material_icon_of "send", class: "right" %>
+    <% end %>
+    <a class="modal-action modal-close btn-flat">Đóng</a>
+  </div>
+
+  <% end %>
+</div>
+          

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       patch :favorite
       patch :mark_as_sold
+      patch :report
     end
   end
 

@@ -60,7 +60,12 @@ class User < ApplicationRecord
     notifications.order(created_at: :desc).limit(15)
   end
 
-  def get_notification(post, commenter, message, comment_id)    
+  def get_notification(post, commenter, message, comment_id)
+    notification = Notification.where(post: post, commenter: commenter,
+      content: message, comment_id: comment_id).limit(1).first
+
+    return notification if notification
+
     notification = self.notifications.build(content: message,
       comment_id: comment_id)
     notification.post = post
@@ -86,8 +91,4 @@ class User < ApplicationRecord
   def create_username
     self.update(username: "user#{id}")
   end
-
-  # def create_profile
-  #   self.create_profile
-  # end
 end

@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   attr_accessor :tag_names
   attr_accessor :rejected_ids
+  attr_accessor :report_id
   
   has_many :attachments, dependent: :delete_all
   has_and_belongs_to_many :users
@@ -22,7 +23,11 @@ class Post < ApplicationRecord
 
   acts_as_commontable
 
-  scope :filtered, -> (user) { where.not(buyer_id: user.id) if user  }
+  scope :filtered, -> (user) do
+    not_sold_posts = Post.where(sold: false)
+    
+    user ? not_sold_posts.where.not(buyer_id: user.id) : not_sold_posts
+  end
 
   self.per_page = 3
 

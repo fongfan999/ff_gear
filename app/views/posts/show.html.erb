@@ -10,30 +10,29 @@
           <%= material_icon_of "more_vert" %>
         </a>
 
-      <!-- Dropdown Structure -->
-      <ul id='post-action' class='dropdown-content dropdown-action'>
-        
-
-        <%# if current_user == @post.owner %>
-          <li><%= link_to "Đánh dấu là #{@post.sold? ? 'chưa' : 'đã'} bán",
-            mark_as_sold_post_path(@post), remote: true, method: :patch,
-            class: "persistent mark #{'active' if @post.sold?}" %></li>
-          <li><%= link_to "Chỉnh sửa", [:edit, @post],
-            class: "edit" %></li>
-          <li><%= link_to "Xoá tin", @post, method: :delete,
-            data: { confirm: "Bạn có chắc chắn xoá tin này?" },
-            class: "delete" %></li>
-        <%# else %>
-          <li><%= link_to "Báo cáo tin này", @post, method: :delete,
-            data: { confirm: "Bạn có chắc chắn xoá tin này?" },
-            class: "report" %></li>
-        <%# end %>
-        
-        
-      </ul>
+        <ul id='post-action' class='dropdown-content dropdown-action'>
+          <% if current_user == @post.owner %>
+            <li><%= link_to "Đánh dấu là #{@post.sold? ? 'chưa' : 'đã'} bán",
+              mark_as_sold_post_path(@post), remote: true, method: :patch,
+              class: "persistent mark #{'active' if @post.sold?}" %></li>
+            <li><%= link_to "Chỉnh sửa", [:edit, @post],
+              class: "edit" %></li>
+            <li><%= link_to "Xoá tin", @post, method: :delete,
+              data: { confirm: "Bạn có chắc chắn xoá tin này?" },
+              class: "delete" %></li>
+          <% else %>
+            <li><%= link_to "Báo cáo tin này", '#report-post-form',
+              class: "report modal-trigger" %></li>
+          <% end %>       
+        </ul>
       </div>
+
+      <%= render 'report' %>
       <header>
-        <h4><%= @post.title %></h4>
+        <h4>
+          <%= @post.title %> 
+          <span class="sold"><%= "(Đã bán)" if @post.sold? %></span>
+        </h4>
       </header>
       <div class="divider"></div>
 
