@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
-    auth = request.env['omniauth.auth']
     user = User.from_omniauth(request.env['omniauth.auth'])
+    
     if user.persisted?
       sign_in user
       
@@ -11,10 +11,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to user_profile_path(current_user.username)
       end
       
-      flash[:notice] = "Signed in!"
+      flash[:notice] = "Đăng nhập thành công"
     else
-      redirect_to root_path
-      flash[:alert] = "Failed :("
+      redirect_to new_user_session_path
+      flash[:alert] = user.errors.full_messages.join(", ")
     end
   end
 

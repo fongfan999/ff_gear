@@ -44,16 +44,22 @@
 
           i {
             position: absolute;
-            left: 40px;
-            top: 40px;
+            width: 120px;
+            height: 120px;
+            left: 0;
+            top: 0;
             font-size: 40px;
             color: #fff;
             display: none;
+            background-color: black; 
+            opacity: 0.5;
+            padding-top: 40px;
+            border-radius: 50%;
           }
 
           &:hover {
             i {
-              display: block
+              display: block;
             }
           }
         }

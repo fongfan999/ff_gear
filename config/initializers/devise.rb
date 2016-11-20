@@ -251,10 +251,10 @@ Devise.setup do |config|
 
   config.omniauth :facebook,
     APP_CONFIG['facebook_app_id'], APP_CONFIG['facebook_app_secret'],
-    scope: 'public_profile, email'
+      { info_fields: 'email, name, link' }
 
   config.omniauth :google_oauth2,
-    APP_CONFIG['google_client_id'], APP_CONFIG['google_client_secret'], {}
+    APP_CONFIG['google_client_id'], APP_CONFIG['google_client_secret']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

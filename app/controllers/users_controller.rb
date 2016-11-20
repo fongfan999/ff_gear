@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:username])
 
     if @user
-      @profile = @user.should_create_profile?
+      @profile = @user.profile
       @recent_posts = @user.recent_posts
     end
   end
