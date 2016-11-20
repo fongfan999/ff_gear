@@ -82,7 +82,8 @@ class PostsController < ApplicationController
   end
 
   def report
-    # debugger
+    return unless params[:post][:report_id]
+
     report_id = params[:post][:report_id]
     report = Report.find(report_id)
 
@@ -92,7 +93,7 @@ class PostsController < ApplicationController
     # admin.get_notification(@post, current_user, message, nil) if report.public?
 
     respond_to do |format|
-      format.html { redirect_to @post, notice: "Thank you so much" }
+      format.html { redirect_to @post }
       format.js
     end
   end

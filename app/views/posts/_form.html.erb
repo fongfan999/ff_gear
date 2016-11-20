@@ -45,8 +45,8 @@
         <%= render post.attachments %>
     <% end %>
   </div>
-  
-  <%= f.button :button, id: "submit-btn" do %>
+
+  <%= button_tag type: :submit, id: "submit-btn", class: "btn" do %>
     <%= post.new_record? ? "Đăng" : "Cập nhật" %>
     <%= material_icon_of "send", class: "right" %>
   <% end %>

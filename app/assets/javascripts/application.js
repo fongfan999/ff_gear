@@ -20,10 +20,45 @@
 //= require jquery.mCustomScrollbar.concat.min
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require sweetalert2
 //= require_tree .
 
 
 $(function() {
+  // Sweet alert configuration
+  //Override the default confirm dialog by rails
+  $.rails.allowAction = function(link){
+    if (link.data("confirm") == undefined){
+      return true;
+    }
+    $.rails.showConfirmationDialog(link);
+    return false;
+  }
+
+  //User click confirm button
+  $.rails.confirmed = function(link){
+    link.data("confirm", null);
+    link.trigger("click.rails");
+  }
+
+  //Display the confirmation dialog
+  $.rails.showConfirmationDialog = function(link){
+    var message = link.data("confirm");
+    swal({
+      title: message,
+      type: 'warning',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Huỷ bỏ',
+      confirmButtonColor: '#26a69a',
+      showCancelButton: true,
+      reverseButtons: true
+    }).then(function(e){
+      $.rails.confirmed(link);
+    }, function(dismiss) {
+      return
+    });
+  };
+
   // Animate loader off screen
   $(window).load(function() {
     $(".se-pre-con").fadeOut("slow");

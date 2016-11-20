@@ -61,11 +61,13 @@ gem 'commontator', '~> 4.11', '>= 4.11.1'
 gem 'client_side_validations',
   github: 'DavyJonesLocker/client_side_validations',
   branch: 'rails5'
-# # Simple From for Clident Side validation
+# Simple From for Clident Side validation
 gem 'client_side_validations-simple_form',
   github: 'DavyJonesLocker/client_side_validations-simple_form',
   branch: 'rails5'
 
+# Sweet alert
+gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
