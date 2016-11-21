@@ -1,0 +1,8 @@
+<div class="login-div <%= login_class %>">
+  <%= link_to login_button("fb-login.png", "Facebook"),
+    user_facebook_omniauth_authorize_path, class: "fb-login-btn" %>
+</div>
+<div class="login-div <%= login_class %>">
+  <%= link_to login_button("gg-login.png", "Google Plus"),
+    user_google_oauth2_omniauth_authorize_path, class: "gg-login-btn" %>
+</div>

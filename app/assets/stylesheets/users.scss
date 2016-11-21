@@ -122,32 +122,7 @@
 }
 
 #login-btn {
-  margin-top: 200px;
-
-  #fb-login-btn, #gg-login-btn {
-    height: 50px;
-    line-height: 50px;
-    width: 100%;
-    color: #fff;
-
-    img {
-      width: 30px;
-      margin-top: 10px;
-      float: left;
-    }
-
-    span {
-      padding-left: 10px;
-    }
-  }
-
-  #fb-login-btn {
-    background-color: #0086fb;
-  }
-
-  #gg-login-btn {
-    background-color: #e44536;
-  }
+  margin-top: 200px;  
 }
 
 #edit-user-form.modal {

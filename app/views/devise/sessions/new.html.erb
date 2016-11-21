@@ -1,12 +1,5 @@
 <div class="container">
   <div class="row" id="login-btn">
-    <div class="col s12 m12 l6">
-      <%= link_to image_tag('fb-login.png') + '<span>Sign in with Facebook</span>'.html_safe, user_facebook_omniauth_authorize_path,
-        id: "fb-login-btn", class: "btn" %>
-    </div>
-    <div class="col s12 m12 l6">
-      <%= link_to image_tag('gg-login.png') + '<span>Sign in with Google</span>'.html_safe, user_google_oauth2_omniauth_authorize_path,
-        id: "gg-login-btn", class: "btn" %>
-    </div>
+    <%= render "shared/login", login_class: "col s12 m12 l6" %>
   </div>
 </div>

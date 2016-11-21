@@ -28,13 +28,14 @@
       display: block;
     }
   }
+
+  .userView .login-div {
+    margin-left: -16px;
+    width: 268px;
+  }
 }
 
 @media #{$medium-and-down} {
-  #login-btn .col {
-    margin-bottom: 15px;
-  }
-
   #lander #intro {
     height: 750px;
   }
@@ -115,18 +116,18 @@
   }
 }
 
-// Custom media
-@media screen and (max-width: 450px) {
-  #login-btn a {
-    img {
-      float: none !important;
-    }
+// // Custom media
+// @media screen and (max-width: 450px) {
+//   #login-btn a {
+//     img {
+//       float: none !important;
+//     }
 
-    span {
-      display: none;
-    }
-  }
-}
+//     span {
+//       display: none;
+//     }
+//   }
+// }
 
 @media screen and (min-width: 1200px) {
   #about-description {

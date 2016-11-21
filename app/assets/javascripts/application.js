@@ -171,7 +171,7 @@ $(function() {
       paramName: "file",
       clickable: ['#preview-wrapper'],
       parallelUploads: 3,
-      maxFilesize: 5,
+      maxFilesize: 2,
       maxFiles: 10,
       dictDefaultMessage: "Nhấn vào đây hoặc Kéo và thả để đăng ảnh",
       acceptedFiles: "image/jpeg,image/png,image/jpg",

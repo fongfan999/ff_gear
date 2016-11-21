@@ -42,4 +42,8 @@ module ApplicationHelper
       time_ago_in_words(date)
     end
   end
+
+  def login_button(image, provider)
+    image_tag(image) + "<span>Đăng nhập bằng #{provider}</span>".html_safe
+  end
 end

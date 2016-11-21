@@ -24,7 +24,7 @@
             <%= material_icon_of "menu", id: "menu-icon" %>
           </a>
 
-          <%= link_to root_path, class: "brand-logo" do %>
+          <%= link_to market_path, class: "brand-logo" do %>
             <%= image_tag 'logo.png', class: "left" %>
             <span>FoxFizz</span>
           <% end %>
@@ -82,13 +82,16 @@
                     </li>
                   </ul>
                 </li>
-                <li><%= link_to image_tag(current_user.avatar,
-                  size: "32x32", class: "bordered-logo"),
-                  user_profile_path(current_user.username) %></li>
+
+                <li>
+                  <%= link_to image_tag(current_user.avatar,
+                    size: "32x32", class: "bordered-logo"),
+                    user_profile_path(current_user.username) %>
+                </li>
               <% else %>
                 <li><%= link_to material_icon_of("account_circle"),
                   new_user_session_path, class: "tooltipped",
-                  data: { position: "bottom", tooltip: "Sign in" } %></li>
+                  data: { position: "bottom", tooltip: "Đăng nhập" } %></li>
               <% end %>
             </ul>
           </div>
@@ -109,39 +112,56 @@
     </nav>
 
     <ul id="slide-out" class="side-nav">
-      <% if user_signed_in? %>
       <li>
         <div class="userView">
-          <%= link_to image_tag(current_user.avatar,
+          <% if user_signed_in? %>
+            <%= link_to image_tag(current_user.avatar,
             class: "bordered-logo"), user_profile_path(current_user.username),
             class: 'non-waves-effect' %>
 
-          <span class="white-text name"><%= current_user.name %></span>
-          <span class="white-text email"><%= current_user.email %></span>
+            <span class="white-text name"><%= current_user.name %></span>
+            <span class="white-text email"><%= current_user.email %></span>
 
-          <%= link_to material_icon_of("power_settings_new",
-            class: "white-text"), destroy_user_session_path,
-            class: "tooltipped non-waves-effect",
-            method: "delete", id: "drawer-logout",
-            data: { position: "bottom", tooltip: "Đăng xuất" } %>
+            <%= link_to material_icon_of("power_settings_new",
+              class: "white-text"), destroy_user_session_path,
+              class: "tooltipped non-waves-effect",
+              method: "delete", id: "drawer-logout",
+              data: { position: "bottom", tooltip: "Đăng xuất" } %>
+          <% else %>
+            <%= render "shared/login", login_class: "" %>
+          <% end %>
         </div>
       </li>
+      
 
       <li><a><%= material_icon_of "home", name: "Trang chủ" %></a></li>
       <li><%= link_to material_icon_of("add_circle", name: "Đăng tin"),
         new_post_path %></li>
-      <li>
-        <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
-        <span class="counter notice"><%= current_user.unread_counter %></span>
-      </li>
-      <li><%= link_to material_icon_of("account_circle", name: "Trang cá nhân"),
-        user_profile_path(current_user.username) %></li>
-      <li><%= link_to material_icon_of("favorite", name: "Các tin yêu thích"),
-        favorite_posts_user_path(current_user) %><span class="counter"><%= current_user.favorites.count %></span></li>
-      <li><div class="divider"></div></li>
-      <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>
-      <li><a><%= material_icon_of "settings", name: "Cài đặt" %></a></li>
-      <li><a><%= material_icon_of "help", name: "Giúp đỡ" %></a></li>
+
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
+          <span class="counter notice">
+            <%= current_user.unread_counter %>
+          </span>
+        </li>
+
+        <li>
+          <%= link_to material_icon_of("account_circle",
+            name: "Trang cá nhân"), user_profile_path(current_user.username) %>
+        </li>
+
+        <li>
+          <%= link_to material_icon_of("favorite", name: "Các tin yêu thích"),
+            favorite_posts_user_path(current_user) %>
+          <span class="counter"><%= current_user.favorites.count %></span>
+        </li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>
+        <li><a><%= material_icon_of "settings", name: "Cài đặt" %></a></li>
+        <li><a><%= material_icon_of "help", name: "Giúp đỡ" %></a></li>
       <% end %>
     </ul>
     

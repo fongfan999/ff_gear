@@ -15,6 +15,28 @@ $teal-color: #26a69a;
 @import 'jquery.mCustomScrollbar.min';
 @import 'sweetalert2';
 
+.fb-login-btn, .gg-login-btn {
+  @extend .btn;
+  margin: 10px 0 !important;
+  height: 48px;
+  // line-height: 48px;
+  width: 100%;
+  color: #fff;
+  text-transform: none;
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.fb-login-btn {
+  background-color: #0086fb;
+}
+
+.gg-login-btn {
+  background-color: #e44536;
+}
+
 .se-pre-con {
   position: fixed;
   left: 0;
@@ -107,6 +129,7 @@ i.clear-input {
     input[type="search"] {
       height: 44px !important; /* or height of nav */
       margin-top: 10px;
+      line-height: 44px;
     }
   }
 }

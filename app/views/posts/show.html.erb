@@ -5,29 +5,32 @@
 <div class="row">
   <div class="col s12 m9 l9">
     <div id="post" class="card">
-      <div class="right">
-        <a class='dropdown-button more-vert' data-activates='post-action'>
-          <%= material_icon_of "more_vert" %>
-        </a>
+      <% if user_signed_in? %>
+        <div class="right">
+          <a class='dropdown-button more-vert' data-activates='post-action'>
+            <%= material_icon_of "more_vert" %>
+          </a>
+           
+          <ul id='post-action' class='dropdown-content dropdown-action'>
+            <% if current_user == @post.owner %>
+              <li><%= link_to "Đánh dấu là #{@post.sold? ? 'chưa' : 'đã'} bán",
+                mark_as_sold_post_path(@post), remote: true, method: :patch,
+                class: "persistent mark #{'active' if @post.sold?}" %></li>
+              <li><%= link_to "Chỉnh sửa", [:edit, @post],
+                class: "edit" %></li>
+              <li><%= link_to "Xoá tin", @post, method: :delete,
+                data: { confirm: "Bạn có chắc chắn xoá tin này?" },
+                class: "delete" %></li>
+            <% else %>
+              <li><%= link_to "Báo cáo tin này", '#report-post-form',
+                class: "report modal-trigger" %></li>
+            <% end %>       
+          </ul>
+        </div>
 
-        <ul id='post-action' class='dropdown-content dropdown-action'>
-          <% if current_user == @post.owner %>
-            <li><%= link_to "Đánh dấu là #{@post.sold? ? 'chưa' : 'đã'} bán",
-              mark_as_sold_post_path(@post), remote: true, method: :patch,
-              class: "persistent mark #{'active' if @post.sold?}" %></li>
-            <li><%= link_to "Chỉnh sửa", [:edit, @post],
-              class: "edit" %></li>
-            <li><%= link_to "Xoá tin", @post, method: :delete,
-              data: { confirm: "Bạn có chắc chắn xoá tin này?" },
-              class: "delete" %></li>
-          <% else %>
-            <li><%= link_to "Báo cáo tin này", '#report-post-form',
-              class: "report modal-trigger" %></li>
-          <% end %>       
-        </ul>
-      </div>
-
-      <%= render 'report' %>
+        <%= render 'report' %>
+      <% end %>
+ 
       <header>
         <h4>
           <%= @post.title %> 
