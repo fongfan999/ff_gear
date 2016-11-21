@@ -4,7 +4,13 @@
       Thông báo
     </h5>
   </div>
-
+  
+  <% if @notification_days.blank? %>
+    <br>
+    <h5 class="center-align">
+      Hiện tại chưa có thông báo nào.
+    </h5>
+  <% else %>
   <div id="notifications">
     <% @notification_days.each do |day, notifications| %>
       <div class="group-by-date card">
@@ -70,6 +76,7 @@
       </div>
     <% end %>
   </div>
+  <% end %>
 
   <div class="center-align">
     <%= will_paginate @notification_days %>

@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-  before_action :set_user, except: [:profile, :notifications]
+  before_action :set_user, except: [:profile, :favorite_posts,:notifications]
 
   def profile
     @user = User.find_by_username(params[:username])
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def favorite_posts
-    @favorite_posts = @user.favorites.paginate(page: params[:page])
+    @favorite_posts = current_user.favorites.paginate(page: params[:page])
   end
 
   def notifications

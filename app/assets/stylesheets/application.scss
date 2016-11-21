@@ -212,9 +212,10 @@ span.counter {
   }
 
   .collection-item.avatar {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
     cursor: default !important;
+    min-height: 0;
 
     &:hover {
       background-color: #fafafa;

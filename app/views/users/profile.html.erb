@@ -1,7 +1,12 @@
 <div id="about-me" >
   <div id="about-title" class="center-align">
-    <h4>Control what people see about you</h4>
-    <p>Changes you make here may show up with content you create & share.</p>
+    <% if user_signed_in? && page_owner?(@user) %>
+      <h4>Quản lý thông tin liên lạc của bạn</h4>
+      <p>Thông tin càng chi tiết, mọi người dễ dàng liên lạc hơn và tin cậy sản phẩm của bạn hơn :)</p>
+    <% else %>
+      <h4>Trang cá nhân của <%= @user.name %></h4>
+    <% end %>
+    
   </div>
   
   <div id="about-description" class="container">
@@ -84,14 +89,17 @@
           <h5>
             Các tin đã đăng (<%= @user.posts.count %>)
             <%= link_to material_icon_of("keyboard_arrow_right"),
-              user_posts_path(@user.username), class: "right" %>
+              @recent_posts.blank? ? "#" : user_posts_path(@user.username),
+              class: "right" %>
           </h5>
 
           <div class="about-info">
             <% @recent_posts.each do |post| %>
               <div>
-                <%= image_tag post.attachments.first.file, class: "left" %>
-                <span><%= post.title %></span>
+                <%= link_to post do %>
+                  <%= image_tag post.attachments.first.file, class: "left" %>
+                  <span><%= post.title %></span>
+                <% end %>
               </div>
             <% end %>
           </div>

@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:notice] = "Successfully"
+    flash[:notice] = "Xoá tin thành công"
     redirect_to root_path
   end
 
@@ -109,6 +109,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Tin hiện không tồn tại"
+    redirect_to market_path
   end
 
   def post_params

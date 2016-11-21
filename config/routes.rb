@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   get '/notifications', to: "users#notifications"
+  get '/favorite_posts', to: "users#favorite_posts"
 
   get 'market', to: "market#index"
 
@@ -39,7 +40,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     member do
       get :edit_avatar
-      get :favorite_posts
     end
   end
 

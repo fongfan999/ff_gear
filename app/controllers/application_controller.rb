@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
 
   def not_persisted
     flash[:alert] = "Người dùng không tồn tại"
-    redirect_to root_path
+    redirect_to market_path
   end
 end

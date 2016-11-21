@@ -4,8 +4,6 @@
   }
   
   #about-title {
-    margin-left: -55px;
-    margin-right: -55px;
     height: 300px;
     @extend .primary-color;
     color: #fff;
@@ -104,6 +102,10 @@
           padding-top: 15px;
           min-height: 50px;
 
+          a {
+            color: #747474;
+          }
+
           img {
             width: 24px;
             height: 24px;
@@ -112,8 +114,9 @@
           span {
             display: block;
             line-height: 24px;
-            padding-left: 40px;
+            padding-left: 50px;
             font-size: 16px;
+            word-wrap: break-word;
           }
         }
       }

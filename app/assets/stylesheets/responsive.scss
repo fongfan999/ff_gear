@@ -114,6 +114,17 @@
   ul.tabs {
     max-width: 100% !important;
   }
+
+  #about-title {
+    h4 {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
 }
 
 // // Custom media

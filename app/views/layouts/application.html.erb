@@ -73,13 +73,20 @@
                         mark_all_as_read_notifications_path, method: :patch,
                         remote: true, class: "right" %>
                     </li>
-    
-                    <%= render current_user.recent_notifications %>
+                    
+                    <% if current_user.recent_notifications.blank? %>
+                      <li class="collection-item avatar">
+                        Hiện tại chưa có thông báo nào.
+                      </li>
+                    <% else %>
+                      <%= render current_user.recent_notifications %>
 
-                    <li class="collection-footer">
-                      <%= link_to "Xem tất cả", notifications_path, 
-                        class: "center-align" %>
-                    </li>
+                      <li class="collection-footer">
+                        <%= link_to "Xem tất cả", notifications_path, 
+                          class: "center-align" %>
+                      </li>
+                    <% end %>
+                    
                   </ul>
                 </li>
 
@@ -153,7 +160,7 @@
 
         <li>
           <%= link_to material_icon_of("favorite", name: "Các tin yêu thích"),
-            favorite_posts_user_path(current_user) %>
+            favorite_posts_path %>
           <span class="counter"><%= current_user.favorites.count %></span>
         </li>
 
