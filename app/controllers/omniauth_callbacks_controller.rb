@@ -3,13 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from_omniauth(request.env['omniauth.auth'])
     
     if user.persisted?
-      sign_in user
-      
-      if request.referrer
-        redirect_to request.referrer
-      else
-        redirect_to user_profile_path(current_user.username)
-      end
+      sign_in_and_redirect user
       
       flash[:notice] = "Đăng nhập thành công"
     else

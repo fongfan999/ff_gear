@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def after_sign_in_path_for(user)
+    stored_location_for(user) || user_profile_path(user.username)
+  end
+
   def location
     # Using user's address
     if user_signed_in? && current_user.profile && current_user.profile.address.present?

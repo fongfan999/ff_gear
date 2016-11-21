@@ -55,6 +55,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+
+  rescue ActiveRecord::RecordNotFound
+    redirect_to market_path
   end
 
   def user_params
