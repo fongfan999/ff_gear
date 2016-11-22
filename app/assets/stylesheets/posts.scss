@@ -229,15 +229,20 @@
       }
       
       .comment_info {
-        width: 45px;
+        width: 55px;
         font-size: 12px;
-        text-align: center;
+        text-align: right;
+        padding-right: 10px;
       }
     }
   }
 
   .thread_reply {
     height: 100%;
+
+    .row {
+      margin-bottom: 0;
+    }
 
     .comment_error_explanation {
       color: red;
@@ -266,6 +271,7 @@
     .comment_form_actions {
       margin-top: -15px;
       margin-right: 10px;
+      margin-bottom: 15px;
     }
   }
 }

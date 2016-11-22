@@ -58,18 +58,13 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    @status = if current_user.favorite?(@post)
+    if current_user.favorite?(@post)
       current_user.favorites.destroy(@post)
-      false
     else
       current_user.favorites << @post 
-      true
     end
     
-    respond_to do |format|
-      format.html { redirect_to @post }
-      format.js
-    end
+    head :ok
   end
 
   def mark_as_sold
@@ -92,10 +87,7 @@ class PostsController < ApplicationController
     # Send to admin
     # admin.get_notification(@post, current_user, message, nil) if report.public?
 
-    respond_to do |format|
-      format.html { redirect_to @post }
-      format.js
-    end
+    head :ok
   end
 
   # user's posts

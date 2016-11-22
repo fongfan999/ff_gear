@@ -15,6 +15,6 @@
   $("#thread_<%= @thread.id %>_new_comment_link_div").fadeIn();
 <% end %>
 
-$("#comment_<%= @comment.id.to_s %>_div").hide().fadeIn()[0].scrollIntoView();
+$("#comment_<%= @comment.id.to_s %>_div").hide().fadeIn()[0];
 
 <%= javascript_proc %>

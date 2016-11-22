@@ -44,27 +44,38 @@ $ ->
   if santitizedAnchorComment.length > 0
     $(".comments-btn").click()
 
-    if $('#comments').length
-      $('html, body').animate {
-        scrollTop: $('#comments').offset().top + 450
-      }, 2000
-
-
   # Trigger rendering comments is completed
-  $( document ).ajaxComplete (event, xhr, settings)->
+  $( document ).ajaxComplete (event, xhr, settings) ->
     threadBox = $(".comments_list")
 
     # Change scrollbar style and scroll to anchor
     threadBox.mCustomScrollbar( autoHideScrollbar: true )
-      
+    
+    # Users click on notification box
     if settings.type == "GET"
+      # Scroll to threadBox
+      $('html, body').animate {
+        scrollTop: $('#comments').offset().top
+      }, 2000
+
       threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
+
+  # Update icon favorite
+  $('a.favorite').click ->
+    iconTag = $('.favorite i')
+    if (iconTag.html().trim() == 'favorite')
+      iconTag.html('favorite_border').css('color', '#039be5')
     else
-      threadBox.mCustomScrollbar("scrollTo", "bottom", {scrollInertia: 0})
+      iconTag.html('favorite').css('color', '#E74C3C')
 
-      if $('#comments').length
-        $('html, body').scrollTop $('#comments').offset().top
+  # Swal thankyou after rerporting
+  $("#report-post-form button[type='submit']").click ->
+    $('#report-post-form').closeModal()
 
-
-  
-
+    swal {
+      title: "Cảm ơn sự phản hồi của bạn",
+      text: "Những phản hồi của bạn giúp chúng tôi hoàn thiện hơn",
+      type: 'success',
+      confirmButtonText: 'Đóng',
+      confirmButtonColor: '#26a69a'
+    }
