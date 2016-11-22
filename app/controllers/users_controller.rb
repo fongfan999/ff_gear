@@ -1,6 +1,8 @@
 require 'will_paginate/array'
+
 class UsersController < ApplicationController
   before_action :set_user, except: [:profile, :favorite_posts,:notifications]
+  before_action :authenticate_user!, only: [:favorite_posts, :notifications]
 
   def profile
     @user = User.find_by_username(params[:username])
@@ -16,14 +18,18 @@ class UsersController < ApplicationController
   end
 
   def edit_avatar
+    authorize @user
+
     respond_to do |format|
       format.js
     end
   end
 
   def update
+    authorize @user
+
     if @user.update(user_params)
-      flash[:notice] = "Thành công"
+      flash[:notice] = "Cập nhật thành công"
       redirect_to user_profile_path(@user.username)
     else
       flash.now[:alert] = "Thông tin không hợp lệ"
@@ -32,6 +38,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
+
     respond_to do |format|
       format.js
     end
@@ -42,8 +50,6 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    authenticate_user!
-
     @notifications = current_user.notifications.order(created_at: :desc)
 
     @notification_days = @notifications.group_by { |n|
@@ -55,7 +61,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-
   rescue ActiveRecord::RecordNotFound
     redirect_to market_path
   end

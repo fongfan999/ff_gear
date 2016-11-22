@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :location
+  helper_method :location, :page_owner?, :policy?
   
   rescue_from ActionController::UrlGenerationError , with: :not_persisted
 
@@ -28,6 +28,25 @@ class ApplicationController < ActionController::Base
       province = session[:location]['data']['region_name']
       
       "#{city}, #{province}"
+    end
+  end
+
+  def page_owner?(user)
+    return false unless user_signed_in?
+    
+    current_user.id == user.id
+  end
+
+  def policy?(user)
+    page_owner?(user) || current_user.admin?
+  end
+
+  def authorize(user)
+    authenticate_user!
+    
+    unless policy?(user)
+      flash[:alert] = "Bạn không có quyền truy cập chức năng này"
+      redirect_to market_path
     end
   end
 

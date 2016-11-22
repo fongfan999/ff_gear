@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+
   def mark_all_as_read
     current_user.mark_all_notifications_as_read
 

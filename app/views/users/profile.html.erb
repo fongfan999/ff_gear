@@ -13,16 +13,25 @@
     <div class="about-summary card row">
       <div class="about-bg"></div>
       <div class="about-name">
-        <%= link_to edit_user_path(@user), remote: true,
-          class: "edit-name-icon" do %>
-          <%= material_icon_of "edit" %>
-        <% end %>
+        <% if policy? @user %>
+          <%= link_to edit_user_path(@user), remote: true,
+            class: "edit-name-icon" do %>
+            <%= material_icon_of "edit" %>
+          <% end %>
         
-        <%= link_to edit_avatar_user_path(@user), remote: true,
-          class: "change-avatar" do %>
-          <%= image_tag(@user.avatar, class: "bordered-logo") %>
-          <%= material_icon_of "photo_camera" %>
         <% end %>
+          <%#= link_to policy?(@user) ? edit_avatar_user_path(@user) : "#",
+            remote: true,
+            class: "change-avatar" do %>
+            <%#= image_tag(@user.avatar, class: "bordered-logo") %>
+            <%#= material_icon_of "photo_camera" if policy? @user %>
+          <%# end %>
+          <%= link_to edit_avatar_user_path(@user),
+            remote: true,
+            class: "change-avatar" do %>
+            <%= image_tag(@user.avatar, class: "bordered-logo") %>
+            <%= material_icon_of "photo_camera" %>
+          <% end %>
           
         <h6>@<%= @user.username %></h6>
         <h4><%= @user.name %></h4>
@@ -33,8 +42,10 @@
       <div class="col s12 m12 l6 about-block">
         <h5>
           Thông tin liên hệ
-          <%= link_to material_icon_of("edit"), "#edit-profile-form",
-            class: "right modal-trigger" %>
+          <% if policy? @user %>
+            <%= link_to material_icon_of("edit"), "#edit-profile-form",
+              class: "right modal-trigger" %>
+          <% end %>
         </h5>
 
         <div class="row">

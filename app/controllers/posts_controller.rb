@@ -85,7 +85,11 @@ class PostsController < ApplicationController
     @post.owner.get_notification(@post, current_user, report.name, nil)
 
     # Send to admin
-    # admin.get_notification(@post, current_user, message, nil) if report.public?
+    if report.public?
+      User.admin_users.each do |admin|
+        admin.get_notification(@post, current_user, report.name, nil) 
+      end
+    end
 
     head :ok
   end

@@ -25,11 +25,6 @@ class User < ApplicationRecord
   after_create :create_username
   after_create :create_profile
 
-  # Don't store password
-  def password_required?
-    false
-  end
-
   def self.from_omniauth(auth)
     user =  User.where(provider: auth.provider, uid: auth.uid)
       .first_or_create do |user|
@@ -54,6 +49,15 @@ class User < ApplicationRecord
     user 
   end
 
+  def self.admin_users
+    where(admin: true)
+  end
+
+  # Don't store password
+  def password_required?
+    false
+  end
+
   def favorite?(post)
     favorites.exists?(post.id)
   end
@@ -63,17 +67,8 @@ class User < ApplicationRecord
   end
 
   def get_notification(post, commenter, message, comment_id)
-    notification = Notification.where(post: post, commenter: commenter,
-      content: message, comment_id: comment_id).limit(1).first
-
-    return notification if notification
-
-    notification = self.notifications.build(content: message,
-      comment_id: comment_id)
-    notification.post = post
-    notification.commenter = commenter
-
-    notification.save
+    Notification.find_or_create_by(user_id: self.id, post: post,
+      commenter: commenter, content: message, comment_id: comment_id)
   end
 
   def mark_all_notifications_as_read

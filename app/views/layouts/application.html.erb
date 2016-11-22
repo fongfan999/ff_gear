@@ -61,9 +61,12 @@
                   data: { position: "bottom", tooltip: "Thông báo",
                   activates: "notice-content", beloworigin: true,
                   outduration: 1000 } %>
-                  <span class="counter notice">
-                    <%= current_user.unread_counter %>
-                  </span>
+                  <% unless current_user.unread_counter.zero? %>
+                    <span class="counter notice">
+                      <%= current_user.unread_counter %>
+                    </span>
+                  <% end %>
+                  
 
                   <ul id="notice-content" class="dropdown-content collection
                     with-header">
@@ -79,7 +82,8 @@
                         Hiện tại chưa có thông báo nào.
                       </li>
                     <% else %>
-                      <%= render partial: "notifications/notification", collection: current_user.recent_notifications %>
+                      <%= render partial: "notifications/notification",
+                        collection: current_user.recent_notifications %>
 
                       <li class="collection-footer">
                         <%= link_to "Xem tất cả", notifications_path, 
@@ -148,9 +152,11 @@
       <% if user_signed_in? %>
         <li>
           <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
-          <span class="counter notice">
-            <%= current_user.unread_counter %>
-          </span>
+          <% unless current_user.unread_counter.zero? %>
+            <span class="counter notice">
+              <%= current_user.unread_counter %>
+            </span>
+          <% end %>
         </li>
 
         <li>
@@ -161,7 +167,9 @@
         <li>
           <%= link_to material_icon_of("favorite", name: "Các tin yêu thích"),
             favorite_posts_path %>
-          <span class="counter"><%= current_user.favorites.count %></span>
+          <% unless current_user.favorites.count.zero? %>
+            <span class="counter"><%= current_user.favorites.count %></span>
+          <% end %>
         </li>
 
         <li><div class="divider"></div></li>

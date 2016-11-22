@@ -2,7 +2,6 @@ class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin!
 
   def index
-    # render layout: false
   end
 
   private
@@ -11,8 +10,8 @@ class Admin::ApplicationController < ApplicationController
     authenticate_user!
 
     unless current_user.admin?
-      flash[:alert] = "Bạn không có quyền truy cập chức năng này"
-      redirect_to market_path      
+      flash[:alert] = "Bạn không có quyền thực hiện chức năng này"
+      redirect_to market_path   
     end
   end
 end
