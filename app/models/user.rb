@@ -13,8 +13,10 @@ class User < ApplicationRecord
     format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }, on: :update
   validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
   validates :username, presence: true, length: { minimum: 2 ,maximum: 20 },
-    uniqueness: { case_sensitive: false }, format: { with: /\A[a-z\d]+\z/i,
-    message: "chỉ được phép chứa ký tự và số" }, on: :update
+    uniqueness: { case_sensitive: false }, format: {
+      with: /(?=\A[a-z\d]+\z)(?=\A((?!admin).*)|(admin.)\z)/i,
+      message: "chỉ được phép chứa ký tự và số và ngoại trừ 'admin'"
+    }, on: :update
 
   mount_uploader :avatar, AvatarUploader
 

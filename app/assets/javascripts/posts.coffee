@@ -48,17 +48,18 @@ $ ->
   $( document ).ajaxComplete (event, xhr, settings) ->
     threadBox = $(".comments_list")
 
-    # Change scrollbar style and scroll to anchor
-    threadBox.mCustomScrollbar( autoHideScrollbar: true )
-    
-    # Users click on notification box
-    if settings.type == "GET"
-      # Scroll to threadBox
-      $('html, body').animate {
-        scrollTop: $('#comments').offset().top
-      }, 2000
+    if threadBox.length
+      # Change scrollbar style and scroll to anchor
+      threadBox.mCustomScrollbar( autoHideScrollbar: true )
+      
+      # Users click on notification box
+      if settings.type == "GET"
+        # Scroll to threadBox
+        $('html, body').animate {
+          scrollTop: $('#comments').offset().top
+        }, 2000
 
-      threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
+        threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
 
   # Update icon favorite
   $('a.favorite').click ->

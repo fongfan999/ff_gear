@@ -79,7 +79,7 @@
                         Hiện tại chưa có thông báo nào.
                       </li>
                     <% else %>
-                      <%= render current_user.recent_notifications %>
+                      <%= render partial: "notifications/notification", collection: current_user.recent_notifications %>
 
                       <li class="collection-footer">
                         <%= link_to "Xem tất cả", notifications_path, 

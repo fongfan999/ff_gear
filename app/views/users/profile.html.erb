@@ -1,6 +1,6 @@
 <div id="about-me" >
   <div id="about-title" class="center-align">
-    <% if user_signed_in? && page_owner?(@user) %>
+    <% if page_owner?(@user) %>
       <h4>Quản lý thông tin liên lạc của bạn</h4>
       <p>Thông tin càng chi tiết, mọi người dễ dàng liên lạc hơn và tin cậy sản phẩm của bạn hơn :)</p>
     <% else %>

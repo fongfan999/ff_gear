@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
+  # Admin namespace
+  namespace :admin do
+    root 'application#index', as: :root
+  end
+
   get '/notifications', to: "users#notifications"
   get '/favorite_posts', to: "users#favorite_posts"
 
