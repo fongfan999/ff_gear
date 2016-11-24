@@ -26,6 +26,12 @@
   <br/>
   <br/>
 
+  <%= form_tag market_path, method: :get do %>
+    <%= select_tag 'sort', options_from_collection_for_sorting %>
+
+    <%= submit_tag "Sort" %>
+  <% end %>
+
   <div class="ctn">
     <!-- Render posts as default -->
     <div id="posts" class="posts row"> 

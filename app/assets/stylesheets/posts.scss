@@ -108,19 +108,19 @@
 }
 
 #preview-wrapper {
-  height: 212px;
-  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  width: 100%;
-  border: 1px dotted $primary-color;
+  max-width: 700px;
+  padding: 20px;
+  border: 2px dashed $primary-color;
   cursor: pointer;
 
   .dz-message {
     width: 100%;
     height: 100%;
-    line-height: 150px;
+    line-height: 102px;
     color: #9e9e9e;
+    font-size: 0.9em;
   }
 }
 
@@ -135,31 +135,38 @@
     z-index: 1;
   }
 
-  .dz-image {
-    overflow: visible !important;
-    margin-bottom: 5px;
-    background-color: #f3f3f3;
-    padding: 5px;
-    height: 150px !important;
-    width: 150px !important;
-    border-radius: 0 !important;
-    text-align: right;
+  .dz-preview {
+    margin: 0 !important;
+    padding: 4.5px;
 
-    img {
-      height: 150px !important;
-      width: 150px !important;
-      border-radius: 0;
-      position: relative;
-    }
+    .dz-image {
+      overflow: visible !important;
+      height: 136px !important;
+      width: 136px !important;
+      border-radius: 0 !important;
+      text-align: right;
+      border: 2px solid #9e9e9e;
 
-    .remove_thumb {
-      position: relative;
-      top: -150px;
-      z-index: 11;
-      cursor: pointer;
-      border-radius: 12px;
-      background-color: black;
-      color: #fff;
+      img {
+        height: 136px !important;
+        width: 136px !important;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .remove_thumb {
+        position: relative;
+        top: -136px;
+        z-index: 11;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #9e9e9e;
+        color: #fff;
+
+        &:hover {
+          background-color: #26a69a;
+        }
+      }
     }
   }
 
@@ -168,9 +175,9 @@
     text-align: left !important;
   }
 
-  #submit-btn {
-    position: absolute;
-    bottom: 0;
+  .submit-btn {
+    @extend .right;
+    margin-top: 30px;
   }
 }
 

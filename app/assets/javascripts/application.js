@@ -150,17 +150,19 @@ $(function() {
   // Dropzone configuration
   if ($('#attachments-dropzone').length !== 0) {
 
-    var submitBtn = $('#submit-btn');
+    var submitBtn = $('.submit-btn');
 
     var shouldDisableSubmitBtn = function() {
       if ($('#preview-wrapper .dz-success').length == 0) {
         submitBtn.attr('disabled', true);
+        $('.dz-message').show();
       }
     };
 
     var shouldEnableSubmitBtn = function() {
       if ($('#preview-wrapper .dz-success').length > 0) {
         submitBtn.attr('disabled', false);
+        $('.dz-message').hide();
       }
     };
 
@@ -170,16 +172,20 @@ $(function() {
       url: "/attachments",
       paramName: "file",
       clickable: ['#preview-wrapper'],
-      parallelUploads: 3,
+      parallelUploads: 1,
       maxFilesize: 2,
-      maxFiles: 10,
+      maxFiles: 5 - $('#preview-wrapper .dz-preview').length,
       dictDefaultMessage: "Nhấn vào đây hoặc Kéo và thả để đăng ảnh",
       acceptedFiles: "image/jpeg,image/png,image/jpg",
       dictInvalidFileType: "Loại ảnh không phù hợp",
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
-      dictMaxFilesExceeded: "Số lượng ảnh tối đa là {{maxFiles}}",
+      dictMaxFilesExceeded: "Số lượng ảnh tối đa là 5",
       init: function() {
-        $('.dz-message').appendTo('#preview-wrapper');
+        $('.dz-message').prependTo('#preview-wrapper');
+
+        if ($('#preview-wrapper .dz-preview').length) {
+          $('.dz-message').hide();
+        }
         shouldDisableSubmitBtn();
 
         this.on("addedfile", function(file) {

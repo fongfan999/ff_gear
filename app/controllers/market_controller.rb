@@ -3,6 +3,7 @@ class MarketController < ApplicationController
     @posts = Post.filtered(current_user).near(location, 50)
       .paginate(page: params[:page])
     @categories = Category.all
+    # Post.order("#{name} #{type}")
 
     if user_signed_in?
       flash.now[:location] = "Vị trí của bạn: #{location}. #{view_context.link_to('Thay đổi', user_profile_path(current_user.username))}"

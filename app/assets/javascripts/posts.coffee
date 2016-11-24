@@ -17,8 +17,10 @@ $ ->
     update_attachment_ids block.attr('id')
     block.fadeOut()
     block.remove()
+
     if $('#preview-wrapper .dz-preview').length == 0
-        $('#submit-btn').attr 'disabled', true
+      $('.submit-btn').attr 'disabled', true
+      $('.dz-message').show()
 
 
   # Insert icon before input

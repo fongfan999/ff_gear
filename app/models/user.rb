@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { minimum: 2 ,maximum: 20 },
     uniqueness: { case_sensitive: false }, format: {
       with: /(?=\A[a-z\d]+\z)(?=\A((?!admin).*)|(admin.)\z)/i,
-      message: "chỉ được phép chứa ký tự và số và ngoại trừ 'admin'"
+      message: "chỉ được phép chứa ký tự và số"
     }, on: :update
 
   mount_uploader :avatar, AvatarUploader

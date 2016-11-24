@@ -23,8 +23,8 @@ class PostsController < ApplicationController
 
     handle_attachments
 
-    if @post.attachments.empty? || !@post.save
-      flash.now[:alert] = "Đã xảy ra lỗi"
+    if failed_attachments_validation || !@post.save
+      flash.now[:alert] = "Đã xảy ra lỗi. Vui lòng thử lại"
       render "new"
     else
       session.delete(:attachment_ids)
@@ -40,8 +40,8 @@ class PostsController < ApplicationController
   def update
     handle_attachments
 
-    if @post.attachments.empty? || !@post.update(post_params)
-      flash.now[:alert] = "Đã xảy ra lỗi"
+    if failed_attachments_validation || !@post.update(post_params)
+      flash.now[:alert] = "Đã xảy ra lỗi. Vui lòng thử lại"
       render "edit"
     else
       session.delete(:attachment_ids)
@@ -114,6 +114,10 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :address,:description, :tag_names,
       :category_id, :price)
+  end
+
+  def failed_attachments_validation
+    @post.attachments.empty? || @post.attachments.count > 5
   end
 
   def clean_session

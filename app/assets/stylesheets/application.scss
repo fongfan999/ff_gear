@@ -354,3 +354,27 @@ a.report:before {
   content: "report";
 }
 
+.header-pattern {
+  height: 300px;
+  background-color: #2c3e50;
+  position: relative;
+  background: image-url("header-pattern.jpg") no-repeat center fixed;
+}
+
+.container-with-header {
+  max-width: 700px;
+  @extend .card;
+  @extend .container;
+  margin: 0 auto;
+  margin-top: -200px;
+  border-top: 8px solid $foreign-color;
+  padding: 20px 10px;
+
+  header {
+    padding-left: 20px;
+  }
+}
+
+.dropzone {
+  background-color: transparent;
+}
