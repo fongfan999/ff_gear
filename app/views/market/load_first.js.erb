@@ -16,7 +16,7 @@ $("#preloader-nav" ).fadeOut('fast', function() {
     $("#posts").html("<h5 class='center-align'>Hiện tại chưa có tin ở danh mục này :(</h5>").
       hide().fadeIn("slow");
   <% else %>
-    $("#posts").html("<%= j render(@posts, post_class: 's12 m6 l4') %>").
+    $("#posts").html("<%= j render(@posts, post_class: 's12 m6 l3') %>").
       hide().fadeIn("slow");
   <% end %>
  });

@@ -53,99 +53,77 @@
 }
 
 .posts {
-  .card {
-    box-sizing: border-box;
-    box-shadow: none;
+  .post {
+    background-color: #fff;
 
-    & > a {
-      width: 100%;
-    }
-
-    img:hover {
-      transform: scale(1.5);
-      transition: transform 0.4s, opacity 0.1s 0.3s;
-    }
-
-    .owner-avatar {
-      width: 30px;
-      height: 30px;
-      position: absolute;
-      z-index: 2;
-      top: 235px;
-      left: 20px;
-    }
-
-    .card-image {
-      img {
-        height: 250px;
-      }
-    }
-
-    .card-content {
-      color: #1c1c1c;
-      border-top: 1px solid $primary-color;
+    .img-with-overlay {
+      height: 200px;
+      text-align: center;
+      position: relative;
+      background-color: #fff;
+      overflow: hidden;
       
-      a {
-        color: #1c1c1c;
-        width: 100%;
-      }
+      &:hover {
+        .overlay {
+          opacity: 1;
+        }
 
-      .post-title {
-        height: 70px;
-        line-height: 70px;
-        font-size: 1.5rem;
-
-      }
-
-      .more-info {
-        div.truncate {
-          height: 50px;
-          line-height: 50px;
-          position: relative;
-
-          i.small.left {
-            margin-top: 10.5px;
-            @extend .primary-color-text;
-          }
-
-          span.distance {
-            position: absolute;
-            right: 1px;
-            bottom: -20px;
-            font-size: 0.8em;
-            font-style: italic;
-          }
+        img {
+          transform: scale(1.5);
+          transition: transform 0.4s, opacity 0.1s 0.3s;
         }
       }
-
-    }
-
-    .card-reveal {
-      .card-title {
-        // background-color: teal;
-        @extend .primary-color;
+      
+      img {
+        max-height: 200px;
+        margin: 0 auto;
+      }
+      
+      .overlay {
+        transition: all 1s;
+        z-index: 2;
         color: #fff;
-        margin: -20px;
-        padding: 20px;
-        height: 75px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding-top: 70px;
+        opacity: 0;
+        font-size: 0.8em;
 
         i {
+          vertical-align: middle;
+        }
+        
+        .overlay-bg {
+          background-color: black;
+          opacity: 0.7;
+          height: 100%;
           position: absolute;
-          top: 10px;
-          right: 10px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
         }
       }
+    }
 
-      p {
-        margin-top: 40px;
-        font-size: 1.2rem;
-        line-height: 25px;
-      }
+    .post-details {
+      padding: 10px;
+      font-size: 13px;
+      color: #666;
+      line-height: 18px;
+      height: 55px;
 
-      .fixed-icon-bottom-right {
-        position: absolute;
-        bottom: 30px;
-        right: 40px;
+      .post-price {
+        height: auto;
+        color: #00b0ff;
+        font-size: 15px;
+        font-weight: 600;
+        height: 100%;
       }
     }
   }

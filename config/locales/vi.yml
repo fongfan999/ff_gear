@@ -158,7 +158,7 @@ vi:
         separator: ","
         significant: false
         strip_insignificant_zeros: false
-        unit: đồng
+        unit: đ
     format:
       delimiter: "."
       precision: 3

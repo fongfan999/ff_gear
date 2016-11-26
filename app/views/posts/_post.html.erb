@@ -1,54 +1,32 @@
 <div class="col <%= post_class %>">
-  <div class="card hoverable"> 
-    <%= image_tag post.owner.avatar, class: "circle owner-avatar" %>
-    <div class="card-image waves-effect waves-block waves-light">
-      <%= image_tag post.attachments.first.file.url,
-        class: "activator responsive-img" if post.attachments.any? %>
-    </div>
-
-    <div class="card-content">
-      <%= link_to post do %>
-        <div class="truncate post-title"><%= post.title %></div>
-      <% end %>
+  <%= link_to post, class: 'non-waves-effect' do %>
+  <div class="card post">
+    <div class="img-with-overlay valign-wrapper">
+      <%= image_tag post.attachments.first.file,
+        class: "responsive-img valign" %>
       
-      <div class="more-info">
-        <div class="truncate">
-          <%= material_icon_of "monetization_on", class: "small left" %>
-          <%= number_to_currency post.price %>
+      <div class="overlay">
+        <div class="overlay-bg"></div>
+        <div>
+          <%= material_icon_of "location_on", class: "tiny" %> 
+          <%= post.address %>
         </div>
+        <div class="small-text">
+          (khoảng <%= post.distance_from(location).round(1) %> km)
+        </div><br/>
 
-        <div class="truncate">
-          <%= material_icon_of "location_on", class: "small left" %>
-          <span>
-            <div class="divider"></div>
-            <%= post.address %>
-            <% if user_signed_in? %>
-            <span class="distance">
-              khoảng <%= post.distance_from(location).round(1) %> km
-            </span>
-            <% end %>
-          </span>
-        </div>
-
-        <div class="truncate">
-          <%= material_icon_of "access_time", class: "small left" %>
-          <span>
-            <div class="divider"></div>
-            <%= date_or_time_ago_in_words post.created_at %>
-          </span>
+        <div>
+          <%= material_icon_of "access_time", class: "tiny" %> 
+          <%= date_or_time_ago_in_words post.created_at %>
         </div>
       </div>
     </div>
 
-    <div class="card-reveal">
-      <span class="card-title truncate">
-        <%= post.title %>
-        <%= material_icon_of "close", class: "right" %>
-      </span>
-      <p><%= truncate( simple_format(post.description), length: 250) %></p>
-      <span class="fixed-icon-bottom-right">
-        <%= link_to "See more", post %>
-      </span>
+    <div class="divider"></div>
+    <div class="post-details">
+      <div class="right post-price"><%= number_to_currency post.price %></div>
+      <div class="post-title"><%= post.title %></div>
     </div>
   </div>
+  <% end %>
 </div>

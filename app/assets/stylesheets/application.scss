@@ -1,8 +1,9 @@
+@import "materialize/components/color";
+
 $primary-color: #2c3e50;
 $foreign-color: #e74c3c;
 $teal-color: #26a69a;
 
-@import "materialize/components/color";
 @import 'materialize';
 @import 'welcome';
 @import 'custom-materialize';

@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   belongs_to :category
   has_and_belongs_to_many :tags, uniq: true
   
-  validates :title, presence: true, length: { minimum: 5, maximum: 60 }
+  validates :title, presence: true, length: { minimum: 5, maximum: 35 }
   validates :address, presence: true, length: { minimum: 5, maximum: 60 }
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
   validates :category_id, presence: true
@@ -29,7 +29,7 @@ class Post < ApplicationRecord
     user ? not_sold_posts.where.not(buyer_id: user.id) : not_sold_posts
   end
 
-  self.per_page = 3
+  self.per_page = 4
 
   def tag_names=(names)
     @tag_names = names

@@ -174,7 +174,7 @@ $(function() {
       clickable: ['#preview-wrapper'],
       parallelUploads: 1,
       maxFilesize: 2,
-      maxFiles: 5 - $('#preview-wrapper .dz-preview').length,
+      maxFiles: 5 - $('#preview-wrapper .dz-success').length,
       dictDefaultMessage: "Nhấn vào đây hoặc Kéo và thả để đăng ảnh",
       acceptedFiles: "image/jpeg,image/png,image/jpg",
       dictInvalidFileType: "Loại ảnh không phù hợp",
@@ -190,7 +190,7 @@ $(function() {
 
         this.on("addedfile", function(file) {
           // Append new elenment to wrapper
-          $(file.previewElement).appendTo('#preview-wrapper')
+          $(file.previewElement).appendTo('#preview-wrapper');
         });
 
         this.on("success", function(file, object) {
@@ -231,6 +231,29 @@ $(function() {
         this.on("error", function(file, object) {
           $(file.previewElement).appendTo('#preview-wrapper')
         });
+      }
+    });
+
+    var update_attachment_ids = function(attachment_id) {
+      var rejected_ids;
+      rejected_ids = $('#rejected_ids').val() || '[]';
+      rejected_ids = $.parseJSON(rejected_ids);
+      rejected_ids.push(parseInt(attachment_id));
+      $('#rejected_ids').val(JSON.stringify(rejected_ids));
+    };
+
+    $(".remove_thumb").on("click", function(e) {
+      var block;
+      e.preventDefault();
+      e.stopPropagation();
+      block = $(this).parent().parent();
+      update_attachment_ids(block.attr('id'));
+      block.fadeOut();
+      block.remove();
+      headlineDropzone.options.maxFiles =  5 - $('#preview-wrapper .dz-success').length;
+      if ($('#preview-wrapper .dz-preview').length === 0) {
+        $('.submit-btn').attr('disabled', true);
+        $('.dz-message').show();
       }
     });
   }
