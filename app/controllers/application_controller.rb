@@ -24,10 +24,15 @@ class ApplicationController < ActionController::Base
 
       session[:location] ||= Geocoder.search(address_ip).first.as_json
 
-      city = session[:location]['data']['city']
-      province = session[:location]['data']['region_name']
+      if session[:location].present?
+        city = session[:location]['data']['city']
+        province = session[:location]['data']['region_name']
+        
+        "#{city}, #{province}"
+      else
+        "Vietnam"
+      end
       
-      "#{city}, #{province}"
     end
   end
 

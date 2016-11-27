@@ -166,6 +166,36 @@ $(function() {
       }
     };
 
+    var updateAttachmentIds = function(attachment_id) {
+      var rejected_ids;
+      // Get value as string from input
+      rejected_ids = $('#rejected_ids').val() || '[]';
+      // Parse string to array
+      rejected_ids = $.parseJSON(rejected_ids);
+      // Push id to array
+      rejected_ids.push(parseInt(attachment_id));
+      // Set value as string back to input
+      $('#rejected_ids').val(JSON.stringify(rejected_ids));
+    };
+
+    var handleRemoveThumb = function(object, e, attachmentId) {
+      // Make sure page doesn't submit
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Increase maxFiles by 1
+      headlineDropzone.options.maxFiles += 1;
+      
+      // Find dz-preview block
+      var block = $(object).parent().parent();
+     
+      block.remove();
+      attachmentId = attachmentId || block.attr('id');
+      updateAttachmentIds(attachmentId);
+
+      shouldDisableSubmitBtn();
+    };
+
     Dropzone.autoDiscover = false;
 
     var headlineDropzone = new Dropzone("#attachments-dropzone", {
@@ -206,25 +236,9 @@ $(function() {
           $(file.previewElement).find(".dz-image").append(removeButton);
 
           // Listen to the click event
-          removeButton.addEventListener("click", function(e) {
-            // Make sure the button click doesn't submit the form
-            e.preventDefault();
-            e.stopPropagation();
-
-            // Remove the file preview.
-            _this.removeFile(file);
-            // Should disable submit
-            shouldDisableSubmitBtn();
-
-            // Update hidden field
-            // Get value as string from input
-            rejected_ids = $("#rejected_ids").val() || "[]";
-            // Parse string to array
-            rejected_ids = $.parseJSON(rejected_ids);
-            // Push id to array
-            rejected_ids.push(object.id);
-            // Set value as string back to input
-            $("#rejected_ids").val(JSON.stringify(rejected_ids)); 
+          $(removeButton).on("click", function(e) {
+            console.log("inside");
+            handleRemoveThumb(this, e, object.id);
           });
         });
 
@@ -234,27 +248,9 @@ $(function() {
       }
     });
 
-    var update_attachment_ids = function(attachment_id) {
-      var rejected_ids;
-      rejected_ids = $('#rejected_ids').val() || '[]';
-      rejected_ids = $.parseJSON(rejected_ids);
-      rejected_ids.push(parseInt(attachment_id));
-      $('#rejected_ids').val(JSON.stringify(rejected_ids));
-    };
-
-    $(".remove_thumb").on("click", function(e) {
-      var block;
-      e.preventDefault();
-      e.stopPropagation();
-      block = $(this).parent().parent();
-      update_attachment_ids(block.attr('id'));
-      block.fadeOut();
-      block.remove();
-      headlineDropzone.options.maxFiles =  5 - $('#preview-wrapper .dz-success').length;
-      if ($('#preview-wrapper .dz-preview').length === 0) {
-        $('.submit-btn').attr('disabled', true);
-        $('.dz-message').show();
-      }
+    $(".remove_thumb.persisted").on("click", function(e) {
+      console.log("outside");
+      handleRemoveThumb(this, e);
     });
   }
 });
