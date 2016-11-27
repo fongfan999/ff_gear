@@ -18,7 +18,7 @@ module MarketHelper
 
   def options_from_collection_for_sorting
     options_for_select([
-      ['Các tin ở gần đây', 'location_asc'],
+      ['Liên quan', 'location_asc'],
       ['Mới nhất', 'created_desc'],
       ['Cũ nhất', 'created_asc'],
       ['Giá: Thấp đến cao', 'price_asc'],

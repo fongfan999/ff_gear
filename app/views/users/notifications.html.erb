@@ -40,7 +40,8 @@
             </div>
             
             <div class="right-content">
-              <%= link_to notification.commenter.name, notification.user %> 
+              <%= link_to notification.commenter.name, 
+                user_profile_path(notification.commenter.username) %> 
                 
               <% if notification.comment_id.nil? %>
                 đã cho rằng tin 

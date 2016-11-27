@@ -10,7 +10,7 @@
   <%= f.input :address, label: "Nơi bán" do %>
     <%= f.input_field :address, length: 60,
       placeholder: "Quận 1, Hồ Chí Minh",
-      value: post.address || location %>
+      value: post.address || current_user.profile.address %>
     <%= material_icon_of "location_on", class: "prefix" %>
   <% end %>
 

@@ -98,7 +98,9 @@ class PostsController < ApplicationController
   def index
     @user = User.find_by_username(params[:username])
 
-    @posts = @user.posts.near(location, 50).paginate(page: params[:page])
+    @posts = @user.posts
+    @posts = @posts.near(location_coordinates) if location_coordinates
+    @posts = @posts.paginate(page: params[:page])
   end
 
   private

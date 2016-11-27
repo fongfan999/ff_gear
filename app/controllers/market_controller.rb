@@ -1,12 +1,15 @@
 class MarketController < ApplicationController
   def index
-    @posts = Post.filtered(current_user).near(location, 50)
-      .paginate(page: params[:page])
     @categories = Category.all
+    @posts = Post.filtered(current_user)
+    @posts = @posts.near(location_coordinates) if location_coordinates
+    @posts = @posts.paginate(page: params[:page])
     # Post.order("#{name} #{type}")
 
-    if user_signed_in?
-      flash.now[:location] = "Vị trí của bạn: #{location}. #{view_context.link_to('Thay đổi', user_profile_path(current_user.username))}"
+    if location_coordinates
+      flash.now[:location] = "Vị trí của bạn: #{current_user.profile.address}. #{view_context.link_to('Thay đổi', user_profile_path(current_user.username))}"
+    else
+      flash.now[:location] = "Cập nhật địa chỉ để hiển thị tin phù hợp. #{view_context.link_to('  Cập nhật', user_profile_path(current_user.username))}"
     end
     
     respond_to do |format|

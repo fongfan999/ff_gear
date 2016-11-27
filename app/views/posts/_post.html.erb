@@ -11,10 +11,15 @@
           <%= material_icon_of "location_on", class: "tiny" %> 
           <%= post.address %>
         </div>
-        <div class="small-text">
-          (khoảng <%= post.distance_from(location).round(1) %> km)
-        </div><br/>
 
+        <% if location_coordinates %>
+          <div class="small-text">
+            (khoảng <%= post.distance_from(current_user.profile.address).round(1) %> km)
+          </div>
+        <% end %>
+        
+        <br/>
+        
         <div>
           <%= material_icon_of "access_time", class: "tiny" %> 
           <%= date_or_time_ago_in_words post.created_at %>

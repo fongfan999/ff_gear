@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :location, :page_owner?, :policy?
+  helper_method :location_coordinates, :page_owner?, :policy?
   
   rescue_from ActionController::UrlGenerationError , with: :not_persisted
 
@@ -10,29 +10,10 @@ class ApplicationController < ActionController::Base
     stored_location_for(user) || user_profile_path(user.username)
   end
 
-  def location
+  def location_coordinates
     # Using user's address
-    if user_signed_in? && current_user.profile && current_user.profile.address.present?
-      current_user.profile.address
-    else
-      # Using address from user's IP
-      address_ip = if Rails.env.production?
-        request.location
-      else
-        "115.79.53.75"
-      end
-
-      session[:location] ||= Geocoder.search(address_ip).first.as_json
-
-      if session[:location].present?
-        city = session[:location]['data']['city']
-        province = session[:location]['data']['region_name']
-        
-        "#{city}, #{province}"
-      else
-        "Vietnam"
-      end
-      
+    if user_signed_in? && current_user.profile.address.present?
+      session[:location] ||= Geocoder.search(current_user.profile.address).first.coordinates
     end
   end
 

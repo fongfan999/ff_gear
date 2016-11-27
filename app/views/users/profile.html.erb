@@ -20,17 +20,11 @@
           <% end %>
         
         <% end %>
-          <%#= link_to policy?(@user) ? edit_avatar_user_path(@user) : "#",
-            remote: true,
-            class: "change-avatar" do %>
-            <%#= image_tag(@user.avatar, class: "bordered-logo") %>
-            <%#= material_icon_of "photo_camera" if policy? @user %>
-          <%# end %>
-          <%= link_to edit_avatar_user_path(@user),
+          <%= link_to policy?(@user) ? edit_avatar_user_path(@user) : "#",
             remote: true,
             class: "change-avatar" do %>
             <%= image_tag(@user.avatar, class: "bordered-logo") %>
-            <%= material_icon_of "photo_camera" %>
+            <%= material_icon_of "photo_camera" if policy? @user %>
           <% end %>
           
         <h6>@<%= @user.username %></h6>
@@ -62,13 +56,13 @@
         <div id="profile-contact" class="col s12">
           <div class="about-info">
             <div>
-              <%= material_icon_of "phone", class: "left" %>
-              <span><%= @profile.phone %></span>
+              <%= material_icon_of "email", class: "left" %>
+              <span><%= @user.email %></span>
             </div>
 
             <div>
-              <%= material_icon_of "email", class: "left" %>
-              <span><%= @user.email %></span>
+              <%= material_icon_of "phone", class: "left" %>
+              <span><%= @profile.phone %></span>
             </div>
 
             <div>
