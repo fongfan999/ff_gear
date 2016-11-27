@@ -2,7 +2,7 @@ require 'will_paginate/array'
 
 class UsersController < ApplicationController
   before_action :set_user, except: [:profile, :favorite_posts,:notifications]
-  before_action :authenticate_user!, only: [:favorite_posts, :notifications]
+  before_action :authenticate_user!, except: [:profile, :show]
 
   def profile
     @user = User.find_by_username(params[:username])

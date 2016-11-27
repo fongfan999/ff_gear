@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  NO_LIMIT = 999999
+  
   attr_accessor :tag_names
   attr_accessor :rejected_ids
   attr_accessor :report_id

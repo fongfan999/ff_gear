@@ -11,9 +11,17 @@ class ApplicationController < ActionController::Base
   end
 
   def location_coordinates
+    return session[:location_coordinates] if session[:location_coordinates]
+    
     # Using user's address
     if user_signed_in? && current_user.profile.address.present?
-      session[:location] ||= Geocoder.search(current_user.profile.address).first.coordinates
+      result = Geocoder.search(current_user.profile.address).first
+      
+      session[:location_coordinates] = if result.present?
+        result.coordinates
+      else
+        nil
+      end
     end
   end
 
@@ -28,10 +36,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize(user)
-    authenticate_user!
-    
     unless policy?(user)
-      flash[:alert] = "Bạn không có quyền truy cập chức năng này"
+      flash[:alert] = "Bạn không có quyền thực hiện hành động này"
       redirect_to market_path
     end
   end

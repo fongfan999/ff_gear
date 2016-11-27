@@ -3,7 +3,10 @@ class CategoriesController < ApplicationController
   
   def show
     @posts = @category.posts.filtered(current_user)
-    @posts = @posts.near(location_coordinates) if location_coordinates
+    if location_coordinates
+      @posts = @posts.near(location_coordinates, Post::NO_LIMIT)
+    end
+    
     @posts = @posts.paginate(page: params[:page])
 
     respond_to do |format|

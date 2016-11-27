@@ -35,9 +35,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post.owner
   end
 
   def update
+    authorize @post.owner
     handle_attachments
 
     if failed_attachments_validation || !@post.update(post_params)
@@ -99,7 +101,9 @@ class PostsController < ApplicationController
     @user = User.find_by_username(params[:username])
 
     @posts = @user.posts
-    @posts = @posts.near(location_coordinates) if location_coordinates
+    if location_coordinates
+      @posts = @posts.near(location_coordinates, Post::NO_LIMIT)
+    end
     @posts = @posts.paginate(page: params[:page])
   end
 
