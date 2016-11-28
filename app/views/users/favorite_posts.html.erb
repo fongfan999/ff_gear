@@ -1,16 +1,16 @@
 <div class="container">
-  <div class="card-panel primary-color">
-    <h5 class="center-align white-text">
-      Các tin yêu thích
-    </h5>
-  </div>
-  
+  <h5 class="card-panel primary-color white-text">
+    <%= link_to current_user.name, user_profile_path(current_user.username),
+      class: "breadcrumb" %>
+    <a class="breadcrumb">Các tin yêu thích</a>
+  </h5>
+
   <% if @favorite_posts.blank? %>
     <p class="center-align"></p>
     <br>
     <h5 class="center-align">Hiện tại chưa có tin yêu thích.</h5>
   <% else %>
-    <div class="row container posts">
+    <div class="row posts">
       <%= render @favorite_posts, post_class: "s12 m6 l4" %>
     </div>
   <% end %>

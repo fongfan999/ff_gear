@@ -41,14 +41,15 @@
             
             <div class="right-content">
               <%= link_to notification.commenter.name, 
-                user_profile_path(notification.commenter.username) %> 
+                user_profile_path(notification.commenter.username),
+                class: "bold" %> 
                 
               <% if notification.comment_id.nil? %>
                 đã cho rằng tin 
                 <%= link_to notification.post.title, notification.unread? ? 
                     post_path(notification.post,
                       notification_id: "#{notification.id}") : 
-                    notification.post %> là: 
+                    notification.post, class: "bold" %> là: 
                 <div class="message-content red-text">
                   <%= simple_format notification.content %>
                 </div>
@@ -59,10 +60,11 @@
                   notification_id: "#{notification.id}", 
                   anchor: "comment_#{notification.comment_id}_div") : 
                   post_path(notification.post,
-                  anchor: "comment_#{notification.comment_id}_div") %> 
+                  anchor: "comment_#{notification.comment_id}_div"),
+                  class: "bold" %> 
                   với nội dung:
                   
-                <div class="message-content">
+                <div class="message-content white-text">
                   <%= simple_format(truncate(notification.content,
                     length: 200)) %>
                 </div>

@@ -15,8 +15,9 @@
     <div class="se-pre-con">
       <%= render "shared/circle_preloader", size: "big" %>
     </div>
-   
-    <nav class="primary-color z-depth-0">
+    
+    <div class="<%= 'navbar-fixed' unless current_page?('/market') %>">
+    <nav class="primary-color">
       <div class="nav-wrapper">
         <div class="row">
           <div class="col l3">
@@ -109,6 +110,7 @@
         </div>
       </div>
     </nav>
+    </div>
 
     <nav class="z-depth-0 hide-on-large-only">
       <div class="nav-wrapper container">

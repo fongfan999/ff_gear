@@ -5,14 +5,14 @@ var highLight = notification.find('.bold');
 notification.toggleClass('unread');
 
 // Update counter
-$('.notice.counter').html($('.collection-item.avatar.unread').length);
+$('.notice.counter').html("<%= current_user.unread_counter %>");
 
 // Highlight on clicking
-$(highLight).toggleClass('teal-lighten-text');
+$(highLight).toggleClass('teal-text');
 
 // Revert color
 setTimeout(function(){
-  $(highLight).toggleClass('teal-lighten-text')
+  $(highLight).toggleClass('teal-text')
 }, 200); 
 
 

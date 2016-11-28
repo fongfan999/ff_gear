@@ -25,7 +25,8 @@
       text-align: center;
       padding-top: 8px;
       border-radius: 32px;
-      background-color: #ECF0F1;
+      background-color: #222;
+      color: #26a69a;
 
       &:hover {
         @extend .z-depth-1;
@@ -50,7 +51,7 @@
       font-weight: 500;
 
       a {
-        color: #212121;
+        color: rgba(255, 255, 255, 0.5);
         width: 100%;
       }
 
@@ -112,7 +113,7 @@
   white-space: nowrap;
   max-width: 700px;
   padding: 20px;
-  border: 2px dashed $primary-color;
+  border: 2px dashed;
   cursor: pointer;
 
   .dz-message {
@@ -225,13 +226,17 @@
           margin-top: -15px;
           
           a {
-            color: rgba(0,0,0,0.87);
+            color: rgba(255, 255, 255, 0.5);
             font-weight: 500;
 
             &:hover {
               text-decoration: underline;
             }
           }
+        }
+
+        .comment_body {
+          color: #fff;
         }
       }
       

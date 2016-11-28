@@ -1,28 +1,4 @@
 $ ->
-  # update_attachment_ids = (attachment_id) ->
-  #   # Get value as string from input
-  #   rejected_ids = $('#rejected_ids').val() or '[]'
-  #   # Parse string to array
-  #   rejected_ids = $.parseJSON(rejected_ids)
-  #   # Push id to array
-  #   rejected_ids.push parseInt(attachment_id)
-  #   # Set value as string back to input
-  #   $('#rejected_ids').val JSON.stringify(rejected_ids)
-
-  # $(".remove_thumb").on "click", (e) ->
-  #   e.preventDefault()
-  #   e.stopPropagation()
-    
-  #   block = $(this).parent().parent()
-  #   update_attachment_ids block.attr('id')
-  #   block.fadeOut()
-  #   block.remove()
-
-  #   if $('#preview-wrapper .dz-preview').length == 0
-  #     $('.submit-btn').attr 'disabled', true
-  #     $('.dz-message').show()
-
-
   # Insert icon before input
   iconsList = $('i.prefix')
   i = 0
@@ -58,7 +34,7 @@ $ ->
       if settings.type == "GET"
         # Scroll to threadBox
         $('html, body').animate {
-          scrollTop: $('#comments').offset().top
+          scrollTop: $('#comments').offset().top - 64
         }, 2000
 
         threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
@@ -67,7 +43,7 @@ $ ->
   $('a.favorite').click ->
     iconTag = $('.favorite i')
     if (iconTag.html().trim() == 'favorite')
-      iconTag.html('favorite_border').css('color', '#039be5')
+      iconTag.html('favorite_border').css('color', '#26a69a')
     else
       iconTag.html('favorite').css('color', '#E74C3C')
 

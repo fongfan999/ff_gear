@@ -2,7 +2,11 @@
   .nav-pushpin-wrapper {
     width: 100%;
     z-index: 998;
-
+    
+    &.pin-top nav {
+      box-shadow: none !important;
+    }
+    
     &.pinned ~ .sort-div {
       margin-top: 64px;
     }
@@ -136,6 +140,7 @@
       line-height: 18px;
       height: 55px;
       word-wrap: break-word;
+      background-color: #fff;
 
       .post-price {
         height: auto;

@@ -77,7 +77,6 @@
 
     .about-block {
       padding: 20px;
-      @extend .card;
       @extend .hoverable; 
 
       h5 {
@@ -172,7 +171,7 @@
     }
 
     .card {
-      color: rgba(0, 0, 0, 0.5);
+      // color: rgba(0, 0, 0, 0.5);
       min-height: 126px;
       padding: 15px;
 
@@ -199,7 +198,7 @@
     min-height: 350px;
 
     ul.tabs {
-      background-color: #fafafa;
+      // background-color: #fafafa;
       margin-bottom: 30px;
 
       li.tab a.active {

@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-      <div class="col s12 m12 l6 about-block">
+      <div class="col s12 m12 l6 about-block card">
         <h5>
           Thông tin liên hệ
           <% if policy? @user %>
@@ -90,7 +90,7 @@
         <%= render file: "profiles/edit" %>
       </div>
 
-      <div class="col s12 m12 l6 about-block right">
+      <div class="col s12 m12 l6 about-block card right">
           <h5>
             Các tin đã đăng (<%= @user.posts.count %>)
             <%= link_to material_icon_of("keyboard_arrow_right"),

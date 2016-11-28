@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :location_coordinates, :page_owner?, :policy?
   
   rescue_from ActionController::UrlGenerationError , with: :not_persisted
+  rescue_from Geocoder::NetworkError , with: :refresh_page
 
   protected
 
@@ -51,6 +52,10 @@ class ApplicationController < ActionController::Base
 
   def not_persisted
     flash[:alert] = "Người dùng không tồn tại"
+    redirect_to market_path
+  end
+
+  def refresh_page
     redirect_to market_path
   end
 end

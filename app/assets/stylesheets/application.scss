@@ -1,6 +1,6 @@
 @import "materialize/components/color";
 
-$primary-color: #2c3e50;
+$primary-color: #333;
 $foreign-color: #e74c3c;
 $teal-color: #26a69a;
 
@@ -62,11 +62,11 @@ $teal-color: #26a69a;
 
 .bold {
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.8);
+  color: $teal-color;
 }
 
-.unread {
-  background-color: #eee !important;
+.collection .collection-item.unread {
+  background-color: #222 !important;
 }
 
 .bordered-logo {
@@ -90,9 +90,13 @@ a.more-vert {
   min-width: 150px;
 
   & > li > a {
-    color: #222;
+    color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
     font-weight: 300;
+
+    &:hover {
+      color: black;
+    }
   }
 }
 
@@ -148,9 +152,27 @@ i.clear-input {
   font-size: 0.7em;
 }
 
+
+// Dark theme
 html, body {
   overflow-x: hidden;
-  background-color: #ecf0f1;
+  background-color: #222;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.card, .tabs, .modal, .modal-content, .modal-footer, .dropdown-content, 
+.collection .collection-item, .collection .collection-header {
+  background-color: #333 !important;
+}
+
+.collection, .collection .collection-item {
+  border: none !important;
+}
+
+// End Dark theme
+
+a.modal-close {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 body {
@@ -196,18 +218,16 @@ span.counter {
   font-weight: 500;
 
   .collection-header {
-    @extend .teal-lighten-text;
+    color: $teal-color;
     min-height: 0;
     height: 40px !important;
 
     a {
-      @extend .primary-color-text;
       padding: 0;
 
       &:hover {
         background-color: transparent;
         text-decoration: underline;
-        @extend .teal-lighten-text;
       }
     }
   }
@@ -217,6 +237,7 @@ span.counter {
     padding-bottom: 5px;
     cursor: default !important;
     min-height: 0;
+    color: rgba(255, 255, 255, 0.5);
 
     &:hover {
       background-color: #fafafa;
@@ -227,9 +248,9 @@ span.counter {
     }
     
     a {
-      color: rgba(0, 0, 0, 0.5);
       padding-top: 3px;
       padding-bottom: 3px;
+      color: rgba(255, 255, 255, 0.5) !important;
 
       &:hover {
         background-color: transparent;
@@ -251,7 +272,7 @@ span.counter {
       padding-top: 0px !important;
       padding-bottom: 0 !important;
       font-style: italic;
-      color: rgba(0, 0, 0, 0.5) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
     }
   }
 }
@@ -291,8 +312,16 @@ a.brand-logo {
   }
 }
 
-.side-nav .userView {
-  @extend .primary-color;
+.side-nav {
+  background-color: #222;
+
+  .userView {
+    @extend .primary-color;
+  }
+
+  a, i {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
 }
 
 #drawer-logout {
@@ -364,11 +393,10 @@ a.report:before {
 
 .container-with-header {
   max-width: 700px;
-  @extend .card;
   @extend .container;
   margin: 0 auto;
   margin-top: -200px;
-  border-top: 8px solid $foreign-color;
+  border-top: 5px solid $teal-color;
   padding: 20px 10px;
 
   header {
