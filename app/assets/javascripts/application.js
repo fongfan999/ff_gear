@@ -73,6 +73,7 @@ $(function() {
   if ($('.nav-pushpin-wrapper').length) {
     $('.nav-pushpin-wrapper').pushpin({
       top: $('.nav-pushpin-wrapper').offset().top
+      // offset: 0
     });
   }
 

@@ -18,11 +18,11 @@ module MarketHelper
 
   def options_from_collection_for_sorting
     options_for_select([
-      ['Liên quan', 'location_asc'],
-      ['Mới nhất', 'created_desc'],
-      ['Cũ nhất', 'created_asc'],
-      ['Giá: Thấp đến cao', 'price_asc'],
-      ['Giá: Cao đến thấp', 'price_desc']
-    ])
+      ['Liên quan', 'relevance'],
+      ['Mới nhất', 'created_atdesc'],
+      ['Cũ nhất', 'created_atasc'],
+      ['Giá: Thấp đến cao', 'priceasc'],
+      ['Giá: Cao đến thấp', 'pricedesc']
+    ], params[:sort] || "relevance")
   end
 end

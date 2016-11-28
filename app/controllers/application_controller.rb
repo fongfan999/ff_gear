@@ -42,6 +42,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def sort_relevance?
+    location_coordinates and 
+      (params[:sort] == "relevance" || params[:sort].nil?)
+  end
+
   private
 
   def not_persisted

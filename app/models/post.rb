@@ -31,6 +31,19 @@ class Post < ApplicationRecord
     user ? not_sold_posts.where.not(buyer_id: user.id) : not_sold_posts
   end
 
+  scope :custom_sort, -> (sort_param) do
+    return Post.order(created_at: :desc) if sort_param.blank?
+
+    sort_column = sort_param.split(/asc|desc/).join
+    sort_direction = sort_param.last(sort_param.length - sort_column.length)
+
+    # Make sure query is running if param is not valid
+    sort_column = "created_at" unless Post.column_names.include?(sort_column)
+    sort_direction = "desc" unless %w[asc desc].include?(sort_direction)
+
+    order("#{sort_column} #{sort_direction}")
+  end
+
   self.per_page = 4
 
   def tag_names=(names)

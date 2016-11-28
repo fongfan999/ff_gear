@@ -17,3 +17,6 @@ $ ->
 
     $("#posts").html("")
     $("#preloader-nav" ).show()
+
+  $('#sort').change ->
+    $(this).closest("form").submit()

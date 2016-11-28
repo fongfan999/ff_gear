@@ -5,14 +5,16 @@
         <div class="nav-tabs">
           <ul class="tabs">
             <li class="tab">
-              <%= link_to category_nav("Trang chủ"), market_path,
-              remote: true %>
+              <%= link_to category_nav("Trang chủ"),
+                market_path(sort: params[:sort]),
+                remote: true %>
             </li>
             
             <% @categories.each do |category| %>
             <li class="tab">
-              <%= link_to category_nav(category.name), category,
-              remote: true %>
+              <%= link_to category_nav(category.name),
+                category_path(category, sort: params[:sort]),
+                remote: true %>
             </li>
             <% end %>
           </ul>
@@ -22,15 +24,17 @@
   </div>
 
   <br/>
-  <br/>
-  <br/>
-  <br/>
+  
+  <div class="ctn sort-div">
+    <div>Sắp xếp theo: </div>
+    <div>
+    <%= form_tag market_path, method: :get, class: "full-width" do %>
+      <%= select_tag 'sort', options_from_collection_for_sorting %>
 
-  <%= form_tag market_path, method: :get do %>
-    <%= select_tag 'sort', options_from_collection_for_sorting %>
-
-    <%= submit_tag "Sort" %>
-  <% end %>
+      <%= submit_tag "Sort", class: "hide" %>
+    <% end %>
+    </div>
+  </div>
 
   <div class="ctn">
     <!-- Render posts as default -->
