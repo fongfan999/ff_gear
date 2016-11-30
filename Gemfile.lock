@@ -179,6 +179,7 @@ GEM
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-es6-promise (4.0.5)
+    rails-assets-materialize-autocomplete (1.0.7)
     rails-assets-sweetalert2 (6.1.1)
       rails-assets-es6-promise
     rails-dom-testing (2.0.1)
@@ -263,6 +264,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0)
+  rails-assets-materialize-autocomplete!
   rails-assets-sweetalert2!
   sass-rails (~> 5.0)
   simple_form (~> 3.3.1)

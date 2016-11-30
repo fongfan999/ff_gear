@@ -7,9 +7,9 @@
 
   <div class="row posts">
     <% if @posts.blank? %>
-      <h5 class="center-align">
+      <h6 class="center-align">
         <%= @user.name %> hiện tại chưa đăng tin nào.
-      </h5> 
+      </h6> 
     <% else %>
     <%= render @posts, post_class: "s12 m6 l4" %>
       

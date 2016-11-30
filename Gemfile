@@ -66,6 +66,9 @@ gem 'client_side_validations-simple_form',
   github: 'DavyJonesLocker/client_side_validations-simple_form',
   branch: 'rails5'
 
+# materialize-autocomplete
+gem 'rails-assets-materialize-autocomplete', source: 'https://rails-assets.org'
+
 # Sweet alert
 gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
 

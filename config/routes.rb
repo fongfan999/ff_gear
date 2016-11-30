@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   
   mount Commontator::Engine => '/commontator'
 
-  root "welcome#index"
+  root "market#index"
+  
+  get "/about" => "welcome#index"
 
   # Admin namespace
   namespace :admin do
@@ -13,13 +15,15 @@ Rails.application.routes.draw do
   get '/notifications', to: "users#notifications"
   get '/favorite_posts', to: "users#favorite_posts"
 
-  get 'market', to: "market#index"
-
   resources :posts, except: [:index] do
     member do
       patch :favorite
       patch :mark_as_sold
       patch :report
+    end
+
+    collection do
+      get :autocomplete_post_name
     end
   end
 

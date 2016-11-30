@@ -1,13 +1,14 @@
-$('#posts').append("<%= j render(@posts, post_class: 's12 m6 l3') %>");
+$("<%= j render(@posts, post_class: 's12 m6 l3') %>").appendTo("#posts")
+  .hide().fadeIn("slow");
 
 <% if @posts.next_page %>
   // Replace new will_page
   $('#posts-infinite-scrolling').html('<%= j will_paginate @posts %>');
 
   // Add view more button
-  var viewMore = $('.pagination .next_page a');
-  viewMore.attr('data-remote', true).text('xem thêm').
-    addClass('view-more-btn btn');
+  var viewMore = $('.pagination .next_page a').attr('data-remote', true)
+    .addClass('view-more-btn btn').html("<i class='material-icons'>sync</i>");
+
   $("#posts-infinite-scrolling").append(viewMore.clone());
 <% else %>
   $('#posts-infinite-scrolling').remove();

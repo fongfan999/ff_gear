@@ -11,7 +11,7 @@ class Admin::ApplicationController < ApplicationController
 
     unless current_user.admin?
       flash[:alert] = "Bạn không có quyền thực hiện chức năng này"
-      redirect_to market_path   
+      redirect_to root_path   
     end
   end
 end

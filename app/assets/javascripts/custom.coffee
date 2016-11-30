@@ -1,10 +1,34 @@
 $ ->
+  # Allow user to scroll down while page is scrolling top automatically
+  $("html, body").on "scroll mousedown wheel DOMMouseScroll mousewheel keyup 
+    touchmove", ->
+    $(this).stop()
+
   # Show/hide go to top helper
   $(window).scroll ->
     if $(this).scrollTop() > 500
       $('.go-to-top').show()
     else
       $('.go-to-top').fadeOut("slow")
+
+  # Autocomplete suggestions
+  inputSearch = $("#search-input")
+
+  inputSearch.focus ->
+    $('nav .input-field label.active i').css('color', '#444')
+  
+  inputSearch.blur ->
+    $('nav .input-field label.active i').css('color', '#e9e9e9')
+
+  inputSearch.materialize_autocomplete
+    limit: 5,
+    dropdown: {
+      el: '#search-dropdown'
+    },
+    getData: (value, callback) -> 
+      $.getJSON("/posts/autocomplete_post_name.json", {search: value})
+        .done (data) ->
+          callback(value, data)
 
   # With Ajax only
   $( document ).ajaxComplete ->

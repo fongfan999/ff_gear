@@ -16,7 +16,7 @@
       <%= render "shared/circle_preloader", size: "big" %>
     </div>
     
-    <div class="<%= 'navbar-fixed' unless current_page?('/market') %>">
+    <div class="<%= 'navbar-fixed' unless current_page?('/') %>">
     <nav class="primary-color">
       <div class="nav-wrapper">
         <div class="row">
@@ -25,20 +25,27 @@
             <%= material_icon_of "menu", id: "menu-icon" %>
           </a>
 
-          <%= link_to market_path, class: "brand-logo" do %>
+          <%= link_to root_path, class: "brand-logo" do %>
             <%= image_tag 'logo.png', class: "left" %>
             <span>FoxFizz</span>
           <% end %>
           </div>
 
           <div class="col l5 hide-on-med-and-down">
-            <form class="search-bar">
+            <%= form_tag root_path, class: "search-bar" do %>
               <div class="input-field">
-                <input type="search" required placeholder="Search anything ...">
+                
+                <%= search_field_tag :search, nil, id: "search-input",
+                  placeholder: "Search anything ...", autocomplete: "off",
+                  data: { "activates": "search-dropdown",
+                  beloworigin: true } %>
+                        
                 <label for="search"><%= material_icon_of "search" %></label>
                 <%= material_icon_of "close", class: "clear-input" %>
               </div>
-            </form>
+            <% end %>
+
+            <ul id="search-dropdown" class="dropdown-content"></ul>
           </div>
           
           <div class="col l4">
@@ -112,17 +119,17 @@
     </nav>
     </div>
 
-    <nav class="z-depth-0 hide-on-large-only">
+<!--     <nav class="z-depth-0 hide-on-large-only">
       <div class="nav-wrapper container">
         <form class="full-width search-bar">
           <div class="input-field">
-            <input type="search" required placeholder="Search anything ...">
-            <label for="search"><%= material_icon_of "search" %></label>
-            <%= material_icon_of "close" %>
+            <input type="search" class="autocomplete" placeholder="Search anything ...">
+            <label for="search"><%#= material_icon_of "search" %></label>
+            <%#= material_icon_of "close" %>
           </div>
         </form>
       </div>
-    </nav>
+    </nav> -->
 
     <ul id="slide-out" class="side-nav">
       <li>
@@ -224,7 +231,5 @@
         </div>
       </div>
     </footer>
-
-    
   </body>
 </html>

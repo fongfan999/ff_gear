@@ -8,7 +8,7 @@
   <% if @favorite_posts.blank? %>
     <p class="center-align"></p>
     <br>
-    <h5 class="center-align">Hiện tại chưa có tin yêu thích.</h5>
+    <h6 class="center-align">Hiện tại chưa có tin yêu thích.</h6>
   <% else %>
     <div class="row posts">
       <%= render @favorite_posts, post_class: "s12 m6 l4" %>

@@ -154,22 +154,11 @@
 }
 
 #posts-infinite-scrolling {
-  max-width: 500px;
+  max-width: 100px;
   margin: 0 auto;
   text-align: center;
 
   .pagination {
     display: none;
-  }
-
-  a.view-more-btn {
-    padding-left: 80px;
-    padding-right: 80px;
-    height: 50px;
-    line-height: 50px;
-    background-color: #fff;
-    @extend .primary-color-text;
-    margin-top: 50px;
-    margin-bottom: 50px;
   }
 }

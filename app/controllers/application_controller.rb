@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def authorize(user)
     unless policy?(user)
       flash[:alert] = "Bạn không có quyền thực hiện hành động này"
-      redirect_to market_path
+      redirect_to root_path
     end
   end
 
@@ -52,10 +52,10 @@ class ApplicationController < ActionController::Base
 
   def not_persisted
     flash[:alert] = "Người dùng không tồn tại"
-    redirect_to market_path
+    redirect_to root_path
   end
 
   def refresh_page
-    redirect_to market_path
+    redirect_to root_path
   end
 end

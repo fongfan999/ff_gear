@@ -21,6 +21,7 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require sweetalert2
+//= require materialize-autocomplete
 //= require_tree .
 
 
@@ -73,7 +74,6 @@ $(function() {
   if ($('.nav-pushpin-wrapper').length) {
     $('.nav-pushpin-wrapper').pushpin({
       top: $('.nav-pushpin-wrapper').offset().top
-      // offset: 0
     });
   }
 
@@ -107,6 +107,7 @@ $(function() {
   // Clear input
   $('i.clear-input').on('click', function() {
     $(this).parent().find('input').val('');
+    $('#search-dropdown').hide();
   });
 
   // Set delay tooltip time

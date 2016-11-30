@@ -70,12 +70,14 @@
       <div class="divider"></div>
       
       <div class="action-bar">
-        <%= link_to favorite_post_path(@post), class: "favorite persistent",
-          method: :patch, remote: true do %>
-          <% if user_signed_in? && current_user.favorite?(@post) %>
-            <%= material_icon_of 'favorite', class: "liked" %>
-          <% else %>
-            <%= material_icon_of 'favorite_border' %>
+        <% if user_signed_in? %>
+          <%= link_to favorite_post_path(@post), class: "favorite persistent",
+            method: :patch, remote: true do %>
+            <% if current_user.favorite?(@post) %>
+              <%= material_icon_of 'favorite', class: "liked" %>
+            <% else %>
+              <%= material_icon_of 'favorite_border' %>
+            <% end %>
           <% end %>
         <% end %>
 

@@ -7,9 +7,9 @@
   
   <% if @notification_days.blank? %>
     <br>
-    <h5 class="center-align">
+    <h6 class="center-align">
       Hiện tại chưa có thông báo nào.
-    </h5>
+    </h6>
   <% else %>
   <div id="notifications">
     <% @notification_days.each do |day, notifications| %>

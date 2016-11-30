@@ -6,7 +6,7 @@
           <ul class="tabs">
             <li class="tab">
               <%= link_to category_nav("Trang chủ"),
-                market_path(sort: params[:sort]),
+                root_path(sort: params[:sort]),
                 remote: true %>
             </li>
             
@@ -28,7 +28,7 @@
   <div class="ctn sort-div">
     <div>Sắp xếp theo: </div>
     <div>
-    <%= form_tag market_path, method: :get, class: "full-width" do %>
+    <%= form_tag root_path, method: :get, class: "full-width" do %>
       <%= select_tag 'sort', options_from_collection_for_sorting %>
 
       <%= submit_tag "Sort", class: "hide" %>
@@ -49,5 +49,5 @@
     <div id="posts-infinite-scrolling"><%= will_paginate @posts %></div>
   </div>
 
-  
 </div>
+

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :autocomplete_post_name]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
     :mark_as_sold, :report]
   before_action :clean_session, only: [:new, :edit]
@@ -107,6 +107,22 @@ class PostsController < ApplicationController
     @posts = @posts.paginate(page: params[:page])
   end
 
+  def autocomplete_post_name
+    # params[:search]
+
+    if params[:search].present?
+       @posts = Post.where("lower(title) LIKE '%#{params[:search].downcase}%'")
+    else
+      @posts = Post.order(:title)
+    end
+
+    # posts_json = 
+    logger.debug "atcpl: #{@posts.size}"
+
+    # params[:search] ||= ""
+    render json: JSON.pretty_generate(@posts.map { |p| {text: p.title} })
+  end
+
   private
 
   def set_post
@@ -114,7 +130,7 @@ class PostsController < ApplicationController
 
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Tin hiện không tồn tại"
-    redirect_to market_path
+    redirect_to root_path
   end
 
   def post_params

@@ -13,7 +13,7 @@ $("#preloader-nav" ).fadeOut('fast', function() {
 
   // Render posts
   <% if @posts.blank? %>
-    $("#posts").html("<h5 class='center-align'>Hiện tại chưa có tin ở danh mục này :(</h5>").
+    $("#posts").html("<h6 class='center-align'>Hiện tại chưa có tin ở danh mục này :(</h6>").
       hide().fadeIn("slow");
   <% else %>
     $("#posts").html("<%= j render(@posts, post_class: 's12 m6 l3') %>").

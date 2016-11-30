@@ -169,11 +169,11 @@ html, body {
   border: none !important;
 }
 
-// End Dark theme
-
 a.modal-close {
   color: rgba(255, 255, 255, 0.5);
 }
+
+// End Dark theme
 
 body {
   display: flex;
@@ -186,7 +186,21 @@ nav ul li, .side-nav li {
   position: relative;
 }
 
-  // Notification counter
+.search-bar {
+  label i {
+    margin-left: 15px;
+  }
+
+  #search-dropdown {
+    margin-top: 10px;
+
+    .ac-item.ac-hover {
+      background-color: #eee;
+    }
+  }
+}
+
+// Notification counter
 span.counter {
   position: absolute;
   top: 16.5px;
@@ -205,6 +219,19 @@ span.counter {
 .side-nav {
   span.counter {
     right: 15px;
+  }
+}
+.autocomplete-content.dropdown-content {
+  position: absolute !important;
+  width: 100%;
+  background-color: #fff !important;
+
+  li > span {
+    color: #444;
+  }
+
+  .highlight {
+    color: $teal-color;
   }
 }
 
@@ -371,7 +398,7 @@ a.delete:before {
 
 a.mark {
   &.active {
-    background-color: #26a69a;
+    background-color: $teal-color;
     color: #fff;
   }
   

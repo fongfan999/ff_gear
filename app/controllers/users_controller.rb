@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     if @user
       @profile = @user.profile
       @recent_posts = @user.recent_posts
+    else
+      not_persisted
     end
   end
 
@@ -62,7 +64,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to market_path
+    redirect_to root_path
   end
 
   def user_params

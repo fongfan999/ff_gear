@@ -50,7 +50,7 @@ class Post < ApplicationRecord
     @tag_names = names
     self.tags.delete_all
     names.split(",").delete_if(&:blank?).each do |name|
-      self.tags << Tag.find_or_create_by(name: name)
+      self.tags << Tag.find_or_initialize_by(name: name)
     end
   end
 
