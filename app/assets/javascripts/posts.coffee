@@ -19,14 +19,18 @@ $ ->
   santitizedAnchorComment = anchorComment.replace(/[^a-z0-9]*/i, '')
 
   # Open thread box to scroll to anchor
-  if santitizedAnchorComment.length > 0
-    $(".comments-btn").click()
+  if santitizedAnchorComment.match(/^comment_\d+_div$/)
+      $(".comments-btn").click()
 
+  # Scroll once
+  scrolled = false
   # Trigger rendering comments is completed
   $( document ).ajaxComplete (event, xhr, settings) ->
     threadBox = $(".comments_list")
 
-    if threadBox.length
+    if threadBox.length && !scrolled 
+      scrolled = true
+
       # Change scrollbar style and scroll to anchor
       threadBox.mCustomScrollbar( autoHideScrollbar: true )
       

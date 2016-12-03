@@ -55,6 +55,30 @@
     }
   }
 
+  #search-form-m {
+    margin-top: 50px;
+
+    #search-input-m {
+      padding: 26px 26px 26px 48px;
+      font-size: 26px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      
+      &:focus ~ .material-icons {
+        color: black;
+      }
+
+      & ~ .material-icons {
+        width: 28px;
+        top: 12px;
+        left: 10px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
 }
 
 @media #{$small-and-down} {

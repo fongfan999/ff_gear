@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  
+
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   
   mount Commontator::Engine => '/commontator'
 
   root "market#index"
   
-  get "/about" => "welcome#index"
+  get "/about" => "main#about"
+  get "/search" => "main#search"
+
+  resources :main do
+    
+  end
 
   # Admin namespace
   namespace :admin do

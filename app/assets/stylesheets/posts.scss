@@ -136,9 +136,10 @@
     box-sizing: content-box !important;
     z-index: 1;
   }
-
+  
   .dz-preview {
     margin: 0 !important;
+    background-color: transparent !important;
     padding: 4.5px;
 
     .dz-image {

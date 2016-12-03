@@ -15,6 +15,6 @@ $ ->
 
   # Sorting
   $('#sort').change ->
-    $("#posts").html("")
+    $("#posts, #posts-infinite-scrolling").hide()
     $("#preloader-nav" ).show()
     $(this).closest("form").submit()

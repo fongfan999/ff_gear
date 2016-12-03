@@ -1,0 +1,20 @@
+<div class="container">
+  <div id="search-form-m" class="hide-on-large-only">
+    <%= form_tag search_path, method: :get, class: "full-width" do %>
+      <div class="input-field">
+        <%= search_field_tag :q, params[:q], id: "search-input-m",
+          placeholder: "Search anything ...", autocomplete: "off",
+          data: { "activates": "search-dropdown-m",
+          beloworigin: true } %>
+
+        <%= material_icon_of "search" %>
+      </div>
+
+      <%#= material_icon_of "close", class: "clear-input" %>
+    <% end %>
+
+    <ul id="search-dropdown-m" class="dropdown-content"></ul>
+  </div>
+
+  <h1><%= params[:q] %></h1>
+</div>

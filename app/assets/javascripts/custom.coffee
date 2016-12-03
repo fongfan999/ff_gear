@@ -20,15 +20,53 @@ $ ->
   inputSearch.blur ->
     $('nav .input-field label.active i').css('color', '#e9e9e9')
 
-  inputSearch.materialize_autocomplete
+  # Highlight function
+  highlight = (text, value) ->
+    rgxp = new RegExp(value, 'gi')
+    repl = '<span class="highlight">' + value + '</span>'
+
+    text.replace(rgxp, repl).toLowerCase()
+
+  $("#search-input").materialize_autocomplete
     limit: 5,
     dropdown: {
-      el: '#search-dropdown'
+      el: '#search-dropdown',
+      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
-      $.getJSON("/posts/autocomplete_post_name.json", {search: value})
+      $.getJSON("/posts/autocomplete_post_name.json?search=" + value)
         .done (data) ->
+          # Highlight
+          for i, item of data
+            item.htmlStr = highlight(item.text, value.toLowerCase())
+  
           callback(value, data)
+
+  # Autocomplete for mobile only
+  $("#search-input-m").materialize_autocomplete
+    limit: 5,
+    dropdown: {
+      el: '#search-dropdown-m',
+      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
+    },
+    getData: (value, callback) -> 
+      $.getJSON("/posts/autocomplete_post_name.json?search=" + value)
+        .done (data) ->
+          # Highlight
+          for i, item of data
+            item.htmlStr = highlight(item.text, value.toLowerCase())
+  
+          callback(value, data)
+
+  # Search when enter is pressed
+  $("#search-input, #search-input-m").keydown (e) ->
+    console.log "pressed"
+    if e.which == 13
+      $(this).closest("form").submit()
+    
+
 
   # With Ajax only
   $( document ).ajaxComplete ->
@@ -44,7 +82,7 @@ $ ->
     if formValidation.length
       formValidation.enableClientSideValidations()
 
-    # Element validation complete
+    # Element validate completely
     # Disable submit button when Form is not validated
     validationBtn = formValidation.find('.validation-btn')
     validationBtn.attr('disabled', true)

@@ -17,119 +17,114 @@
     </div>
     
     <div class="<%= 'navbar-fixed' unless current_page?('/') %>">
-    <nav class="primary-color">
-      <div class="nav-wrapper">
-        <div class="row">
-          <div class="col l3">
-          <a href="#" data-activates="slide-out" class="button-collapse">
-            <%= material_icon_of "menu", id: "menu-icon" %>
-          </a>
+      <nav class="primary-color">
+        <div class="nav-wrapper">
+          <div class="row">
+            <div class="col l3">
+              <a href="#" data-activates="slide-out" class="button-collapse">
+                <%= material_icon_of "menu", id: "menu-icon" %>
+              </a>
 
-          <%= link_to root_path, class: "brand-logo" do %>
-            <%= image_tag 'logo.png', class: "left" %>
-            <span>FoxFizz</span>
-          <% end %>
-          </div>
+              <%= link_to root_path, class: "brand-logo" do %>
+                <%= image_tag 'logo.png', class: "left" %>
+                <span>FoxFizz</span>
+              <% end %>
+            </div>
 
-          <div class="col l5 hide-on-med-and-down">
-            <%= form_tag root_path, class: "search-bar" do %>
-              <div class="input-field">
-                
-                <%= search_field_tag :search, nil, id: "search-input",
-                  placeholder: "Search anything ...", autocomplete: "off",
-                  data: { "activates": "search-dropdown",
-                  beloworigin: true } %>
-                        
-                <label for="search"><%= material_icon_of "search" %></label>
-                <%= material_icon_of "close", class: "clear-input" %>
+            <div class="col l5">
+              <div class="hide-on-med-and-down">
+                <%= form_tag search_path, method: :get,
+                  class: "search-bar" do %>
+                  <div class="input-field">
+                    <%= search_field_tag :q, params[:q], id: "search-input",
+                      placeholder: "Search anything ...", autocomplete: "off",
+                      data: { "activates": "search-dropdown",
+                      beloworigin: true } %>
+                            
+                    <label><%= material_icon_of "search" %></label>
+                    <%= material_icon_of "close", class: "clear-input" %>
+                  </div>
+                <% end %>
+
+                <ul id="search-dropdown" class="dropdown-content"></ul>
               </div>
-            <% end %>
 
-            <ul id="search-dropdown" class="dropdown-content"></ul>
-          </div>
-          
-          <div class="col l4">
-            <ul class="right hide-on-med-and-down">
-              <li>
-                <%= link_to (material_icon_of 'home'), root_path,
-                class: "tooltipped",
-                data: { position: "bottom", tooltip: "Trang chủ" } %>
-              </li>
-
-              <li>
-                <%= link_to material_icon_of("add"), new_post_path,
-                  class: "tooltipped",
-                  data: { position: "bottom", tooltip: "Đăng tin" } %>
-              </li>
-
-              <% if user_signed_in? %>
+              <ul class="icon-search hide-on-large-only">
+                <li><%= link_to material_icon_of("search"), search_path %></li>
+              </ul>
+              
+            </div>
+            
+            <div class="col l4">
+              <ul class="right hide-on-med-and-down">
                 <li>
-                  <%= link_to material_icon_of('notifications_none'),
-                  "#", class: "tooltipped dropdown-button",
-                  data: { position: "bottom", tooltip: "Thông báo",
-                  activates: "notice-content", beloworigin: true,
-                  outduration: 1000 } %>
-                  <% unless current_user.unread_counter.zero? %>
-                    <span class="counter notice">
-                      <%= current_user.unread_counter %>
-                    </span>
-                  <% end %>
-                  
+                  <%= link_to (material_icon_of 'home'), root_path,
+                  class: "tooltipped",
+                  data: { position: "bottom", tooltip: "Trang chủ" } %>
+                </li>
 
-                  <ul id="notice-content" class="dropdown-content collection
-                    with-header">
-                    <li class="collection-header">
-                      Thông báo
-                      <%= link_to "Đánh dấu tất cả là đã đọc",
-                        mark_all_as_read_notifications_path, method: :patch,
-                        remote: true, class: "right" %>
-                    </li>
-                    
-                    <% if current_user.recent_notifications.blank? %>
-                      <li class="collection-item avatar">
-                        Hiện tại chưa có thông báo nào.
-                      </li>
-                    <% else %>
-                      <%= render partial: "notifications/notification",
-                        collection: current_user.recent_notifications %>
+                <li>
+                  <%= link_to material_icon_of("add"), new_post_path,
+                    class: "tooltipped",
+                    data: { position: "bottom", tooltip: "Đăng tin" } %>
+                </li>
 
-                      <li class="collection-footer">
-                        <%= link_to "Xem tất cả", notifications_path, 
-                          class: "center-align" %>
-                      </li>
+                <% if user_signed_in? %>
+                  <li>
+                    <%= link_to material_icon_of('notifications_none'),
+                    "#", class: "tooltipped dropdown-button",
+                    data: { position: "bottom", tooltip: "Thông báo",
+                    activates: "notice-content", beloworigin: true,
+                    outduration: 1000 } %>
+                    <% unless current_user.unread_counter.zero? %>
+                      <span class="counter notice">
+                        <%= current_user.unread_counter %>
+                      </span>
                     <% end %>
                     
-                  </ul>
-                </li>
 
-                <li>
-                  <%= link_to image_tag(current_user.avatar,
-                    size: "32x32", class: "bordered-logo"),
-                    user_profile_path(current_user.username) %>
-                </li>
-              <% else %>
-                <li><%= link_to material_icon_of("account_circle"),
-                  new_user_session_path, class: "tooltipped",
-                  data: { position: "bottom", tooltip: "Đăng nhập" } %></li>
-              <% end %>
-            </ul>
+                    <ul id="notice-content" class="dropdown-content collection
+                      with-header">
+                      <li class="collection-header">
+                        Thông báo
+                        <%= link_to "Đánh dấu tất cả là đã đọc",
+                          mark_all_as_read_notifications_path, method: :patch,
+                          remote: true, class: "right" %>
+                      </li>
+                      
+                      <% if current_user.recent_notifications.blank? %>
+                        <li class="collection-item avatar">
+                          Hiện tại chưa có thông báo nào.
+                        </li>
+                      <% else %>
+                        <%= render partial: "notifications/notification",
+                          collection: current_user.recent_notifications %>
+
+                        <li class="collection-footer">
+                          <%= link_to "Xem tất cả", notifications_path, 
+                            class: "center-align" %>
+                        </li>
+                      <% end %>
+                      
+                    </ul>
+                  </li>
+
+                  <li>
+                    <%= link_to image_tag(current_user.avatar,
+                      size: "32x32", class: "bordered-logo"),
+                      user_profile_path(current_user.username) %>
+                  </li>
+                <% else %>
+                  <li><%= link_to material_icon_of("account_circle"),
+                    new_user_session_path, class: "tooltipped",
+                    data: { position: "bottom", tooltip: "Đăng nhập" } %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     </div>
-
-<!--     <nav class="z-depth-0 hide-on-large-only">
-      <div class="nav-wrapper container">
-        <form class="full-width search-bar">
-          <div class="input-field">
-            <input type="search" class="autocomplete" placeholder="Search anything ...">
-            <label for="search"><%#= material_icon_of "search" %></label>
-            <%#= material_icon_of "close" %>
-          </div>
-        </form>
-      </div>
-    </nav> -->
 
     <ul id="slide-out" class="side-nav">
       <li>

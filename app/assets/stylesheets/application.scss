@@ -5,7 +5,7 @@ $foreign-color: #e74c3c;
 $teal-color: #26a69a;
 
 @import 'materialize';
-@import 'welcome';
+@import 'main';
 @import 'custom-materialize';
 @import 'flexslider.css';
 @import 'posts';
@@ -181,6 +181,10 @@ body {
   flex-direction: column;
 }
 
+.icon-search {
+  position: absolute;
+  right: 40px;
+}
 
 nav ul li, .side-nav li {
   position: relative;
@@ -192,11 +196,19 @@ nav ul li, .side-nav li {
   }
 
   #search-dropdown {
-    margin-top: 10px;
+    margin-top: 11px;
 
     .ac-item.ac-hover {
       background-color: #eee;
     }
+  }
+}
+
+#search-dropdown-m {
+  margin-top: 1px;
+
+  .ac-item.ac-hover {
+    background-color: #eee;
   }
 }
 
@@ -221,13 +233,21 @@ span.counter {
     right: 15px;
   }
 }
-.autocomplete-content.dropdown-content {
-  position: absolute !important;
-  width: 100%;
+
+.ac-dropdown.dropdown-content {
+  width: 100% !important;
   background-color: #fff !important;
 
-  li > span {
-    color: #444;
+  li a {
+    color: #444 !important;
+
+    img {
+      @extend .right;
+      @extend .circle;
+      height: 22px;
+      width: 22px;
+      margin-left: 10px;
+    }
   }
 
   .highlight {

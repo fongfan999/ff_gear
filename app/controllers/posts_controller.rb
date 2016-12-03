@@ -4,9 +4,9 @@ class PostsController < ApplicationController
     :mark_as_sold, :report]
   before_action :clean_session, only: [:new, :edit]
 
-  def show
-    if params[:notification_id]
-      Notification.find(params[:notification_id]).mark_as_read
+  def show    
+    if user_signed_in? && notice = notification_on_params
+      notice.mark_as_read
     end
 
     # Search by name this post
@@ -116,11 +116,8 @@ class PostsController < ApplicationController
       @posts = Post.order(:title)
     end
 
-    # posts_json = 
-    logger.debug "atcpl: #{@posts.size}"
-
     # params[:search] ||= ""
-    render json: JSON.pretty_generate(@posts.map { |p| {text: p.title} })
+    render json: @posts.map { |p| {id: p.id,text: p.title, img: p.first_attachment} }
   end
 
   private
@@ -152,5 +149,11 @@ class PostsController < ApplicationController
   def handle_attachments
     Attachment.clean_junks(params["post"]["rejected_ids"])
     @post.attachments << Attachment.pending(session[:attachment_ids])
+  end
+
+  def notification_on_params
+    return false unless params[:notification_id]
+    
+    current_user.notifications.find_by_id(params[:notification_id])
   end
 end

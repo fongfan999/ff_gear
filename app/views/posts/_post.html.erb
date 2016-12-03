@@ -2,7 +2,7 @@
   <%= link_to post, class: 'non-waves-effect' do %>
   <div class="card post">
     <div class="img-with-overlay valign-wrapper">
-      <%= image_tag post.attachments.first.file,
+      <%= image_tag post.first_attachment,
         class: "responsive-img valign" %>
       
       <div class="overlay">

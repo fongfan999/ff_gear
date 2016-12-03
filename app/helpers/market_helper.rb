@@ -18,7 +18,7 @@ module MarketHelper
 
   def options_from_collection_for_sorting
     options_for_select([
-      ['Liên quan', 'relevance'],
+      ['Phù hợp nhất', 'relevance'],
       ['Mới nhất', 'created_atdesc'],
       ['Cũ nhất', 'created_atasc'],
       ['Giá: Thấp đến cao', 'priceasc'],

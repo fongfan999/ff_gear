@@ -102,7 +102,7 @@
             <% @recent_posts.each do |post| %>
               <div>
                 <%= link_to post do %>
-                  <%= image_tag post.attachments.first.file, class: "left" %>
+                  <%= image_tag post.first_attachment, class: "left" %>
                   <span><%= post.title %></span>
                 <% end %>
               </div>

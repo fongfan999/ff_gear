@@ -62,6 +62,10 @@ class Post < ApplicationRecord
     Category.find(self.category_id).posts.where.not(id: self.id).limit(5)
   end
 
+  def first_attachment
+    attachments.first.file.url
+  end
+
   private
 
   def should_save?
