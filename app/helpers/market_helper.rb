@@ -23,6 +23,10 @@ module MarketHelper
       ['Cũ nhất', 'created_atasc'],
       ['Giá: Thấp đến cao', 'priceasc'],
       ['Giá: Cao đến thấp', 'pricedesc']
-    ], params[:sort] || "relevance")
+    ],
+      params[:sort] || 
+      (params[:filter] && params[:filter][:sort]) || 
+      "relevance"
+    )
   end
 end

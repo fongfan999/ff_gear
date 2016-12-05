@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :autocomplete_post_name]
+  before_action :authenticate_user!, except: [:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
     :mark_as_sold, :report]
   before_action :clean_session, only: [:new, :edit]
@@ -105,19 +105,6 @@ class PostsController < ApplicationController
       @posts = @posts.near(location_coordinates, Post::NO_LIMIT)
     end
     @posts = @posts.paginate(page: params[:page])
-  end
-
-  def autocomplete_post_name
-    # params[:search]
-
-    if params[:search].present?
-       @posts = Post.where("lower(title) LIKE '%#{params[:search].downcase}%'")
-    else
-      @posts = Post.order(:title)
-    end
-
-    # params[:search] ||= ""
-    render json: @posts.map { |p| {id: p.id,text: p.title, img: p.first_attachment} }
   end
 
   private

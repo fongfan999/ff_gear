@@ -28,10 +28,6 @@ Rails.application.routes.draw do
       patch :mark_as_sold
       patch :report
     end
-
-    collection do
-      get :autocomplete_post_name
-    end
   end
 
   post :attachments, to: "attachments#create"

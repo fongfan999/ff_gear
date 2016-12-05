@@ -28,14 +28,13 @@ $ ->
     text.replace(rgxp, repl).toLowerCase()
 
   $("#search-input").materialize_autocomplete
-    limit: 5,
     dropdown: {
       el: '#search-dropdown',
       itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
-      $.getJSON("/posts/autocomplete_post_name.json?search=" + value)
+      $.getJSON("/search.json?q=" + value)
         .done (data) ->
           # Highlight
           for i, item of data
@@ -45,14 +44,13 @@ $ ->
 
   # Autocomplete for mobile only
   $("#search-input-m").materialize_autocomplete
-    limit: 5,
     dropdown: {
       el: '#search-dropdown-m',
       itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
-      $.getJSON("/posts/autocomplete_post_name.json?search=" + value)
+      $.getJSON("/search.json?q=" + value)
         .done (data) ->
           # Highlight
           for i, item of data
@@ -62,11 +60,35 @@ $ ->
 
   # Search when enter is pressed
   $("#search-input, #search-input-m").keydown (e) ->
-    console.log "pressed"
     if e.which == 13
       $(this).closest("form").submit()
     
+  # Accept number only
+  $(".number").bind "keydown change", (e) ->
+    # Allow: backspace, delete, tab, escape, enter and .
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) != -1 ) 
+      # let it happen, don't do anything
+      return
 
+    # Ensure that it is a number and stop the keypress
+    if (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && 
+      (e.keyCode < 96 || e.keyCode > 105)
+        e.preventDefault()
+
+  # Seperate large number by whitespace
+  $('.number').bind "keyup change input", ->
+    this.value = this.value.replace(/ /g,"")
+    this.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+
+  # Submit form on change
+  $('.field-change').change ->
+    $(".hide-on-change").hide()
+    $("#preloader-nav" ).show()
+    formChange = $(this).closest("form")
+    formChange.css("opacity", 0.5)
+    formChange.click (e) ->
+      e.preventDefault()
+    formChange.submit()
 
   # With Ajax only
   $( document ).ajaxComplete ->

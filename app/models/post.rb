@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   attr_accessor :tag_names
   attr_accessor :rejected_ids
   attr_accessor :report_id
+  # attr_accessor :price_as_string
   
   has_many :attachments, dependent: :delete_all
   has_and_belongs_to_many :users
@@ -15,7 +16,7 @@ class Post < ApplicationRecord
   validates :address, presence: true, length: { minimum: 5, maximum: 60 }
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
   validates :category_id, presence: true
-  validates :price, presence: true, numericality: { greater_than: 1000 }
+  validates :price, presence: true , numericality: { greater_than: 1000 }
 
   geocoded_by :address, lookup: :google
 
@@ -25,7 +26,7 @@ class Post < ApplicationRecord
 
   acts_as_commontable
 
-  scope :filtered, -> (user) do
+  scope :exclude_current_user, -> (user) do
     not_sold_posts = Post.where(sold: false)
     
     user ? not_sold_posts.where.not(buyer_id: user.id) : not_sold_posts
@@ -44,6 +45,13 @@ class Post < ApplicationRecord
     order("#{sort_column} #{sort_direction}")
   end
 
+  scope :search, -> (q) do
+    where("lower(title) LIKE '%#{q.downcase}%'").order(:title)
+  end
+
+  scope :max_price, -> { maximum(:price) }
+  scope :min_price, -> { minimum(:price) }
+
   self.per_page = 4
 
   def tag_names=(names)
@@ -57,6 +65,10 @@ class Post < ApplicationRecord
   def tag_names_as_string
     tags.any? ? tags.map(&:name).join(", ") : ""
   end
+
+  # def price=(price_string)
+  #   self.price = price_string.split.join.to_i
+  # end
 
   def related_posts
     Category.find(self.category_id).posts.where.not(id: self.id).limit(5)

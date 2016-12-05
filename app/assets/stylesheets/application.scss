@@ -5,6 +5,7 @@ $foreign-color: #e74c3c;
 $teal-color: #26a69a;
 
 @import 'materialize';
+@import "materialize/extras/nouislider";
 @import 'main';
 @import 'custom-materialize';
 @import 'flexslider.css';
@@ -140,7 +141,7 @@ i.clear-input {
 }
 
 .full-width {
-  max-width: 100%;
+  max-width: 100% !important;
 }
 
 .ctn {
@@ -377,6 +378,25 @@ a.brand-logo {
   right: 15px;
 }
 
+.sort-div {
+  margin-top: 20px;
+  text-align: right;
+
+  & > div {
+    display: inline-block;
+    padding-right: 15px;
+
+    form {
+      min-width: 170px;
+    }
+
+    &:first-child {
+      font-size: 1.1em;
+      font-style: italic;
+    }
+  }
+}
+
 a.new {
   @extend .btn-floating;
   @extend .btn-large;
@@ -453,4 +473,18 @@ a.report:before {
 
 .dropzone {
   background-color: transparent;
+}
+
+input.number:disabled {
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.number ~ .character-counter {
+  display: none;
+}
+
+.noUi-target .range-label {
+  @extend .truncate; 
 }

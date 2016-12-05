@@ -29,7 +29,8 @@
     <div>Sắp xếp theo: </div>
     <div>
     <%= form_tag root_path, method: :get, class: "full-width" do %>
-      <%= select_tag 'sort', options_from_collection_for_sorting %>
+      <%= select_tag 'sort', options_from_collection_for_sorting,
+       class: "field-change" %>
 
       <%= submit_tag "Sort", class: "hide" %>
     <% end %>
@@ -38,7 +39,7 @@
 
   <div class="ctn">
     <!-- Render posts as default -->
-    <div id="posts" class="posts row"> 
+    <div id="posts" class="posts row hide-on-change"> 
       <%= render @posts, post_class: "s12 m6 l3" %>
     </div>
 
@@ -46,7 +47,9 @@
       <%= render "shared/circle_preloader", size: "small" %>
     </div>
   
-    <div id="posts-infinite-scrolling"><%= will_paginate @posts %></div>
+    <div id="posts-infinite-scrolling" class="hide-on-change">
+      <%= will_paginate @posts %>
+    </div>
   </div>
 
 </div>

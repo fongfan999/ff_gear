@@ -1,0 +1,83 @@
+<%= form_tag search_path, method: :get, class: "filter-form" do |f| %>
+  <%= hidden_field_tag :q, params[:q] %>
+
+  <div class="input-field">
+    <h6 class="bold">Sắp xếp</h6>
+    <%= select_tag 'filter[sort]', options_from_collection_for_sorting %>
+  </div>
+  
+  <div class="input-field full-width">
+    <h6 class="bold">Danh mục</h6>
+
+    <% Category.all.each do |category| %>
+      <p>
+        <%= check_box_tag "filter[category_ids][]", category.id, 
+          category_checked?(category), id: dom_id(category, "modal") %>
+        <%= label_tag dom_id(category, "modal"), category.name %>
+      </p>
+    <% end %>
+  </div>
+
+  <% if posts.size > 1 %>
+    <div class="input-field full-width">
+      <h6 class="bold">Giá</h6><br>
+      <div id="price-range-modal"></div>
+      <br>
+        
+      <div class="row">
+        <div class="col s5 m5 l6">
+          <input id="price-lower-modal" class="number" disabled>
+        </div>
+        <div class="col s5 m5 l6">
+          <input id="price-upper-modal" class="number" disabled>
+        </div>
+        <div class="col s2 m2 l12">
+          <%= button_tag material_icon_of("play_arrow") %>
+        </div>
+
+        <%= hidden_field_tag "filter[price_range]" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  $(function() {
+    <% if posts.size > 1 %>
+      
+      var slider = document.getElementById('price-range-modal');
+
+      noUiSlider.create(slider, {
+        start: [<%= posts.min_price / 1000 %>, <%= posts.max_price / 1000 %>],
+        connect: true,
+        step: 1,
+        range: {
+          'min': <%= posts.min_price / 1000 %>,
+          'max': <%= posts.max_price / 1000 %>
+        },
+        format: wNumb({
+          decimals: 0,
+          thousand: "."
+        })
+      });
+
+      slider.noUiSlider.on('update', function(value){
+        $('#price-lower-modal').val(parseInt(value[0].replace('.', '')) * 1000);
+        $('#price-upper-modal').val(parseInt(value[1].replace('.', '')) * 1000);
+
+        $('#price-lower-modal, #price-upper-modal').change();
+
+        $('#filter_price_range').attr('value', value);
+      });
+
+      <% if params[:filter].present? %>
+        var priceRange = 
+          <%= params[:filter][:price_range]
+            .gsub('.', '').split(',').map(&:to_i).to_json %>;
+
+        slider.noUiSlider.set(priceRange);
+      <% end %>
+
+    <% end %>
+  });
+</script>

@@ -12,9 +12,3 @@ $ ->
 
     $("#posts").html("")
     $("#preloader-nav").show()
-
-  # Sorting
-  $('#sort').change ->
-    $("#posts, #posts-infinite-scrolling").hide()
-    $("#preloader-nav" ).show()
-    $(this).closest("form").submit()

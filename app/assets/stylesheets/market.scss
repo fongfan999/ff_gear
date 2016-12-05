@@ -54,24 +54,6 @@
       }
     }
   }
-
-  .sort-div {
-    text-align: right;
-
-    & > div {
-      display: inline-block;
-      padding-right: 15px;
-
-      form {
-        min-width: 170px;
-      }
-
-      &:first-child {
-        font-size: 1.1em;
-        font-style: italic;
-      }
-    }
-  }
 }
 
 .posts {

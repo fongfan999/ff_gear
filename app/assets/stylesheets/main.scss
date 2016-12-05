@@ -285,3 +285,35 @@
     border-left: none !important;
   }
 }
+
+#search {
+  margin-top: 64px;
+
+  .modal .modal-content {
+    padding: 0;
+  }
+
+  .filter-form {
+    .input-field {
+      max-width: 200px;
+      margin-top: 30px;
+    }
+
+    button[type="submit"] {
+      margin-bottom: 50px;
+      width: 100%;
+      text-align: center;
+      background-color: #26a69a;
+      border: none;
+      border-radius: 2px;
+      height: 42px;
+      line-height: 42px;
+      color: #fff;
+
+      i.material-icons {
+        height: 24px;
+        margin-top: 6px;
+      }
+    }
+  }
+}

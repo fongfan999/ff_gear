@@ -2,7 +2,7 @@ class MarketController < ApplicationController
   def index
     @categories = Category.all
 
-    @posts = Post.filtered(current_user)
+    @posts = Post.exclude_current_user(current_user)
     if sort_relevance?
       @posts = @posts.near(location_coordinates, Post::NO_LIMIT) 
     else

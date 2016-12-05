@@ -11,6 +11,12 @@ $("#preloader-nav" ).fadeOut('fast', function() {
   // Set will_page
   $('#posts-infinite-scrolling').html('<%= j will_paginate @posts %>');
 
+  // Add view more button
+  var viewMore = $('.pagination .next_page a').attr('data-remote', true)
+    .addClass('view-more-btn btn').html("<i class='material-icons'>sync</i>");
+
+  $("#posts-infinite-scrolling").append(viewMore.clone()).show();
+
   // Render posts
   <% if @posts.blank? %>
     $("#posts").html("<h6 class='center-align'>Hiện tại chưa có tin ở danh mục này :(</h6>").hide().fadeIn("slow");
