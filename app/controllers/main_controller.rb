@@ -10,8 +10,12 @@ class MainController < ApplicationController
       @posts = Post.all
     end
 
+    # Filter posts
+    @posts = @posts.filter(params[:filter]) if params[:filter].present?
+
     respond_to do |format|
       format.html { @paginated_posts = @posts.paginate(page: params[:page]) }
+      
       format.json do
         posts_json = @posts.limit(5).map do |post| 
           { id: post.id, text: post.title, img: post.first_attachment }

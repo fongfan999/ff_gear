@@ -20,66 +20,63 @@
     <% end %>
   </div>
 
-  <% if posts.size > 1 %>
-    <div class="input-field full-width">
-      <h6 class="bold">Giá</h6><br>
-      <div id="price-range"></div>
-      <br>
-        
-      <div class="row">
-        <div class="col s5 m5 l6">
-          <input id="price-lower" class="number" disabled>
-        </div>
-        <div class="col s5 m5 l6">
-          <input id="price-upper" class="number" disabled>
-        </div>
-        <div class="col s2 m2 l12">
-          <%= button_tag material_icon_of("play_arrow") %>
-        </div>
-
-        <%= hidden_field_tag "filter[price_range]" %>
+  <div class="input-field full-width">
+    <h6 class="bold">Giá</h6><br>
+    <div id="price-range"></div>
+    <br>
+      
+    <div class="row">
+      <div class="col s5 m5 l6">
+        <input id="price-lower" class="number" disabled>
       </div>
+      <div class="col s5 m5 l6">
+        <input id="price-upper" class="number" disabled>
+      </div>
+      <div class="col s2 m2 l12">
+        <%= button_tag material_icon_of("play_arrow") %>
+      </div>
+
+      <%= hidden_field_tag "filter[price_range]", nil,
+        class: "filter_price_range" %>
     </div>
-  <% end %>
+  </div>
 <% end %>
 
 <script>
   $(function() {
-    <% if posts.size > 1 %>
-      
-      var slider = document.getElementById('price-range');
+    var slider = document.getElementById('price-range');
+    var minPrice = <%= Post.min_price / 1000 %>;
+    var maxPrice = <%= Post.max_price / 1000 %>;
 
-      noUiSlider.create(slider, {
-        start: [<%= posts.min_price / 1000 %>, <%= posts.max_price / 1000 %>],
-        connect: true,
-        step: 1,
-        range: {
-          'min': <%= posts.min_price / 1000 %>,
-          'max': <%= posts.max_price / 1000 %>
-        },
-        format: wNumb({
-          decimals: 0,
-          thousand: "."
-        })
-      });
+    noUiSlider.create(slider, {
+      start: [minPrice, maxPrice],
+      connect: true,
+      step: 1,
+      range: {
+        'min': minPrice,
+        'max': maxPrice
+      },
+      format: wNumb({
+        decimals: 0,
+        thousand: "."
+      })
+    });
 
-      slider.noUiSlider.on('update', function(value){
-        $('#price-lower').val(parseInt(value[0].replace('.', '')) * 1000);
-        $('#price-upper').val(parseInt(value[1].replace('.', '')) * 1000);
+    slider.noUiSlider.on('update', function(value){
+      $('#price-lower').val(parseInt(value[0].replace('.', '')) * 1000);
+      $('#price-upper').val(parseInt(value[1].replace('.', '')) * 1000);
 
-        $('#price-lower, #price-upper').change();
+      $('#price-lower, #price-upper').change();
 
-        $('#filter_price_range').attr('value', value);
-      });
+      $('.filter_price_range').attr('value', value);
+    });
 
-      <% if params[:filter].present? %>
-        var priceRange = 
-          <%= params[:filter][:price_range]
-            .gsub('.', '').split(',').map(&:to_i).to_json %>;
+    <% if params[:filter] && params[:filter].fetch(:price_range, nil) %>
+      var priceRange = 
+        <%= params[:filter][:price_range]
+          .gsub('.', '').split(',').map(&:to_i).to_json %>;
 
-        slider.noUiSlider.set(priceRange);
-      <% end %>
-
+      slider.noUiSlider.set(priceRange);
     <% end %>
   });
 </script>

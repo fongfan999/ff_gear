@@ -9,13 +9,12 @@
   
   <%= f.input :address, label: "Nơi bán" do %>
     <%= f.input_field :address, length: 60,
-      placeholder: "Quận 1, Hồ Chí Minh",
       value: post.address || current_user.profile.address %>
     <%= material_icon_of "location_on", class: "prefix" %>
   <% end %>
 
   <%= f.input :price, label: "Giá (VND)" do %>
-    <%= f.input_field :price, min: 1000, step: 1000 %>
+    <%= f.input_field :price %>
     <%= material_icon_of "attach_money", class: "prefix" %>
   <% end %>
   

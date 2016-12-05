@@ -75,8 +75,8 @@ $ ->
       (e.keyCode < 96 || e.keyCode > 105)
         e.preventDefault()
 
-  # Seperate large number by whitespace
-  $('.number').bind "keyup change input", ->
+  # separate large number by whitespace
+  $('.number').bind "keyup change", ->
     this.value = this.value.replace(/ /g,"")
     this.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 

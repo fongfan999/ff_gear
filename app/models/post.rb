@@ -4,7 +4,6 @@ class Post < ApplicationRecord
   attr_accessor :tag_names
   attr_accessor :rejected_ids
   attr_accessor :report_id
-  # attr_accessor :price_as_string
   
   has_many :attachments, dependent: :delete_all
   has_and_belongs_to_many :users
@@ -27,13 +26,13 @@ class Post < ApplicationRecord
   acts_as_commontable
 
   scope :exclude_current_user, -> (user) do
-    not_sold_posts = Post.where(sold: false)
+    not_sold_posts = where(sold: false)
     
     user ? not_sold_posts.where.not(buyer_id: user.id) : not_sold_posts
   end
 
   scope :custom_sort, -> (sort_param) do
-    return Post.order(created_at: :desc) if sort_param.blank?
+    return order(created_at: :desc) if sort_param.blank?
 
     sort_column = sort_param.split(/asc|desc/).join
     sort_direction = sort_param.last(sort_param.length - sort_column.length)
@@ -46,7 +45,44 @@ class Post < ApplicationRecord
   end
 
   scope :search, -> (q) do
-    where("lower(title) LIKE '%#{q.downcase}%'").order(:title)
+    where("lower(title) LIKE '%#{q.downcase}%'")
+  end
+
+  scope :filter_categories, -> (category_ids) do
+    where(category_id: category_ids) if category_ids.present?
+  end
+
+  scope :filter_price_range, -> (price_range) do
+    # Convert string to array
+    price_range_array = price_range.split(',').map do |number_with_point| 
+      number_with_point.split('.').join.to_i * 1000 
+    end
+
+    # Ensure price_range has 2 values only
+    return unless price_range_array.size == 2
+
+    # Get min and max price
+    min_price = price_range_array[0]
+    max_price = price_range_array[1]
+    # Ensure min_price always less than max_price
+    return unless min_price < max_price
+
+    # Run query
+    where("price BETWEEN ? AND ?", min_price, max_price)
+  end
+
+  scope :filter, -> (filter) do
+    # There are 3 criteria: sort, category_ids, price_range
+    sort = filter.fetch(:sort, nil)
+    category_ids = filter.fetch(:category_ids, nil)
+    price_range = filter.fetch(:price_range, nil)
+
+    Rails.logger.debug "---- #{self.count}"
+    # Get current scope value for the first time
+    result = custom_sort(sort)
+
+    result = result.filter_categories(category_ids) unless category_ids.nil?
+    result = result.filter_price_range(price_range) unless price_range.nil?
   end
 
   scope :max_price, -> { maximum(:price) }
@@ -65,10 +101,6 @@ class Post < ApplicationRecord
   def tag_names_as_string
     tags.any? ? tags.map(&:name).join(", ") : ""
   end
-
-  # def price=(price_string)
-  #   self.price = price_string.split.join.to_i
-  # end
 
   def related_posts
     Category.find(self.category_id).posts.where.not(id: self.id).limit(5)

@@ -4,7 +4,7 @@
       <%= form_tag search_path, method: :get, class: "full-width" do %>
         <div class="input-field">
           <%= search_field_tag :q, params[:q], id: "search-input-m",
-            placeholder: "Search anything ...", autocomplete: "off",
+            placeholder: "Nhập từ khoá", autocomplete: "off",
             data: { "activates": "search-dropdown-m",
             beloworigin: true } %>
 
@@ -15,32 +15,41 @@
       <ul id="search-dropdown-m" class="dropdown-content"></ul>
     </div>
   </div>
-
+  
   <div class="ctn row">
-    <%# if params[:q].present? %>
-      <div class="col s12 m12 l3 hide-on-large-only">
-         <a class="btn modal-trigger" href="#filter-form">
-          Lọc <%= material_icon_of "filter_list", class: "right" %>
-         </a>
-        
-        <br><br>
+    <div class="col s12 m12 l3 hide-on-large-only">
+       <a class="btn modal-trigger" href="#filter-form">
+        Lọc <%= material_icon_of "filter_list", class: "right" %>
+       </a>
+      
+      <br><br>
 
-        <div id="filter-form" class="modal bottom-sheet">
-          <div class="modal-content">
-            <%= render "filter_modal", posts: @posts %>
-          </div>
-          <div class="modal-footer">
-            <a class=" modal-action modal-close btn-flat">Đóng</a>
-          </div>
+      <div id="filter-form" class="modal bottom-sheet">
+        <div class="modal-content">
+          <%= render "filter_modal", posts: @posts %>
+        </div>
+        <div class="modal-footer">
+          <a class=" modal-action modal-close btn-flat">Đóng</a>
         </div>
       </div>
-      <div class="col s12 m12 l3 hide-on-med-and-down">
-        <%= render "filter", posts: @posts %>
-      </div>
-    <%# end %>
+    </div>
+    
+    <div class="col s12 m12 l3 hide-on-med-and-down">
+      <%= render "filter", posts: @posts %>
+    </div>
 
     <div class="col s12 m12 l9">
+
       <div class="posts row hide-on-change">
+        <% if @posts.size == 0 %>
+          <h5 class="center-align">Rất tiếc, chúng tôi không tìm thấy kết quả cho từ khóa 
+            "<%= params[:q] %>"</h5>
+            <br>
+          <div class="center-align">Hãy thử tìm kiếm với từ khoá khác!</div>
+
+        <% else %>
+          <h6><%= @posts.size %> kết quả được tìm thấy.</h6>
+        <% end %>
         <%= render @paginated_posts, post_class: "s12 m6 l4" %>
       </div>
 

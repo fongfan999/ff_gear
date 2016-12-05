@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
   
   def show
-    @posts = @category.posts.exclude_current_user(current_user)
+    @posts = @category.posts
 
     if sort_relevance?
       @posts = @posts.near(location_coordinates, Post::NO_LIMIT) 
