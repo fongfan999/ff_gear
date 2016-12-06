@@ -15,7 +15,7 @@
     <div class="se-pre-con">
       <%= render "shared/circle_preloader", size: "big" %>
     </div>
-    
+
     <div class="<%= 'navbar-fixed' unless current_page?('/') %>">
       <nav class="primary-color">
         <div class="nav-wrapper">
@@ -175,13 +175,15 @@
             <span class="counter"><%= current_user.favorites.count %></span>
           <% end %>
         </li>
-
-        <li><div class="divider"></div></li>
-
-        <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>
-        <li><a><%= material_icon_of "settings", name: "Cài đặt" %></a></li>
-        <li><a><%= material_icon_of "help", name: "Hỗ trợ" %></a></li>
       <% end %>
+
+      <li><div class="divider"></div></li>
+      
+      <% if user_signed_in? %>
+        <li><a><%= material_icon_of "settings", name: "Cài đặt" %></a></li>
+      <% end %>
+      <li><a><%= material_icon_of "feedback", name: "Góp ý" %></a></li>
+      <li><a><%= material_icon_of "help", name: "Hỗ trợ" %></a></li>
     </ul>
     
     <div id="main">

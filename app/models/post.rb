@@ -45,7 +45,9 @@ class Post < ApplicationRecord
   end
 
   scope :search, -> (q) do
-    where("lower(title) LIKE '%#{q.downcase}%'")
+    return Post.all if q.blank?
+    
+    where("upper(title) LIKE '%#{q.upcase}%'")
   end
 
   scope :filter_categories, -> (category_ids) do

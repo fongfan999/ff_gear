@@ -1,0 +1,9 @@
+<div class="user">
+  <%= link_to user do %>
+    <%= image_tag user.avatar %>
+    <div class="user-info">
+      <div>@<%= user.username %></div>
+      <div class="user-name"><%= user.name %></div>
+    </div>
+  <% end %>
+</div>

@@ -25,6 +25,30 @@ class User < ApplicationRecord
   after_create :create_username
   after_create :create_profile
 
+  self.per_page = 10
+
+  scope :search, -> (q) do
+    username_query = q[1..-1]
+    email_query = q.split(' ').join
+    name_query = q[1..-1].split(' ')
+
+    result = search_by(username_query, 'username')
+    result += search_by(email_query, 'email')
+    # Search each word
+    name_query.each do |name|
+      result += search_by(name, 'name')
+    end
+
+    result
+      .each_with_object(Hash.new(0)) { |obj, h|h[obj] += 1 } # Count frequency
+      .sort_by { |obj, size| -size } # Sort descending
+      .map(&:first) # Remove size, get object only
+  end
+
+  scope :search_by, -> (q, attr) do
+    where("upper(#{attr}) LIKE '%#{q.upcase}%'")
+  end
+
   def self.from_omniauth(auth)
     user =  User.where(provider: auth.provider, uid: auth.uid)
       .first_or_create do |user|

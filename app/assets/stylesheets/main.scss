@@ -317,3 +317,32 @@
     }
   }
 }
+
+.user {
+  max-width: 100px;
+  margin: 10px;
+  display: inline-block;
+
+  a {
+    color: #fff;
+
+    img {
+      @extend .circle;
+      @extend .bordered-logo;
+      max-width: 100px;
+      max-height: 100px;
+    }
+    
+    .user-info {
+      text-align: center;
+      font-size: 0.8em;
+      
+      & > div:first-child {
+        color: #26a69a;
+      }
+      & > div {
+        margin-bottom: 3px;
+      }
+    }
+  }
+}

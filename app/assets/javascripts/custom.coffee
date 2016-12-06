@@ -36,6 +36,7 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
+          console.log value
           # Highlight
           for i, item of data
             item.htmlStr = highlight(item.text, value.toLowerCase())

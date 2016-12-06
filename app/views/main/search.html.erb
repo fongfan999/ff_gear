@@ -16,6 +16,7 @@
     </div>
   </div>
   
+  <% if @posts %>
   <div class="ctn row">
     <div class="col s12 m12 l3 hide-on-large-only">
        <a class="btn modal-trigger" href="#filter-form">
@@ -62,5 +63,12 @@
       </div>
     </div>
   </div>
+  
+  <% else %>
+    <div class="row container posts">
+      <%= render @users %>
+    </div>
+  <% end %>
+
 </div>
 
