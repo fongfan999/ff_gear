@@ -36,10 +36,16 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          console.log value
-          # Highlight
-          for i, item of data
-            item.htmlStr = highlight(item.text, value.toLowerCase())
+          userSearch = value.match(/@/)
+
+          if userSearch
+            for i, item of data
+              item.htmlStr = item.text
+              item.text = '@' + item.text
+          else
+            # Highlight
+            for i, item of data
+              item.htmlStr = highlight(item.text, value.toLowerCase())
   
           callback(value, data)
 
@@ -53,9 +59,16 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          # Highlight
-          for i, item of data
-            item.htmlStr = highlight(item.text, value.toLowerCase())
+          userSearch = value.match(/@/)
+
+          if userSearch
+            for i, item of data
+              item.htmlStr = item.text
+              item.text = '@' + item.text
+          else
+            # Highlight
+            for i, item of data
+              item.htmlStr = highlight(item.text, value.toLowerCase())
   
           callback(value, data)
 
@@ -91,10 +104,19 @@ $ ->
       e.preventDefault()
     formChange.submit()
 
+  $('#post_price').bind "keyup change", ->
+    $('#read-currency').text( DOCSO.doc($(this).val()) + " đồng" )
+    console.log $(this).val()
   # With Ajax only
   $( document ).ajaxComplete ->
     # Tooltip on ajax
     $('.tooltipped').tooltip({delay: 20});
+
+    # Render preloader on market page
+    progressPreloader = 
+      '<div class="progress"><div class="indeterminate"></div></div>'
+    $('#posts-infinite-scrolling > .view-more-btn').click ->
+      $('#posts-infinite-scrolling').html(progressPreloader)
 
     # Fix lable on input
     $("input textarea").focus()

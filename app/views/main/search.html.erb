@@ -46,12 +46,12 @@
           <h5 class="center-align">Rất tiếc, chúng tôi không tìm thấy kết quả cho từ khóa 
             "<%= params[:q] %>"</h5>
             <br>
-          <div class="center-align">Hãy thử tìm kiếm với từ khoá khác!</div>
+          <div class="center-align">Vui lòng kiểm tra chính tả hoặc thử tìm kiếm với từ khoá khác!</div>
 
         <% else %>
           <h6><%= @posts.size %> kết quả được tìm thấy.</h6>
+          <%= render @paginated_posts, post_class: "s12 m6 l4" %>
         <% end %>
-        <%= render @paginated_posts, post_class: "s12 m6 l4" %>
       </div>
 
       <div id="preloader-nav" class="center-align" style="display: none">
@@ -65,8 +65,16 @@
   </div>
   
   <% else %>
-    <div class="row container posts">
-      <%= render @users %>
+    <div class="row container">
+      <% if @users.size == 0 %>
+        <h5 class="center-align">Rất tiếc, chúng tôi không tìm thấy kết quả cho từ khóa 
+          "<%= params[:q] %>"</h5>
+          <br>
+        <div class="center-align">Vui lòng kiểm tra chính tả hoặc thử tìm kiếm với từ khoá khác!</div>
+      <% else %>
+        <h6><%= @users.size %> kết quả được tìm thấy.</h6>
+        <%= render @users %>
+      <% end %>
     </div>
   <% end %>
 

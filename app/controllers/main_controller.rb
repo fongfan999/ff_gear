@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class MainController < ApplicationController
   def about
     render layout: false
@@ -20,17 +22,20 @@ class MainController < ApplicationController
         end
       end
     else
-      # Search posts
-      @posts = Post.search(params[:q])
+      if params[:filter].present?
+        # Filter posts and search posts
+        @posts = Post.filter(params[:filter]).search(params[:q])
+      else
+        # Search posts
+        @posts = Post.search(params[:q])
+      end
 
-      # Filter posts
-      @posts = @posts.filter(params[:filter]) if params[:filter].present?
 
       respond_to do |format|
         format.html { @paginated_posts = @posts.paginate(page: params[:page]) }
         
         format.json do
-          posts_json = @posts.limit(5).map do |post| 
+          posts_json = Post.search_by('title', params[:q]).map do |post| 
             { id: post.id, text: post.title, img: post.first_attachment }
           end
 

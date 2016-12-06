@@ -29,14 +29,14 @@ class User < ApplicationRecord
 
   scope :search, -> (q) do
     username_query = q[1..-1]
-    email_query = q.split(' ').join
-    name_query = q[1..-1].split(' ')
+    email_query = q.split.join
+    name_query = q[1..-1].split.uniq
 
-    result = search_by(username_query, 'username')
-    result += search_by(email_query, 'email')
+    result = search_by('username', username_query)
+    result += search_by('email', email_query)
     # Search each word
     name_query.each do |name|
-      result += search_by(name, 'name')
+      result += search_by('name', name)
     end
 
     result
@@ -45,8 +45,8 @@ class User < ApplicationRecord
       .map(&:first) # Remove size, get object only
   end
 
-  scope :search_by, -> (q, attr) do
-    where("upper(#{attr}) LIKE '%#{q.upcase}%'")
+  scope :search_by, -> (attr, q) do
+    where("lower(#{attr}) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
   end
 
   def self.from_omniauth(auth)

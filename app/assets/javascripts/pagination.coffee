@@ -18,6 +18,6 @@ $ ->
         $('#posts-infinite-scrolling').html(progressPreloader)
         $.getScript morePostsUrl
 
-    # Execute manually
+    # Render preloader for inital button
     $('#posts-infinite-scrolling > .view-more-btn').click ->
       $('#posts-infinite-scrolling').html(progressPreloader)

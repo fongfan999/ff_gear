@@ -1,4 +1,3 @@
-
 // Display preloader
 $("#preloader-nav" ).fadeOut('fast', function() {
   // Callback preloader
@@ -24,6 +23,15 @@ $("#preloader-nav" ).fadeOut('fast', function() {
     $("#posts").html("<%= j render(@posts, post_class: 's12 m6 l3') %>").
       hide().fadeIn("slow");
   <% end %>
+
+
+  //  Render preloader 
+  progressPreloader = 
+    '<div class="progress"><div class="indeterminate"></div></div>'
+
+  $('#posts-infinite-scrolling > .view-more-btn').click(function() {
+    $('#posts-infinite-scrolling').html(progressPreloader);
+  });
  });
 
 

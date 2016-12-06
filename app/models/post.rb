@@ -15,7 +15,8 @@ class Post < ApplicationRecord
   validates :address, presence: true, length: { minimum: 5, maximum: 60 }
   validates :description, presence: true, length: { minimum: 20, maximum: 500 }
   validates :category_id, presence: true
-  validates :price, presence: true , numericality: { greater_than: 1000 }
+  validates :price, presence: true,
+    inclusion: { in: 1000..100000000, message: "số tiền không hợp lệ" }
 
   geocoded_by :address, lookup: :google
 
@@ -46,8 +47,47 @@ class Post < ApplicationRecord
 
   scope :search, -> (q) do
     return Post.all if q.blank?
-    
-    where("upper(title) LIKE '%#{q.upcase}%'")
+
+    result = search_by('description', q)
+    result += search_by('address', q)
+
+    q.split.each do |word|
+      result += search_by('title', word)
+      result += search_by_category(word)
+      result += search_by_tag(word)
+    end
+
+    result
+      .each_with_object(Hash.new(0)) { |obj, h|h[obj] += 1 } # Count frequency
+      .sort_by { |obj, size| -size } # Sort descending
+      .map(&:first) # Remove size, get object only
+  end
+
+  scope :search_by, -> (attr, q) do
+    where("lower(#{attr}) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+  end
+
+  scope :search_by_tag, -> (q) do
+    joins(:tags)
+      .where("lower(tags.name) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+  end
+
+  scope :search_by_category, -> (q) do
+    joins(:category)
+      .where("lower(categories.name) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+  end
+
+  scope :filter, -> (filter) do
+    # There are 3 criteria: sort, category_ids, price_range
+    sort = filter.fetch(:sort, nil)
+    category_ids = filter.fetch(:category_ids, nil)
+    price_range = filter.fetch(:price_range, nil)
+
+    # Get current scope value for the first time
+    result = custom_sort(sort)
+
+    result = result.filter_categories(category_ids) unless category_ids.nil?
+    result = result.filter_price_range(price_range) unless price_range.nil?
   end
 
   scope :filter_categories, -> (category_ids) do
@@ -71,20 +111,6 @@ class Post < ApplicationRecord
 
     # Run query
     where("price BETWEEN ? AND ?", min_price, max_price)
-  end
-
-  scope :filter, -> (filter) do
-    # There are 3 criteria: sort, category_ids, price_range
-    sort = filter.fetch(:sort, nil)
-    category_ids = filter.fetch(:category_ids, nil)
-    price_range = filter.fetch(:price_range, nil)
-
-    Rails.logger.debug "---- #{self.count}"
-    # Get current scope value for the first time
-    result = custom_sort(sort)
-
-    result = result.filter_categories(category_ids) unless category_ids.nil?
-    result = result.filter_price_range(price_range) unless price_range.nil?
   end
 
   scope :max_price, -> { maximum(:price) }

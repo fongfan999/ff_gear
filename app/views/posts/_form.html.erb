@@ -14,8 +14,10 @@
   <% end %>
 
   <%= f.input :price, label: "Giá (VND)" do %>
-    <%= f.input_field :price %>
+    <%= f.input_field :price, min: 1000, max: 100000000, step: 1000,
+      autocomplete: "off" %>
     <%= material_icon_of "attach_money", class: "prefix" %>
+    <small id="read-currency" class="right"></small>
   <% end %>
   
   <%= f.input :description, label: "Mô tả sản phẩm" do %>
@@ -23,7 +25,8 @@
     <%= material_icon_of "message", class: "prefix" %>
   <% end %>
 
-  <%= f.label :tag_names, "Tag", class: "tooltipped",
+  <%= f.label :tag_names, "Tag <small>[?]</small>".html_safe,
+    class: "tooltipped",
     data: { tooltip: "Thêm tag để mọi người tìm tin của bạn dễ hơn",
       position: "top" }  %>
   <%= f.input :tag_names, label: false do %>

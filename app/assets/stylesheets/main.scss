@@ -319,7 +319,9 @@
 }
 
 .user {
-  max-width: 100px;
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
   margin: 10px;
   display: inline-block;
 
@@ -329,8 +331,8 @@
     img {
       @extend .circle;
       @extend .bordered-logo;
-      max-width: 100px;
-      max-height: 100px;
+      width: 100px;
+      height: 100px;
     }
     
     .user-info {
