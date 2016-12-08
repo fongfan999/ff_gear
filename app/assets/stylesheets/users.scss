@@ -108,6 +108,8 @@
           img {
             width: 24px;
             height: 24px;
+            @extend .circle;
+            background-color: #fff;
           }
 
           span {

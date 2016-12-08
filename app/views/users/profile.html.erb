@@ -22,8 +22,9 @@
         <% end %>
           <%= link_to policy?(@user) ? edit_avatar_user_path(@user) : "#",
             remote: true,
-            class: "change-avatar" do %>
-            <%= image_tag(@user.avatar, class: "bordered-logo") %>
+            class: "change-avatar #{'persistent' unless policy?(@user)}" do %>
+            <%= image_tag(@user.avatar,
+              class: "bordered-logo") %>
             <%= material_icon_of "photo_camera" if policy? @user %>
           <% end %>
           

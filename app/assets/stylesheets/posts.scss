@@ -1,18 +1,9 @@
 #post {
   position: static !important;
   padding: 20px;
-
-  #slider {
-    border-bottom: 3px solid $primary-color;
-    border-radius: 0;
-    padding: 10px;
-    margin-bottom: -2px;
-
-    img {
-      height: 400px;
-      width: auto;
-      margin: 0 auto;
-    }
+  
+  .post-body {
+    margin-top: 20px;
   }
 
   .action-bar {
@@ -75,20 +66,22 @@
       color: #9e9e9e;
     }
   }
-}
 
-#carousel {
-  border-radius: 0;
-  padding: 10px;
+  .flexslider {
+    ul.slides {
+      height: 50vw;
+      max-height: 500px;
 
-  ul.slides {
-    li {
-      width: 128px !important;
-      border: 1px solid $primary-color;
-
-      img {
-        width: 128px;
-        height: 128px;
+      li {
+        height: 50vw;
+        max-height: 500px;
+        
+        img {
+          width: initial;
+          max-height: 500px;
+          max-width: 100%;
+          margin: 0 auto;
+        }
       }
     }
   }
@@ -287,5 +280,13 @@
       margin-right: 10px;
       margin-bottom: 15px;
     }
+  }
+}
+
+.sold {
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
   }
 }

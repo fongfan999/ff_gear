@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def policy?(user)
-    page_owner?(user) || current_user.admin?
+    user_signed_in? && (page_owner?(user) || current_user.admin?)
   end
 
   def authorize(user)

@@ -4,7 +4,7 @@
       <%= form_tag search_path, method: :get, class: "full-width" do %>
         <div class="input-field">
           <%= search_field_tag :q, params[:q], id: "search-input-m",
-            placeholder: "Nhập từ khoá", autocomplete: "off",
+            placeholder: "Tìm kiếm", autocomplete: "off",
             data: { "activates": "search-dropdown-m",
             beloworigin: true } %>
 
@@ -19,11 +19,13 @@
   <% if @posts %>
   <div class="ctn row">
     <div class="col s12 m12 l3 hide-on-large-only">
-       <a class="btn modal-trigger" href="#filter-form">
-        Lọc <%= material_icon_of "filter_list", class: "right" %>
-       </a>
-      
-      <br><br>
+      <div class="center-align">
+        <a class=" btn modal-trigger" href="#filter-form">
+          Lọc <%= material_icon_of "filter_list", class: "right" %>
+        </a>
+
+        <br><br>
+      </div>
 
       <div id="filter-form" class="modal bottom-sheet">
         <div class="modal-content">
@@ -49,7 +51,9 @@
           <div class="center-align">Vui lòng kiểm tra chính tả hoặc thử tìm kiếm với từ khoá khác!</div>
 
         <% else %>
-          <h6><%= @posts.size %> kết quả được tìm thấy.</h6>
+          <% if params[:q] %>
+            <h6><%= @posts.size %> kết quả được tìm thấy.</h6>
+          <% end %>
           <%= render @paginated_posts, post_class: "s12 m6 l4" %>
         <% end %>
       </div>
@@ -72,7 +76,9 @@
           <br>
         <div class="center-align">Vui lòng kiểm tra chính tả hoặc thử tìm kiếm với từ khoá khác!</div>
       <% else %>
-        <h6><%= @users.size %> kết quả được tìm thấy.</h6>
+        <% if params[:q] %>
+          <h6><%= @users.size %> kết quả được tìm thấy.</h6>
+        <% end %>
         <%= render @users %>
       <% end %>
     </div>

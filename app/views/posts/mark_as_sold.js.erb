@@ -1,3 +1,7 @@
-var content = "Đánh dấu là " + "<%= @post.sold? ? 'chưa' : 'đã' %>" + " bán";
-$('#post-action li a.mark').html(content).toggleClass('active');
-$('span.sold').html("(Đã bán)").toggle()
+var postState = "<%= @post.sold? ? 'Đã' : 'Chưa' %>" + " bán";
+var contentHelper = 
+"Đánh dấu là " + "<%= @post.sold? ? 'chưa' : 'đã' %>" + " bán";
+
+$('.dropdown-button').dropdown('close');
+$('td.state').text(postState);
+$('#post-action li a.mark').text(contentHelper);

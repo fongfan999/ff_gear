@@ -36,9 +36,6 @@ gem 'simple_form', '~> 3.3.1'
 gem 'materialize-sass', '~> 0.97.7'
 # File upload solution
 gem 'carrierwave', '~> 0.11.2'
-# Content Slider
-gem 'flexslider',
-  git: 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'
 # UI Uploader
 gem 'dropzonejs-rails', '~> 0.7.3'
 # Flexible authentication
@@ -50,7 +47,7 @@ gem "omniauth-google-oauth2"
 # Simple_form and Materialize
 gem 'materialize-form', '~> 1.0', '>= 1.0.1'
 # Get object geocoding
-gem 'geocoder', '~> 1.4'
+gem 'geocoder', '~> 1.4.1'
 # Pagination
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 # Comments plugins
@@ -71,6 +68,10 @@ gem 'rails-assets-materialize-autocomplete', source: 'https://rails-assets.org'
 
 # Sweet alert
 gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
+
+gem 'flexslider-rails'
+gem 'rails-assets-jquery-zoom', source: 'https://rails-assets.org'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

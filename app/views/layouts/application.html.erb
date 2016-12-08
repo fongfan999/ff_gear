@@ -37,7 +37,7 @@
                   class: "search-bar" do %>
                   <div class="input-field">
                     <%= search_field_tag :q, params[:q], id: "search-input",
-                      placeholder: "Nhập từ khoá", autocomplete: "off",
+                      placeholder: "Tìm kiếm", autocomplete: "off",
                       data: { "activates": "search-dropdown",
                       beloworigin: true } %>
                             
@@ -197,7 +197,7 @@
       <%= yield %>
     </div>
 
-    <div class="fixed-action-btn horizontal">
+    <div class="fixed-action-btn horizontal hide-on-small-and-down">
       <a class="go-to-top btn-floating btn-large" style="display: none;">
         <%= material_icon_of "keyboard_arrow_up" %>
       </a>

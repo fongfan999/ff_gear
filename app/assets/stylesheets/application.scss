@@ -8,7 +8,7 @@ $teal-color: #26a69a;
 @import "materialize/extras/nouislider";
 @import 'main';
 @import 'custom-materialize';
-@import 'flexslider.css';
+@import 'flexslider';
 @import 'posts';
 @import 'users';
 @import 'market';
@@ -153,6 +153,9 @@ i.clear-input {
   font-size: 0.7em;
 }
 
+.padding-grid {
+  padding-left: 10px;
+}
 
 // Dark theme
 html, body {
@@ -415,11 +418,6 @@ a.new {
   background-color: #f44336;
 }
 
-.loupe {
-  cursor: zoom-in;
-  border: 1px solid $primary-color;
-}
-
 a.edit, a.delete, a.mark, a.report {
   &:before {
     font-family: 'Material Icons';
@@ -487,4 +485,38 @@ input.number:disabled {
 
 .noUi-target .range-label {
   @extend .truncate; 
+}
+
+// Re-stule flexslider
+.flexslider {
+  border-radius: 2px;
+
+  .flex-direction-nav {
+    a.flex-prev:before, a.flex-next:before {
+      font-size: 1.3em;
+    }
+    
+    a.flex-prev, a.flex-next {
+      width: 1em;
+      height: 1.8em;
+    }
+
+  }
+
+  .flex-active {
+    background-color: #26a69a !important;
+  }
+}
+
+// jquery-zoom
+.zoom-in {
+  cursor: zoom-in;
+
+  &:hover img.valign {
+    display: none;
+  }
+}
+
+.zoomImg {
+  background-color: #fff;
 }

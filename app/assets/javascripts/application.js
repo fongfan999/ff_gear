@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
-//= require jquery.flexslider-min
-//= require jquery.loupe.min
+//= require jquery.flexslider
+//= require jquery-zoom
 //= require dropzone
 //= require materialize-form
 //= require jquery.mCustomScrollbar.concat.min
@@ -61,11 +61,6 @@ $(function() {
     });
   };
 
-  // Animate loader off screen
-  $(window).load(function() {
-    $(".se-pre-con").fadeOut("slow");
-  });
-
   // Scroll to top of page
   $('.go-to-top').click(function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -105,6 +100,14 @@ $(function() {
     $(this).parent().fadeOut("slow");
   });
 
+  // Zoom in image on hover
+  $('.zoom-in').zoom({
+    magnify: 1.5,
+  });
+
+  // // Enable material box
+  // $('.materialboxed').materialbox();
+
   // Clear input
   $('i.clear-input').on('click', function() {
     $(this).parent().find('input').val('');
@@ -117,32 +120,6 @@ $(function() {
   // Make dialog boxes working
   $('.modal-trigger').leanModal({
     ready: function() { $('ul.tabs').tabs(); }
-  });
-
-  // Caroulsel config
-  $('#carousel').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 210,
-    itemMargin: 5,
-    asNavFor: '#slider'
-  });
- 
-  $('#slider').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    sync: "#carousel"
-  });
-
-  // Zoom image on hover
-  $('.zoom-in').loupe({
-    width: 240, // width of magnifier
-    height: 240, // height of magnifier
-    loupe: 'loupe' // css class for magnifier
   });
 
   // Persist page for redirecting
@@ -252,8 +229,21 @@ $(function() {
     });
 
     $(".remove_thumb.persisted").on("click", function(e) {
-      console.log("outside");
       handleRemoveThumb(this, e);
     });
   }
+});
+
+
+$(window).on('load', function() {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");
+
+  // Enable flexslider
+  $('.flexslider').flexslider({
+      animation: "slide",
+      slideshow: false,
+      prevText: '',
+      nextText: '',
+    });
 });

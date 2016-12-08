@@ -1,9 +1,7 @@
 <br/>
-<br/>
-<br/>
 
 <div class="row">
-  <div class="col s12 m9 l9">
+  <div class="col s12 m12 l9">
     <div id="post" class="card">
       <% if user_signed_in? %>
         <div class="right">
@@ -12,7 +10,7 @@
           </a>
            
           <ul id='post-action' class='dropdown-content dropdown-action'>
-            <% if current_user == @post.owner %>
+            <% if policy? @post.owner %>
               <li><%= link_to "Đánh dấu là #{@post.sold? ? 'chưa' : 'đã'} bán",
                 mark_as_sold_post_path(@post), remote: true, method: :patch,
                 class: "persistent mark #{'active' if @post.sold?}" %></li>
@@ -30,64 +28,100 @@
 
         <%= render 'report' %>
       <% end %>
- 
-      <header>
-        <h4>
-          <%= @post.title %> 
-          <span class="sold"><%= "(Đã bán)" if @post.sold? %></span>
-        </h4>
-      </header>
-      <div class="divider"></div>
+      <h5 class="bold white-text padding-grid">
+        <%= @post.title %>
+      </h5>
 
-      <div class="row">
-        <div class="col s12 m6 l6">
-          <div id="slider" class="flexslider">
-            <ul class="slides">
-              <% @post.attachments.each do |attachment| %>
-                <li><%= image_tag attachment.file.url, class: "zoom-in responsive-img" %></li>
-              <% end %>
-            </ul>
+      <div class="card-action"> 
+        <div class="row">
+          <div class="col s12 m12 l8">
+            <div class="flexslider">
+              <ul class="slides">
+                <% @post.attachments.each do |attachment| %>
+                <li class="valign-wrapper center-align zoom-in">
+                  <%= image_tag attachment.file.url, class: "valign" %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
-          <div id="carousel" class="flexslider">
-            <ul class="slides">
-              <% @post.attachments.each do |attachment| %>
-                <li><%= image_tag attachment.file.url,
-                  class: "responsive-img" %></li>
-              <% end %>
-            </ul>
+
+          <div class="col s12 m12 l4">
+            <table>
+              <thead>
+                <tr>
+                  <th class="bold">Địa điểm</th>
+                  <td><%= @post.address %></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th class="bold">Giá</th>
+                  <td><%= number_to_currency @post.price %></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th class="bold">Tình trạng</th>
+                  <td class="state">
+                    <%= @post.sold? ? "Đã bán" : "Chưa bán" %>
+                  </td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                <th class="bold">Người đăng</th>
+                <td><%= link_to @post.owner.name,
+                  user_profile_path(@post.owner.username) %></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th class="bold">Ngày đăng</th>
+                  <td>
+                    <%= date_or_time_ago_in_words @post.created_at, "lúc" %>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="bold">Tag</th>
+                  <td><%= render @post.tags %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="col s12 m12 l12">
+            <div class="divider hide-on-large-only"></div>
+            
+            <h6 class="bold post-body">Mô tả: </h6>
+            <blockquote><%= simple_format @post.description %></blockquote>
           </div>
         </div>
-        <div class="col s12 m6 l6">
-          <p><%= render @post.tags %></p>
-          <p>Adress: <%= @post.address %></p>
-          <p><%= simple_format(@post.description) %></p>
-          <p>
-          <%= @post.latitude %>, <%= @post.longitude %>
-          </p>
-        </div>
-      </div>
 
-      <div class="divider"></div>
-      
-      <div class="action-bar">
-        <% if user_signed_in? %>
-          <%= link_to favorite_post_path(@post), class: "favorite persistent",
-            method: :patch, remote: true do %>
-            <% if current_user.favorite?(@post) %>
-              <%= material_icon_of 'favorite', class: "liked" %>
-            <% else %>
-              <%= material_icon_of 'favorite_border' %>
+        <div class="divider"></div>
+        
+        <div class="action-bar">
+          <% if user_signed_in? %>
+            <%= link_to favorite_post_path(@post),
+              class: "favorite persistent", method: :patch, remote: true do %>
+              <% if current_user.favorite?(@post) %>
+                <%= material_icon_of 'favorite', class: "liked" %>
+              <% else %>
+                <%= material_icon_of 'favorite_border' %>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
 
-        <%= link_to (material_icon_of "forum"), "#", class: "comments-btn" %>
+          <%= link_to (material_icon_of "forum"), "#", class: "comments-btn" %>
 
-        <%= link_to (material_icon_of "share"), "#social-share",
-          class: "share modal-trigger" %>
+          <%= link_to (material_icon_of "share"), "#social-share",
+            class: "share modal-trigger" %>
+        </div>
+
+        <%= render "social_share", full_path: post_url(@post) %>
       </div>
-
-      <%= render "social_share", full_path: post_url(@post) %>
     </div>
 
     <div id="comments">
@@ -95,11 +129,12 @@
     </div>
   </div>
   
-  <div class="col s12 m3 l3 card">
+  <div class="col s12 m12 l3">
     <div class="posts">
-      <h5>Có thể bạn quan tâm</h5>
+      <h6 class="padding-grid">Có thể bạn quan tâm</h6>
 
-      <%= render @related_posts, post_class: "s12 m12 l12" %>
+      <%= render @related_posts, post_class: "s12 m6 l12" %>
     </div>
   </div>
 </div>
+

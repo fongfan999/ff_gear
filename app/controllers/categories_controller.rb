@@ -5,12 +5,14 @@ class CategoriesController < ApplicationController
     @posts = @category.posts
 
     if sort_relevance?
-      @posts = @posts.near(location_coordinates, Post::NO_LIMIT) 
+      @posts = @posts.exclude_sold_posts
+        .near(location_coordinates, Post::NO_LIMIT)
+        .paginate(page: params[:page])
     else
-      @posts = @posts.custom_sort(params[:sort])
+      @posts = @posts.exclude_sold_posts
+        .custom_sort(params[:sort])
+        .paginate(page: params[:page])
     end
-    
-    @posts = @posts.paginate(page: params[:page])
 
     respond_to do |format|
       if params[:page]

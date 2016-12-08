@@ -25,6 +25,10 @@
       display: block;
     }
   }
+
+  a.brand-logo {
+    margin-left: -14px;
+  }
 }
 
 @media #{$medium-and-down} {

@@ -118,6 +118,10 @@ class Post < ApplicationRecord
 
   self.per_page = 4
 
+  def self.exclude_sold_posts
+    where(sold: false)
+  end
+
   def tag_names=(names)
     @tag_names = names
     self.tags.delete_all
@@ -130,8 +134,14 @@ class Post < ApplicationRecord
     tags.any? ? tags.map(&:name).join(", ") : ""
   end
 
-  def related_posts
-    Category.find(self.category_id).posts.where.not(id: self.id).limit(5)
+  def related_posts(num = 5)
+    result = Post.where.not(id: id).exclude_sold_posts.search(title).take(num)
+
+    if result.size < num
+      result += category.posts.where.not(id: id).exclude_sold_posts.take(num - result.size)
+    end
+
+    result
   end
 
   def first_attachment

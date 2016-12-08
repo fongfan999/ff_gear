@@ -66,6 +66,7 @@
       position: relative;
       background-color: #fff;
       overflow: hidden;
+      border-radius: 2px;
       
       &:hover {
         .overlay {
@@ -115,21 +116,24 @@
       }
     }
 
+    .divider {
+      background-color: $foreign-color;
+    }
+
     .post-details {
       padding: 10px;
       font-size: 13px;
-      color: #666;
+      color: #fff;
       line-height: 18px;
       height: 55px;
       word-wrap: break-word;
-      background-color: #fff;
+      overflow: hidden;
 
       .post-price {
         height: auto;
-        color: #00b0ff;
+        color: $teal-color;
         font-size: 15px;
         font-weight: 600;
-        height: 100%;
         margin-left: 5px;
       }
     }

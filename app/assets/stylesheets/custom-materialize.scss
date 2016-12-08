@@ -31,3 +31,34 @@ div.radio_buttons {
     margin-left: 5px;
   }
 }
+
+.valign-wrapper {
+  display: flex !important;
+  align-items: center;
+}
+
+.chip {
+  background-color: #222;
+  color: rgba(255, 255, 255, 0.5);
+
+  a {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:hover {
+    background-color: $teal-color;
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .close {
+    cursor: pointer !important;
+  }
+}
+
+blockquote {
+  border-color: $teal-color;
+}

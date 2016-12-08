@@ -32,10 +32,12 @@ class MainController < ApplicationController
 
 
       respond_to do |format|
-        format.html { @paginated_posts = @posts.paginate(page: params[:page]) }
+        format.html { @paginated_posts = @posts.paginate(page: params[:page],
+          per_page: 4) }
         
         format.json do
-          posts_json = Post.search_by('title', params[:q]).map do |post| 
+          posts_json = Post.search_by('title', params[:q])
+                            .limit(5).map do |post| 
             { id: post.id, text: post.title, img: post.first_attachment }
           end
 
