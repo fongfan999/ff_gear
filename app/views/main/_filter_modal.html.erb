@@ -6,7 +6,7 @@
     <%= select_tag 'filter[sort]', options_from_collection_for_sorting %>
   </div>
   
-  <div class="input-field full-width">
+  <div class="input-field">
     <h6 class="bold">Danh mục</h6>
 
     <% Category.all.each do |category| %>
@@ -18,7 +18,7 @@
     <% end %>
   </div>
 
-  <div class="input-field full-width">
+  <div class="input-field">
     <h6 class="bold">Giá</h6><br>
     <div id="price-range-modal"></div>
     <br>

@@ -10,6 +10,10 @@
     &.pinned ~ .sort-div {
       margin-top: 64px;
     }
+
+    &.pinned ~ .ctn #posts {
+      padding-top: 75px;
+    }
   }
 
   .nav-wrapper {
@@ -53,6 +57,38 @@
         }
       }
     }
+  }
+
+  .sort-div {
+    position: relative;
+    
+    & > div {
+      top: 0;
+      right: 0;
+      position: absolute;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      
+      .inline-sort {
+        height: 45px;
+        line-height: 45px;
+        display: inline-block;
+
+        &:first-child {
+          margin-right: 15px;
+          font-style: italic;
+        }
+
+        &:last-child {
+          min-width: 170px;
+          max-width: 190px;
+        }
+      }
+    }
+  }
+
+  .posts {
+    padding-top: 75px;
   }
 }
 

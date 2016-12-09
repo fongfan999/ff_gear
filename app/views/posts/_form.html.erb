@@ -1,6 +1,5 @@
 <%= simple_form_for post, validate: true,
-  html: { multipart: true, id: 'attachments-dropzone',
-  class: 'dropzone full-width' } do |f| %>
+  html: { multipart: true, id: 'attachments-dropzone' } do |f| %>
 
   <%= f.input :title, label: "Bạn bán gì?" do %>
     <%= f.input_field :title, length: 35 %>

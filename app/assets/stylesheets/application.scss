@@ -381,25 +381,6 @@ a.brand-logo {
   right: 15px;
 }
 
-.sort-div {
-  margin-top: 20px;
-  text-align: right;
-
-  & > div {
-    display: inline-block;
-    padding-right: 15px;
-
-    form {
-      min-width: 170px;
-    }
-
-    &:first-child {
-      font-size: 1.1em;
-      font-style: italic;
-    }
-  }
-}
-
 a.new {
   @extend .btn-floating;
   @extend .btn-large;

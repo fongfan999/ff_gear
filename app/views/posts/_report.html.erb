@@ -1,6 +1,6 @@
 <div id="report-post-form" class="modal">
-  <%= simple_form_for @post, html: { class: "full-width" },
-    url: report_post_path(@post), remote: true do |f| %>
+  <%= simple_form_for @post, url: report_post_path(@post),
+    remote: true do |f| %>
   <div class="modal-content">
     <ul class="collection with-header">
       <li class="collection-header">

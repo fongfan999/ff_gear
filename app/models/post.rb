@@ -138,7 +138,9 @@ class Post < ApplicationRecord
     result = Post.where.not(id: id).exclude_sold_posts.search(title).take(num)
 
     if result.size < num
-      result += category.posts.where.not(id: id).exclude_sold_posts.take(num - result.size)
+      # Not self and above result
+      result += category.posts.where.not(id: (result.map(&:id) << id))
+        .exclude_sold_posts.take(num - result.size)
     end
 
     result

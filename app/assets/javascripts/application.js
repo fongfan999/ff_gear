@@ -87,7 +87,9 @@ $(function() {
   $('textarea').addClass('materialize-textarea');
 
   // Make collapsible navbar
-  $(".button-collapse").sideNav();
+  $(".button-collapse").sideNav({
+    draggable: true
+  });
 
   // Auto resize textarea rows
   $('textarea').trigger('autoresize');
@@ -135,7 +137,9 @@ $(function() {
     var shouldDisableSubmitBtn = function() {
       if ($('#preview-wrapper .dz-success').length == 0) {
         submitBtn.attr('disabled', true);
-        $('.dz-message').show();
+        if (!$('#preview-wrapper .dz-error').length) {
+          $('.dz-message').show();
+        }
       }
     };
 
@@ -177,6 +181,7 @@ $(function() {
     };
 
     Dropzone.autoDiscover = false;
+    // Dropzone.options.attachmentsDropzone = false;
 
     var headlineDropzone = new Dropzone("#attachments-dropzone", {
       url: "/attachments",
@@ -191,7 +196,10 @@ $(function() {
       dictFileTooBig: "Kích thước ảnh quá lớn. Kích thước tối đa là {{maxFilesize}}",
       dictMaxFilesExceeded: "Số lượng ảnh tối đa là 5",
       init: function() {
-        $('.dz-message').prependTo('#preview-wrapper');
+        $(this.element).addClass("dropzone");
+        var dzMessage = "<div class='dz-message'>Nhấn vào đây hoặc Kéo và thả để đăng ảnh</div>"
+
+        $(dzMessage).prependTo('#preview-wrapper');
 
         if ($('#preview-wrapper .dz-preview').length) {
           $('.dz-message').hide();
@@ -217,7 +225,6 @@ $(function() {
 
           // Listen to the click event
           $(removeButton).on("click", function(e) {
-            console.log("inside");
             handleRemoveThumb(this, e, object.id);
           });
         });
@@ -241,9 +248,15 @@ $(window).on('load', function() {
 
   // Enable flexslider
   $('.flexslider').flexslider({
-      animation: "slide",
-      slideshow: false,
-      prevText: '',
-      nextText: '',
-    });
+    animation: "slide",
+    slideshow: false,
+    prevText: '',
+    nextText: '',
+  });
+
+  // Enable form Validation
+  formValidation = $('form[data-validate="true"]');
+  if(formValidation.length) {
+    formValidation.enableClientSideValidations();
+  }
 });

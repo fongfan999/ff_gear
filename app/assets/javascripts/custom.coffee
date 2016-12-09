@@ -30,7 +30,7 @@ $ ->
   $("#search-input").materialize_autocomplete
     dropdown: {
       el: '#search-dropdown',
-      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      itemTemplate: '<li class="ac-item" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
@@ -42,10 +42,12 @@ $ ->
             for i, item of data
               item.htmlStr = item.text
               item.text = '@' + item.text
+              item.href = 'users'
           else
             # Highlight
             for i, item of data
               item.htmlStr = highlight(item.text, value.toLowerCase())
+              item.href = 'users'
   
           callback(value, data)
 
@@ -53,7 +55,7 @@ $ ->
   $("#search-input-m").materialize_autocomplete
     dropdown: {
       el: '#search-dropdown-m',
-      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/posts/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      itemTemplate: '<li class="ac-item" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
@@ -65,10 +67,12 @@ $ ->
             for i, item of data
               item.htmlStr = item.text
               item.text = '@' + item.text
+              item.href = 'users'
           else
             # Highlight
             for i, item of data
               item.htmlStr = highlight(item.text, value.toLowerCase())
+              item.href = 'users'
   
           callback(value, data)
 
@@ -121,7 +125,7 @@ $ ->
     # Fix lable on input
     $("input textarea").focus()
 
-    # Enable form Validation
+    # Enable form Validation with ajax
     formValidation = $('form[data-validate="true"]')
 
     if formValidation.length

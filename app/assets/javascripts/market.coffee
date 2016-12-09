@@ -7,7 +7,6 @@ $ ->
     # Scroll to top
     $("html, body").animate {
       scrollTop: 0
-      abc: 5
     }, 'slow'
 
     $("#posts").html("")

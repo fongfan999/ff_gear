@@ -1,11 +1,9 @@
 <div id="edit-avatar-form" class="modal">
   <%= simple_form_for @user, validate: true,
-    html: { class: "full-width", multipart: true } do |f| %>
+    html: { multipart: true } do |f| %>
   <div class="modal-content">
     <h4>Thay đổi ảnh đại diện</h4>
     <br>
-    <br>
-    <p>
     <p>
     <%= f.input :avatar, as: :file, label: "Ảnh" %>
     </p>

@@ -23,17 +23,17 @@
     </nav>
   </div>
 
-  <br/>
-  
   <div class="ctn sort-div">
-    <div>Sắp xếp theo: </div>
-    <div>
-    <%= form_tag root_path, method: :get, class: "full-width" do %>
-      <%= select_tag 'sort', options_from_collection_for_sorting,
-       class: "field-change" %>
+    <div class="valign-wrapper">
+      <div class="valign inline-sort">Sắp xếp theo:</div>
+      <div class="valign inline-sort">
+        <%= form_tag root_path, method: :get do %>
+          <%= select_tag 'sort', options_from_collection_for_sorting,
+          class: "field-change" %>
 
-      <%= submit_tag "Sort", class: "hide" %>
-    <% end %>
+          <%= submit_tag "Sort", class: "hide" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
