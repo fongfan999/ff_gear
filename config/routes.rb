@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   
@@ -10,13 +9,13 @@ Rails.application.routes.draw do
   get "/about" => "main#about"
   get "/search" => "main#search"
 
-  resources :main do
-    
-  end
-
   # Admin namespace
   namespace :admin do
     root 'application#index', as: :root
+
+    resources :users, only: [:index] do
+      patch :change_role, on: :member
+    end
   end
 
   get '/notifications', to: "users#notifications"

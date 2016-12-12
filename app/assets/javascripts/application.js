@@ -23,6 +23,7 @@
 //= require rails.validations.simple_form
 //= require sweetalert2
 //= require materialize-autocomplete
+//= require docso
 //= require_tree .
 
 
@@ -108,7 +109,7 @@ $(function() {
   });
 
   // // Enable material box
-  // $('.materialboxed').materialbox();
+  $('.materialboxed').materialbox();
 
   // Clear input
   $('i.clear-input').on('click', function() {
@@ -119,7 +120,7 @@ $(function() {
   // Set delay tooltip time
   $('.tooltipped').tooltip({delay: 20});
 
-  // Make dialog boxes working
+  // Make dialog boxes working with tabs
   $('.modal-trigger').leanModal({
     ready: function() { $('ul.tabs').tabs(); }
   });

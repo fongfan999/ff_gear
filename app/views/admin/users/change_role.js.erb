@@ -1,0 +1,10 @@
+// Close modal
+$('<%= "##{dom_id(@user)}" %>').closeModal();
+$('.tooltipped').tooltip('remove');
+
+// The last admin user
+<% if @message.present? %>
+  Materialize.toast('<%= @message %>', 4000, 'toast-alert');
+<% else %>
+  $('.<%= dom_id(@user, :name) %>').toggleClass('bold');
+<% end %>

@@ -120,7 +120,7 @@
     padding-top: 15px;
     margin-bottom: -15px;
     padding-bottom: 15px;
-    background-color: #222;
+    background-color: $bg-color;
     .col {
       margin-top: 30px;
       margin-bottom: 30px;
@@ -142,7 +142,7 @@
   }
   #feedbacks {
     margin-top: -20px;
-    background-color: #222;
+    background-color: $bg-color;
     > h4 {
       color: #f2f2f2;
       text-align: center;
@@ -151,7 +151,7 @@
       margin-bottom: 0;
     }
     .slides li {
-      background-color: #222;
+      background-color: $bg-color;
     }
     .caption {
       > div {
@@ -200,7 +200,7 @@
   #contact {
     margin-top: -15px;
     padding-bottom: 30px;
-    background-color: #222;
+    background-color: $bg-color;
     color: #fff;
     form {
       text-align: center;
@@ -227,7 +227,7 @@
   }
   footer.page-footer {
     margin-top: -15px;
-    background-color: #222;
+    background-color: $bg-color;
     padding-top: 30px;
     padding-bottom: 10px;
   }
@@ -303,7 +303,7 @@
       margin-bottom: 50px;
       width: 100%;
       text-align: center;
-      background-color: #26a69a;
+      background-color: $teal-color;
       border: none;
       border-radius: 2px;
       height: 42px;
@@ -340,7 +340,7 @@
       font-size: 0.8em;
       
       & > div:first-child {
-        color: #26a69a;
+        color: $teal-color;
       }
       & > div {
         margin-bottom: 3px;

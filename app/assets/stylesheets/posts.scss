@@ -16,7 +16,7 @@
       text-align: center;
       padding-top: 8px;
       border-radius: 32px;
-      background-color: #222;
+      background-color: $bg-color;
       color: #26a69a;
 
       &:hover {
@@ -42,7 +42,7 @@
       font-weight: 500;
 
       a {
-        color: rgba(255, 255, 255, 0.5);
+        color: $text-color;
         width: 100%;
       }
 
@@ -91,7 +91,7 @@
   width: 100% !important;
   margin-bottom: 0;
   margin-right: 0;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: $text-color !important;
 }
 
 #attachments {
@@ -161,7 +161,7 @@
         color: #fff;
 
         &:hover {
-          background-color: #26a69a;
+          background-color: $teal-color;
         }
       }
     }
@@ -222,7 +222,7 @@
           margin-top: -15px;
           
           a {
-            color: rgba(255, 255, 255, 0.5);
+            color: $text-color;
             font-weight: 500;
 
             &:hover {

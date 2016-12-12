@@ -30,7 +30,7 @@ $ ->
   $("#search-input").materialize_autocomplete
     dropdown: {
       el: '#search-dropdown',
-      itemTemplate: '<li class="ac-item" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
@@ -47,7 +47,7 @@ $ ->
             # Highlight
             for i, item of data
               item.htmlStr = highlight(item.text, value.toLowerCase())
-              item.href = 'users'
+              item.href = 'posts'
   
           callback(value, data)
 
@@ -55,7 +55,7 @@ $ ->
   $("#search-input-m").materialize_autocomplete
     dropdown: {
       el: '#search-dropdown-m',
-      itemTemplate: '<li class="ac-item" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
+      itemTemplate: '<li class="ac-item" data-id="<%= item.id %>" data-text="<%= item.text %>"><a href="/<%= item.href %>/<%= item.id %>"><img src="<%= item.img %>"><%= item.htmlStr %></a></li>',
       noItem: '<li class="ac-item"><a>Nhấn Enter để tìm kiếm</a></li>'
     },
     getData: (value, callback) -> 
@@ -72,7 +72,7 @@ $ ->
             # Highlight
             for i, item of data
               item.htmlStr = highlight(item.text, value.toLowerCase())
-              item.href = 'users'
+              item.href = 'posts'
   
           callback(value, data)
 
@@ -101,7 +101,7 @@ $ ->
   # Submit form on change
   $('.field-change').change ->
     $(".hide-on-change").hide()
-    $("#preloader-nav" ).show()
+    $("#preloader-nav" ).css('margin-top', '100px').show()
     formChange = $(this).closest("form")
     formChange.css("opacity", 0.5)
     formChange.click (e) ->

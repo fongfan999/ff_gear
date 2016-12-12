@@ -1,0 +1,40 @@
+<div id="<%= dom_id(user) %>" class="modal">
+  <div class="modal-content">
+    <h5 class="<%= dom_id(user, :name) %> <%= 'bold' if user.admin? %>">
+      <%= user.name %>
+    </h5>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Tổng số lần đăng nhập</th>
+            <th>Đăng nhập hiện tại</th>
+            <th>Đăng nhập lần cuối</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= user.provider %></td>
+            <td><%= user.sign_in_count %></td>
+            <td><%= date_or_time_ago_in_words(user.current_sign_in_at, ",") %></td>
+            <td>
+              <%= date_or_time_ago_in_words(user.last_sign_in_at, ",") %>
+            </td>
+            <td>
+              <%= link_to material_icon_of("swap_horiz"),
+                change_role_admin_user_path(user), remote: true,
+                method: :patch, class: "tooltipped circle-icon-link",
+                data: { position: "bottom", tooltip: "Thay đổi vai trò" } %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class=" modal-action modal-close btn-flat">Đóng</a>
+  </div>
+</div>

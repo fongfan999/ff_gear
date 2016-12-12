@@ -45,22 +45,26 @@ class Post < ApplicationRecord
     order("#{sort_column} #{sort_direction}")
   end
 
-  scope :search, -> (q) do
+  scope :search, -> (q, sort_param = nil) do
     return Post.all if q.blank?
 
     result = search_by('description', q)
     result += search_by('address', q)
 
-    q.split.each do |word|
+    q.split.each_with_index do |word, index|
       result += search_by('title', word)
-      result += search_by_category(word)
+      result += search_by_category(word) if index.zero?
       result += search_by_tag(word)
     end
 
-    result
-      .each_with_object(Hash.new(0)) { |obj, h|h[obj] += 1 } # Count frequency
-      .sort_by { |obj, size| -size } # Sort descending
-      .map(&:first) # Remove size, get object only
+    if (sort_param.nil? || sort_param == "relevance")
+      return result
+        .each_with_object(Hash.new(0)) { |obj, h|h[obj] += 1 } #Count frequency
+        .sort_by { |obj, size| -size } # Sort frequency as descending
+        .map(&:first) # Remove size, get object only
+    else
+      return result.uniq
+    end
   end
 
   scope :search_by, -> (attr, q) do

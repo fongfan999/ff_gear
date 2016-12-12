@@ -1,0 +1,57 @@
+<div id="users">
+  <div class="header-pattern"></div>
+
+  <div class="container-with-header card">
+    <header>
+      <h5>
+        <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
+        <%= link_to "Quản lý người dùng", "#", class: "breadcrumb" %>
+        
+        <br><br>
+      </h5>
+
+      <h4 class="center-align uppercase">Quản lý người dùng</h4>
+    </header>
+
+    <table class="bordered responsive-table centered">
+      <thead>
+        <tr class="bold">
+          <th></th>
+          <th>Tên</th>
+          <th>Email</th>
+          <th>Ngày tạo</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="padding-none"><%= image_tag user.avatar, class: "circle center-margin materialboxed",
+              size: "50x50", data: { caption: user.name } %></td>
+            <td class="<%= dom_id(user, :name) %> <%= 'bold' if user.admin? %>">
+              <%= user.name %>
+            </td>
+            <td><%= user.email %></td>
+            <td><%= date_or_time_ago_in_words(user.created_at, ",") %></td>
+            <td>
+              <%= link_to material_icon_of("info"), "##{dom_id(user)}",
+                class: "modal-trigger circle-icon-link" %>
+              <%= link_to material_icon_of("input"),
+                user_profile_path(user.username), class: "circle-icon-link",
+                target: "_blank" %>
+              
+              <%= render file: "admin/users/more_info",
+                locals: { user: user } %>
+            </td>
+          </tr>
+        
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="center-align">
+      <%= will_paginate @users %>
+    </div>
+  </div>
+</div>

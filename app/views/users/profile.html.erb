@@ -15,7 +15,7 @@
       <div class="about-name">
         <% if policy? @user %>
           <%= link_to edit_user_path(@user), remote: true,
-            class: "edit-name-icon" do %>
+            class: "edit-name-icon circle-icon-link" do %>
             <%= material_icon_of "edit" %>
           <% end %>
         
@@ -39,7 +39,7 @@
           Thông tin liên hệ
           <% if policy? @user %>
             <%= link_to material_icon_of("edit"), "#edit-profile-form",
-              class: "right modal-trigger" %>
+              class: "right modal-trigger circle-icon-link" %>
           <% end %>
         </h5>
 
@@ -96,7 +96,7 @@
             Các tin đã đăng (<%= @user.posts.count %>)
             <%= link_to material_icon_of("keyboard_arrow_right"),
               @recent_posts.blank? ? "#" : user_posts_path(@user.username),
-              class: "right" %>
+              class: "right circle-icon-link" %>
           </h5>
 
           <div class="about-info">

@@ -24,7 +24,8 @@ class MainController < ApplicationController
     else
       if params[:filter].present?
         # Filter posts and search posts
-        @posts = Post.filter(params[:filter]).search(params[:q])
+        @posts = Post.filter(params[:filter])
+          .search(params[:q], params[:filter][:sort])
       else
         # Search posts
         @posts = Post.search(params[:q])

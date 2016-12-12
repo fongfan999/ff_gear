@@ -1,6 +1,6 @@
 <div class="col <%= post_class %> <%= 'sold' if post.sold? %>">
   <%= link_to post, class: 'non-waves-effect' do %>
-  <div class="card post ">
+  <div class="card post hoverable">
     <div class="img-with-overlay valign-wrapper">
       <%= image_tag post.first_attachment,
         class: "responsive-img valign" %>

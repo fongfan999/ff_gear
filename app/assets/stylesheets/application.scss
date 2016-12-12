@@ -1,8 +1,10 @@
 @import "materialize/components/color";
 
-$primary-color: #333;
+$primary-color: #353c48;
 $foreign-color: #e74c3c;
 $teal-color: #26a69a;
+$bg-color: #3c4452;
+$text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
 
 @import 'materialize';
 @import "materialize/extras/nouislider";
@@ -66,8 +68,12 @@ $teal-color: #26a69a;
   color: $teal-color;
 }
 
+.padding-none {
+  padding: 0 !important;
+}
+
 .collection .collection-item.unread {
-  background-color: #222 !important;
+  background-color: $bg-color !important;
 }
 
 .bordered-logo {
@@ -91,7 +97,7 @@ a.more-vert {
   min-width: 150px;
 
   & > li > a {
-    color: rgba(255, 255, 255, 0.5);
+    color: $text-color;
     font-size: 14px;
     font-weight: 300;
 
@@ -160,13 +166,13 @@ i.clear-input {
 // Dark theme
 html, body {
   overflow-x: hidden;
-  background-color: #222;
-  color: rgba(255, 255, 255, 0.5);
+  background-color: $bg-color;
+  color: $text-color;
 }
 
 .card, .tabs, .modal, .modal-content, .modal-footer, .dropdown-content, 
 .collection .collection-item, .collection .collection-header {
-  background-color: #333 !important;
+  background-color: $primary-color !important;
 }
 
 .collection, .collection .collection-item {
@@ -174,7 +180,7 @@ html, body {
 }
 
 a.modal-close {
-  color: rgba(255, 255, 255, 0.5);
+  color: $text-color;
 }
 
 // End Dark theme
@@ -288,7 +294,7 @@ span.counter {
     padding-bottom: 5px;
     cursor: default !important;
     min-height: 0;
-    color: rgba(255, 255, 255, 0.5);
+    color: $text-color;
 
     &:hover {
       background-color: #fafafa;
@@ -301,7 +307,7 @@ span.counter {
     a {
       padding-top: 3px;
       padding-bottom: 3px;
-      color: rgba(255, 255, 255, 0.5) !important;
+      color: $text-color !important;
 
       &:hover {
         background-color: transparent;
@@ -323,7 +329,7 @@ span.counter {
       padding-top: 0px !important;
       padding-bottom: 0 !important;
       font-style: italic;
-      color: rgba(255, 255, 255, 0.5) !important;
+      color: $text-color !important;
     }
   }
 }
@@ -364,14 +370,15 @@ a.brand-logo {
 }
 
 .side-nav {
-  background-color: #222;
+  background-color: $bg-color;
 
   .userView {
     @extend .primary-color;
+    background: image-url("user-view.jpg") no-repeat center;
   }
 
   a, i {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: $text-color !important;
   }
 }
 
@@ -434,7 +441,7 @@ a.report:before {
   height: 300px;
   background-color: #2c3e50;
   position: relative;
-  background: image-url("header-pattern.jpg") no-repeat center fixed;
+  background: image-url("header-pattern.png") no-repeat fixed;
 }
 
 .container-with-header {
@@ -455,8 +462,8 @@ a.report:before {
 }
 
 input.number:disabled {
-  color: rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: $text-color;
+  border-bottom: 1px solid $text-color;
   text-align: center;
 }
 
@@ -485,7 +492,7 @@ input.number:disabled {
   }
 
   .flex-active {
-    background-color: #26a69a !important;
+    background-color: $teal-color !important;
   }
 }
 

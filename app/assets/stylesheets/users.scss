@@ -1,6 +1,6 @@
 #about-me {
   i {
-    color: #747474;
+    color: $text-color;
   }
   
   #about-title {
@@ -21,7 +21,7 @@
       }
 
       .about-bg {
-        background: image-url("about-bg.png") no-repeat center;
+        background: image-url("user-view.jpg") no-repeat center;
         background-size: cover;
         height: 140px;
       }
@@ -85,6 +85,8 @@
       }
 
       ul.tabs {
+        padding-top: 5px;
+
         li.tab a.active {
           i {
             color: $teal-color;
@@ -102,7 +104,7 @@
           min-height: 50px;
 
           a {
-            color: #747474;
+            color: $text-color;
           }
 
           img {
@@ -131,7 +133,10 @@
 
 #edit-user-form.modal {
   max-height: 100%;
-  // width: 60%;
+  
+  .modal-content {
+    padding: 0 !important;
+  }
 
   .about-summary {
     margin: 0 auto;
@@ -200,7 +205,7 @@
     min-height: 350px;
 
     ul.tabs {
-      // background-color: #fafafa;
+      padding-top: 5px;
       margin-bottom: 30px;
 
       li.tab a.active {

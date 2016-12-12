@@ -36,7 +36,7 @@
           @extend .primary-color;
 
           a {
-            color: rgba(255, 255, 255, 0.5);
+            color: $text-color;
 
             i {
               display: block;
@@ -164,6 +164,8 @@
       height: 55px;
       word-wrap: break-word;
       overflow: hidden;
+      // @extend .primary-color;
+      background-color: $bg-color;
 
       .post-price {
         height: auto;

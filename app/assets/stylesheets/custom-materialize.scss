@@ -32,17 +32,21 @@ div.radio_buttons {
   }
 }
 
+.btn-flat {
+  color: $text-color;
+}
+
 .valign-wrapper {
   display: flex !important;
   align-items: center;
 }
 
 .chip {
-  background-color: #222;
-  color: rgba(255, 255, 255, 0.5);
+  background-color: $bg-color;
+  color: $text-color;
 
   a {
-    color: rgba(255, 255, 255, 0.5);
+    color: $text-color;
   }
 
   &:hover {
@@ -61,4 +65,42 @@ div.radio_buttons {
 
 blockquote {
   border-color: $teal-color;
+}
+
+.pagination li a {
+  color: $text-color;
+}
+
+.pagination li.disabled a {
+  color: $primary-color;
+}
+
+.middle-align {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.circle-icon-link {
+  width: 24px;
+  height: 24px;
+  @extend .circle;
+  color: $primary-color;
+
+  i.material-icons {
+    color: $text-color;
+  }
+
+  &:hover {
+    i.material-icons {
+      color: $teal-color;
+    }
+  }
+}
+
+.center-margin {
+  margin: 0 auto;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
