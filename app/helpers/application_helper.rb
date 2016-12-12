@@ -33,4 +33,12 @@ module ApplicationHelper
   def login_button(image, provider)
     image_tag(image) + "<span>Đăng nhập bằng #{provider}</span>".html_safe
   end
+
+  def title(*parts)
+    unless parts.empty?
+      content_for :title do
+        (parts << "FoxFizz").join(" - ")
+      end
+    end
+  end
 end

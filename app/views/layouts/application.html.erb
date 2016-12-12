@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FoxFizz - The place to buy used stuff</title>
+  <%= favicon_link_tag %>
+  <title><%= content_for?(:title) ? yield(:title) : "FoxFizz - Chợ mua bán Gear" %></title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= csrf_meta_tags %>
@@ -152,18 +154,18 @@
     <li>
       <%= link_to material_icon_of("home", name: "Trang chủ"), root_path %>
     </li>
-    <% if current_user.admin? %>
-      <li>
-        <%= link_to material_icon_of('dashboard', name: "Bảng điều khiển"),
-          admin_root_path %>
-      </li>
-    <% end %>
     <li>
       <%= link_to material_icon_of("add_circle", name: "Đăng tin"),
         new_post_path %>
     </li>
 
     <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <li>
+          <%= link_to material_icon_of('dashboard', name: "Bảng điều khiển"),
+            admin_root_path %>
+        </li>
+      <% end %>
       <li>
         <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
         <% unless current_user.unread_counter.zero? %>

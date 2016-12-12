@@ -23,7 +23,6 @@ $text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
   @extend .btn;
   margin: 10px 0 !important;
   height: 48px;
-  // line-height: 48px;
   width: 100%;
   color: #fff;
   text-transform: none;
@@ -375,6 +374,10 @@ a.brand-logo {
   .userView {
     @extend .primary-color;
     background: image-url("user-view.jpg") no-repeat center;
+
+    .login-div a {
+      color: #fff !important;
+    }
   }
 
   a, i {

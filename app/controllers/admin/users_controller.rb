@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.toggle(:admin)
 
     if !@user.admin? && User.admin_users.count == 1
-      @message = "Đây là admin cuối cùng"
+      @message = "Đây là quản trị viên cuối cùng"
     else
       @user.save
     end
