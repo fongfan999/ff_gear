@@ -1,0 +1,7 @@
+// Append for the first time only
+if (!$('#new_category_modal').length) {
+  $('#categories')
+    .append('<%= j render(file: "admin/categories/new.html.erb", locals: { category: @category }) %>');
+}
+
+$('#new_category_modal').openModal();

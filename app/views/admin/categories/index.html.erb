@@ -1,0 +1,56 @@
+<%= title("Bảng điều khiển", "Quản lý danh mục") %>
+
+<div id="categories">
+  <div class="header-pattern"></div>
+
+  <div class="container-with-header card">
+    <header>
+      <h5>
+        <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
+        <%= link_to "Quản lý danh mục", "#", class: "breadcrumb" %>
+        
+        <br><br>
+      </h5>
+    </header>
+
+    <h4 class="center-align uppercase">Quản lý danh mục</h4>
+
+    <table class="bordered centered">
+      <thead>
+        <tr class="bold">
+          <th>STT</th>
+          <th>Icon</th>
+          <th>Tên danh mục</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @categories.each_with_index do |category, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= material_icon_of(category.icon) %></td>
+            <td><%= category.name %></td>
+            <td><%= link_to material_icon_of("edit"),
+              [:edit, :admin, category], class: "circle-icon-link",
+              remote: true %></td>
+            <td><%= link_to material_icon_of("delete"), [:admin, category],
+              class: "circle-icon-link", method: :delete,
+              data: { confirm: "Xoá danh mục này?" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="fixed-action-btn ">
+      <%= link_to material_icon_of("add"), new_admin_category_path,
+        class: "btn-floating btn-large tooltipped", remote: true,
+        data: { position: "left", tooltip: "Thêm mới danh mục" } %>
+    </div>
+    
+    <div class="center-align">
+      <%= will_paginate @categories %>
+    </div>
+  </div>
+</div>

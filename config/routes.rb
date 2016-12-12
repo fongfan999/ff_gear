@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index] do
       patch :change_role, on: :member
     end
+
+    resources :categories
   end
 
   get '/notifications', to: "users#notifications"

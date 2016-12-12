@@ -1,4 +1,4 @@
-@import "materialize/components/color";
+// @import "materialize/components/color";
 
 $primary-color: #353c48;
 $foreign-color: #e74c3c;
@@ -18,6 +18,7 @@ $text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
 @import 'dropzone/dropzone';
 @import 'jquery.mCustomScrollbar.min';
 @import 'sweetalert2';
+@import 'admin/categories';
 
 .fb-login-btn, .gg-login-btn {
   @extend .btn;

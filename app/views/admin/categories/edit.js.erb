@@ -1,0 +1,7 @@
+// Append for the first time only
+if (!$('<%= "##{dom_id(@category, :edit_modal)}" %>').length) {
+  $('#categories')
+    .append('<%= j render(file: "admin/categories/edit.html.erb", locals: { category: @category }) %>');
+}
+
+$('<%= "##{dom_id(@category, :edit_modal)}" %>').openModal();

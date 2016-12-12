@@ -7,14 +7,13 @@
         <div class="nav-tabs">
           <ul class="tabs">
             <li class="tab">
-              <%= link_to category_nav("Trang chủ"),
-                root_path(sort: params[:sort]),
+              <%= link_to category_nav, root_path(sort: params[:sort]),
                 remote: true %>
             </li>
             
             <% @categories.each do |category| %>
             <li class="tab">
-              <%= link_to category_nav(category.name),
+              <%= link_to category_nav(category),
                 category_path(category, sort: params[:sort]),
                 remote: true %>
             </li>
@@ -55,4 +54,6 @@
   </div>
 
 </div>
+
+<%= render "shared/go_to_top" %>
 

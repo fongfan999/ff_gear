@@ -1,19 +1,15 @@
 module MarketHelper
-  def category_nav(name)
-    icon =  case name
-    when 'Tai nghe'
-      material_icon_of "headset"
-    when 'Bàn phím'
-      material_icon_of "keyboard"
-    when 'Chuột'
-      material_icon_of "mouse"
-    when 'Khác'
-      material_icon_of "devices_other"
+  def category_nav(category = nil)
+    if category.nil?
+      icon =  material_icon_of("home")
+      name = "Trang chủ"
     else
-      material_icon_of "home"
+      icon =  material_icon_of(category.icon)
+      name = category.name
     end
-
-    icon + ("<span class='hide-on-med-and-down'>#{name}<span>").html_safe
+    
+    icon + 
+      ("<span class='hide-on-med-and-down'>#{name}<span>").html_safe
   end
 
   def options_from_collection_for_sorting

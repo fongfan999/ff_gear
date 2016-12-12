@@ -1,0 +1,12 @@
+<%= simple_form_for [:admin, category], validate: true do |f| %>
+  <%= f.input :name,
+    label_html: { class: ("active" unless category.new_record?) } %>
+  <%= f.input :icon, placeholder: "Visit https://material.io/icons/ for more info", label_html: { class: ("active" unless category.new_record?) } %>
+  
+  <div class=" modal-footer">
+    <%= button_tag type: :submit, class: "submit-btn btn validation-btn" do %>
+      <%= category.new_record? ? "Tạo" : "Cập nhật" %>
+    <% end %>
+    <a class="modal-action modal-close btn-flat">Đóng</a>
+  </div>
+<% end %>
