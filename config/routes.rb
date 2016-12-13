@@ -14,10 +14,16 @@ Rails.application.routes.draw do
     root 'application#index', as: :root
 
     resources :users, only: [:index] do
-      patch :change_role, on: :member
+      member do
+        patch :change_role
+      end
+
+      collection do
+        get :show_chart
+      end
     end
 
-    resources :categories
+    resources :categories, except: [:show]
   end
 
   get '/notifications', to: "users#notifications"

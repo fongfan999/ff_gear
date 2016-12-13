@@ -34,7 +34,7 @@ class MainController < ApplicationController
 
       respond_to do |format|
         format.html { @paginated_posts = @posts.paginate(page: params[:page],
-          per_page: 4) }
+          per_page: 12) }
         
         format.json do
           posts_json = Post.search_by('title', params[:q])

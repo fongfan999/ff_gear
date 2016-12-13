@@ -79,12 +79,14 @@
           <div class="about-info">
             <div>
               <%= image_tag 'facebook.png', class: "left" %>
-              <span><%= link_to "Facebook", @profile.fb_link %></span>
+              <span><%= link_to "Facebook", @profile.fb_link,
+                target: "_blank" %></span>
             </div>
 
             <div>
               <%= image_tag 'google.png', class: "left" %>
-              <span><%= link_to "Google Plus", @profile.gg_link %></span>
+              <span><%= link_to "Google Plus", @profile.gg_link,
+                target: "_blank" %></span>
             </div>
           </div>
         </div>

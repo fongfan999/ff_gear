@@ -14,7 +14,7 @@ $ ->
       morePostsUrl = $('.pagination .next_page a').attr('href')
       scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop()
 
-      if morePostsUrl && scrollBottom < 1
+      if morePostsUrl && scrollBottom < 200
         $('#posts-infinite-scrolling').html(progressPreloader)
         $.getScript morePostsUrl
 

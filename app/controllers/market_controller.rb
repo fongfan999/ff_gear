@@ -7,7 +7,7 @@ class MarketController < ApplicationController
     if sort_relevance?
       @posts = Post.exclude_sold_posts
         .near(location_coordinates, Post::NO_LIMIT).to_a
-        .paginate(page: params[:page], per_page: 4)
+        .paginate(page: params[:page], per_page: 12)
     else
       @posts = Post.exclude_sold_posts
         .custom_sort(params[:sort])

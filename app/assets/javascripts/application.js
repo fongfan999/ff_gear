@@ -24,6 +24,7 @@
 //= require sweetalert2
 //= require materialize-autocomplete
 //= require docso
+//= require Chart
 //= require_tree .
 
 
@@ -61,6 +62,9 @@ $(function() {
       return
     });
   };
+
+  // Chart js configuration
+  Chart.defaults.global.defaultFontColor = "#96a2b4";
 
   // Scroll to top of page
   $('.go-to-top').click(function() {

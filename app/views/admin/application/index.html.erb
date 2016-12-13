@@ -11,3 +11,141 @@
 
   </ul>
 </div>
+
+<div class="row">
+  <div class="col s12 m12 l6">
+    <canvas id="newUsersChart"></canvas>
+  </div>
+  
+  <div class="col s12 m12 l6">
+    <canvas id="loginUserCountChart"></canvas>
+  </div>
+
+</div>
+
+<script>
+  $(window).on('load', function() {
+    // newUsersChart
+    var ctx = document.getElementById("newUsersChart");
+
+    var labelNewUsers = <%= raw User.new_users_chart('label').to_json %>;
+    var dataGGNewUsers = <%= User.new_users_chart('data', 'google_oauth2') %>;
+    var dataFBNewUsers = <%= User.new_users_chart('data', 'facebook') %>;
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labelNewUsers,
+        datasets: [
+        {
+          label: 'Google',
+          data: dataGGNewUsers,
+          backgroundColor: [
+            'rgba(251,150,120, 0.4)',
+            'rgba(251,150,120, 0.4)',
+            'rgba(251,150,120, 0.4)',
+            'rgba(251,150,120, 0.4)',
+            'rgba(251,150,120, 0.4)',
+          ],
+          borderColor: [
+            'rgba(251,150,120, 1)',
+            'rgba(251,150,120, 1)',
+            'rgba(251,150,120, 1)',
+            'rgba(251,150,120, 1)',
+            'rgba(251,150,120, 1)',
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Facebook',
+          data: dataFBNewUsers,
+          backgroundColor: [
+            'rgba(1,192,200, 0.4)',
+            'rgba(1,192,200, 0.4)',
+            'rgba(1,192,200, 0.4)',
+            'rgba(1,192,200, 0.4)',
+            'rgba(1,192,200, 0.4)',
+          ],
+          borderColor: [
+            'rgba(1,192,200, 1)',
+            'rgba(1,192,200, 1)',
+            'rgba(1,192,200, 1)',
+            'rgba(1,192,200, 1)',
+            'rgba(1,192,200, 1)',
+          ],
+          borderWidth: 1
+        }
+        ]
+      },
+      options: {
+        title:{
+          display:true,
+          text:"Người dùng mới"
+        },
+        scales: {
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+          xAxes: [{
+            stacked: true,
+          }]
+        }
+      }, 
+    });
+
+    // loginUserCountChart
+    var ctx = document.getElementById("loginUserCountChart");
+
+    var labelLoginUserCount = <%= raw User.login_user_count_chart('label').to_json %>;
+    var dataoginUserCount = <%= User.login_user_count_chart('data') %>;
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labelLoginUserCount,
+        datasets: [
+        {
+          data: dataoginUserCount,
+          fill: true,
+          lineTension: 0.5,
+          backgroundColor: "rgba(171,140,228, 0.4)",
+          borderColor: "rgba(171,140,228, 1)",
+          borderCapStyle: 'round',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'round',
+          pointBorderColor: "rgba(171,140,228, 1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 5,
+          pointHoverRadius: 1,
+          pointHoverBackgroundColor: "rgba(171,140,228, 0.4)",
+          pointHoverBorderColor: "rgba(171,140,228, 1)",
+          pointHoverBorderWidth: 5,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          spanGaps: true,
+        },
+        ]
+      },
+      options: {
+        title:{
+          display: true,
+          text:"Lượt đăng nhập"
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+        },
+        legend: {
+          display: false,
+        }
+      }, 
+    });
+  });
+</script>

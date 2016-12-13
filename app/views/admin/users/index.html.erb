@@ -2,7 +2,6 @@
 
 <div id="users">
   <div class="header-pattern"></div>
-
   <div class="container-with-header card">
     <header>
       <h5>
@@ -55,5 +54,11 @@
     <div class="center-align">
       <%= will_paginate @users %>
     </div>
+  </div>
+
+  <div class="fixed-action-btn ">
+    <%= link_to material_icon_of("show_chart"), show_chart_admin_users_path,
+      class: "btn-floating btn-large tooltipped", remote: true,
+      data: { position: "left", tooltip: "Xem thông kê" } %>
   </div>
 </div>

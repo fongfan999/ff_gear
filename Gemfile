@@ -69,8 +69,12 @@ gem 'rails-assets-materialize-autocomplete', source: 'https://rails-assets.org'
 # Sweet alert
 gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
 
+# Slider and zoom
 gem 'flexslider-rails'
 gem 'rails-assets-jquery-zoom', source: 'https://rails-assets.org'
+
+# Create chart
+gem 'chart-js-rails', '~> 0.1.1'
 
 
 group :development, :test do

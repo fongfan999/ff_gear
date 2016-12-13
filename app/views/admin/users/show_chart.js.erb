@@ -1,0 +1,54 @@
+if (!$('#show-chart').length) {
+  $('#users')
+    .append('<%= j render(file: "admin/users/show_chart.html.erb") %>');
+}
+
+$('#show-chart').openModal();
+$('.tooltipped').tooltip('remove');
+
+// Initialize chart
+// providersChart
+var ctx = document.getElementById("providersChart");
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Facebook", "Google"],
+    datasets: [{
+      data: <%= User.providers_chart %>,
+      backgroundColor: [
+      "#01c0c8",
+      "#fb9678",
+      ]
+    }]
+  },
+  options: {
+    cutoutPercentage: 40,
+    title:{
+      display:true,
+      text:"Nhà cung cấp"
+    },
+  }
+});
+
+// rolesChart
+var ctx = document.getElementById("rolesChart");
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["Quản trị viên", "Người dùng"],
+      datasets: [{
+        data: <%= User.roles_chart %>,
+        backgroundColor: [
+        "#ab8ce4",
+        "#00c292",
+        ]
+      }]
+    },
+    options: {
+      cutoutPercentage: 40,
+      title:{
+        display:true,
+        text:"Vai trò"
+      },
+    }
+  });

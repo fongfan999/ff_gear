@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   def index
-    @users = User.order(sign_in_count: :desc).paginate(page: params[:page], per_page: 10)
+    @users = User.order(sign_in_count: :desc).paginate(page: params[:page], per_page: 12)
   end
 
   def change_role
@@ -13,6 +13,12 @@ class Admin::UsersController < Admin::ApplicationController
       @user.save
     end
 
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def show_chart
     respond_to do |format|
       format.js
     end

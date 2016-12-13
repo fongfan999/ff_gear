@@ -77,6 +77,74 @@ class User < ApplicationRecord
     where(admin: true)
   end
 
+  # For chart creation purpose only
+  def self.new_users_chart(type, provider = 'google_oauth2')
+    grouped_by_week = User.order(created_at: :desc)
+      .group_by { |u| u.created_at.beginning_of_week }
+      .take(5) # limit 5 weeks
+      .sort { |x, y| x[0] <=> y[0] } # sort asc
+    
+    if type == "label"
+      return grouped_by_week.map { |label, data| label.strftime('%d/%m') }
+    else
+      result_data = []
+
+      grouped_by_week.each do |label, data|
+        result_data << data.select { |d| d['provider'] == provider }.length
+      end
+
+      return result_data
+    end
+  end
+
+  def self.providers_chart
+    facebook_counter = where(provider: 'facebook').count
+
+    [facebook_counter, User.count - facebook_counter]
+  end
+
+  def self.roles_chart
+    admin_counter = admin_users.count
+
+    [admin_counter, User.count - admin_counter]
+  end
+
+  def self.login_user_count_chart(type)
+    milestone = 10.days.ago.beginning_of_day
+    recent_users = User.where('current_sign_in_at > ?', milestone)
+
+    labels =  []
+    i = 0
+    while i < 10
+      labels << (milestone += 1.days).strftime('%d/%m')
+      i += 1
+    end
+
+    return labels if type == "label"
+
+    # type = 'data'
+    # group by current_sign_in_at and get label & users size
+    result = recent_users
+      .group_by { |u| u.current_sign_in_at.beginning_of_day }
+      .map { |label, data| [label.strftime('%d/%m'), data.size] } 
+
+    # Create arary with 0 as default
+    result_data = Array.new(10, 0)
+    result.each do |obj|
+      # label: obj[0]
+      # data: obj[1]
+
+      # Update data value
+      if labels.include?(obj[0])
+        index = labels.find_index(obj[0])
+        result_data[index] = obj[1]
+      end
+    end
+
+    return result_data
+  end
+  # End chart creation
+
   # Don't store password
   def password_required?
     false

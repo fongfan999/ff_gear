@@ -120,7 +120,7 @@ class Post < ApplicationRecord
   scope :max_price, -> { maximum(:price) }
   scope :min_price, -> { minimum(:price) }
 
-  self.per_page = 4
+  self.per_page = 12
 
   def self.exclude_sold_posts
     where(sold: false)
