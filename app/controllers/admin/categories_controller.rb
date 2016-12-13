@@ -13,11 +13,13 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:notice] = "Cập nhật thành công"
-      redirect_to admin_categories_path
+      @message = "Cập nhật thành công"
     else
-      flash.now[:alert] = "Đã xảy ra lỗi"
-      render "edit"
+      @message = "Cập nhật thành công"
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -33,18 +35,23 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      flash[:notice] = "Thêm mới thành công"
-      redirect_to admin_categories_path
+      @message = "Thêm mới thành công"
     else
-      flash.now[:alert] = "Đã xảy ra lỗi"
-      render "new"
+      @message = "Đã xảy ra lỗi"
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
   def destroy
     @category.destroy
-    flash[:notice] = "Xoá danh mục thành công"
-    redirect_to admin_categories_path
+    @message = "Xoá danh mục thành công"
+    
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

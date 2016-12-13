@@ -2,12 +2,12 @@
   html: { multipart: true, id: 'attachments-dropzone' } do |f| %>
 
   <%= f.input :title, label: "Bạn bán gì?" do %>
-    <%= f.input_field :title, length: 35 %>
+    <%= f.input_field :title, length: 35, autocomplete: "off" %>
     <%= material_icon_of "label", class: "prefix" %>
   <% end %>
   
   <%= f.input :address, label: "Nơi bán" do %>
-    <%= f.input_field :address, length: 60,
+    <%= f.input_field :address, length: 60, autocomplete: "off",
       value: post.address || current_user.profile.address %>
     <%= material_icon_of "location_on", class: "prefix" %>
   <% end %>

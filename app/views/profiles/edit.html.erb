@@ -20,21 +20,25 @@
     
       <div id="contact-info">
         <div class="row">
-          <%= f.input :phone, label: "Điện thoại" %>
+          <%= f.input :phone, label: "Điện thoại",
+            input_html: { autocomplete: "off" } %>
         </div>
         <div class="row">
-          <%= f.input :address, label: "Địa chỉ" %>
+          <%= f.input :address, label: "Địa chỉ",
+            input_html: { autocomplete: "off" } %>
         </div>
       </div>
 
       <div id="socinal-networking">
         <div class="row">
           <%= f.input :fb_link, label: "Đường dẫn Facebook",
-            placeholder: "https://www.facebook.com/username" %>
+            placeholder: "https://www.facebook.com/username",
+            input_html: { autocomplete: "off" } %>
         </div>
         <div class="row">
           <%= f.input :gg_link, label: "Đường dẫn Google Plus",
-            placeholder: "https://plus.google.com/username" %>
+            placeholder: "https://plus.google.com/username",
+            input_html: { autocomplete: "off" } %>
         </div>
       </div>
     </div>

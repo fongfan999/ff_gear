@@ -2,7 +2,7 @@ require 'will_paginate/array'
 
 class MarketController < ApplicationController
   def index
-    @categories = Category.all.order(:id)
+    @categories = Category.all
     
     if sort_relevance?
       @posts = Post.exclude_sold_posts

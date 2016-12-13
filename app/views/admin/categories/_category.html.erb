@@ -1,0 +1,11 @@
+<tr>
+  <td><%= category_counter + 1 %></td>
+  <td><%= material_icon_of(category.icon) %></td>
+  <td><%= category.name %></td>
+  <td><%= link_to material_icon_of("edit"),
+    [:edit, :admin, category], class: "circle-icon-link",
+    remote: true %></td>
+  <td><%= link_to material_icon_of("delete"), [:admin, category],
+    class: "circle-icon-link", method: :delete, remote: true,
+    data: { confirm: "Xoá danh mục này?" } %></td>
+</tr>

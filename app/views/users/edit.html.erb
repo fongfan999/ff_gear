@@ -12,12 +12,14 @@
         
         <div class="col s12 m6 l6">
           <%= f.input :name, label: "Tên", input_html: { length: 45 },
-            label_html: { class: ("active" unless @user.new_record?) }  %>
+            label_html: { class: ("active" unless @user.new_record?) },
+            input_html: { autocomplete: "off" }  %>
         </div>
 
         <div class="col s12 m6 l6">
           <%= f.input :username, input_html: { length: 20 },
-            label_html: { class: ("active" unless @user.new_record?) } %>
+            label_html: { class: ("active" unless @user.new_record?) },
+            input_html: { autocomplete: "off" } %>
         </div>
       </div>
     </div>

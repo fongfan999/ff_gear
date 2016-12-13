@@ -1,0 +1,4 @@
+$('#new_category_modal').closeModal();
+
+$('#categories-content').html('<%= j render(Category.all) %>');
+Materialize.toast('<%= @message %>', 4000, 'toast-notice');
