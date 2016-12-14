@@ -14,12 +14,26 @@
 
 <div class="row">
   <div class="col s12 m12 l6">
-    <canvas id="newUsersChart"></canvas>
+    <canvas id="newUsersChart" class="chart-js"></canvas>
   </div>
   
   <div class="col s12 m12 l6">
-    <canvas id="loginUserCountChart"></canvas>
+    <canvas id="loginUserCountChart" class="chart-js"></canvas>
   </div>
+
+
+ 
+  <div class="col s12 m12 l8">
+    <canvas id="postsByCategoryChart" class="chart-js"></canvas>
+  </div>
+  <div class="col s12 m12 l4">
+    <div class="chart-js card-panel">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quidem, quia repudiandae omnis veniam explicabo cumque consequuntur nobis autem corporis quas doloremque unde mollitia ad sed, animi placeat tenetur quisquam.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias impedit repudiandae, dignissimos eaque possimus omnis beatae eum officiis repellendus voluptatibus iste mollitia similique ipsam consectetur laboriosam libero nemo. Vitae, illo.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorem et vel optio numquam dignissimos perspiciatis animi voluptatem, porro repellendus consectetur provident ut explicabo, sit distinctio accusantium quas vitae beatae.
+    </div>
+  </div>
+
 
 </div>
 
@@ -41,18 +55,18 @@
           label: 'Google',
           data: dataGGNewUsers,
           backgroundColor: [
-            'rgba(251,150,120, 0.4)',
-            'rgba(251,150,120, 0.4)',
-            'rgba(251,150,120, 0.4)',
-            'rgba(251,150,120, 0.4)',
-            'rgba(251,150,120, 0.4)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
           ],
           borderColor: [
-            'rgba(251,150,120, 1)',
-            'rgba(251,150,120, 1)',
-            'rgba(251,150,120, 1)',
-            'rgba(251,150,120, 1)',
-            'rgba(251,150,120, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 99, 132, 1)',
           ],
           borderWidth: 1
         },
@@ -60,18 +74,18 @@
           label: 'Facebook',
           data: dataFBNewUsers,
           backgroundColor: [
-            'rgba(1,192,200, 0.4)',
-            'rgba(1,192,200, 0.4)',
-            'rgba(1,192,200, 0.4)',
-            'rgba(1,192,200, 0.4)',
-            'rgba(1,192,200, 0.4)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
           ],
           borderColor: [
-            'rgba(1,192,200, 1)',
-            'rgba(1,192,200, 1)',
-            'rgba(1,192,200, 1)',
-            'rgba(1,192,200, 1)',
-            'rgba(1,192,200, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
           ],
           borderWidth: 1
         }
@@ -96,11 +110,12 @@
       }, 
     });
 
+
     // loginUserCountChart
     var ctx = document.getElementById("loginUserCountChart");
 
     var labelLoginUserCount = <%= raw User.login_user_count_chart('label').to_json %>;
-    var dataoginUserCount = <%= User.login_user_count_chart('data') %>;
+    var dataLoginUserCount = <%= User.login_user_count_chart('data') %>;
 
     new Chart(ctx, {
       type: 'line',
@@ -108,21 +123,21 @@
         labels: labelLoginUserCount,
         datasets: [
         {
-          data: dataoginUserCount,
+          data: dataLoginUserCount,
           fill: true,
           lineTension: 0.5,
-          backgroundColor: "rgba(171,140,228, 0.4)",
-          borderColor: "rgba(171,140,228, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
           borderCapStyle: 'round',
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: 'round',
-          pointBorderColor: "rgba(171,140,228, 1)",
+          pointBorderColor: "rgba(75, 192, 192, 1)",
           pointBackgroundColor: "#fff",
           pointBorderWidth: 5,
           pointHoverRadius: 1,
-          pointHoverBackgroundColor: "rgba(171,140,228, 0.4)",
-          pointHoverBorderColor: "rgba(171,140,228, 1)",
+          pointHoverBackgroundColor: "rgba(75, 192, 192, 0.2)",
+          pointHoverBorderColor: "rgba(75, 192, 192, 1)",
           pointHoverBorderWidth: 5,
           pointRadius: 1,
           pointHitRadius: 10,
@@ -144,6 +159,144 @@
         },
         legend: {
           display: false,
+        }
+      }, 
+    });
+
+
+    // postsByCategoryChart
+    var ctx = document.getElementById("postsByCategoryChart");
+
+    var labelPostsByCategoryChart 
+          = <%= raw Category.labels_7_days_ago.to_json %>;
+    var dataPostsByHeadsetChart = <%= Category.find(1).data_posts_chart %>;
+    var dataPostsByKeyboardChart = <%= Category.find(2).data_posts_chart %>;
+    var dataPostsByMouseChart = <%= Category.find(3).data_posts_chart %>;
+    var dataPostsByOtherChart = <%= Category.find(4).data_posts_chart %>;
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labelPostsByCategoryChart,
+        datasets: [
+          {
+            data: dataPostsByHeadsetChart,
+            label: "Tai nghe",
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: "rgba(1,192,200, 0.4)",
+            borderColor: "rgba(1,192,200, 1)",
+            borderCapStyle: 'round',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'round',
+            pointBorderColor: "rgba(1,192,200, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 5,
+            pointHoverRadius: 1,
+            pointHoverBackgroundColor: "rgba(1,192,200, 0.4)",
+            pointHoverBorderColor: "rgba(1,192,200, 1)",
+            pointHoverBorderWidth: 5,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            spanGaps: true,
+          },
+          {
+            data: dataPostsByKeyboardChart,
+            label: "Bàn phím",
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: "rgba(171,140,228, 0.4)",
+            borderColor: "rgba(171,140,228, 1)",
+            borderCapStyle: 'round',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'round',
+            pointBorderColor: "rgba(171,140,228, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 5,
+            pointHoverRadius: 1,
+            pointHoverBackgroundColor: "rgba(171,140,228, 0.4)",
+            pointHoverBorderColor: "rgba(171,140,228, 1)",
+            pointHoverBorderWidth: 5,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            spanGaps: true,
+          },
+          {
+            data: dataPostsByMouseChart,
+            label: "Chuột",
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: "rgba(251,150,120, 0.4)",
+            borderColor: "rgba(251,150,120, 1)",
+            borderCapStyle: 'round',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'round',
+            pointBorderColor: "rgba(251,150,120, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 5,
+            pointHoverRadius: 1,
+            pointHoverBackgroundColor: "rgba(251,150,120, 0.4)",
+            pointHoverBorderColor: "rgba(251,150,120, 1)",
+            pointHoverBorderWidth: 5,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            spanGaps: true,
+          },
+          {
+            data: dataPostsByOtherChart,
+            label: "Khác",
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: "rgba(0,194,146, 0.4)",
+            borderColor: "rgba(0,194,146, 1)",
+            borderCapStyle: 'round',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'round',
+            pointBorderColor: "rgba(0,194,146, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 5,
+            pointHoverRadius: 1,
+            pointHoverBackgroundColor: "rgba(0,194,146, 0.4)",
+            pointHoverBorderColor: "rgba(0,194,146, 1)",
+            pointHoverBorderWidth: 5,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            spanGaps: true,
+          },
+        ]
+      },
+      options: {
+        title:{
+          display: true,
+          text:"Số lượng tin mới"
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+        },
+        tooltips: {
+          mode: 'index',
+          backgroundColor: 'rgba(16,18,21, 0.4)',
+          cornerRadius: 2,
+          xPadding: 15,
+          yPadding: 15,
+          titleMarginBottom: 20,
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var datasetLabel = data.datasets[tooltipItem.datasetIndex].label;
+              return '  ' + datasetLabel + ' (' + tooltipItem.yLabel + ')';
+            },
+            afterLabel: function(tooltipItem, data) {
+              return '\n';
+            }
+          }
         }
       }, 
     });

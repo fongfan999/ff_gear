@@ -108,9 +108,10 @@ $ ->
       e.preventDefault()
     formChange.submit()
 
+  # Number to currency as text helper
   $('#post_price').bind "keyup change", ->
     $('#read-currency').text( DOCSO.doc($(this).val()) + " đồng" )
-    console.log $(this).val()
+    
   # With Ajax only
   $( document ).ajaxComplete ->
     # Tooltip on ajax

@@ -32,23 +32,23 @@ new Chart(ctx, {
 
 // rolesChart
 var ctx = document.getElementById("rolesChart");
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ["Quản trị viên", "Người dùng"],
-      datasets: [{
-        data: <%= User.roles_chart %>,
-        backgroundColor: [
-        "#ab8ce4",
-        "#00c292",
-        ]
-      }]
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Quản trị viên", "Người dùng"],
+    datasets: [{
+      data: <%= User.roles_chart %>,
+      backgroundColor: [
+      "#ab8ce4",
+      "#00c292",
+      ]
+    }]
+  },
+  options: {
+    cutoutPercentage: 40,
+    title:{
+      display:true,
+      text:"Vai trò"
     },
-    options: {
-      cutoutPercentage: 40,
-      title:{
-        display:true,
-        text:"Vai trò"
-      },
-    }
-  });
+  }
+});

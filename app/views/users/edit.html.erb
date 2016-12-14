@@ -1,5 +1,6 @@
 <div id="edit-user-form" class="modal">
-  <%= simple_form_for @user, validate: true do |f| %>
+  <%= simple_form_for @user, validate: true,
+    html: { autocomplete: 'off' } do |f| %>
 
   <div class="modal-content">
     <div class="about-summary card row">
@@ -12,14 +13,12 @@
         
         <div class="col s12 m6 l6">
           <%= f.input :name, label: "Tên", input_html: { length: 45 },
-            label_html: { class: ("active" unless @user.new_record?) },
-            input_html: { autocomplete: "off" }  %>
+            label_html: { class: ("active" unless @user.new_record?) } %>
         </div>
 
         <div class="col s12 m6 l6">
           <%= f.input :username, input_html: { length: 20 },
-            label_html: { class: ("active" unless @user.new_record?) },
-            input_html: { autocomplete: "off" } %>
+            label_html: { class: ("active" unless @user.new_record?) } %>
         </div>
       </div>
     </div>

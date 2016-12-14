@@ -1,20 +1,20 @@
 <%= simple_form_for post, validate: true,
-  html: { multipart: true, id: 'attachments-dropzone' } do |f| %>
-
+  html: { multipart: true, id: 'attachments-dropzone',
+    autocomplete: "off" } do |f| %>
+  
   <%= f.input :title, label: "Bạn bán gì?" do %>
-    <%= f.input_field :title, length: 35, autocomplete: "off" %>
+    <%= f.input_field :title, length: 35 %>
     <%= material_icon_of "label", class: "prefix" %>
   <% end %>
   
   <%= f.input :address, label: "Nơi bán" do %>
-    <%= f.input_field :address, length: 60, autocomplete: "off",
+    <%= f.input_field :address, length: 60,
       value: post.address || current_user.profile.address %>
     <%= material_icon_of "location_on", class: "prefix" %>
   <% end %>
 
   <%= f.input :price, label: "Giá (VND)" do %>
-    <%= f.input_field :price, min: 1000, max: 100000000, step: 1000,
-      autocomplete: "off" %>
+    <%= f.input_field :price, min: 1000, max: 100000000, step: 1000 %>
     <%= material_icon_of "attach_money", class: "prefix" %>
     <small id="read-currency" class="right"></small>
   <% end %>

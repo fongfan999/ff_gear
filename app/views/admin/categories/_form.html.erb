@@ -1,9 +1,9 @@
-<%= simple_form_for [:admin, category], validate: true, remote: true do |f| %>
+<%= simple_form_for [:admin, category], validate: true, remote: true,
+  html: { autocomplete: 'off' } do |f| %>
   <%= f.input :name,
-    label_html: { class: ("active" unless category.new_record?) },
-    input_html: { autocomplete: 'off' } %>
-  <%= f.input :icon, placeholder: "Visit https://material.io/icons/ for more info", label_html: { class: ("active" unless category.new_record?) },
-    input_html: { autocomplete: 'off' } %>
+    label_html: { class: ("active" unless category.new_record?) } %>
+  <%= f.input :icon,
+    label_html: { class: ("active" unless category.new_record?) } %>
   
   <div class=" modal-footer">
     <%= button_tag type: :submit, class: "submit-btn btn validation-btn" do %>

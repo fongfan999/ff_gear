@@ -9,5 +9,5 @@ $ ->
       scrollTop: 0
     }, 'slow'
 
-    $("#posts").html("")
-    $("#preloader-nav").show()
+    $("#posts").hide()
+    $("#preloader-nav").css('margin-top', '100px').show()
