@@ -1,5 +1,11 @@
 .chart-js {
-  background-color: $primary-color;
+  @extend .primary-color;
   padding: 10px;
   margin-top: 20px;
+}
+
+#top-users {
+  .collection .collection-item.avatar {
+    padding-right: 40px;
+  }
 }

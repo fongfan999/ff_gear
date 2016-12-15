@@ -82,16 +82,20 @@ class Post < ApplicationRecord
   end
 
   scope :filter, -> (filter) do
-    # There are 3 criteria: sort, category_ids, price_range
+    # There are 3 criteria: sort, category_ids, price_range, state
     sort = filter.fetch(:sort, nil)
     category_ids = filter.fetch(:category_ids, nil)
     price_range = filter.fetch(:price_range, nil)
+    state = filter.fetch(:state, nil)
 
     # Get current scope value for the first time
     result = custom_sort(sort)
 
     result = result.filter_categories(category_ids) unless category_ids.nil?
     result = result.filter_price_range(price_range) unless price_range.nil?
+    result = result.filter_state(state) unless state.nil?
+
+    result
   end
 
   scope :filter_categories, -> (category_ids) do
@@ -115,6 +119,10 @@ class Post < ApplicationRecord
 
     # Run query
     where("price BETWEEN ? AND ?", min_price, max_price)
+  end
+
+  scope :filter_state, -> (state) do
+    where(sold: state)
   end
 
   scope :max_price, -> { maximum(:price) }

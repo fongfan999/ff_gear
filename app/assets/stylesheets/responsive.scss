@@ -17,6 +17,15 @@
     margin-left: -16px;
     width: 268px;
   }
+
+  #search {
+    .filter-form {
+      .input-field {
+        max-width: 200px;
+        margin-top: 30px;
+      }
+    }
+  }
 }
 
 @media #{$medium-and-up} {

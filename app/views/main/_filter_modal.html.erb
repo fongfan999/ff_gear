@@ -19,6 +19,21 @@
   </div>
 
   <div class="input-field">
+    <h6 class="bold">Tình trạng</h6>
+
+    <p>
+      <%= check_box_tag "filter[state][]", true, state_checked?('true'),
+        id: 'is-sold', class: "field-change" %>
+      <%= label_tag 'is-sold', 'Đã bán' %>
+    </p>
+    <p>
+      <%= check_box_tag "filter[state][]", false, state_checked?('false'),
+        id: 'not-sold', class: "field-change" %>
+      <%= label_tag 'not-sold', 'Chưa bán' %>
+    </p>
+  </div>
+
+  <div class="input-field">
     <h6 class="bold">Giá</h6><br>
     <div id="price-range-modal"></div>
     <br>

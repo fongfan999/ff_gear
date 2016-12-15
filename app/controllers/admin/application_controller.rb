@@ -2,6 +2,7 @@ class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin!
 
   def index
+    @top_users = User.order(sign_in_count: :desc).limit(5)
   end
 
   private
