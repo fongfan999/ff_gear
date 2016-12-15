@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :should_save?
   after_save :geoword, if: :should_save?
   after_create :assign_user_address
+  after_create :post_to_facebook_page
 
   acts_as_commontable
 
@@ -193,5 +194,16 @@ class Post < ApplicationRecord
 
   def assign_user_address
     owner.profile.update(address: self.address) if owner.profile.address.blank?
+  end
+
+  def post_to_facebook_page
+    @graph = Koala::Facebook::API.new(APP_CONFIG['page_access_token'])
+    @graph.put_wall_post("#{title} - #{price}đ\n#{description}", {
+      name: title,
+      caption: "FOXFIZZ.COM",
+      description: address,
+      link: 'https://www.google.com.vn/', 
+      picture: 'http://bpc.h-cdn.co/assets/16/30/640x320/landscape-1469479026-bose-qc35-headphones-promo-2.jpg'
+    })
   end
 end

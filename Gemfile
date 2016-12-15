@@ -75,6 +75,8 @@ gem 'rails-assets-jquery-zoom', source: 'https://rails-assets.org'
 
 # Create chart
 gem 'chart-js-rails', '~> 0.1.1'
+# Facebook library
+gem "koala", "~> 2.2"
 
 
 group :development, :test do
