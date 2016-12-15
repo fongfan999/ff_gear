@@ -20,17 +20,29 @@
   <div class="col s12 m12 l6">
     <canvas id="loginUserCountChart" class="chart-js"></canvas>
   </div>
-
-
  
   <div class="col s12 m12 l8">
     <canvas id="postsByCategoryChart" class="chart-js"></canvas>
   </div>
+
   <div class="col s12 m12 l4">
-    <div class="chart-js card-panel">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quidem, quia repudiandae omnis veniam explicabo cumque consequuntur nobis autem corporis quas doloremque unde mollitia ad sed, animi placeat tenetur quisquam.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias impedit repudiandae, dignissimos eaque possimus omnis beatae eum officiis repellendus voluptatibus iste mollitia similique ipsam consectetur laboriosam libero nemo. Vitae, illo.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorem et vel optio numquam dignissimos perspiciatis animi voluptatem, porro repellendus consectetur provident ut explicabo, sit distinctio accusantium quas vitae beatae.
+    <div id='top-users' class="chart-js">
+      <ul class="collection">
+          <li class="collection-header">
+            <h5 class="center-align">Top Users</h5>
+          </li>
+        <% @top_users.each do |user| %>
+          <li class="collection-item avatar">
+            <%= image_tag user.avatar, class: 'circle' %>
+            <span class="title">
+              <%= user.name %> (<%= user.sign_in_count %>)
+            </span>
+            <p>@<%= user.username %></p>
+            <%= link_to material_icon_of("input"), user, target: "_black",
+              class: "secondary-content" %>
+         </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 
@@ -125,7 +137,7 @@
         {
           data: dataLoginUserCount,
           fill: true,
-          lineTension: 0.5,
+          lineTension: 0,
           backgroundColor: "rgba(75, 192, 192, 0.2)",
           borderColor: "rgba(75, 192, 192, 1)",
           borderCapStyle: 'round',
