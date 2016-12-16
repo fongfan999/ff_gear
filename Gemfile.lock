@@ -84,6 +84,11 @@ GEM
       rails (>= 3.1)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    delayed_job (4.1.2)
+      activesupport (>= 3.0, < 5.1)
+    delayed_job_active_record (4.1.1)
+      activerecord (>= 3.0, < 5.1)
+      delayed_job (>= 3.0, < 5)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -255,6 +260,7 @@ DEPENDENCIES
   client_side_validations-simple_form!
   coffee-rails (~> 4.2)
   commontator (~> 4.11, >= 4.11.1)
+  delayed_job_active_record (~> 4.1, >= 4.1.1)
   devise (~> 4.2)
   dropzonejs-rails (~> 0.7.3)
   flexslider-rails

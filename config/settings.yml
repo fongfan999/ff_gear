@@ -5,7 +5,7 @@ development:
     156045701901-6hhfdv3vim2f98bmm3jro51fl3t8fkhc.apps.googleusercontent.com
   google_client_secret: 1L6CUHNd39z517sESq8W4P3p
   google_api_key: AIzaSyD_cuVyQT2E7TUQqIMCV5Jj7ocMJBhBuxI
-  page_access_token: EAACEdEose0cBAKL7JCWNYNBFzXBl6rIEMNHVe6LxRtZCZAWJLPEQ7ThrXla34K03mzd4QWwKetjvdq7Q6H3Ro5Ga6qxPzm7FzZB7O6eFalgsCDnOgth6iZBD2A1elxl7zhxc27cERNSuHNaJVozaQfiCJZBzA8caXir7hnHDFlAZDZD
+  admin_access_token: EAAUh7ztGBMEBAJ5BSn6kvO7Qow7JzzsbkCwNNxcGeFc0fwDnAqmkJEmEA7U5fgFgQiPveAPSiXrXlfJ74D7OonUvy6DxoVUu8jV9cPCctZAKfHqPXchI5TP7Tpc8NGa3x8wbvs6WPGXHX6IdJJSXyC894ow8ZD
 
 test:
   facebook_app_id: '1444686258898113'
@@ -14,7 +14,7 @@ test:
     156045701901-6hhfdv3vim2f98bmm3jro51fl3t8fkhc.apps.googleusercontent.com
   google_client_secret: 1L6CUHNd39z517sESq8W4P3p
   google_api_key: AIzaSyD_cuVyQT2E7TUQqIMCV5Jj7ocMJBhBuxI
-  page_access_token: EAACEdEose0cBAKL7JCWNYNBFzXBl6rIEMNHVe6LxRtZCZAWJLPEQ7ThrXla34K03mzd4QWwKetjvdq7Q6H3Ro5Ga6qxPzm7FzZB7O6eFalgsCDnOgth6iZBD2A1elxl7zhxc27cERNSuHNaJVozaQfiCJZBzA8caXir7hnHDFlAZDZD
+  admin_access_token: EAAUh7ztGBMEBAJ5BSn6kvO7Qow7JzzsbkCwNNxcGeFc0fwDnAqmkJEmEA7U5fgFgQiPveAPSiXrXlfJ74D7OonUvy6DxoVUu8jV9cPCctZAKfHqPXchI5TP7Tpc8NGa3x8wbvs6WPGXHX6IdJJSXyC894ow8ZD
 
 production:
   facebook_app_id: <%= ENV[FB_APP_ID] %>
@@ -22,5 +22,5 @@ production:
   google_client_id: <%= ENV["GG_CLIENT_ID"] %>
   google_client_secret: <%= ENV["GG_CLIENT_SECRET"] %>
   google_api_key: <%= ENV["GG_API_KEY"] %>
-  page_access_token: <%= ENV["PAGE_ACCESS_TOKEN"] %>
+  admin_access_token: <%= ENV["PAGE_ACCESS_TOKEN"] %>
 

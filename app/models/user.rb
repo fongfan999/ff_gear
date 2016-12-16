@@ -77,6 +77,10 @@ class User < ApplicationRecord
     where(admin: true)
   end
 
+  def self.super_user
+    User.find_by_email('fongfan999@gmail.com')
+  end
+
   # For chart creation purpose only
   def self.new_users_chart(type, provider = 'google_oauth2')
     grouped_by_week = User.order(created_at: :desc)

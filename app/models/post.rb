@@ -197,13 +197,19 @@ class Post < ApplicationRecord
   end
 
   def post_to_facebook_page
-    @graph = Koala::Facebook::API.new(APP_CONFIG['page_access_token'])
+    @user_graph = Koala::Facebook::API.new(APP_CONFIG['admin_access_token'])
+    page_token = @user_graph.get_page_access_token(579851348889688)
+
+    @graph = Koala::Facebook::API.new(page_token)
     @graph.put_wall_post("#{title} - #{price}đ\n#{description}", {
       name: title,
       caption: "FOXFIZZ.COM",
       description: address,
-      link: 'https://www.google.com.vn/', 
-      picture: 'http://bpc.h-cdn.co/assets/16/30/640x320/landscape-1469479026-bose-qc35-headphones-promo-2.jpg'
+      link: Rails.application.routes.url_helpers.post_url(self, host: "localhost:3000"), 
+      picture: 'https://digitalcrack.files.wordpress.com/2014/12/wpid-tech-beats-headphones-1.jpg'
     })
   end
+
+  handle_asynchronously :post_to_facebook_page,
+                          run_at: Proc.new { 5.minutes.from_now }
 end

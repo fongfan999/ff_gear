@@ -77,6 +77,8 @@ gem 'rails-assets-jquery-zoom', source: 'https://rails-assets.org'
 gem 'chart-js-rails', '~> 0.1.1'
 # Facebook library
 gem "koala", "~> 2.2"
+# Delay a method calll
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
 
 
 group :development, :test do

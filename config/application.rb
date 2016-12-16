@@ -18,5 +18,7 @@ module FoxFizz
     config.before_initialize do
       require_relative 'load_settings'
     end
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end
