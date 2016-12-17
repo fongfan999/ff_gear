@@ -4,4 +4,15 @@ var contentHelper =
 
 $('.dropdown-button').dropdown('close');
 $('td.state').text(postState);
+
+var hihgLight = $('td.state').parent()
+// Highlight on clicking
+hihgLight.toggleClass('teal');
+
+// Revert color
+setTimeout(function(){
+  hihgLight.toggleClass('teal')
+}, 200); 
+
+// Update contentHelper
 $('#post-action li a.mark').text(contentHelper);

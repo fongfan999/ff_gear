@@ -49,8 +49,6 @@ class PostsController < ApplicationController
       session.delete(:attachment_ids)
 
       flash[:notice] = "Cập nhật thành công"
-      # @post.delay(run_at: 1.minute.from_now).post_to_facebook_page
-      # @post.post_to_facebook_page
       redirect_to @post
     end
   end

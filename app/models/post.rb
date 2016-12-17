@@ -135,6 +135,16 @@ class Post < ApplicationRecord
     where(sold: false)
   end
 
+  # For chart creation purpose only
+  def self.categories_chart
+    group(:category_id).count.map(&:last)
+  end
+
+  def self.state_chart
+    group(:sold).order(:sold).count.map(&:last)
+  end
+  # End chart creation
+
   def tag_names=(names)
     @tag_names = names
     self.tags.delete_all
@@ -161,6 +171,10 @@ class Post < ApplicationRecord
 
   def first_attachment
     attachments.first.file.url
+  end
+
+  def state
+    sold? ? "Đã bán" : "Chưa bán"
   end
 
   private

@@ -5,7 +5,7 @@
 
   <ul>
     <li><%= link_to "Users", admin_users_path %></li>
-    <li><%= link_to "Posts", "#" %></li>
+    <li><%= link_to "Posts", admin_posts_path %></li>
     <li><%= link_to "Categories", admin_categories_path %></li>
     <li><%= link_to "Tags", "#" %></li>
 
@@ -54,7 +54,7 @@
     // newUsersChart
     var ctx = document.getElementById("newUsersChart");
 
-    var labelNewUsers = <%= raw User.new_users_chart('label').to_json %>;
+    var labelNewUsers = <%= raw User.new_users_chart('label') %>;
     var dataGGNewUsers = <%= User.new_users_chart('data', 'google_oauth2') %>;
     var dataFBNewUsers = <%= User.new_users_chart('data', 'facebook') %>;
 
@@ -126,7 +126,7 @@
     // loginUserCountChart
     var ctx = document.getElementById("loginUserCountChart");
 
-    var labelLoginUserCount = <%= raw User.login_user_count_chart('label').to_json %>;
+    var labelLoginUserCount = <%= raw User.login_user_count_chart('label') %>;
     var dataLoginUserCount = <%= User.login_user_count_chart('data') %>;
 
     new Chart(ctx, {
@@ -179,8 +179,7 @@
     // postsByCategoryChart
     var ctx = document.getElementById("postsByCategoryChart");
 
-    var labelPostsByCategoryChart 
-          = <%= raw Category.labels_7_days_ago.to_json %>;
+    var labelPostsByCategoryChart = <%= raw Category.labels_7_days_ago %>;
     var dataPostsByHeadsetChart = <%= Category.find(1).data_posts_chart %>;
     var dataPostsByKeyboardChart = <%= Category.find(2).data_posts_chart %>;
     var dataPostsByMouseChart = <%= Category.find(3).data_posts_chart %>;

@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :posts, only: [:index] do
+      get :show_chart, on: :collection
+    end
+
     resources :categories, except: [:show]
   end
 
