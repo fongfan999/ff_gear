@@ -156,8 +156,12 @@
     }
   }
 
-  a.brand-logo img {
-    margin-top: 10px;
+  a.brand-logo {
+    height:56px;
+    
+    img {
+      margin-top: 10px;
+    }
   }
 }
 

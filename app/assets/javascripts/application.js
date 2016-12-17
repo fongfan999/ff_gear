@@ -18,7 +18,7 @@
 //= require jquery-zoom
 //= require dropzone
 //= require materialize-form
-//= require jquery.mCustomScrollbar.concat.min
+//= require malihu-custom-scrollbar-plugin
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require sweetalert2
@@ -244,12 +244,20 @@ $(function() {
       handleRemoveThumb(this, e);
     });
   }
+
+   
 });
 
 
 $(window).on('load', function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");
+
+  // Apply custom scrollbar to notifications box
+  $('#notice-content').mCustomScrollbar({
+    theme: "light-thin",
+    autoHideScrollbar: true
+  });
 
   // Enable flexslider
   $('.flexslider').flexslider({

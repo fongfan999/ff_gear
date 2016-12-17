@@ -63,15 +63,20 @@ gem 'client_side_validations-simple_form',
   github: 'DavyJonesLocker/client_side_validations-simple_form',
   branch: 'rails5'
 
-# materialize-autocomplete
-gem 'rails-assets-materialize-autocomplete', source: 'https://rails-assets.org'
+source 'https://rails-assets.org' do
+  # materialize-autocomplete
+  gem 'rails-assets-materialize-autocomplete'
 
-# Sweet alert
-gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
+  # Sweet alert
+  gem 'rails-assets-sweetalert2'
+  # Zoom image
+  gem 'rails-assets-jquery-zoom'
+  # malihu custom scrollbar
+  gem 'rails-assets-malihu-custom-scrollbar-plugin'
+end
 
 # Slider and zoom
 gem 'flexslider-rails'
-gem 'rails-assets-jquery-zoom', source: 'https://rails-assets.org'
 
 # Create chart
 gem 'chart-js-rails', '~> 0.1.1'

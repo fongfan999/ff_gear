@@ -16,7 +16,7 @@ $text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
 @import 'market';
 @import 'responsive';
 @import 'dropzone/dropzone';
-@import 'jquery.mCustomScrollbar.min';
+@import 'malihu-custom-scrollbar-plugin';
 @import 'sweetalert2';
 @import 'admin/application';
 @import 'admin/categories';
@@ -274,6 +274,7 @@ span.counter {
   min-width: 400px;
   max-height: 400px;
   font-weight: 500;
+  overflow: hidden;
 
   .collection-header {
     color: $teal-color;
@@ -332,6 +333,10 @@ span.counter {
       font-style: italic;
       color: $text-color !important;
     }
+  }
+
+  .collection-footer {
+    border-top: 1px solid #fff;
   }
 }
 
@@ -514,5 +519,5 @@ input.number:disabled {
 
 // remove margin-right mCustomScrollbar
 .mCSB_inside > .mCSB_container {
-  margin-right: 0 !important;
+  margin-right: 10px !important;
 }
