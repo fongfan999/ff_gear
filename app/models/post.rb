@@ -50,13 +50,17 @@ class Post < ApplicationRecord
     return Post.all if q.blank?
 
     result = search_by('description', q)
+
     result += search_by('address', q)
+    
 
     q.split.each_with_index do |word, index|
       result += search_by('title', word)
       result += search_by_category(word) if index.zero?
       result += search_by_tag(word)
+
     end
+
 
     if (sort_param.nil? || sort_param == "relevance")
       return result
@@ -74,7 +78,7 @@ class Post < ApplicationRecord
 
   scope :search_by_tag, -> (q) do
     joins(:tags)
-      .where("lower(tags.name) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+      .where("lower(tags.name) = ?", "%#{q.mb_chars.downcase.to_s}%")
   end
 
   scope :search_by_category, -> (q) do
@@ -147,9 +151,12 @@ class Post < ApplicationRecord
 
   def tag_names=(names)
     @tag_names = names
+    # Delete and create new
     self.tags.delete_all
+
     names.split(",").delete_if(&:blank?).each do |name|
-      self.tags << Tag.find_or_initialize_by(name: name)
+      # Resold UTF-8
+      self.tags << Tag.find_or_initialize_by(name: name.mb_chars.downcase.to_s)
     end
   end
 

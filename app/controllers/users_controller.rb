@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class UsersController < ApplicationController
-  before_action :set_user, except: [:profile, :favorite_posts,:notifications]
+  before_action :set_user, except: [:profile, :favorite_posts, :notifications]
   before_action :authenticate_user!, except: [:profile, :show]
 
   def profile
@@ -52,6 +52,7 @@ class UsersController < ApplicationController
   end
 
   def notifications
+    current_user.mark_all_notifications_as_read
     @notifications = current_user.notifications.order(created_at: :desc)
 
     @notification_days = @notifications.group_by { |n|
