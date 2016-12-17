@@ -1,4 +1,4 @@
-<%= title("Bảng điều khiển", "Quản lý tin đăng") %>
+<%= title("Bảng điều khiển", "Quản lý tin") %>
 
 <div id="admin-posts">
   <div class="header-pattern"></div>
@@ -6,13 +6,13 @@
     <header>
       <h5>
         <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
-        <%= link_to "Quản lý tin đăng", "#", class: "breadcrumb" %>
+        <%= link_to "Quản lý tin", "#", class: "breadcrumb" %>
         
         <br><br>
       </h5>
     </header>
     
-    <h4 class="center-align uppercase">Quản lý tin đăng</h4>
+    <h4 class="center-align uppercase">Quản lý tin</h4>
 
     <table class="bordered responsive-table centered">
       <thead>
@@ -36,7 +36,7 @@
             <td><%= material_icon_of post.category.icon %></td>
             <td><%= date_or_time_ago_in_words(post.created_at, ',') %></td>
             <td>
-              <%= link_to material_icon_of('input'), post, 
+              <%= link_to material_icon_of("open_in_new"), post, 
                 class: "circle-icon-link", target: "_blank" %>
             </td>
           </tr>

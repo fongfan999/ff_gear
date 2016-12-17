@@ -8,3 +8,92 @@
     padding-right: 40px;
   }
 }
+
+
+#dashboad-boxes {
+  margin-top: 15px;
+  margin-bottom: 0;
+
+  a {
+    width: 100%;
+    color: $text-color;
+
+    .dashboad-box {
+      padding: 30px 20px;
+      position: relative;
+      min-height: 170px;
+      margin-bottom: 0;
+
+      i.material-icons {
+        font-size: 2.5em;
+      }
+
+      .dashboad-title {
+        font-size: 1.4em;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+
+      .number-in-box {
+        font-size: 2.3em;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .divider-wrapper {
+        position: absolute;
+        left: 0 !important;
+        bottom: 30px !important;
+
+        .divider-box {
+          border-bottom: 4px solid;
+          margin-top: 10px;
+          width: 90%;
+          margin: 0 auto;
+        }    
+      }
+    }
+  }
+
+  .group {
+    .number-in-box {
+      color: #fb9678;
+    }
+
+    .divider-box {
+      border-color: #fb9678 !important;
+    }
+  }
+
+  .description {
+    .number-in-box {
+      color: #01c0c8;
+    }
+
+    .divider-box {
+      border-color: #01c0c8 !important;
+    }
+  }
+
+  .list {
+    .number-in-box {
+      color: #ab8ce4;
+    }
+
+    .divider-box {
+      border-color: #ab8ce4 !important;
+    }
+  }
+
+  .settings {
+    .number-in-box {
+      color: #00c292;
+    }
+
+    .divider-box {
+      border-color: #00c292 !important;
+    }
+  }
+}
+
+
