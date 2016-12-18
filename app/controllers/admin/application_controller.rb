@@ -5,7 +5,7 @@ class Admin::ApplicationController < ApplicationController
     @total_users = User.count
     @total_posts = Post.count
     @total_categories = Category.count
-    @total_attachments = Attachment.count
+    @total_junks = Attachment.junks.count + Tag.junks.count
     @top_users = User.order(sign_in_count: :desc).limit(5)
   end
 

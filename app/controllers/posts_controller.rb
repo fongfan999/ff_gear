@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
     :mark_as_sold, :report]
-  before_action :clean_session, only: [:new, :edit]
+  before_action :clean_attachments_session, only: [:new, :edit]
 
   def show    
     if user_signed_in? && notice = notification_on_params
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
     handle_attachments
 
-    if failed_attachments_validation || !@post.save
+    if failed_attachments_validation? || !@post.save
       flash.now[:alert] = "Đã xảy ra lỗi. Vui lòng thử lại"
       render "new"
     else
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     authorize @post.owner
     handle_attachments
 
-    if failed_attachments_validation || !@post.update(post_params)
+    if failed_attachments_validation? || !@post.update(post_params)
       flash.now[:alert] = "Đã xảy ra lỗi. Vui lòng thử lại"
       render "edit"
     else
@@ -122,19 +122,16 @@ class PostsController < ApplicationController
       :category_id, :price)
   end
 
-  def failed_attachments_validation
+  def failed_attachments_validation?
     @post.attachments.empty? || @post.attachments.count > 5
   end
 
-  def clean_session
-    if session[:attachment_ids].present?
-      Attachment.clean_junks(session[:attachment_ids])
-      session.delete(:attachment_ids)
-    end
+  def clean_attachments_session
+    session.delete(:attachment_ids) if session[:attachment_ids].present?
   end
 
   def handle_attachments
-    Attachment.clean_junks(params["post"]["rejected_ids"])
+    Attachment.unlink_post(params["post"]["rejected_ids"])
     @post.attachments << Attachment.pending(session[:attachment_ids])
   end
 

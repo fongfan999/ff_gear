@@ -154,9 +154,13 @@ class Post < ApplicationRecord
     # Delete and create new
     self.tags.delete_all
 
-    names.split(",").delete_if(&:blank?).each do |name|
-      # Resold UTF-8
-      self.tags << Tag.find_or_initialize_by(name: name.mb_chars.downcase.to_s)
+    names.split(",").take(5).delete_if(&:blank?).each do |name|
+      if name.length < 20
+        # Resolve UTF-8
+        self.tags << Tag.find_or_initialize_by(
+          name: name.strip.mb_chars.downcase.to_s
+        )
+      end
     end
   end
 
