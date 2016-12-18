@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
 
     resources :categories, except: [:show]
+
+    resources :settings, except: [:show]
   end
 
   get '/notifications', to: "users#notifications"

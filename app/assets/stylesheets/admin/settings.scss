@@ -1,0 +1,117 @@
+#admin-settings {
+  h4 {
+    margin-bottom: 30px;
+  }
+  
+  .row > .col {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .settings-box {
+    border: 1px solid $bg-color;
+    margin-bottom: 10px;
+
+    & > div {
+      height: 140px;
+      text-align: center;
+
+      &:first-child {
+        border-right: 5px solid $bg-color;
+      }
+    }
+
+    .label-box {
+      font-size: 70px;
+      line-height: 140px;
+    }
+
+    .action-number, .action-icon {
+      height: 70px;
+      line-height: 70px;
+    }
+
+    .divider {
+      height: 3px;
+      background-color: $bg-color;
+    }
+
+    .action-number {
+      font-size: 2.5em;
+      border-bottom: 1px solid $primary-color;
+    }
+
+    .action-icon {
+      a {
+        width: 50px;
+      }
+      
+      i {
+        font-size: 30px;
+        line-height: 70px;
+        color: $text-color;
+
+        &:hover {
+          color: $teal-color;
+        }
+      }
+    }
+  }
+
+  .label {
+    .label-box, .action-number, .action-icon i {
+      color: #fb9678;
+    }
+
+    &, & > div:first-child {
+      border-color: #fb9678;
+    }
+
+    .divider {
+      background-color: #fb9678;
+    }
+  }
+
+  .attachment {
+    .label-box, .action-number, .action-icon i {
+      color: #01c0c8;
+    }
+
+    &, & > div:first-child {
+      border-color: #01c0c8;
+    }
+
+    .divider {
+      background-color: #01c0c8;
+    }
+  }
+
+  .notifications {
+    .label-box, .action-number, .action-icon i {
+      color: #ab8ce4;
+    }
+
+    &, & > div:first-child {
+      border-color: #ab8ce4;
+    }
+
+    .divider {
+      background-color: #ab8ce4;
+    }
+  }
+
+  .security {
+    .label-box, .action-number, .action-icon i {
+      color: #00c292;
+    }
+
+    &, & > div:first-child {
+      border-color: #00c292;
+    }
+
+    .divider {
+      background-color: #00c292;
+    }
+  }
+
+}

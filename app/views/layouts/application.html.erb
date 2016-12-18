@@ -209,11 +209,16 @@
     <%= yield %>
   </div>
 
-  <footer class="page-footer primary-color">
+  <footer class="page-footer primary-color padding-none">
     <div class="footer-copyright">
       <div class="container">
         © 2016 FoxFizz. All rights reserved
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+
+        <div class="footer-more-link right">
+          <%= link_to "Giới thiệu", about_path %>
+        <%= link_to "Chính sách", about_path %>
+        </div>
+        
       </div>
     </div>
   </footer>

@@ -20,6 +20,7 @@ $text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
 @import 'sweetalert2';
 @import 'admin/application';
 @import 'admin/categories';
+@import 'admin/settings';
 
 .fb-login-btn, .gg-login-btn {
   @extend .btn;
@@ -483,7 +484,20 @@ input.number:disabled {
   @extend .truncate; 
 }
 
-// Re-stule flexslider
+// Footer
+.footer-more-link {
+  a {
+    @extend .grey-text;
+    @extend .text-lighten-4;
+    margin-left: 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Re-style flexslider
 .flexslider {
   border-radius: 2px;
 

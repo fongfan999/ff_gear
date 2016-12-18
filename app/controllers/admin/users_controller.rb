@@ -5,12 +5,11 @@ class Admin::UsersController < Admin::ApplicationController
 
   def change_role
     @user = User.find(params[:id])
-    @user.toggle(:admin)
 
-    if !@user.admin? && User.admin_users.count == 1
-      @message = "Đây là quản trị viên cuối cùng"
+    if @user == User.super_user
+      @message = "Không thể thay đổi vai trò của người dùng này"
     else
-      @user.save
+      @user.toggle!(:admin)
     end
 
     respond_to do |format|
