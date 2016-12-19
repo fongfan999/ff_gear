@@ -1,4 +1,6 @@
 #lander {
+  background-color: #222;
+  
   .ctn {
     padding-left: 55px;
     padding-right: 55px;
@@ -8,7 +10,7 @@
   }
   #intro {
     padding-bottom: 50px;
-    height: 850px;
+    height: 700px;
     background: url('headphone.png') center no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -33,8 +35,9 @@
   }
   .nav-wrapper .brand-logo {
     font-size: 3.5em;
-    i {
-      font-size: 1.4em;
+    img {
+      width: 64px;
+      height: 64px;
     }
   }
   a.login-btn {
@@ -110,7 +113,7 @@
     }
   }
   .post-btn {
-    background-color: #ea4a4f;
+    background-color: $foreign-color;
     &:hover {
       background-color: #FF5156;
     }
@@ -120,7 +123,7 @@
     padding-top: 15px;
     margin-bottom: -15px;
     padding-bottom: 15px;
-    background-color: $bg-color;
+    background-color: #222;
     .col {
       margin-top: 30px;
       margin-bottom: 30px;
@@ -142,7 +145,7 @@
   }
   #feedbacks {
     margin-top: -20px;
-    background-color: $bg-color;
+    background-color: #222;
     > h4 {
       color: #f2f2f2;
       text-align: center;
@@ -151,7 +154,7 @@
       margin-bottom: 0;
     }
     .slides li {
-      background-color: $bg-color;
+      background-color: #222;
     }
     .caption {
       > div {
@@ -192,15 +195,10 @@
       }
     }
   }
-  #invitation h3 {
-    color: #f3f3f3;
-    margin-top: 100px;
-    margin-bottom: 100px;
-  }
   #contact {
     margin-top: -15px;
     padding-bottom: 30px;
-    background-color: $bg-color;
+    background-color: #222;
     color: #fff;
     form {
       text-align: center;
@@ -227,41 +225,30 @@
   }
   footer.page-footer {
     margin-top: -15px;
-    background-color: $bg-color;
+    background-color: #222;
     padding-top: 30px;
     padding-bottom: 10px;
   }
   .page-footer {
     #footer-logo {
       position: relative;
-      margin-bottom: 80px;
-      a {
-        color: #fff;
-      }
-      i {
-        position: absolute;
-        top: 0;
-        left: 0;
-        font-size: 3em;
-      }
+
       span {
-        position: absolute;
-        top: -5px;
-        left: 50px;
         font-size: 2.5em;
       }
     }
-    p img {
-      margin-right: 5px;
-    }
-    ul li a {
-      color: #797f7f;
-      line-height: 30px;
-      font-size: 13px;
+  
+    #page-social {
+      h6 {
+        margin-bottom: 15px;
+      }
+
+      img {
+        margin-right: 5px;
+      }
     }
   }
   .footer-copyright {
-    background-color: #000000;
     margin-bottom: -10px;
   }
   #tabs-fixed {
@@ -281,7 +268,7 @@
     }
   }
   .table-of-contents a.active {
-    background-color: #ea4a4f !important;
+    background-color: $foreign-color !important;
     border-left: none !important;
   }
 }

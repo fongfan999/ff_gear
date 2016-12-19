@@ -11,7 +11,8 @@ class User < ApplicationRecord
 
   validates :avatar, presence: true,
     format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }, on: :update
-  validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
+  validates :name, presence: true, length: { minimum: 2 ,maximum: 45 },
+    format: { with: /\A\D*\z/ }
   validates :username, presence: true, length: { minimum: 2 ,maximum: 20 },
     uniqueness: { case_sensitive: false }, format: {
       with: /(?=\A[a-z\d]+\z)(?=\A((?!admin).*)|(admin.)\z)/i,

@@ -1,11 +1,4 @@
-// @import "materialize/components/color";
-
-$primary-color: #353c48;
-$foreign-color: #e74c3c;
-$teal-color: #26a69a;
-$bg-color: #3c4452;
-$text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
-
+@import 'variables';
 @import 'materialize';
 @import "materialize/extras/nouislider";
 @import 'main';
@@ -489,7 +482,8 @@ input.number:disabled {
   a {
     @extend .grey-text;
     @extend .text-lighten-4;
-    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     &:hover {
       text-decoration: underline;

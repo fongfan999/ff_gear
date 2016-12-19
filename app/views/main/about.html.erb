@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= favicon_link_tag %>
   <title>FoxFizz - Chợ mua bán Gear</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
@@ -18,20 +19,31 @@
         <nav>
           <div class="nav-wrapper ctn">
             <%= link_to root_path, class: "brand-logo" do %>
-              <i class="material-icons">layers</i>
+              <!-- <i class="material-icons">layers</i> -->
+              <%= image_tag "logo" %>
               <span class="hide-on-small-only">FoxFizz</span>
             <% end %>
 
             <ul class="hide-on-med-and-down right">
-              <li>
+                <li>
+              <% if user_signed_in? %>
+                  <%= link_to "Đăng tin", new_post_path,
+                    class: "login-btn" %>
+              <% else %>
                 <%= link_to "Đăng nhập", new_user_session_path,
-                  class: "login-btn" %>
-              </li>
+                    class: "login-btn" %>
+              <% end %>
+                </li>
             </ul>          
           </div>
           
           <div id="login-wrapper" class="center-align hide-on-large-only">
-            <a href="collapsible.html" class="login-btn">Đăng nhập</a>
+            <% if user_signed_in? %>
+              <%= link_to "Đăng tin", new_post_path, class: "login-btn" %>
+            <% else %>
+              <%= link_to "Đăng nhập", new_user_session_path,
+                class: "login-btn" %>
+            <% end %>
           </div>
         </nav>
       </div>
@@ -39,11 +51,13 @@
         <div id="slide-banner" class="ctn row">
           <div class="col s12 m12 l8">
             <h1>Chợ mua bán <span>Gaming Gear</span></h1>
-              <p>FoxFizz cho phép người dùng kết dùng kết nối, đăng tin rao vặt, buôn bán, trao đổi các sản phẩm trực tuyến ngay trên máy vi tính, điện thoại và máy tính bảng của bạn.</p>
+              <p>FoxFizz cho phép người dùng kết dùng kết nối, đăng tin rao vặt, buôn bán, trao đổi các sản phẩm trực tuyến ngay trên thiết bị di động của bạn.</p>
             <h6>Đơn giản, tiện lợi, nhanh chóng và dễ sử dụng!</h6>
             <div class="re-action row">
-              <a class="btn enter-btn col s6">Vào chợ</a>
-              <a class="btn post-btn col s6 right">Đăng tin</a>
+              <%= link_to "Vào chợ", root_path,
+                class: "btn enter-btn col s6" %>
+              <%= link_to "Đăng tin", new_post_path,
+                class: "btn post-btn col s6 right" %>
             </div>
           </div>
         </div>
@@ -148,16 +162,7 @@
       </div>
     </div>
     
-    <div id="invitation" class="parallax-container scrollspy">
-      <div class="section center-align container">
-        <h3>Bạn còn chần chừ gì nữa?</h3>
-        <div class="re-action row">
-          <a class="btn enter-btn col s6">Vào chợ</a>
-          <a class="btn post-btn col s6 right">Đăng tin</a>
-        </div>
-      </div>
-      <div class="parallax"><%= image_tag 'mouse-bg.jpg' %></div>
-    </div>
+    <div class="non-prl parallax-container"></div>
 
     <div id="contact" class="scrollspy">
       <div class="container">
@@ -214,44 +219,38 @@
       </div>
     </div>
 
-    <div id="invitation" class="parallax-container scrollspy">
-      <div class="parallax"><%= image_tag 'keyboard-bg.jpg' %></div>
-    </div>
+    <div class="non-prl parallax-container"></div>
 
     <footer class="page-footer">
       <div class="container">
         <div class="row">
           <div class="col l6 s12 white-text">
             <div id="footer-logo">
-              <a href="">
-              <i class="material-icons">layers</i>
+              <%= image_tag 'logo.png' %>
               <span>FoxFizz</span>
-              </a>
             </div>
-            <h6>Kết nối với chúng tôi</h6>
-            <p>
-              <a href="http://fb.com/foxfizz"><%= image_tag 'fb.png' %></a>
-              <a href="http://fb.com/foxfizz"><%= image_tag 'gg.png' %></a>
-              <a href="http://fb.com/foxfizz"><%= image_tag 'isg.png' %></a>
-              <a href="http://fb.com/foxfizz"><%= image_tag 'yt.png' %></a>
-            </p>
           </div>
-          <div class="col l4 offset-l2 s12">
-            <ul>
-              <li><a href="#!">About</a></li>
-              <li><a href="#!">Terms of Use</a></li>
-              <li><a href="">Privacy Policy</a></li>
-              <li><a href="#!">FAQ</a></li>
-            </ul>
+          <div class="col l4 offset-l2 s12" id="page-social">
+            <h6>Kết nối với chúng tôi</h6>
+            <%= link_to image_tag("facebook.png", size: "32x32"), "https://fb.com/foxfizz",
+              class: "circle", target: "_blank" %>
+            <%= link_to image_tag("google.png", size: "32x32"), "https://fb.com/foxfizz",
+              class: "circle", target: "_blank" %>
           </div>
         </div>
       </div>
 
       <div class="footer-copyright">
-        <div class="center-align">
-         Copyright © 2016 FoxFizz Inc. All rights reserved.
+      <div class="container">
+        <div class="divider"></div>
+        © 2016 FoxFizz. All rights reserved
+
+        <div class="footer-more-link right">
+          <%= link_to "Các câu hỏi thường gặp", "#" %>
+          <%= link_to "Chính sách", "#" %>
         </div>
       </div>
+    </div>
     </footer>
 
     <div id="tabs-fixed" class="hide-on-small-only">

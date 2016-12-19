@@ -14,7 +14,7 @@ $("#preloader-nav" ).fadeOut('fast', function() {
   var viewMore = $('.pagination .next_page a').attr('data-remote', true)
     .addClass('view-more-btn btn').html("<i class='material-icons'>sync</i>");
 
-  $("#posts-infinite-scrolling").append(viewMore.clone()).show(1000);
+  $("#posts-infinite-scrolling").append(viewMore.clone()).show(2000);
 
   // Render posts
   <% if @posts.blank? %>

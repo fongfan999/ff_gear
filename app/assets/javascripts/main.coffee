@@ -1,50 +1,62 @@
 $ ->
+  navWrapper =  $('#lander #nav-wrapper')
+  brandLogo =  $('#lander .nav-wrapper .brand-logo')
+  imageBrandLogo = $('#lander .nav-wrapper .brand-logo img')
+  loginWrapper = $('#lander #login-wrapper')
+  materializeNavWrapper = $('#lander .nav-wrapper')
+  loginBtn = $('#lander .login-btn')
+
   defaultScollTopProperties = ->
-    $('#lander #nav-wrapper').css
+    navWrapper.css
       'background-color': 'transparent'
       'height': '150px'
-    $('#lander .nav-wrapper .brand-logo').css 'font-size': '3.5em'
-    $('#lander .nav-wrapper ').css 'margin-top': '0px'
-    return
+    brandLogo.css 
+      'font-size': '3.5em'
+      'top': '-20px'
+    imageBrandLogo.css
+      'width': '56px'
+      'height': '56px'
+      'margin-top': '0'
+    materializeNavWrapper.css 'margin-top': '0px'
 
   defaultScollBottomProperties = ->
-    $('#lander #nav-wrapper').css 'background-color': '#ea4a4f'
-    $('#lander .nav-wrapper .brand-logo').css 'font-size': '31px'
-    $('#lander .nav-wrapper ').css 'margin-top': '-40px'
-    return
+    navWrapper.css 'background-color': '#e74c3c'
+    brandLogo.css
+      'font-size': '31px'
+      'top': '0'
+    imageBrandLogo.css
+      'width': '32px'
+      'height': '32px'
+    materializeNavWrapper.css 'margin-top': '-40px'
 
   onLargeScrollTopProperties = ->
     defaultScollTopProperties()
     # Right login button
-    $('#lander .login-btn').css
+    loginBtn.css
       'padding-left': '30px'
       'padding-right': '30px'
       'font-size': '1.3em'
-    return
 
   onLargeScrollBottomProperties = ->
-    $('#lander #nav-wrapper').css 'height': '64px'
+    navWrapper.css 'height': '64px'
     defaultScollBottomProperties()
     # Right login button
-    $('#lander .login-btn').css
+    loginBtn.css
       'padding-left': '15px'
       'padding-right': '15px'
       'font-size': '1em'
       'margin-top': '-3px'
-    return
 
   offLargeScrollTopProperties = ->
     defaultScollTopProperties()
     # Block login button
-    $('#lander #login-wrapper').css 'margin-top': '60px'
-    return
+    loginWrapper.css 'margin-top': '60px'
 
   offLargeScrollBottomProperties = ->
-    $('#lander #nav-wrapper').css 'height': '125px'
+    navWrapper.css 'height': '125px'
     defaultScollBottomProperties()
     # Block login button
-    $('#lander #login-wrapper').css 'margin-top': '50px'
-    return
+    loginWrapper.css 'margin-top': '50px'
 
   applyProperties = ->
     windowWidth = $(window).width()
@@ -59,28 +71,24 @@ $ ->
         offLargeScrollTopProperties()
       else
         offLargeScrollBottomProperties()
-    return
 
   initializeScrollNav = ->
     applyProperties()
     $(window).scroll ->
       applyProperties()
-      return
-    return
 
-  $('#lander .slider').slider
+  landerSlider = $('#lander .slider')
+  landerSlider.slider
     full_width: true
     height: 450
   $('#lander .caption').hover (->
-    $('#lander .slider').slider 'pause'
-    return
+    landerSlider.slider 'pause'
   ), ->
-    $('#lander .slider').slider 'start'
-    return
+    landerSlider.slider 'start'
   # End Slider
 
   # Scroll Spy
-  $('.scrollspy').scrollSpy scrollOffset: 50
+  $('.scrollspy').scrollSpy scrollOffset: 64
   tabsFixed = $('#lander #tabs-fixed')
   tabsFixed.css 'top', ($(window).height() - tabsFixed.height()) / 2
   # End Scroll Spy
@@ -92,16 +100,12 @@ $ ->
       offset: 100
       callback: (el) ->
         Materialize.showStaggeredList $(el)
-        return
-
     }
     {
       selector: '#ft-list-2'
       offset: 250
       callback: (el) ->
         Materialize.showStaggeredList $(el)
-        return
-
     }
   ]
 
