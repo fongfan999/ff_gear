@@ -79,7 +79,13 @@ class User < ApplicationRecord
   end
 
   def self.super_user
-    User.find_by_email('fongfan999@gmail.com')
+    find_by_email('fongfan999@gmail.com')
+  end
+
+  def self.sent_notifications_from_admins(content)
+    find_each do |user|
+      user.get_notification(nil, nil, content, nil) unless user.admin?
+    end
   end
 
   # For chart creation purpose only
@@ -160,7 +166,7 @@ class User < ApplicationRecord
   end
 
   def recent_notifications
-    notifications.order(created_at: :desc).limit(15)
+    notifications.includes(:commenter).order(created_at: :desc).limit(15)
   end
 
   def get_notification(post, commenter, message, comment_id)

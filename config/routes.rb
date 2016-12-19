@@ -29,7 +29,13 @@ Rails.application.routes.draw do
 
     resources :categories, except: [:show]
 
-    resources :settings, except: [:show]
+    resources :settings, except: [:show] do
+      collection do
+        delete :clean_junk_tags
+        delete :clean_junk_attachments
+        post :send_notifications
+      end
+    end
   end
 
   get '/notifications', to: "users#notifications"

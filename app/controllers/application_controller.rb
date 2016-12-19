@@ -48,6 +48,16 @@ class ApplicationController < ActionController::Base
       (params[:sort] == "relevance" || params[:sort].nil?)
   end
 
+  def notification_on_params
+    if !params[:notification_id] || !user_signed_in?
+      return false
+    end
+    
+    if notice = current_user.notifications.find_by_id(params[:notification_id])
+      notice.mark_as_read
+    end
+  end
+
   private
 
   def not_persisted

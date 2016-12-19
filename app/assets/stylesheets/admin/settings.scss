@@ -42,13 +42,14 @@
     }
 
     .action-icon {
-      a {
+      & > a {
         width: 50px;
+        height: 60px
       }
       
-      i {
+      & > a > i {
         font-size: 30px;
-        line-height: 70px;
+        line-height: 60px;
         color: $text-color;
 
         &:hover {
@@ -59,7 +60,7 @@
   }
 
   .label {
-    .label-box, .action-number, .action-icon i {
+    .label-box, .action-number, .action-icon > a > i {
       color: #fb9678;
     }
 
@@ -73,7 +74,7 @@
   }
 
   .attachment {
-    .label-box, .action-number, .action-icon i {
+    .label-box, .action-number, .action-icon > a > i {
       color: #01c0c8;
     }
 
@@ -87,7 +88,7 @@
   }
 
   .notifications {
-    .label-box, .action-number, .action-icon i {
+    .label-box, .action-number, .action-icon > a > i {
       color: #ab8ce4;
     }
 
@@ -101,7 +102,7 @@
   }
 
   .security {
-    .label-box, .action-number, .action-icon i {
+    .label-box, .action-number, .action-icon > a > i {
       color: #00c292;
     }
 
@@ -113,5 +114,17 @@
       background-color: #00c292;
     }
   }
+}
 
+#send-notifications {
+  .modal-content {
+    & > h6 {
+      margin-bottom: 15px;
+    }
+
+    & > label {
+      margin-right: 20px;
+      margin-bottom: 5px;
+    }
+  }
 }

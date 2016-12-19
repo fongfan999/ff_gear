@@ -3,12 +3,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite,
     :mark_as_sold, :report]
   before_action :clean_attachments_session, only: [:new, :edit]
+  before_action :notification_on_params, only: [:show]
 
-  def show    
-    if user_signed_in? && notice = notification_on_params
-      notice.mark_as_read
-    end
-
+  def show
     # Search by name this post
     @related_posts = @post.related_posts
   end
@@ -88,8 +85,10 @@ class PostsController < ApplicationController
 
     # Send to admin
     if report.public?
-      User.admin_users.each do |admin|
-        admin.get_notification(@post, current_user, report.name, nil) 
+      User.find_each do |user|
+        if user.admin?
+          user.get_notification(@post, current_user, report.name, nil)
+        end
       end
     end
 
@@ -133,11 +132,5 @@ class PostsController < ApplicationController
   def handle_attachments
     Attachment.unlink_post(params["post"]["rejected_ids"])
     @post.attachments << Attachment.pending(session[:attachment_ids])
-  end
-
-  def notification_on_params
-    return false unless params[:notification_id]
-    
-    current_user.notifications.find_by_id(params[:notification_id])
   end
 end

@@ -13,5 +13,12 @@ class Attachment < ApplicationRecord
   def self.junks
     where(post_id: nil)
   end
+
+  def self.clean_junks
+    sum = junks.delete_all
+
+    # Message only (System)
+    User.super_user.get_notification(nil, nil, "Đã dọn xong #{sum} ảnh", nil)
+  end
 end
 

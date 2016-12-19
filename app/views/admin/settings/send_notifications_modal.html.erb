@@ -1,0 +1,35 @@
+<div id="send-notifications" class="modal">
+  <%= form_tag send_notifications_admin_settings_path, remote: true,
+    method: :post do %>
+    <div class="modal-content">
+      <h4>Gửi thông báo</h4>
+      <br>
+      <div class="input-field">
+        <%= material_icon_of "message", class: "prefix" %>
+        <%= text_area_tag "notification[content]", nil, length: 200,
+          class: "validate", required: true %>
+        <%= label_tag "notification[content]", "Nội dung" %>
+      </div>
+      
+      <p>
+        <h6>Thời gian gửi</h6>
+        <%= radio_button_tag "notification[delay_time]", 0, true,
+          class: "with-gap" %>
+        <%= label_tag "notification_delay_time_0", "Ngay lập tức" %> 
+
+        <% %w(10 30 60).each do |time| %>
+          <%= radio_button_tag "notification[delay_time]", time, false,
+            class: "with-gap" %>
+          <%= label_tag "notification_delay_time_#{time}", "#{time} phút" %> 
+        <% end %>
+      </p>
+    </div>
+
+    <div class=" modal-footer">
+      <%= button_tag type: :submit, class: "btn btn-flat modal-action teal lighten-1 white-text" do %>
+        Gửi <%= material_icon_of "send", class: "right" %>
+      <% end %>
+      <a class="modal-action modal-close btn-flat">Đóng</a>
+    </div>
+  <% end %>
+</div>

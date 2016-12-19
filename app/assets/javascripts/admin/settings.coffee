@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('.swal-settings').click ->
+    $('.tooltipped').tooltip('remove');
+    swal
+      title: "Đang thực hiện ...",
+      text: "Quá trình này sẽ thực hiện sau 30 phút",
+      type: 'success',
+      confirmButtonText: 'Đóng',
+      confirmButtonColor: '#26a69a'
