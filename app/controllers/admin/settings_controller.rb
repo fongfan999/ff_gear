@@ -5,7 +5,7 @@ class Admin::SettingsController < Admin::ApplicationController
     @junk_tags_count = Tag.junks.count
     @junk_attachments_count = Attachment.junks.count
     @queue_jobs_count = Delayed::Job.where(queue: "send_notifications").count
-    @admin_access_token = @super_user.access_token.last(2)
+    @admin_access_token = @super_user.access_token.last(3)
   end
 
   def clean_junk_tags

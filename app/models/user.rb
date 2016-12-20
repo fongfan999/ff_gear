@@ -92,6 +92,14 @@ class User < ApplicationRecord
       .get_notification(nil, nil, "Đã gửi xong thông báo: #{content} tag", nil)
   end
 
+  def self.sent_report_to_admins(post, commenter, report)
+    User.find_each do |user|
+      if user.admin?
+        user.get_notification(post, commenter, report.name, nil)
+      end
+    end
+  end
+
   # For chart creation purpose only
   def self.new_users_chart(type, provider = 'google_oauth2')
     grouped_by_week = User.order(created_at: :desc)

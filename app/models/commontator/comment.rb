@@ -125,5 +125,8 @@ module Commontator
         end
       end
     end
+
+    handle_asynchronously :push_notification,
+      run_at: Proc.new { 30.seconds.from_now }
   end
 end

@@ -544,6 +544,20 @@ input.number:disabled {
   }
 }
 
+// Re-style commontator
+.thread_reply .comment_error_explanation {
+  padding-top: 15px;
+  color: $foreign-color !important;
+
+  & > h6 {
+    font-size: 0.9em;
+  }
+
+  & > ul {
+    font-size: 0.9em;
+  }
+}
+
 // remove margin-right mCustomScrollbar
 .mCSB_inside > .mCSB_container {
   margin-right: 10px !important;

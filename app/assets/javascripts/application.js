@@ -271,9 +271,7 @@ $(function() {
     });
   }
 
-   
 });
-
 
 $(window).on('load', function() {
   // Animate loader off screen
@@ -295,5 +293,4 @@ $(window).on('load', function() {
 
   // Enable form Validation
   enableValidations();
-  
 });
