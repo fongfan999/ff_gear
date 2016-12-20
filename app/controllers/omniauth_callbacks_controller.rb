@@ -4,6 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     
     if user.persisted?
       sign_in_and_redirect user
+      Visit.delay(run_at: 1.minute.from_now).track_sign_in(user)
       
       flash[:notice] = "Đăng nhập thành công"
     else

@@ -132,9 +132,9 @@ class User < ApplicationRecord
     [admin_counter, User.count - admin_counter]
   end
 
-  def self.login_user_count_chart(type)
+  def self.user_sign_in_count_chart(type)
     milestone = 7.days.ago.beginning_of_day
-    recent_users = User.where('current_sign_in_at > ?', milestone)
+    recently_visited = Visit.where("visited_at > ?", milestone)
 
     labels =  []
     i = 0
@@ -147,12 +147,12 @@ class User < ApplicationRecord
 
     # type = 'data'
     # group by current_sign_in_at and get label & users size
-    result = recent_users
-      .group_by { |u| u.current_sign_in_at.beginning_of_day }
-      .map { |label, data| [label.strftime('%d/%m'), data.size] }
+    result = recently_visited
+      .group(:visited_at).count(:id)
+      .map { |label, data| [label.strftime('%d/%m'), data] }
 
     # Create arary with 0 as default
-    result_data = Array.new(7, 1)
+    result_data = Array.new(7, 0)
     result.each do |obj|
       # label: obj[0]
       # data: obj[1]
@@ -160,7 +160,7 @@ class User < ApplicationRecord
       # Update data value
       if labels.include?(obj[0])
         index = labels.find_index(obj[0])
-        result_data[index] = obj[1] + 1
+        result_data[index] = obj[1]
       end
     end
 
@@ -214,3 +214,4 @@ class User < ApplicationRecord
     self.update(username: "user#{id}")
   end
 end
+

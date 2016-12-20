@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  visited_at: 2016-12-20
+
+two:
+  user: two
+  visited_at: 2016-12-20
