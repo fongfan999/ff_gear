@@ -7,7 +7,7 @@
       <h5>
         <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
         <%= link_to "Quản lý hệ thống", "#", class: "breadcrumb" %>
-        
+      
         <br><br>
       </h5>
     </header>
@@ -56,7 +56,7 @@
             <%= material_icon_of "notifications", class: "label-box" %>
           </div>
           <div class="col s6 m6 l6">
-            <div class="action-number"><%= @notice_by_admins %></div>
+            <div class="action-number"><%= @queue_jobs_count %></div>
             <div class="divider"></div>
             <div class="action-icon">
               <%= link_to material_icon_of("send"), "#send-notifications",
@@ -77,8 +77,8 @@
             <div class="action-number">A..<%= @admin_access_token %></div>
             <div class="divider"></div>
             <div class="action-icon">
-              <%= link_to material_icon_of("update"), "#",
-              class: "tooltipped swal-settings", remote: true, method: :delete,
+              <%= link_to material_icon_of("update"), "#update-access-token",
+              class: "tooltipped modal-trigger",
               data: { position: "right", tooltip: "Cật nhật access token" } %>
             </div>
           </div>
@@ -88,3 +88,4 @@
   </div>
 </div>
 <%= render file: "admin/settings/send_notifications_modal" %>
+<%= render file: "admin/settings/update_access_token_modal" %>

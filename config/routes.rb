@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         delete :clean_junk_tags
         delete :clean_junk_attachments
         post :send_notifications
+        patch :update_access_token
       end
     end
   end

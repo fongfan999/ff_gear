@@ -86,6 +86,10 @@ class User < ApplicationRecord
     find_each do |user|
       user.get_notification(nil, nil, content, nil) unless user.admin?
     end
+
+    # Message only (System)
+    User.super_user
+      .get_notification(nil, nil, "Đã gửi xong thông báo: #{content} tag", nil)
   end
 
   # For chart creation purpose only
@@ -176,6 +180,16 @@ class User < ApplicationRecord
 
   def mark_all_notifications_as_read
     notifications.each(&:mark_as_read)
+  end
+
+  # For super user only
+  def update_token(param)
+    pass = param[:password]
+    token = param[:access_token]
+
+    return unless self.valid_password?(pass)
+
+    self.update(access_token: token)
   end
 
   def unread_counter
