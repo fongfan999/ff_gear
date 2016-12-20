@@ -1,9 +1,23 @@
 <%= simple_form_for [:admin, category], validate: true, remote: true,
   html: { autocomplete: 'off' } do |f| %>
-  <%= f.input :name,
+  
+
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <%= f.input :name,
     label_html: { class: ("active" unless category.new_record?) } %>
-  <%= f.input :icon,
+    </div>
+    <div class="col s12 m6 l6">
+     <%= f.input :icon,
     label_html: { class: ("active" unless category.new_record?) } %>
+    </div>
+    <div class="col s12 m6 l6">
+    <%= f.input :color,
+    label_html: { class: ("active" unless category.new_record?) } %>
+    </div>
+  </div>
+ 
+  
   
   <div class=" modal-footer">
     <%= button_tag type: :submit, class: "btn validation-btn" do %>
