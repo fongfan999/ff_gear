@@ -36,7 +36,7 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          userSearch = value.match(/@/)
+          userSearch = value.match(/\A@/)
 
           if userSearch
             for i, item of data
@@ -61,7 +61,7 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          userSearch = value.match(/@/)
+          userSearch = value.match(/\A@/)
 
           if userSearch
             for i, item of data
