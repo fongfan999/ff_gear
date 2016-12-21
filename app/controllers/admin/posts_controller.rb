@@ -1,6 +1,6 @@
 class Admin::PostsController < Admin::ApplicationController
   def index
-    @posts = Post.order(created_at: :desc).paginate(page: params[:page])
+    @posts = Post.search(params[:q]).paginate(page: params[:page])
   end
 
   def show_chart

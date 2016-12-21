@@ -9,7 +9,7 @@ class MainController < ApplicationController
   end
 
   def search
-    if params[:q] =~ /\A@/
+    if params[:q] =~ /@/
       # Search users
       @users = User.search(params[:q])
 

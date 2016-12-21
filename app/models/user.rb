@@ -29,9 +29,9 @@ class User < ApplicationRecord
   self.per_page = 10
 
   scope :search, -> (q) do
-    username_query = q[1..-1]
-    email_query = q.split.join
-    name_query = q[1..-1].split.uniq
+    username_query = q.delete("@")
+    email_query = q.delete(" ")
+    name_query = q.delete("@").split.uniq
 
     result = search_by('username', username_query)
     result += search_by('email', email_query)
@@ -47,6 +47,8 @@ class User < ApplicationRecord
   end
 
   scope :search_by, -> (attr, q) do
+    return if q.blank?
+    
     where("lower(#{attr}) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
   end
 

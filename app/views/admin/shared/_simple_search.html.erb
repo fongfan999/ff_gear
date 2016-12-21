@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col s12 m8 l6 offset-m4 offset-l6">
+  <%= form_tag url, method: :get do %>
+    <div class="input-field">
+      <%= material_icon_of "search", class: "prefix" %>
+      <%= text_field_tag :q, params[:q], autocomplete: "off" %>
+      <%= label_tag :q, "Tìm kiếm" %>
+    </div>
+    </div>
+  <% end %>
+</div>

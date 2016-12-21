@@ -2,7 +2,8 @@ class Admin::CategoriesController < Admin::ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.all.paginate(page: params[:page], per_page: 12)
+    @categories = Category.search_by("name", params[:q])
+                  .paginate(page: params[:page], per_page: 12)
   end
 
   def edit

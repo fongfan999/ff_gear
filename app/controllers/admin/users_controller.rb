@@ -1,6 +1,7 @@
 class Admin::UsersController < Admin::ApplicationController
   def index
-    @users = User.order(sign_in_count: :desc).paginate(page: params[:page], per_page: 12)
+    @users = User.search(params.fetch("q", "").dup)
+      .paginate(page: params[:page], per_page: 12)
   end
 
   def change_role

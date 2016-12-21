@@ -5,6 +5,12 @@ class Category < ApplicationRecord
 
   validates :name, :icon, presence: true
 
+  scope :search_by, -> (attr, q) do
+    return if q.blank?
+    
+    where("lower(#{attr}) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+  end
+
   def self.labels_7_days_ago
     milestone = 7.days.ago.beginning_of_day
     labels =  []
