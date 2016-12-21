@@ -84,6 +84,8 @@ gem 'chart-js-rails', '~> 0.1.1'
 gem "koala", "~> 2.2"
 # Delay a method calll
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+# Upload file to s3
+gem 'fog', '~> 1.38'
 
 
 group :development, :test do
