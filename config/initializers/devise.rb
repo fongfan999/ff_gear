@@ -250,11 +250,11 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
   config.omniauth :facebook,
-    APP_CONFIG['facebook_app_id'], APP_CONFIG['facebook_app_secret'],
+    APP_CONFIG['FB_APP_ID'], APP_CONFIG['FB_APP_SECRET'],
       { info_fields: 'email, name, link' }
 
   config.omniauth :google_oauth2,
-    APP_CONFIG['google_client_id'], APP_CONFIG['google_client_secret']
+    APP_CONFIG['GG_CLIENT_ID'], APP_CONFIG['GG_CLIENT_ID']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
