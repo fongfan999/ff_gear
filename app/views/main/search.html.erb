@@ -42,9 +42,8 @@
     <div class="col s12 m12 l3 hide-on-med-and-down">
       <%= render "filter", posts: @posts %>
     </div>
-
+  
     <div class="col s12 m12 l9">
-
       <div class="posts row hide-on-change">
         <% if @posts.size == 0 %>
           <h5 class="center-align">Rất tiếc, chúng tôi không tìm thấy kết quả cho từ khóa 
@@ -88,3 +87,4 @@
 
 </div>
 
+<%= render "shared/go_to_top" %>

@@ -18,7 +18,7 @@
 //= require jquery-zoom
 //= require dropzone
 //= require materialize-form
-//= require jquery.mCustomScrollbar.concat.min
+//= require malihu-custom-scrollbar-plugin
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require sweetalert2
@@ -27,6 +27,32 @@
 //= require Chart
 //= require_tree .
 
+enableValidations = function() {
+  var formValidation, validationBtn;
+
+  formValidation = $('form[data-validate="true"]');
+
+  if (formValidation.length) {
+    formValidation.enableClientSideValidations();
+  }
+
+  // Element validate completely
+  // Disable submit button when Form is not validated
+  validationBtn = formValidation.find('.validation-btn');
+
+  if (validationBtn.length) {
+    validationBtn.attr('disabled', true);
+    formValidation.focusout(function() {
+      var failureForm;
+      failureForm = $('.input-field.has-error');
+      if (failureForm.length) {
+        return validationBtn.attr('disabled', true);
+      } else {
+        return validationBtn.attr('disabled', false);
+      }
+    });
+  }
+}
 
 $(function() {
   // Sweet alert configuration
@@ -99,9 +125,6 @@ $(function() {
   // Auto resize textarea rows
   $('textarea').trigger('autoresize');
 
-  // Make image parallax
-  $('.parallax').parallax();
-
   // Hide dismiss button
   $(".dismiss").on("click", function() {
     $(this).parent().fadeOut("slow");
@@ -126,7 +149,10 @@ $(function() {
 
   // Make dialog boxes working with tabs
   $('.modal-trigger').leanModal({
-    ready: function() { $('ul.tabs').tabs(); }
+    ready: function() {
+      $('ul.tabs').tabs();
+      enableValidations();
+    }
   });
 
   // Persist page for redirecting
@@ -244,12 +270,20 @@ $(function() {
       handleRemoveThumb(this, e);
     });
   }
+
+   
 });
 
 
 $(window).on('load', function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");
+
+  // Apply custom scrollbar to notifications box
+  $('#notice-content').mCustomScrollbar({
+    theme: "light-thin",
+    autoHideScrollbar: true
+  });
 
   // Enable flexslider
   $('.flexslider').flexslider({
@@ -260,8 +294,6 @@ $(window).on('load', function() {
   });
 
   // Enable form Validation
-  formValidation = $('form[data-validate="true"]');
-  if(formValidation.length) {
-    formValidation.enableClientSideValidations();
-  }
+  enableValidations();
+  
 });

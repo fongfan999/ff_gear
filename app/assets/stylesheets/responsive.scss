@@ -1,10 +1,4 @@
 @media #{$large-and-up} {
-  nav {
-    a.brand-logo {
-      left: 70px;
-    }
-  }
-
   .nav-pushpin-wrapper {
     margin-top: -1px;
   }
@@ -17,6 +11,17 @@
     margin-left: -16px;
     width: 268px;
   }
+
+  #search {
+    .filter-form {
+      padding-left: 20px;
+      
+      .input-field {
+        max-width: 200px;
+        margin-top: 30px;
+      }
+    }
+  }
 }
 
 @media #{$medium-and-up} {
@@ -24,10 +29,6 @@
     a.button-collapse {
       display: block;
     }
-  }
-
-  a.brand-logo {
-    margin-left: -14px;
   }
 }
 
@@ -154,6 +155,14 @@
 
     p {
       font-size: 15px;
+    }
+  }
+
+  a.brand-logo {
+    height:56px;
+    
+    img {
+      margin-top: 10px;
     }
   }
 }

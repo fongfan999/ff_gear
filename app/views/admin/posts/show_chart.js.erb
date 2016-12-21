@@ -1,0 +1,56 @@
+if (!$('#posts-show-chart').length) {
+  $('#admin-posts')
+    .append('<%= j render(file: "admin/posts/show_chart.html.erb") %>');
+}
+
+$('#posts-show-chart').openModal();
+$('.tooltipped').tooltip('remove');
+
+// Initialize chart
+// providersChart
+var ctx = document.getElementById("categoriesChart");
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: <%= raw Category.pluck(:name) %>,
+    datasets: [{
+      data: <%= Post.categories_chart %>,
+      backgroundColor: [
+      "#01c0c8",
+      "#ab8ce4",
+      "#fb9678",
+      "#00c292"
+      ]
+    }]
+  },
+  options: {
+    cutoutPercentage: 40,
+    title:{
+      display:true,
+      text:"Số lượng tin"
+    },
+  }
+});
+
+// rolesChart
+var ctx = document.getElementById("stateChart");
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Chưa bán", "Đã bán"],
+    datasets: [{
+      data: <%= Post.state_chart %>,
+      backgroundColor: [
+      "#e65e7d",
+      "#367db0",
+      ]
+    }]
+  },
+  options: {
+    cutoutPercentage: 40,
+    title:{
+      display:true,
+      text:"Tình trạng"
+    },
+  }
+});

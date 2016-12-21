@@ -1,9 +1,24 @@
 <li class="collection-item avatar <%= "unread" if notification.unread? %>" 
   id=<%= dom_id notification %>>
-
-  <%= image_tag notification.commenter.avatar, class: "circle" %>
   
-  <% if notification.comment_id.nil? %>
+  <!-- System avatar -->
+  <% if notification.post_id.nil? %>
+    <%= material_icon_of "settings", class: "circle" %>
+  <% else %>
+    <%= image_tag notification.commenter.avatar, class: "circle" %>
+  <% end %>
+  
+  <!-- Notification from System -->
+  <% if notification.post_id.nil? %>
+    <%= link_to notifications_path do %>
+      <div class="title">
+        <span class="bold">Hệ thống</span> thông báo: 
+        <span>"<%= truncate notification.content %>"</span>
+      </div>
+    <% end %>
+  
+  <!-- Notification from Reporter -->
+  <% elsif notification.comment_id.nil? %>
 
     <%= link_to notification.unread? ? post_path(notification.post,
         notification_id: "#{notification.id}") : notification.post do %>
@@ -15,6 +30,7 @@
       </div>
     <% end %>
 
+  <!-- Notification from Commenter -->
   <% else %>
 
     <%= link_to notification.unread? ? 

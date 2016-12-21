@@ -6,7 +6,7 @@ class MainController < ApplicationController
   end
 
   def search
-    if params[:q] =~ /@/
+    if params[:q] =~ /\A@/
       # Search users
       @users = User.search(params[:q])
 
@@ -22,28 +22,32 @@ class MainController < ApplicationController
         end
       end
     else
-      if params[:filter].present?
-        # Filter posts and search posts
-        @posts = Post.filter(params[:filter])
-          .search(params[:q], params[:filter][:sort])
-      else
-        # Search posts
-        @posts = Post.search(params[:q])
-      end
-
-
+      # Search posts
       respond_to do |format|
-        format.html { @paginated_posts = @posts.paginate(page: params[:page],
-          per_page: 12) }
+        # HTML response
+        format.html do
+          if params[:filter].present?
+            # Filter posts and search posts
+            @posts = Post.filter(params[:filter])
+              .search(params[:q], params[:filter][:sort])
+          else
+            # Search as default
+            @posts = Post.search(params[:q])
+          end
+
+          @paginated_posts = @posts.paginate(page: params[:page], per_page: 12)
+        end
         
+        # JSON response
         format.json do
           posts_json = Post.search_by('title', params[:q])
-                            .limit(5).map do |post| 
+                        .limit(5).map do |post| 
             { id: post.id, text: post.title, img: post.first_attachment }
           end
 
           render json:  posts_json
         end
+        
       end
     end
   end

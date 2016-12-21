@@ -66,13 +66,26 @@
       ]
     });
 
+    if ($('.post_tag_names .chip').length > 4) {
+      $('#chips-tag-names .input').hide();
+    }
     // Update hidden field for params
     $('#chips-tag-names').on('chip.add', function(e, chip){
-      var tag_names = $("#tag_names").val() || "";
-      $("#tag_names").val(tag_names + "," + chip.tag)
+      
+      if (chip.tag.length > 20) {
+        $('.post_tag_names .chip .close').last().click();
+      } else {
+        if ($('.post_tag_names .chip').length > 4) {
+          $('#chips-tag-names .input').hide();
+        }
+
+        var tag_names = $("#tag_names").val() || "";
+        $("#tag_names").val(tag_names + "," + chip.tag)
+      }
     });
 
     $('#chips-tag-names').on('chip.delete', function(e, chip){
+      $('#chips-tag-names .input').show();
       var tag_names = $("#tag_names").val() || "";
       $("#tag_names").val(tag_names.replace(chip.tag, ""))
     });

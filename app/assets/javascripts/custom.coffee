@@ -36,7 +36,7 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          userSearch = value.match(/@/)
+          userSearch = value.match(/\A@/)
 
           if userSearch
             for i, item of data
@@ -61,7 +61,7 @@ $ ->
     getData: (value, callback) -> 
       $.getJSON("/search.json?q=" + value)
         .done (data) ->
-          userSearch = value.match(/@/)
+          userSearch = value.match(/\A@/)
 
           if userSearch
             for i, item of data
@@ -135,8 +135,8 @@ $ ->
     # Element validate completely
     # Disable submit button when Form is not validated
     validationBtn = formValidation.find('.validation-btn')
-    validationBtn.attr('disabled', true)
     if validationBtn.length
+      validationBtn.attr('disabled', true)
       formValidation.focusout ->
         failureForm = $('.input-field.has-error')
 

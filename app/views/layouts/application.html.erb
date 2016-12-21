@@ -5,7 +5,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "FoxFizz - Chợ mua bán Gear" %></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -30,7 +30,7 @@
 
             <%= link_to root_path, class: "brand-logo" do %>
             <%= image_tag 'logo.png', class: "left" %>
-            <span>FoxFizz</span>
+            <span class="hide-on-small-only">FoxFizz</span>
             <% end %>
           </div> <!-- End col l3 -->
 
@@ -79,11 +79,9 @@
                     activates: "notice-content", beloworigin: true,
                     outduration: 1000 } %>
 
-                  <% unless current_user.unread_counter.zero? %>
                   <span class="counter notice">
                     <%= current_user.unread_counter %>
                   </span>
-                  <% end %>
 
                   <ul id="notice-content" class="dropdown-content collection
                     with-header">
@@ -168,11 +166,9 @@
       <% end %>
       <li>
         <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
-        <% unless current_user.unread_counter.zero? %>
-          <span class="counter notice">
+        <span class="counter notice">
           <%= current_user.unread_counter %>
         </span>
-        <% end %>
       </li> <!-- End Notification -->
 
       <li>
@@ -209,11 +205,15 @@
     <%= yield %>
   </div>
 
-  <footer class="page-footer primary-color">
+  <footer class="page-footer primary-color padding-none">
     <div class="footer-copyright">
       <div class="container">
         © 2016 FoxFizz. All rights reserved
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+
+        <div class="footer-more-link right">
+          <%= link_to "Giới thiệu", about_path %>
+          <%= link_to "Chính sách", "#" %>
+        </div>
       </div>
     </div>
   </footer>

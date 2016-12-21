@@ -1,11 +1,4 @@
-// @import "materialize/components/color";
-
-$primary-color: #353c48;
-$foreign-color: #e74c3c;
-$teal-color: #26a69a;
-$bg-color: #3c4452;
-$text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
-
+@import 'variables';
 @import 'materialize';
 @import "materialize/extras/nouislider";
 @import 'main';
@@ -16,10 +9,11 @@ $text-color: #96a2b4; //rgba(255, 255, 255, 0.5)
 @import 'market';
 @import 'responsive';
 @import 'dropzone/dropzone';
-@import 'jquery.mCustomScrollbar.min';
+@import 'malihu-custom-scrollbar-plugin';
 @import 'sweetalert2';
 @import 'admin/application';
 @import 'admin/categories';
+@import 'admin/settings';
 
 .fb-login-btn, .gg-login-btn {
   @extend .btn;
@@ -274,6 +268,7 @@ span.counter {
   min-width: 400px;
   max-height: 400px;
   font-weight: 500;
+  overflow: hidden;
 
   .collection-header {
     color: $teal-color;
@@ -333,6 +328,10 @@ span.counter {
       color: $text-color !important;
     }
   }
+
+  .collection-footer {
+    border-top: 1px solid #fff;
+  }
 }
 
 #main {
@@ -345,18 +344,16 @@ span.counter {
 }
 
 a.brand-logo {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   img {
-    height: 34px;
-    margin-top: 15px;
-    margin-right: 5px;
+    height: 33px;
+    margin-top: 14px;
   }
 
   span {
-    font-size: 0.9em;
-    // color: #34495e;
+    margin-left: 5px;
   }
 }
 
@@ -480,7 +477,21 @@ input.number:disabled {
   @extend .truncate; 
 }
 
-// Re-stule flexslider
+// Footer
+.footer-more-link {
+  a {
+    @extend .grey-text;
+    @extend .text-lighten-4;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Re-style flexslider
 .flexslider {
   border-radius: 2px;
 
@@ -512,4 +523,9 @@ input.number:disabled {
 
 .zoomImg {
   background-color: #fff;
+}
+
+// remove margin-right mCustomScrollbar
+.mCSB_inside > .mCSB_container {
+  margin-right: 10px !important;
 }

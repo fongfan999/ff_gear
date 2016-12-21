@@ -1,9 +1,9 @@
-if (!$('#show-chart').length) {
-  $('#users')
+if (!$('#users-show-chart').length) {
+  $('#admin-users')
     .append('<%= j render(file: "admin/users/show_chart.html.erb") %>');
 }
 
-$('#show-chart').openModal();
+$('#users-show-chart').openModal();
 $('.tooltipped').tooltip('remove');
 
 // Initialize chart

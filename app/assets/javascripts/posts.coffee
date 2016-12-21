@@ -32,7 +32,10 @@ $ ->
       scrolled = true
 
       # Change scrollbar style and scroll to anchor
-      threadBox.mCustomScrollbar( autoHideScrollbar: true )
+      threadBox.mCustomScrollbar(
+        autoHideScrollbar: true,
+        theme: "light-thin"
+      )
       
       # Users click on notification box
       if settings.type == "GET"

@@ -1,0 +1,57 @@
+<%= title("Bảng điều khiển", "Quản lý tin") %>
+
+<div id="admin-posts">
+  <div class="header-pattern"></div>
+  <div class="container-with-header card">
+    <header>
+      <h5>
+        <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
+        <%= link_to "Quản lý tin", "#", class: "breadcrumb" %>
+        
+        <br><br>
+      </h5>
+    </header>
+    
+    <h4 class="center-align uppercase">Quản lý tin</h4>
+
+    <table class="bordered responsive-table centered">
+      <thead>
+        <tr class="bold">
+          <th></th>
+          <th>Tiêu dề</th>
+          <th>Tình trạng</th>
+          <th>Danh mục</th>
+          <th>Ngày đăng</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr id=<%= dom_id(post, :hide) %>>
+            <td><%= image_tag post.first_attachment, class: "circle center-margin materialboxed",
+              size: "50x50", data: { caption: post.title } %></td>
+            <td><%= post.title %></td>
+            <td><%= post.state %></td>
+            <td><%= material_icon_of post.category.icon %></td>
+            <td><%= date_or_time_ago_in_words(post.created_at, ',') %></td>
+            <td>
+              <%= link_to material_icon_of("open_in_new"), post, 
+                class: "circle-icon-link", target: "_blank" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="center-align">
+      <%= will_paginate @posts %>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn ">
+    <%= link_to material_icon_of("show_chart"), show_chart_admin_posts_path,
+      class: "btn-floating btn-large tooltipped", remote: true,
+      data: { position: "left", tooltip: "Xem thông kê" } %>
+  </div>
+</div>

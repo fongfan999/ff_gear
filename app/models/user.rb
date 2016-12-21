@@ -11,7 +11,8 @@ class User < ApplicationRecord
 
   validates :avatar, presence: true,
     format: { with: /\A.*\.(png|jpg|jpeg|gif)\z/ }, on: :update
-  validates :name, presence: true, length: { minimum: 2 ,maximum: 45 }
+  validates :name, presence: true, length: { minimum: 2 ,maximum: 45 },
+    format: { with: /\A\D*\z/ }
   validates :username, presence: true, length: { minimum: 2 ,maximum: 20 },
     uniqueness: { case_sensitive: false }, format: {
       with: /(?=\A[a-z\d]+\z)(?=\A((?!admin).*)|(admin.)\z)/i,
@@ -75,6 +76,16 @@ class User < ApplicationRecord
 
   def self.admin_users
     where(admin: true)
+  end
+
+  def self.super_user
+    find_by_email('fongfan999@gmail.com')
+  end
+
+  def self.sent_notifications_from_admins(content)
+    find_each do |user|
+      user.get_notification(nil, nil, content, nil) unless user.admin?
+    end
   end
 
   # For chart creation purpose only
@@ -155,7 +166,7 @@ class User < ApplicationRecord
   end
 
   def recent_notifications
-    notifications.order(created_at: :desc).limit(15)
+    notifications.includes(:commenter).order(created_at: :desc).limit(15)
   end
 
   def get_notification(post, commenter, message, comment_id)

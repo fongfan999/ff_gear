@@ -1,32 +1,98 @@
 <%= title("Bảng điều khiển") %>
 
-<div class="container">
-  <h1>Welcome to Admin Lounge</h1>
+<div id="dashboad-boxes" class="row">
+  <!-- Users -->
+  <div class="col s12 m6 l3 group">
+    <%= link_to admin_users_path do %>
+    <div class="row dashboad-box primary-color">
+      <div class="col s7 m7 l7">
+        <%= material_icon_of "group" %>
+        <h6 class="dashboad-title">Người dùng</h6>
+      </div>
+      <div class="col s5 m5 l5">
+        <div class="number-in-box"><%= @total_users %></div>
+      </div>
+      
+      <div class="col s12 m12 l12 divider-wrapper">
+        <div class="divider-box"></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  
+  <!-- Posts -->
+  <div class="col s12 m6 l3 description">
+    <%= link_to admin_posts_path do %>
+    <div class="row dashboad-box primary-color">
+      <div class="col s7 m7 l7">
+        <%= material_icon_of "description" %>
+        <h6 class="dashboad-title">Tin</h6>
+      </div>
+      <div class="col s5 m5 l5">
+        <div class="number-in-box"><%= @total_posts %></div>
+      </div>
+      
+      <div class="col s12 m12 l12 divider-wrapper">
+        <div class="divider-box"></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 
-  <ul>
-    <li><%= link_to "Users", admin_users_path %></li>
-    <li><%= link_to "Posts", "#" %></li>
-    <li><%= link_to "Categories", admin_categories_path %></li>
-    <li><%= link_to "Tags", "#" %></li>
+  <!-- Categories -->
+  <div class="col s12 m6 l3 list">
+    <%= link_to admin_categories_path do %>
+    <div class="row dashboad-box primary-color">
+      <div class="col s7 m7 l7">
+        <%= material_icon_of "list" %>
+        <h6 class="dashboad-title">Danh mục</h6>
+      </div>
+      <div class="col s5 m5 l5">
+        <div class="number-in-box"><%= @total_categories %></div>
+      </div>
+      
+      <div class="col s12 m12 l12 divider-wrapper">
+        <div class="divider-box"></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 
-  </ul>
+  <!-- Settings -->
+  <div class="col s12 m6 l3 settings">
+    <%= link_to admin_settings_path do %>
+    <div class="row dashboad-box primary-color">
+      <div class="col s7 m7 l7">
+        <%= material_icon_of "settings" %>
+        <h6 class="dashboad-title">Hệ thống</h6>
+      </div>
+      <div class="col s5 m5 l5">
+        <div class="number-in-box"><%= @total_junks %></div>
+      </div>
+      
+      <div class="col s12 m12 l12 divider-wrapper">
+        <div class="divider-box"></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="row">
   <div class="col s12 m12 l6">
-    <canvas id="newUsersChart" class="chart-js"></canvas>
+    <canvas id="newUsersChart" class="chart-js primary-color"></canvas>
   </div>
   
   <div class="col s12 m12 l6">
-    <canvas id="loginUserCountChart" class="chart-js"></canvas>
+    <canvas id="loginUserCountChart" class="chart-js primary-color"></canvas>
   </div>
  
   <div class="col s12 m12 l8">
-    <canvas id="postsByCategoryChart" class="chart-js"></canvas>
+    <canvas id="postsByCategoryChart" class="chart-js primary-color"></canvas>
   </div>
 
   <div class="col s12 m12 l4">
-    <div id='top-users' class="chart-js">
+    <div id='top-users' class="chart-js primary-color">
       <ul class="collection">
           <li class="collection-header">
             <h5 class="center-align">Top Users</h5>
@@ -38,7 +104,7 @@
               <%= user.name %> (<%= user.sign_in_count %>)
             </span>
             <p>@<%= user.username %></p>
-            <%= link_to material_icon_of("input"), user, target: "_black",
+            <%= link_to material_icon_of("open_in_new"), user, target: "_black",
               class: "secondary-content" %>
          </li>
         <% end %>
@@ -54,7 +120,7 @@
     // newUsersChart
     var ctx = document.getElementById("newUsersChart");
 
-    var labelNewUsers = <%= raw User.new_users_chart('label').to_json %>;
+    var labelNewUsers = <%= raw User.new_users_chart('label') %>;
     var dataGGNewUsers = <%= User.new_users_chart('data', 'google_oauth2') %>;
     var dataFBNewUsers = <%= User.new_users_chart('data', 'facebook') %>;
 
@@ -126,7 +192,7 @@
     // loginUserCountChart
     var ctx = document.getElementById("loginUserCountChart");
 
-    var labelLoginUserCount = <%= raw User.login_user_count_chart('label').to_json %>;
+    var labelLoginUserCount = <%= raw User.login_user_count_chart('label') %>;
     var dataLoginUserCount = <%= User.login_user_count_chart('data') %>;
 
     new Chart(ctx, {
@@ -179,8 +245,7 @@
     // postsByCategoryChart
     var ctx = document.getElementById("postsByCategoryChart");
 
-    var labelPostsByCategoryChart 
-          = <%= raw Category.labels_7_days_ago.to_json %>;
+    var labelPostsByCategoryChart = <%= raw Category.labels_7_days_ago %>;
     var dataPostsByHeadsetChart = <%= Category.find(1).data_posts_chart %>;
     var dataPostsByKeyboardChart = <%= Category.find(2).data_posts_chart %>;
     var dataPostsByMouseChart = <%= Category.find(3).data_posts_chart %>;

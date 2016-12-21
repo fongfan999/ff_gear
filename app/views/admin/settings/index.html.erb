@@ -1,0 +1,90 @@
+<%= title("Bảng điều khiển", "Quản lý hệ thống") %>
+
+<div id="admin-settings">
+  <div class="header-pattern"></div>
+    <div class="container-with-header card full-width">
+      <header>
+      <h5>
+        <%= link_to "Bảng điều khiển", admin_root_path, class: "breadcrumb" %>
+        <%= link_to "Quản lý hệ thống", "#", class: "breadcrumb" %>
+        
+        <br><br>
+      </h5>
+    </header>
+    
+    <h4 class="center-align uppercase">Quản lý hệ thống</h4>
+    
+    <div class="row">
+      <div class="col s12 m6 l6">
+        <div class="row settings-box label">
+          <div class="col s6 m6 l6">
+            <%= material_icon_of "label", class: "label-box" %>
+          </div>
+          <div class="col s6 m6 l6">
+            <div class="action-number"><%= @junk_tags_count %></div>
+            <div class="divider"></div>
+            <div class="action-icon">
+              <%= link_to material_icon_of("delete_forever"),
+                clean_junk_tags_admin_settings_path,
+                class: "tooltipped swal-settings", remote: true, method: :delete,
+                data: { position: "right", tooltip: "Dọn dẹp tag rác" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <div class="row settings-box attachment">
+          <div class="col s6 m6 l6">
+            <%= material_icon_of "attachment", class: "label-box" %>
+          </div>
+          <div class="col s6 m6 l6">
+            <div class="action-number"><%= @junk_attachments_count %>
+            </div>
+            <div class="divider"></div>
+            <div class="action-icon">
+              <%= link_to material_icon_of("delete_forever"),
+                clean_junk_attachments_admin_settings_path,
+                class: "tooltipped swal-settings", remote: true, method: :delete,
+                data: { position: "right", tooltip: "Dọn dẹp ảnh rác" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <div class="row settings-box notifications">
+          <div class="col s6 m6 l6">
+            <%= material_icon_of "notifications", class: "label-box" %>
+          </div>
+          <div class="col s6 m6 l6">
+            <div class="action-number"><%= @notice_by_admins %></div>
+            <div class="divider"></div>
+            <div class="action-icon">
+              <%= link_to material_icon_of("send"), "#send-notifications",
+                class: "tooltipped modal-trigger",
+                data: { position: "right",
+                tooltip: "Gửi thông báo cho tất cả người dùng" } %>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <div class="row settings-box security">
+          <div class="col s6 m6 l6">
+            <%= material_icon_of "security", class: "label-box" %>
+          </div>
+          <div class="col s6 m6 l6">
+            <div class="action-number">A..<%= @admin_access_token %></div>
+            <div class="divider"></div>
+            <div class="action-icon">
+              <%= link_to material_icon_of("update"), "#",
+              class: "tooltipped swal-settings", remote: true, method: :delete,
+              data: { position: "right", tooltip: "Cật nhật access token" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render file: "admin/settings/send_notifications_modal" %>

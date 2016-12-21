@@ -64,9 +64,7 @@
               <thead>
                 <tr>
                   <th class="bold">Tình trạng</th>
-                  <td class="state">
-                    <%= @post.sold? ? "Đã bán" : "Chưa bán" %>
-                  </td>
+                  <td class="state"><%= @post.state %></td>
                 </tr>
               </thead>
               <thead>

@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :should_save?
   after_save :geoword, if: :should_save?
   after_create :assign_user_address
+  after_create :post_to_facebook_page
 
   acts_as_commontable
 
@@ -49,13 +50,20 @@ class Post < ApplicationRecord
     return Post.all if q.blank?
 
     result = search_by('description', q)
-    result += search_by('address', q)
 
+    # result += search_by('address', q)
+    
     q.split.each_with_index do |word, index|
-      result += search_by('title', word)
-      result += search_by_category(word) if index.zero?
-      result += search_by_tag(word)
+      # Normal search
+      if q !~ /\A#/
+        result += search_by_category(word) if index.zero?
+        result += search_by('title', word)
+        result += search_by('address', word)
+      end
+      
+      result += search_by_tag(word.delete('#')) # remove hashtag
     end
+
 
     if (sort_param.nil? || sort_param == "relevance")
       return result
@@ -72,8 +80,9 @@ class Post < ApplicationRecord
   end
 
   scope :search_by_tag, -> (q) do
-    joins(:tags)
-      .where("lower(tags.name) LIKE ?", "%#{q.mb_chars.downcase.to_s}%")
+    # Match entire words
+    # Don't need to down case query when using regex
+    joins(:tags).where("tags.name ~* ?", "\\y#{q}\\y")
   end
 
   scope :search_by_category, -> (q) do
@@ -82,16 +91,20 @@ class Post < ApplicationRecord
   end
 
   scope :filter, -> (filter) do
-    # There are 3 criteria: sort, category_ids, price_range
+    # There are 3 criteria: sort, category_ids, price_range, state
     sort = filter.fetch(:sort, nil)
     category_ids = filter.fetch(:category_ids, nil)
     price_range = filter.fetch(:price_range, nil)
+    state = filter.fetch(:state, nil)
 
     # Get current scope value for the first time
     result = custom_sort(sort)
 
     result = result.filter_categories(category_ids) unless category_ids.nil?
     result = result.filter_price_range(price_range) unless price_range.nil?
+    result = result.filter_state(state) unless state.nil?
+
+    result
   end
 
   scope :filter_categories, -> (category_ids) do
@@ -117,6 +130,10 @@ class Post < ApplicationRecord
     where("price BETWEEN ? AND ?", min_price, max_price)
   end
 
+  scope :filter_state, -> (state) do
+    where(sold: state)
+  end
+
   scope :max_price, -> { maximum(:price) }
   scope :min_price, -> { minimum(:price) }
 
@@ -126,11 +143,28 @@ class Post < ApplicationRecord
     where(sold: false)
   end
 
+  # For chart creation purpose only
+  def self.categories_chart
+    group(:category_id).count.map(&:last)
+  end
+
+  def self.state_chart
+    group(:sold).order(:sold).count.map(&:last)
+  end
+  # End chart creation
+
   def tag_names=(names)
     @tag_names = names
+    # Delete and create new
     self.tags.delete_all
-    names.split(",").delete_if(&:blank?).each do |name|
-      self.tags << Tag.find_or_initialize_by(name: name)
+
+    names.split(",").delete_if(&:blank?).take(5).each do |name|
+      if name.length < 20
+        # Resolve UTF-8
+        self.tags << Tag.find_or_initialize_by(
+          name: name.strip.mb_chars.downcase.to_s
+        )
+      end
     end
   end
 
@@ -152,6 +186,10 @@ class Post < ApplicationRecord
 
   def first_attachment
     attachments.first.file.url
+  end
+
+  def state
+    sold? ? "Đã bán" : "Chưa bán"
   end
 
   private
@@ -186,4 +224,25 @@ class Post < ApplicationRecord
   def assign_user_address
     owner.profile.update(address: self.address) if owner.profile.address.blank?
   end
+
+  def helpers
+    ActionController::Base.helpers
+  end
+
+  def post_to_facebook_page
+    @user_graph = Koala::Facebook::API.new(APP_CONFIG['admin_access_token'])
+    page_token = @user_graph.get_page_access_token(579851348889688)
+
+    @graph = Koala::Facebook::API.new(page_token)
+    @graph.put_wall_post("#{title} - #{helpers.number_to_currency(price)}\n#{description}", {
+      name: title,
+      caption: "FOXFIZZ.COM",
+      description: address,
+      link: Rails.application.routes.url_helpers.post_url(self, host: "localhost:3000"), 
+      picture: 'https://digitalcrack.files.wordpress.com/2014/12/wpid-tech-beats-headphones-1.jpg'
+    })
+  end
+
+  handle_asynchronously :post_to_facebook_page,
+                          run_at: Proc.new { 5.minutes.from_now }
 end

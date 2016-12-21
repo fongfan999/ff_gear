@@ -38,15 +38,33 @@
             </div>
 
             <div class="left-content left">
-              <%= image_tag notification.commenter.avatar, class: "circle" %>
+              <!-- System avatar -->
+              <% if notification.post_id.nil? %>
+                <%= material_icon_of "settings", class: "circle large" %>
+              <% else %>
+                <%= image_tag notification.commenter.avatar, class: "circle" %>
+              <% end %>
             </div>
             
             <div class="right-content">
-              <%= link_to notification.commenter.name, 
-                user_profile_path(notification.commenter.username),
-                class: "bold" %> 
-                
-              <% if notification.comment_id.nil? %>
+              <!-- Notification from System -->
+              <% if notification.post_id.nil? %>
+                <%= link_to "Hệ thống", admin_settings_path, class: "bold" %> 
+              <% else %>
+                <%= link_to notification.commenter.name, 
+                  user_profile_path(notification.commenter.username),
+                  class: "bold" %> 
+              <% end %>
+            
+              <!-- Notification from System -->
+              <% if notification.post_id.nil? %>
+                thông báo:
+                <div class="message-content">
+                  <%= simple_format notification.content %>
+                </div>
+
+              <!-- Notification from Reporter -->
+              <% elsif notification.comment_id.nil? %>
                 đã cho rằng tin 
                 <%= link_to notification.post.title, notification.unread? ? 
                     post_path(notification.post,
@@ -55,6 +73,7 @@
                 <div class="message-content red-text">
                   <%= simple_format notification.content %>
                 </div>
+              <!-- Notification from Commenter -->
               <% else %>              
                 đã  bình luận trên tin 
                 <%= link_to notification.post.title,
@@ -82,9 +101,6 @@
     <% end %>
   </div>
   <% end %>
-
-
-
 
   <div class="center-align">
     <%= will_paginate @notification_days %>

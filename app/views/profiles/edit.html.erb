@@ -1,5 +1,6 @@
 <div id="edit-profile-form" class="modal">
-  <%= simple_form_for @profile, html: { autocomplete: 'off' } do |f| %>
+  <%= simple_form_for @profile, html: { autocomplete: 'off' },
+    validate: true do |f| %>
     <div class="modal-content">
       <div class="row">
         <div class="col s12">
@@ -40,7 +41,7 @@
     </div>
     
     <div class="modal-footer">
-      <%= f.button :button, 'cập nhật', class: "modal-action" %>
+      <%= f.button :button, 'cập nhật', class: "modal-action validation-btn" %>
       <a class="modal-action modal-close btn-flat">Đóng</a>
     </div>
   <% end %>
