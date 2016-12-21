@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   root "market#index"
   
-  get "/about" => "main#about"
   get "/search" => "main#search"
+  get "/about" => "main#about"
+  get "/help" => "main#help"
 
   # Admin namespace
   namespace :admin do

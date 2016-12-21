@@ -5,6 +5,9 @@ class MainController < ApplicationController
     render layout: false
   end
 
+  def help
+  end
+
   def search
     if params[:q] =~ /\A@/
       # Search users

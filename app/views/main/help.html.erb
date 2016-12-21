@@ -1,0 +1,39 @@
+<%
+  faqs = [
+    ["Question",  "Answer"],
+    ["Question",  "Answer"],
+    ["Question",  "Answer"],
+  ]
+%>
+
+<div id="help" class="container">
+  <h4 class="card-panel primary-color center-align">Trung tâm hỗ trợ</h4>
+  
+  <div class="card-panel primary-color">
+    <p>Quý khách có bất kỳ vấn đề gì cần hỗ trợ, hãy liên hệ với bộ phận chăm sóc khách hàng của FoxFizz theo thông tin như sau:</p>
+    <ul>
+      <li>Phone: (08) 123 456 789 </li>
+      <li>Email: support@foxfizz.com</li>
+      <li>Skype: support.foxfizz </li>
+      <li>FaceBook: <a href="https://www.facebook.com/foxfizz">https://www.facebook.com/foxfizz</a></li>
+    </ul>
+  </div>
+
+  <div id="faq">
+    <h5 class="card-panel primary-color center-align">
+      Những câu hỏi thường gặp
+    </h5>
+    <ul class="collapsible" data-collapsible="accordion">
+      <% faqs.each do |faq| %>
+        <li>
+          <div class="collapsible-header primary-color">
+            <i class="material-icons">question_answer</i> <%= faq[0] %>
+          </div>
+          <div class="collapsible-body">
+            <p><%= faq[1] %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
