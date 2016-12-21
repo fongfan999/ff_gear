@@ -132,20 +132,24 @@ class User < ApplicationRecord
     [admin_counter, User.count - admin_counter]
   end
 
-  def self.user_sign_in_count_chart(type)
+  def self.labels_7_days_ago
     milestone = 7.days.ago.beginning_of_day
-    recently_visited = Visit.where("visited_at > ?", milestone)
-
     labels =  []
     i = 0
+
     while i < 7
       labels << (milestone += 1.days).strftime('%d/%m')
       i += 1
     end
 
-    return labels if type == "label"
+    labels
+  end
 
-    # type = 'data'
+  def self.user_login_count_chart
+    milestone = 7.days.ago.beginning_of_day
+    recently_visited = Visit.where("visited_at > ?", milestone)
+
+    labels = User.labels_7_days_ago
     # group by current_sign_in_at and get label & users size
     result = recently_visited
       .group(:visited_at).count(:id)

@@ -192,8 +192,8 @@
     // userLoginCount
     var ctx = document.getElementById("userLoginCount");
 
-    var labelUserLoginCount = <%= raw User.user_sign_in_count_chart('label') %>;
-    var dataUserLoginCount = <%= User.user_sign_in_count_chart('data') %>;
+    var labelUserLoginCount = <%= raw User.labels_7_days_ago %>;
+    var dataUserLoginCount = <%= User.user_login_count_chart %>;
 
     new Chart(ctx, {
       type: 'line',
@@ -244,7 +244,8 @@
 
     // postsByCategoryChart
     var ctx = document.getElementById("postsByCategoryChart");
-
+    var labelByCategoriesChart = <%= raw Category.labels_7_days_ago %>;
+    
     new Chart(ctx, {
       type: 'line',
       data: {
