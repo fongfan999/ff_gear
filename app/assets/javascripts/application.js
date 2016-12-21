@@ -241,8 +241,11 @@ $(function() {
           // Append new elenment to wrapper
           $(file.previewElement).appendTo('#preview-wrapper');
 
-          shouldDisableSubmitBtn();
           $('.dz-message').hide();
+        });
+
+        this.on("uploadprogress", function(file, percent) {
+          submitBtn.attr('disabled', true);
         });
 
         this.on("success", function(file, object) {
