@@ -56,11 +56,11 @@ gem 'commontator', '~> 4.11', '>= 4.11.1'
 # gem 'scrollbar-rails', '~> 1.0'
 # Validate as client side
 gem 'client_side_validations',
-  github: 'DavyJonesLocker/client_side_validations',
+  git: 'https://github.com/DavyJonesLocker/client_side_validations.git',
   branch: 'rails5'
 # Simple From for Clident Side validation
 gem 'client_side_validations-simple_form',
-  github: 'DavyJonesLocker/client_side_validations-simple_form',
+  git: 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git',
   branch: 'rails5'
 
 source 'https://rails-assets.org' do
