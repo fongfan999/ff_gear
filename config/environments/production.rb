@@ -58,7 +58,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Set default host
-  config.action_mailer.default_url_options = { host: "foxfizz.com" }
+  config.action_mailer.default_url_options = { host: "foxfizz.me" }
+
+  # Set default host
+  config.action_controller.default_url_options = { host: "foxfizz.me" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

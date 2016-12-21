@@ -232,14 +232,19 @@ class Post < ApplicationRecord
   def post_to_facebook_page
     @user_graph = Koala::Facebook::API.new(APP_CONFIG['admin_access_token'])
     page_token = @user_graph.get_page_access_token(579851348889688)
+    picture_link = if Rails.env.production? 
+      self.first_attachment
+    else
+      'https://digitalcrack.files.wordpress.com/2014/12/wpid-tech-beats-headphones-1.jpg'
+    end
 
     @graph = Koala::Facebook::API.new(page_token)
     @graph.put_wall_post("#{title} - #{helpers.number_to_currency(price)}\n#{description}", {
       name: title,
       caption: "FOXFIZZ.COM",
       description: address,
-      link: Rails.application.routes.url_helpers.post_url(self, host: "localhost:3000"), 
-      picture: 'https://digitalcrack.files.wordpress.com/2014/12/wpid-tech-beats-headphones-1.jpg'
+      link: Rails.application.routes.url_helpers.post_url(self), 
+      picture: picture_link
     })
   end
 
