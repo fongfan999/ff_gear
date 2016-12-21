@@ -79,11 +79,9 @@
                     activates: "notice-content", beloworigin: true,
                     outduration: 1000 } %>
 
-                  <% unless current_user.unread_counter.zero? %>
                   <span class="counter notice">
                     <%= current_user.unread_counter %>
                   </span>
-                  <% end %>
 
                   <ul id="notice-content" class="dropdown-content collection
                     with-header">
@@ -168,11 +166,9 @@
       <% end %>
       <li>
         <%= link_to material_icon_of("notifications", name: "Thông báo"), notifications_path %>
-        <% unless current_user.unread_counter.zero? %>
-          <span class="counter notice">
+        <span class="counter notice">
           <%= current_user.unread_counter %>
         </span>
-        <% end %>
       </li> <!-- End Notification -->
 
       <li>
