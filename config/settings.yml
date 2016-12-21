@@ -15,8 +15,8 @@ test:
   google_api_key: AIzaSyD_cuVyQT2E7TUQqIMCV5Jj7ocMJBhBuxI
 
 production:
-  facebook_app_id: <%= ENV[FB_APP_ID] %>
-  facebook_app_secret: <%= ENV[FB_APP_SECRET] %>
-  google_client_id: <%= ENV["GG_CLIENT_ID"] %>
-  google_client_secret: <%= ENV["GG_CLIENT_SECRET"] %>
-  google_api_key: <%= ENV["GG_API_KEY"] %>
+  facebook_app_id: <%= ENV['FB_APP_ID'] %>
+  facebook_app_secret: <%= ENV['FB_APP_SECRET'] %>
+  google_client_id: <%= ENV['GG_CLIENT_ID'] %>
+  google_client_secret: <%= ENV['GG_CLIENT_ID'] %>
+  google_api_key: <%= ENV['GG_CLIENT_ID'] %>
