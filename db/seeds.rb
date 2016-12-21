@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 unless Category.exists?(name: "Tai nghe")
-  Category.create(name: "Tai nghe", color: "#fb9678")
+  Category.create(name: "Tai nghe", icon: "headset", color: "#fb9678")
 end
 
 unless Category.exists?(name: "Bàn phím")
-  Category.create(name: "Bàn phím", color: "#01c0c8")
+  Category.create(name: "Bàn phím", icon: "keyboard", color: "#01c0c8")
 end
 
 unless Category.exists?(name: "Chuột")
-  Category.create(name: "Chuột", color: "#ab8ce4")
+  Category.create(name: "Chuột", icon: "mouse", color: "#ab8ce4")
 end
 
 unless Category.exists?(name: "Khác")
-  Category.create(name: "Khác", color: "#00c292")
+  Category.create(name: "Khác", icon: "devices_other", color: "#00c292")
 end
 
 if Report.count == 0

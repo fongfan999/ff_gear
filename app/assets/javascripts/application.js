@@ -240,6 +240,9 @@ $(function() {
         this.on("addedfile", function(file) {
           // Append new elenment to wrapper
           $(file.previewElement).appendTo('#preview-wrapper');
+
+          shouldDisableSubmitBtn();
+          $('.dz-message').hide();
         });
 
         this.on("success", function(file, object) {

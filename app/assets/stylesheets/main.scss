@@ -11,12 +11,12 @@
   #intro {
     padding-bottom: 50px;
     height: 700px;
-    background: url('headphone.png') center no-repeat;
+    background: image-url('headphone.png') center no-repeat;
     background-attachment: fixed;
     background-size: cover;
   }
   .non-prl {
-    background: url('keyboard-bg.jpg') center no-repeat;
+    background: image-url('keyboard-bg.jpg') center no-repeat;
     background-attachment: fixed;
     background-size: cover;
     filter: grayscale(60%);

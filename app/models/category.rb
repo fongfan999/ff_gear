@@ -4,6 +4,7 @@ class Category < ApplicationRecord
   has_many :posts, dependent: :delete_all
 
   validates :name, :icon, presence: true
+  validates :name, uniqueness: true
 
   scope :search_by, -> (attr, q) do
     return if q.blank?

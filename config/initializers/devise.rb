@@ -254,7 +254,7 @@ Devise.setup do |config|
       { info_fields: 'email, name, link' }
 
   config.omniauth :google_oauth2,
-    APP_CONFIG['GG_CLIENT_ID'], APP_CONFIG['GG_CLIENT_ID']
+    APP_CONFIG['GG_CLIENT_ID'], APP_CONFIG['GG_CLIENT_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

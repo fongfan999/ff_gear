@@ -3,7 +3,7 @@ defaults: &defaults
   FB_APP_SECRET: 2af355ca211b14b997f0b9b219b15526
   GG_CLIENT_ID: >-
     156045701901-6hhfdv3vim2f98bmm3jro51fl3t8fkhc.apps.googleusercontent.com
-  GG_CLIENT_ID: 1L6CUHNd39z517sESq8W4P3p
+  GG_CLIENT_SECRET: 1L6CUHNd39z517sESq8W4P3p
   GG_API_KEY: AIzaSyD_cuVyQT2E7TUQqIMCV5Jj7ocMJBhBuxI
   
 development:
