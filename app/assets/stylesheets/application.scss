@@ -525,39 +525,6 @@ input.number:disabled {
   background-color: #fff;
 }
 
-// Dark theme sweet alert
-.swal2-modal {
-  background-color: $primary-color !important;
-
-  .swal2-success {
-    &:before, &:after, .fix {
-      background-color: $primary-color;
-    }
-  }
-
-  .swal2-title {
-    color: #fff;
-  }
-
-  .swal2-content {
-    color: $text-color;
-  }
-}
-
-// Re-style commontator
-.thread_reply .comment_error_explanation {
-  padding-top: 15px;
-  color: $foreign-color !important;
-
-  & > h6 {
-    font-size: 0.9em;
-  }
-
-  & > ul {
-    font-size: 0.9em;
-  }
-}
-
 // remove margin-right mCustomScrollbar
 .mCSB_inside > .mCSB_container {
   margin-right: 10px !important;

@@ -66,9 +66,12 @@
       ]
     });
 
+    if ($('.post_tag_names .chip').length > 4) {
+      $('#chips-tag-names .input').hide();
+    }
     // Update hidden field for params
     $('#chips-tag-names').on('chip.add', function(e, chip){
-      console.log(chip);
+      
       if (chip.tag.length > 20) {
         $('.post_tag_names .chip .close').last().click();
       } else {

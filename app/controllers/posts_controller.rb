@@ -81,14 +81,15 @@ class PostsController < ApplicationController
     report_id = params[:post][:report_id]
     report = Report.find(report_id)
 
-    @post.owner
-      .delay(run_at: 30.seconds.from_now)
-      .get_notification(@post, current_user, report.name, nil)
+    @post.owner.get_notification(@post, current_user, report.name, nil)
 
     # Send to admin
     if report.public?
-      User.delay(run_at: 1.hour.from_now)
-        .sent_report_to_admins(@post, current_user, report)
+      User.find_each do |user|
+        if user.admin?
+          user.get_notification(@post, current_user, report.name, nil)
+        end
+      end
     end
 
     head :ok

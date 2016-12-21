@@ -27,8 +27,9 @@ $ ->
   # Trigger rendering comments is completed
   $( document ).ajaxComplete (event, xhr, settings) ->
     threadBox = $(".comments_list")
-    console.log settings.type
-    if threadBox.length
+
+    if threadBox.length && !scrolled 
+      scrolled = true
 
       # Change scrollbar style and scroll to anchor
       threadBox.mCustomScrollbar(
@@ -36,25 +37,14 @@ $ ->
         theme: "light-thin"
       )
       
-      if !scrolled
-        scrolled = true
-
+      # Users click on notification box
+      if settings.type == "GET"
         # Scroll to threadBox
         $('html, body').animate {
           scrollTop: $('#comments').offset().top - 64
         }, 2000
 
-
-      # Users click on notification box
-      if settings.type == "GET"
-        
         threadBox.mCustomScrollbar("scrollTo", anchorComment || "bottom")
-      else 
-        # type == "POST"
-        console.log "called this"
-        threadBox.mCustomScrollbar("scrollTo", "bottom", {scrollInertia:0})
-
-          
 
   # Update icon favorite
   $('a.favorite').click ->

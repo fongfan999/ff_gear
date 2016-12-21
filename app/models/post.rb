@@ -51,14 +51,17 @@ class Post < ApplicationRecord
 
     result = search_by('description', q)
 
-    result += search_by('address', q)
+    # result += search_by('address', q)
     
-
     q.split.each_with_index do |word, index|
-      result += search_by('title', word)
-      result += search_by_category(word) if index.zero?
-      result += search_by_tag(word)
-
+      # Normal search
+      if q !~ /\A#/
+        result += search_by_category(word) if index.zero?
+        result += search_by('title', word)
+        result += search_by('address', word)
+      end
+      
+      result += search_by_tag(word.delete('#')) # remove hashtag
     end
 
 
@@ -77,8 +80,9 @@ class Post < ApplicationRecord
   end
 
   scope :search_by_tag, -> (q) do
-    joins(:tags)
-      .where("lower(tags.name) = ?", "%#{q.mb_chars.downcase.to_s}%")
+    # Match entire words
+    # Don't need to down case query when using regex
+    joins(:tags).where("tags.name ~* ?", "\\y#{q}\\y")
   end
 
   scope :search_by_category, -> (q) do
@@ -154,7 +158,7 @@ class Post < ApplicationRecord
     # Delete and create new
     self.tags.delete_all
 
-    names.split(",").take(5).delete_if(&:blank?).each do |name|
+    names.split(",").delete_if(&:blank?).take(5).each do |name|
       if name.length < 20
         # Resolve UTF-8
         self.tags << Tag.find_or_initialize_by(
@@ -226,7 +230,7 @@ class Post < ApplicationRecord
   end
 
   def post_to_facebook_page
-    @user_graph = Koala::Facebook::API.new(User.super_user.access_token)
+    @user_graph = Koala::Facebook::API.new(APP_CONFIG['admin_access_token'])
     page_token = @user_graph.get_page_access_token(579851348889688)
 
     @graph = Koala::Facebook::API.new(page_token)

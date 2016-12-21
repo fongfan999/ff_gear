@@ -86,18 +86,6 @@ class User < ApplicationRecord
     find_each do |user|
       user.get_notification(nil, nil, content, nil) unless user.admin?
     end
-
-    # Message only (System)
-    User.super_user
-      .get_notification(nil, nil, "Đã gửi xong thông báo: #{content} tag", nil)
-  end
-
-  def self.sent_report_to_admins(post, commenter, report)
-    User.find_each do |user|
-      if user.admin?
-        user.get_notification(post, commenter, report.name, nil)
-      end
-    end
   end
 
   # For chart creation purpose only
@@ -132,9 +120,9 @@ class User < ApplicationRecord
     [admin_counter, User.count - admin_counter]
   end
 
-  def self.user_sign_in_count_chart(type)
+  def self.login_user_count_chart(type)
     milestone = 7.days.ago.beginning_of_day
-    recently_visited = Visit.where("visited_at > ?", milestone)
+    recent_users = User.where('current_sign_in_at > ?', milestone)
 
     labels =  []
     i = 0
@@ -147,12 +135,12 @@ class User < ApplicationRecord
 
     # type = 'data'
     # group by current_sign_in_at and get label & users size
-    result = recently_visited
-      .group(:visited_at).count(:id)
-      .map { |label, data| [label.strftime('%d/%m'), data] }
+    result = recent_users
+      .group_by { |u| u.current_sign_in_at.beginning_of_day }
+      .map { |label, data| [label.strftime('%d/%m'), data.size] }
 
     # Create arary with 0 as default
-    result_data = Array.new(7, 0)
+    result_data = Array.new(7, 1)
     result.each do |obj|
       # label: obj[0]
       # data: obj[1]
@@ -160,7 +148,7 @@ class User < ApplicationRecord
       # Update data value
       if labels.include?(obj[0])
         index = labels.find_index(obj[0])
-        result_data[index] = obj[1]
+        result_data[index] = obj[1] + 1
       end
     end
 
@@ -190,16 +178,6 @@ class User < ApplicationRecord
     notifications.each(&:mark_as_read)
   end
 
-  # For super user only
-  def update_token(param)
-    pass = param[:password]
-    token = param[:access_token]
-
-    return unless self.valid_password?(pass)
-
-    self.update(access_token: token)
-  end
-
   def unread_counter
     notifications.select(&:unread?).count
   end
@@ -214,4 +192,3 @@ class User < ApplicationRecord
     self.update(username: "user#{id}")
   end
 end
-
