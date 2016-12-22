@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  config.root = Rails.root
+  # config.root = Rails.root
   if Rails.env.production?
     config.storage = :fog
     config.fog_credentials = {
