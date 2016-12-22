@@ -2,14 +2,18 @@
 <html>
 <head>
   <%= favicon_link_tag %>
-  <title><%= content_for?(:title) ? yield(:title) : "FoxFizz - Chợ mua bán Gear" %></title>
+  <title>
+    <%= content_for?(:title) ? yield(:title) : "FoxFizz - Chợ mua bán Gear" %>
+  </title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="fb:app_id" content=<%= APP_CONFIG['FB_APP_ID'] %>>
+  
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag    'application', media: 'all' %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
 </head>
 
