@@ -253,5 +253,6 @@ class Post < ApplicationRecord
   end
 
   handle_asynchronously :post_to_facebook_page,
-                          run_at: Proc.new { 5.minutes.from_now }
+                          priority: 10,
+                          run_at: Proc.new { 1.second.from_now }
 end

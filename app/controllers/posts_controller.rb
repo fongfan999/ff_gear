@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     report = Report.find(report_id)
 
     @post.owner
-      .delay(run_at: 30.seconds.from_now)
+      .delay(run_at: 3.seconds.from_now)
       .get_notification(@post, current_user, report.name, nil)
 
     # Send to admin
