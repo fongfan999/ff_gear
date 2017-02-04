@@ -7,8 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<!-- //for-mobile-apps -->
-<link href="stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
 <style>
   /* reset */
   html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
@@ -35,7 +33,7 @@
   /*end reset*/
   html, body{
     font-size: 100%;
-    background: image-url('images/banner.jpg') no-repeat 0px 0px;
+    background: url('/images/banner.jpg') no-repeat 0px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -160,158 +158,7 @@
     background:#fff;
     color:#212121;
   }
-  .wthree_social_icons{
-    position:relative;
-  }
-  .wthree_social_icons div{
-    display: inline-block;
-    position:absolute;
-    top:50%;
-    left:48.5%;
-    -ms-transform:translate(-40%,-40%);
-    -webkit-transform:translate(-40%,-40%);
-    transform:translate(-40%,-40%);
-    -moz-transform:translate(-40%,-40%);
-    -o-transform:translate(-40%,-40%);
-  }
-
-  /* Icons */
-
-  .wthree_social_icons a {
-    color: #fff;
-    background: #FFFFFF;
-    text-align: center;
-    text-decoration: none;
-    position: relative;
-    display: inline-block;
-    width:40px;
-    height:40px;
-    margin: 0 5px;
-    -o-transition: all .5s;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wthree_social_icons a:nth-of-type(1):hover{
-    background:#3b5998;
-  }
-  .wthree_social_icons a:nth-of-type(2):hover{
-    background:#55acee;
-  }
-  .wthree_social_icons a:nth-of-type(3):hover{
-    background:#35465c;
-  }
-  /*-- w3layouts --*/
-  .wthree_social_icons a:nth-of-type(4):hover{
-    background:#00a0dc;
-  }
-  .wthree_social_icons a:nth-of-type(5):hover{
-    background:#162221;
-  }
-
-  /* pop-up text */
-
-  .wthree_social_icons a span {
-    color:#212121;
-    position:absolute;
-    bottom:0;
-    left:-25px;
-    right:-25px;
-    padding:5px 7px;
-    z-index:-1;
-    font-size:14px;
-    background:#fff;
-    visibility:hidden;
-    opacity:0;
-    -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  /* pop-up text arrow */
-
-  .wthree_social_icons a span:before {
-    content:'';
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #fff;
-    position:absolute;
-    bottom:-4px;
-    left:40px;
-  }
-
-  /* text pops up when icon is in hover state */
-
-  .wthree_social_icons a:hover span {
-    bottom:50px;
-    visibility:visible;
-    opacity:1;
-  }
-
-  /*-- agileits --*/
-  /* font awesome icons */
-  .wthree_social_icons a:before {
-    transition:.5s ease-in;
-    -webkit-transition:.5s ease-in;
-    -moz-transition:.5s ease-in;
-    -o-transition:.5s ease-in;
-    -ms-transition:.5s ease-in;
-  }
-  .wthree_social_icons a:nth-of-type(1):before {
-    content:'';
-    background:url(../images/img-sp.png) no-repeat 13px 11px;
-    display:block;
-    width:40px;
-    height:40px;
-  }
-  .wthree_social_icons a:nth-of-type(1):hover:before {
-    background-position:13px -25px;
-  }
-  .wthree_social_icons a:nth-of-type(2):before {
-    content:'';
-    background:url(../images/img-sp.png) no-repeat -18px 11px;
-    display:block;
-    width:40px;
-    height:40px;
-  }
-  .wthree_social_icons a:nth-of-type(2):hover:before {
-    background-position:-18px -28px;
-  }
-  .wthree_social_icons a:nth-of-type(3):before {
-    content:'';
-    background:url(../images/img-sp.png) no-repeat -53px 11px;
-    display:block;
-    width:40px;
-    height:40px;
-  }
-  .wthree_social_icons a:nth-of-type(3):hover:before {
-    background-position:-53px -29px;
-  }
-  .wthree_social_icons a:nth-of-type(4):before {
-    content:'';
-    background:url(../images/img-sp.png) no-repeat -89px 11px;
-    display:block;
-    width:40px;
-    height:40px;
-  }
-  .wthree_social_icons a:nth-of-type(4):hover:before {
-    background-position:-89px -28px;
-  }
-  .wthree_social_icons a:nth-of-type(5):before {
-    /*-- w3layouts --*/
-    content:'';
-    background:url(../images/img-sp.png) no-repeat -122px 11px;
-    display:block;
-    width:40px;
-    height:40px;
-  }
-  .wthree_social_icons a:nth-of-type(5):hover:before {
-    background-position:-122px -28px;
-  }
+  
   /*-----start-responsive-design------*/
   @media (max-width:1366px){
     .copyright p {
@@ -353,9 +200,6 @@
   }
   @media (max-width:736px){
     /*-- agileits --*/
-    .wthree_social_icons div {
-      left: 46.5%;
-    }
     .copyright p {
       margin: 10em 0 0;
     }
@@ -407,10 +251,6 @@
     .nav_w3l ul li a {
       padding: 8px 15px;
     }
-    .wthree_social_icons div {
-      left: 44.5%;
-      width: 56%;
-    }
     .main h1 {
       font-size: 6em;
     }
@@ -420,18 +260,10 @@
     .more_w3ls a {
       padding: 8px 30px;
     }
-    .wthree_social_icons a {
-      margin: 0 2px;
-    }
+
     body {
       padding-bottom: 19em;
     }
-    .wthree_social_icons a:hover span {
-      bottom: 46px;
-    }
-    .wthree_social_icons a span {
-      padding: 5px 5px;
-      font-size: 13px;
     }
     .copyright p {
       padding: 0 1em;
@@ -444,9 +276,6 @@
     }
     .more_w3ls {
       margin: 2em 0 4em;
-    }
-    .wthree_social_icons div {
-      width: 60%;
     }
     body {
       padding-bottom: 11.05em;
@@ -463,9 +292,6 @@
       font-size: 13px;
       padding: 7px 25px;
     }
-    .wthree_social_icons div {
-      width: 64%;
-    }
     .more_w3ls {
       margin: 1.5em 0 4em;
     }
@@ -473,21 +299,13 @@
       padding-bottom: 10em;
     }
   }
-  @media (max-width: 375px){
-    .wthree_social_icons div {
-      width: 66%;
-    }
-  }
   @media (max-width:320px){
     .nav_w3l ul li a {
       padding: 4px 5px;
       font-size: 12px;
     }
-    .main h2, .copyright p,.more_w3ls a,.wthree_social_icons a span {
+    .main h2, .copyright p,.more_w3ls a {
       font-size: 12px;
-    }
-    .wthree_social_icons div {
-      width: 78%;
     }
     .copyright p {
       margin: 14em 0 0;

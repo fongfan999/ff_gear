@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   attr_accessor :report_id
   
   has_many :attachments, dependent: :delete_all
+  has_many :attachments, dependent: :delete_all
   has_and_belongs_to_many :users
   belongs_to :owner, class_name: "User", foreign_key: "buyer_id"
   belongs_to :category
@@ -237,10 +238,10 @@ class Post < ApplicationRecord
 
     if Rails.env.production? 
       picture_link = self.first_attachment
-      host_post = "localhost:3000"
+      host_post = "www.foxfizz.com"
     else
       picture_link =  'https://digitalcrack.files.wordpress.com/2014/12/wpid-tech-beats-headphones-1.jpg'
-      host_post = "www.foxfizz.com"
+      host_post = "localhost:3000"
     end
 
     @graph.put_wall_post("#{title} - #{helpers.number_to_currency(price)}\n#{description}", {

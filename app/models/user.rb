@@ -4,6 +4,7 @@ class User < ApplicationRecord
         :rememberable
 
   has_many :posts, foreign_key: 'buyer_id', dependent: :delete_all
+  has_many :visits, dependent: :delete_all
   has_and_belongs_to_many :favorites, join_table: :posts_users,
     class_name: "Post"
   has_many :notifications

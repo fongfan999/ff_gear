@@ -14,3 +14,8 @@ test:
 
 production:
   <<: *defaults
+  FB_APP_ID: <%= ENV['FB_APP_ID'] %>
+  FB_APP_SECRET: <%= ENV['FB_APP_SECRET'] %>
+  GG_CLIENT_ID: <%= ENV['GG_CLIENT_ID'] %>
+  GG_CLIENT_SECRET: <%= ENV['GG_CLIENT_SECRET'] %>
+  GG_API_KEY: <%= ENV['GG_API_KEY'] %>
