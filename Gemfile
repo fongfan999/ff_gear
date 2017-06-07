@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Custom Gems
 
-gem 'simple_form', '~> 3.3.1'
+gem 'simple_form', '~> 3.4'
 gem 'materialize-sass', '~> 0.97.7'
 gem 'carrierwave', '~> 0.11.2'
 gem 'dropzonejs-rails', '~> 0.7.3'
@@ -45,13 +45,9 @@ gem 'flexslider-rails'
 gem 'chart-js-rails', '~> 0.1.1'
 gem "koala", "~> 2.2"
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
-gem 'fog', '~> 1.38'
-gem 'client_side_validations',
-  git: 'https://github.com/DavyJonesLocker/client_side_validations.git',
-  branch: 'rails5'
-gem 'client_side_validations-simple_form',
-  git: 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git',
-  branch: 'rails5'
+gem 'fog-aws'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-materialize-autocomplete'

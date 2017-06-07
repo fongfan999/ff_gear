@@ -15,6 +15,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+.irb_history
 
 # Ignore upload file
 public/uploads
