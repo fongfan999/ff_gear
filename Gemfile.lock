@@ -96,6 +96,10 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    dotenv (2.2.0)
+    dotenv-rails (2.2.0)
+      dotenv (= 2.2.0)
+      railties (>= 3.2, < 5.1)
     dropzonejs-rails (0.7.3)
       rails (> 3.1)
     erubis (2.7.0)
@@ -410,6 +414,7 @@ DEPENDENCIES
   commontator (~> 4.11, >= 4.11.1)
   delayed_job_active_record (~> 4.1, >= 4.1.1)
   devise (~> 4.2)
+  dotenv-rails
   dropzonejs-rails (~> 0.7.3)
   flexslider-rails
   fog (~> 1.38)
@@ -443,4 +448,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.15.1

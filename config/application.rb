@@ -15,10 +15,6 @@ module FoxFizz
     config.i18n.default_locale = :vi
     config.time_zone = 'Hanoi'
 
-    config.before_initialize do
-      require_relative 'load_settings'
-    end
-
     config.active_job.queue_adapter = :delayed_job
   end
 end

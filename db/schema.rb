@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(version: 20161220151532) do
   create_table "categories_posts", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
     t.integer "post_id",     null: false
-    t.index ["category_id", "post_id"], name: "index_categories_posts_on_category_id_and_post_id", using: :btree
-    t.index ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id", using: :btree
   end
 
   create_table "commontator_comments", force: :cascade do |t|

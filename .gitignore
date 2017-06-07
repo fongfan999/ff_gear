@@ -19,3 +19,9 @@
 # Ignore upload file
 public/uploads
 uploads
+
+# Ignore mac folder
+.DS_Store
+
+# Ignore config file
+.env

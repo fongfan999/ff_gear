@@ -30,67 +30,40 @@ gem 'jbuilder', '~> 2.5'
 
 # Custom Gems
 
-# Make form simpler
 gem 'simple_form', '~> 3.3.1'
-# Material Design
 gem 'materialize-sass', '~> 0.97.7'
-# File upload solution
 gem 'carrierwave', '~> 0.11.2'
-# UI Uploader
 gem 'dropzonejs-rails', '~> 0.7.3'
-# Flexible authentication
 gem 'devise', '~> 4.2'
-# Facebook OAth
 gem 'omniauth-facebook'
-# Google OAth2
 gem "omniauth-google-oauth2"
-# Simple_form and Materialize
 gem 'materialize-form', '~> 1.0', '>= 1.0.1'
-# Get object geocoding
 gem 'geocoder', '~> 1.4.1'
-# Pagination
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
-# Comments plugins
 gem 'commontator', '~> 4.11', '>= 4.11.1'
-# # Custom Scrollbar
-# gem 'scrollbar-rails', '~> 1.0'
-# Validate as client side
+gem 'flexslider-rails'
+gem 'chart-js-rails', '~> 0.1.1'
+gem "koala", "~> 2.2"
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+gem 'fog', '~> 1.38'
 gem 'client_side_validations',
   git: 'https://github.com/DavyJonesLocker/client_side_validations.git',
   branch: 'rails5'
-# Simple From for Clident Side validation
 gem 'client_side_validations-simple_form',
   git: 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git',
   branch: 'rails5'
 
 source 'https://rails-assets.org' do
-  # materialize-autocomplete
   gem 'rails-assets-materialize-autocomplete'
-
-  # Sweet alert
   gem 'rails-assets-sweetalert2'
-  # Zoom image
   gem 'rails-assets-jquery-zoom'
-  # malihu custom scrollbar
   gem 'rails-assets-malihu-custom-scrollbar-plugin'
 end
-
-# Slider and zoom
-gem 'flexslider-rails'
-
-# Create chart
-gem 'chart-js-rails', '~> 0.1.1'
-# Facebook library
-gem "koala", "~> 2.2"
-# Delay a method calll
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
-# Upload file to s3
-gem 'fog', '~> 1.38'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 group :development do
