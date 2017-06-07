@@ -23,8 +23,8 @@
 //= require rails.validations.simple_form
 //= require sweetalert2
 //= require materialize-autocomplete
+//= require Chart.min
 //= require docso
-//= require Chart
 //= require_tree .
 
 enableValidations = function() {

@@ -140,7 +140,7 @@ GEM
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
     materialize-form (1.0.8)
-    materialize-sass (0.97.8)
+    materialize-sass (0.97.7)
       sass (~> 3.3)
     method_source (0.8.2)
     mime-types (3.1)
@@ -274,7 +274,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   carrierwave (~> 0.11.2)
-  chart-js-rails (~> 0.1.1)
+  chart-js-rails (~> 0.1.2)
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 4.2)
@@ -291,7 +291,7 @@ DEPENDENCIES
   koala (~> 2.2)
   listen (~> 3.0.5)
   materialize-form (~> 1.0, >= 1.0.1)
-  materialize-sass (~> 0.97.7)
+  materialize-sass (= 0.97.7)
   omniauth-facebook
   omniauth-google-oauth2
   pg (~> 0.18)

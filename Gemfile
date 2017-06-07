@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Custom Gems
 
 gem 'simple_form', '~> 3.4'
-gem 'materialize-sass', '~> 0.97.7'
+gem 'materialize-sass', '0.97.7'
 gem 'carrierwave', '~> 0.11.2'
 gem 'dropzonejs-rails', '~> 0.7.3'
 gem 'devise', '~> 4.2'
@@ -42,7 +42,7 @@ gem 'geocoder', '~> 1.4.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'commontator', '~> 4.11', '>= 4.11.1'
 gem 'flexslider-rails'
-gem 'chart-js-rails', '~> 0.1.1'
+gem 'chart-js-rails', '~> 0.1.2'
 gem "koala", "~> 2.2"
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
 gem 'fog-aws'
